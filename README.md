@@ -16,9 +16,9 @@
 
 <img align="center" src="logo.png" width="40px"/>
 
-<h3 align="center">Storytelling</h3>
+<h3 align="center">GestureVerse</h3>
 
-<p align="center">Choose-your-own-adventure Game using Hand Movement Classification and Detection</p>
+<p align="center">Choose-your-own-adventure Game using Hand Gesture Classification and Detection</p>
 
   <p align="center">
     <br />
