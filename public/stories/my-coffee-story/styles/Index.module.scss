@@ -1,0 +1,45 @@
+@use '/public/styles/colors';
+
+@use '/public/styles/fonts' with (
+    $body: 'Libre Baskerville',
+    $header: 'Libre Baskerville'
+);
+
+@use '/public/styles/sizing' with (
+   $story-margin: 25vh
+);
+
+@use '/public/styles/header' with (
+    $background-color: colors.$light-yellow,
+    $foreground-color: colors.$very-dark,
+    $min-height: 1em,
+    $max-height: 1vh,
+);
+
+@use '/public/styles/grid';
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+.main {
+    background-color: colors.$light-yellow;
+
+    grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
+
+    .wrapper {
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+        }
+
+        .text_center {
+            text-align: center;
+        }
+    }
+}
+
+.header {
+    nav {
+       .controls {
+          justify-items: left;
+       }
+    }
+ }

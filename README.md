@@ -14,7 +14,7 @@
 <br />
 <div align="center">
 
-<img align="center" src="static/resources/Storytelling_Logo_transparent.png" width="40px"/>
+<img align="center" src="logo.png" width="40px"/>
 
 <h3 align="center">Storytelling</h3>
 
@@ -69,7 +69,7 @@ Link to the [wireframes](https://www.figma.com/design/YQvqcC4Nai3QUIconlEFeb/Sto
 ### Progress
 
 - [x] Wireframes
-- [ ] Set up game in Twine and Bitsy
+- [x] Set up game in Windrift
 - [ ] Integrate MediaPipe
  
 
