@@ -1,7 +1,11 @@
 title: gestureverse
 language: en
 chapters:
-  - filename: "chapter1"
-    title: "Chapter title"
+  - filename: "menu"
+    title: "Menu"
+  - filename: "my-coffee-story"
+    title: "My coffee story"
+  - filename: "my-little-game"
+    title: "My little game"
 players:
-  - start: "chapter1"
+  - start: "menu"

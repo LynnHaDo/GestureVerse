@@ -1,5 +1,8 @@
 @use '/public/styles/colors';
 
+$theme-color: colors.$light-yellow;
+$text-color: colors.$very-dark;
+
 @use '/public/styles/fonts' with (
     $body: 'Libre Baskerville',
     $header: 'Libre Baskerville'
@@ -10,8 +13,8 @@
 );
 
 @use '/public/styles/header' with (
-    $background-color: colors.$light-yellow,
-    $foreground-color: colors.$very-dark,
+    $background-color: $theme-color,
+    $foreground-color: $text-color,
     $min-height: 1em,
     $max-height: 1vh,
 );
@@ -21,7 +24,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 .main {
-    background-color: colors.$light-yellow;
+    background-color: $theme-color;
 
     grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
 
