@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@mdx-js/loader": "^2.1.2",
+        "@mediapipe/tasks-vision": "^0.10.14",
         "@next/mdx": "^12.2.0",
         "@react-spring/web": "^9.6.1",
         "@reduxjs/toolkit": "^1.8.3",

@@ -1,12 +1,7 @@
 @use '/public/styles/colors';
 
-$theme-color: colors.$light-yellow;
-$text-color: colors.$very-dark;
-
-@use '/public/styles/fonts' with (
-    $body: 'Libre Baskerville',
-    $header: 'Libre Baskerville'
-);
+$theme-color: colors.$retro-green;
+$text-color: colors.$very-light;
 
 @use '/public/styles/sizing' with (
    $story-margin: 25vh
@@ -20,22 +15,19 @@ $text-color: colors.$very-dark;
 );
 
 @use '/public/styles/grid';
-
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@use '/public/styles/fonts';
 
 .main {
     background-color: $theme-color;
-
+    color: $text-color;
     grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
 
-    .wrapper {
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-        }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+    }
 
-        .text_center {
-            text-align: center;
-        }
+    .text_center {
+        text-align: center;
     }
 }
 
@@ -43,6 +35,10 @@ $text-color: colors.$very-dark;
     nav {
        .controls {
           justify-items: left;
+       }
+
+       button {
+          color: $text-color!important;
        }
     }
  }

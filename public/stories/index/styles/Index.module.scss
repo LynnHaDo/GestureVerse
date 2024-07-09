@@ -1,0 +1,72 @@
+@use '/public/styles/colors';
+
+$theme-color: colors.$light-yellow;
+$text-color: colors.$very-dark;
+
+@use '/public/styles/sizing' with (
+   $story-margin: 25vh
+);
+
+@use '/public/styles/header' with (
+    $background-color: $theme-color,
+    $foreground-color: $text-color,
+    $max-height: 1vh,
+);
+
+@use '/public/styles/grid';
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+.main {
+    background-color: $theme-color;
+
+    grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+    }
+
+    .story {
+        text-align: center;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .loader {
+            display: inline-flex;
+            gap: 10px;
+        }
+        
+        .loader:before,
+        .loader:after {
+            content: "";
+            height: 20px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background:
+            radial-gradient(farthest-side,#000 95%,#0000) 35% 35%/6px 6px no-repeat
+            #fff;
+            animation: l5 3s infinite;
+        }
+
+        @keyframes l5 {
+            0%,11%   {background-position:35% 35%}
+            14%,36%  {background-position:65% 35%}
+            38%,61%  {background-position:65% 65%}
+            64%,86%  {background-position:35% 65%}
+            88%,100% {background-position:35% 35%}
+        }
+    }
+}
+
+.header {
+    nav {
+       justify-content: center;
+       align-items: center;
+       display: flex;
+       height: 10em;
+    }
+ }
