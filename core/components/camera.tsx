@@ -17,11 +17,8 @@ import {
   GestureRecognizer,
   FilesetResolver,
   DrawingUtils,
+  GestureRecognizerResult,
 } from "@mediapipe/tasks-vision";
-
-/** Flags */
-let lastVideoTime = -1;
-let results: any = undefined;
 
 /**
  * Check if web camera access is allowed
@@ -53,6 +50,9 @@ const Camera = ({
   let [btnContent, btnContentSetter] = useState("Enable prediction");
   let [webcamRunning, webcamSetter] = useState(false);
   let [gestureRecognizer, modelSetter] = useState<GestureRecognizer>(null);
+  /** Flags */
+  let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
+  let results: GestureRecognizerResult;
 
   /** HTML Elements */
   const video = useRef<HTMLVideoElement>(null);
@@ -115,36 +115,37 @@ const Camera = ({
   const startVideo = () => {
     // Get user media parameters
     const constraints = {
-      video: true,
+      video: true
     };
 
     // Activate the webcam stream
     navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
       video.current.srcObject = stream;
-      video.current.addEventListener("loadeddata", (e: any) => 
-        predict
+      video.current.addEventListener("loadeddata", (event: any) => 
+        predict()
       );
     });
   };
 
   const predict = () => {
-    const nowInMs = Date.now();
+    let nowInMs = Date.now();
     const canvasCtx = canvas.current.getContext("2d");
 
     // As the video progresses, update results
     if (video.current.currentTime !== lastVideoTime) {
       results = gestureRecognizer.recognizeForVideo(video.current, nowInMs);
-      lastVideoTime = video.current.currentTime;
+      lastVideoTimeSetter(video.current.currentTime);
     }
 
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvas.current.width, canvas.current.height);
 
     const drawingUtils = new DrawingUtils(canvasCtx);
-    canvas.current.style.height,
+    canvas.current.style.height = `${canvasHeight}px`;
       video.current.style.height = `${canvasHeight}px`;
-    canvas.current.style.width,
+    canvas.current.style.width = `${canvasWidth}px`;
       video.current.style.width = `${canvasWidth}px`;
+
 
     /** If hand landmarks are included, draw it on the canvas */
     if (results.landmarks) {
@@ -184,9 +185,9 @@ const Camera = ({
     }
 
     requestAnimationFrame(() => {
-      if (webcamRunning) {
-        predict();
-      }
+        if (webcamRunning){
+            predict()
+        }
     });
   };
 
@@ -209,8 +210,8 @@ const Camera = ({
             <canvas
               ref={canvas}
               className="outputCanvas"
-              width={canvasWidth}
-              height={canvasHeight}
+              width="1280"
+              height="720"
               style={outputContainer}
             ></canvas>
             <p ref={outputText} className="output" color={textColor}></p>
