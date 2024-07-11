@@ -52,13 +52,14 @@ const Camera = ({
   let [gestureRecognizer, modelSetter] = useState<GestureRecognizer>(null);
   /** Flags */
   let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
-  let results: GestureRecognizerResult;
 
   /** HTML Elements */
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const outputText = useRef<HTMLParagraphElement>(null);
   const triggerBtn = useRef<HTMLButtonElement>(null);
+
+  let results: any = undefined;
 
   /**
    * Prepare hand gesture detection model for prediction
@@ -128,17 +129,19 @@ const Camera = ({
   };
 
   const predict = () => {
+    const videoEl = video.current;
+    const canvasEl = canvas.current;
     let nowInMs = Date.now();
-    const canvasCtx = canvas.current.getContext("2d");
+    const canvasCtx = canvasEl.getContext("2d");
 
     // As the video progresses, update results
-    if (video.current.currentTime !== lastVideoTime) {
-      results = gestureRecognizer.recognizeForVideo(video.current, nowInMs);
-      lastVideoTimeSetter(video.current.currentTime);
+    if (videoEl.currentTime !== lastVideoTime) {
+      results = gestureRecognizer.recognizeForVideo(videoEl, nowInMs);
+      lastVideoTimeSetter(videoEl.currentTime);
     }
 
     canvasCtx.save();
-    canvasCtx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+    canvasCtx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
     const drawingUtils = new DrawingUtils(canvasCtx);
     canvas.current.style.height = `${canvasHeight}px`;
@@ -148,7 +151,7 @@ const Camera = ({
 
 
     /** If hand landmarks are included, draw it on the canvas */
-    if (results.landmarks) {
+    if (results && results.landmarks) {
       for (const landmark of results.landmarks) {
         /** Draw the connectors */
         drawingUtils.drawConnectors(
@@ -170,7 +173,7 @@ const Camera = ({
 
     canvasCtx.restore();
 
-    if (results.gestures.length > 0) {
+    if (results && results.gestures.length > 0) {
       outputText.current.style.display = "block";
       outputText.current.style.width = `${canvasWidth}px`;
 
@@ -188,7 +191,7 @@ const Camera = ({
         if (webcamRunning){
             predict()
         }
-    });
+    })    
   };
 
   return (

@@ -5,7 +5,7 @@ export const Page: PageType = () => (
     <Chapter filename="chapter1">
         <Section>
             <h1>Chapter 1</h1>
-            <Camera canvasWidth={640}
+            <Camera canvasWidth={480}
                     canvasHeight={360}
                     btnBackgroundColor='rgb(34, 33, 31)'
                     textColor='rgb(250, 250, 250)'
