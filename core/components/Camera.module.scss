@@ -1,0 +1,53 @@
+.videoSection {
+    font-family: inherit;
+    opacity: 1;
+    transition: opacity 500ms ease-in-out;
+  
+    video {
+      display: block;
+      height: 320;
+    }
+  
+    .videoView {
+      p {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        z-index: 2;
+        margin: 0;
+      }
+
+      button {
+        font-family: inherit;
+        width: 200px;
+        height: 60px;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.5em;
+      }
+    }
+  
+    .highlighter {
+      background: rgba(0, 255, 0, 0.25);
+      border: 1px dashed #fff;
+      z-index: 1;
+      position: absolute;
+    }
+    
+    .outputCanvas {
+      pointer-events: none;
+    }
+    
+    .output {
+      display: none;
+      width: 100%;
+    }
+
+  }
+  
+  .invisible {
+    opacity: 0.2;
+  }
+  
+  .removed {
+    display: none;
+  }
