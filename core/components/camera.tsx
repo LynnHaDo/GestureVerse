@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 /** Styling */
 import styles from "./Camera.module.scss";
@@ -17,7 +17,6 @@ import {
   GestureRecognizer,
   FilesetResolver,
   DrawingUtils,
-  GestureRecognizerResult,
 } from "@mediapipe/tasks-vision";
 
 /**
@@ -49,17 +48,17 @@ const Camera = ({
 }: CameraProps) => {
   let [btnContent, btnContentSetter] = useState("Enable prediction");
   let [webcamRunning, webcamSetter] = useState(false);
-  let [gestureRecognizer, modelSetter] = useState<GestureRecognizer>(null);
+  let gestureRecognizer = useRef<GestureRecognizer>(null);
   /** Flags */
   let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
+  let results: any = undefined;
 
   /** HTML Elements */
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const outputText = useRef<HTMLParagraphElement>(null);
   const triggerBtn = useRef<HTMLButtonElement>(null);
-
-  let results: any = undefined;
+  const videoContainerRef = useRef<HTMLDivElement>(null);
 
   /**
    * Prepare hand gesture detection model for prediction
@@ -67,10 +66,10 @@ const Camera = ({
    */
   const createGestureRecognizer = async (numHands: number) => {
     const vision = await FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm"
     );
 
-    gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
+    gestureRecognizer.current = await GestureRecognizer.createFromOptions(vision, {
       baseOptions: {
         modelAssetPath:
           "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
@@ -79,17 +78,20 @@ const Camera = ({
       runningMode: "VIDEO",
       numHands: numHands,
     });
-
-    modelSetter(gestureRecognizer);
   };
 
   useEffect(() => {
-    // Set up gesture recognizer model
-    createGestureRecognizer(numHands);
-
     // If user allows access
     if (isUserCameraAllowed()) {
+      // Set up gesture recognizer model
+      createGestureRecognizer(numHands);
       triggerBtn.current.addEventListener("click", togglePrediction);
+    }
+
+    return () => {
+        gestureRecognizer.current.close();
+        gestureRecognizer.current = null;
+        video.current.removeEventListener("loadeddata", predict);
     }
   }, []);
 
@@ -97,6 +99,10 @@ const Camera = ({
    * Trigger prediction
    */
   const togglePrediction = () => {
+    if (!gestureRecognizer) {
+        console.warn("Model not loaded yet")
+        return;
+    }
     // Change display text based on whether the webcam is running or not
     if (webcamRunning) {
       webcamSetter(false);
@@ -120,11 +126,9 @@ const Camera = ({
     };
 
     // Activate the webcam stream
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
       video.current.srcObject = stream;
-      video.current.addEventListener("loadeddata", (event: any) => 
-        predict()
-      );
     });
   };
 
@@ -136,7 +140,7 @@ const Camera = ({
 
     // As the video progresses, update results
     if (videoEl.currentTime !== lastVideoTime) {
-      results = gestureRecognizer.recognizeForVideo(videoEl, nowInMs);
+      results = gestureRecognizer.current.recognizeForVideo(videoEl, nowInMs);
       lastVideoTimeSetter(videoEl.currentTime);
     }
 
@@ -159,14 +163,14 @@ const Camera = ({
           GestureRecognizer.HAND_CONNECTIONS,
           {
             color: "rgb(103, 169, 215)",
-            lineWidth: 5,
+            lineWidth: 2,
           }
         );
 
         /** Draw the joints */
         drawingUtils.drawLandmarks(landmark, {
-          color: "rgb(103, 169, 215)",
-          lineWidth: 2,
+          color: "rgb(241, 229, 192)",
+          lineWidth: 1,
         });
       }
     }
@@ -187,11 +191,13 @@ const Camera = ({
       outputText.current.style.display = "none";
     }
 
-    requestAnimationFrame(() => {
-        if (webcamRunning){
-            predict()
-        }
-    })    
+    
+        requestAnimationFrame(() => {
+            if (webcamRunning){
+                predict()
+            }
+        });
+    
   };
 
   return (
@@ -208,13 +214,17 @@ const Camera = ({
           >
             <span>{btnContent}</span>
           </button>
-          <div style={videoContainer}>
-            <video ref={video} autoPlay playsInline></video>
+          <div style={videoContainer}
+               ref={videoContainerRef}>
+            <video  width={canvasWidth}
+                    height={canvasHeight}
+                    ref={video} 
+                    onLoadedData = {predict} autoPlay playsInline></video>
             <canvas
               ref={canvas}
               className="outputCanvas"
-              width="1280"
-              height="720"
+              width={canvasWidth}
+              height={canvasHeight}
               style={outputContainer}
             ></canvas>
             <p ref={outputText} className="output" color={textColor}></p>
