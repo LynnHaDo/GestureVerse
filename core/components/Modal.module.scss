@@ -1,0 +1,7 @@
+@use '../../public/styles/colors';
+@use '../../public/styles/fonts';
+
+.modal {
+    font-family: fonts.$body;
+    color: colors.$very-dark;
+}

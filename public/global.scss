@@ -6,6 +6,7 @@
 */
 
 @use 'styles/transitions';
+@use 'styles/colors';
 
 /* Removing all padding allows you to set background colors and margins per story */
 html, body {
@@ -35,3 +36,5 @@ section.windrift--section:last-of-type {
     cursor: pointer;
     pointer-events: auto;
 }
+
+@import '~bootstrap/scss/bootstrap';

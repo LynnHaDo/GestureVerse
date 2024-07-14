@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import CustomModal from "./modal";
 
 /** Styling */
 import styles from "./Camera.module.scss";
@@ -20,13 +21,8 @@ import {
 } from "@mediapipe/tasks-vision";
 
 /**
- * Check if web camera access is allowed
- * @returns true if access is allowed, false otherwise
+ * Camera widget properties
  */
-const isUserCameraAllowed = () => {
-  return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-};
-
 interface CameraProps {
   /** Canvas dimensions */
   canvasWidth: number;
@@ -39,6 +35,10 @@ interface CameraProps {
   textColor: string;
 }
 
+/**
+ * Camera widget for rendering prediction results from MediaPipe
+ * @returns 
+ */
 const Camera = ({
   canvasWidth,
   canvasHeight,
@@ -46,10 +46,10 @@ const Camera = ({
   btnBackgroundColor,
   textColor,
 }: CameraProps) => {
-  let [btnContent, btnContentSetter] = useState("Enable prediction");
-  let [webcamRunning, webcamSetter] = useState(false);
   let gestureRecognizer = useRef<GestureRecognizer>(null);
+
   /** Flags */
+  let [webcamRunning, webcamSetter] = useState(false);
   let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
   let results: any = undefined;
 
@@ -57,8 +57,15 @@ const Camera = ({
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const outputText = useRef<HTMLParagraphElement>(null);
-  const triggerBtn = useRef<HTMLButtonElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  
+  /** Trigger button */
+  let [btnContent, btnContentSetter] = useState("Enable prediction");
+  const triggerBtn = useRef<HTMLButtonElement>(null);
+
+  /** Warnings */
+  let [showModalNotLoaded,setModalNotLoaded] = useState(false);
+  let [showModalWebcamDenied, setModalWebcamDenied] = useState(false);
 
   /**
    * Prepare hand gesture detection model for prediction
@@ -66,18 +73,29 @@ const Camera = ({
    */
   const createGestureRecognizer = async (numHands: number) => {
     const vision = await FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm"
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.12/wasm"
     );
 
-    gestureRecognizer.current = await GestureRecognizer.createFromOptions(vision, {
-      baseOptions: {
-        modelAssetPath:
-          "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
-        delegate: "CPU",
-      },
-      runningMode: "VIDEO",
-      numHands: numHands,
-    });
+    gestureRecognizer.current = await GestureRecognizer.createFromOptions(
+      vision,
+      {
+        baseOptions: {
+          modelAssetPath:
+            "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
+          delegate: "CPU",
+        },
+        runningMode: "VIDEO",
+        numHands: numHands,
+      }
+    );
+  };
+
+  /**
+   * Check if web camera access is allowed
+   * @returns true if access is allowed, false otherwise
+   */
+  const isUserCameraAllowed = () => {
+    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
   };
 
   useEffect(() => {
@@ -88,29 +106,35 @@ const Camera = ({
       triggerBtn.current.addEventListener("click", togglePrediction);
     }
 
-    return () => {
-        gestureRecognizer.current.close();
-        gestureRecognizer.current = null;
-        video.current.removeEventListener("loadeddata", predict);
-    }
+    //return () => stopPrediction();
   }, []);
+
+  /**
+   * Stop model and disable prediction
+   */
+  const stopPrediction = () => {
+    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+      stream.getTracks().forEach((track) => {
+        console.log("running");
+        track.stop();
+      });
+      //gestureRecognizer.current.close();
+      videoContainerRef.current.style.display = "none";
+    });
+  };
 
   /**
    * Trigger prediction
    */
   const togglePrediction = () => {
     if (!gestureRecognizer) {
-        console.warn("Model not loaded yet")
-        return;
+      setModalNotLoaded(true);
+      return;
     }
+
     // Change display text based on whether the webcam is running or not
-    if (webcamRunning) {
-      webcamSetter(false);
-      btnContentSetter("Enable prediction");
-    } else {
-      webcamSetter(true);
-      btnContentSetter("Disable prediction");
-    }
+    webcamSetter(!webcamRunning);
+    btnContentSetter(webcamRunning? "Disable prediction" : "Enable prediction");
 
     // Start video prediction
     startVideo();
@@ -120,15 +144,13 @@ const Camera = ({
    * Start media prediction via webcam
    */
   const startVideo = () => {
-    // Get user media parameters
-    const constraints = {
-      video: true
-    };
-
     // Activate the webcam stream
-    navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
+    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
       video.current.srcObject = stream;
+    }).catch(() => {
+        setModalWebcamDenied(true);
+        webcamSetter(false);
+        btnContentSetter("Enable prediction");
     });
   };
 
@@ -137,7 +159,10 @@ const Camera = ({
     const canvasEl = canvas.current;
     let nowInMs = Date.now();
     const canvasCtx = canvasEl.getContext("2d");
-
+    if (!videoEl.videoHeight || !videoEl.videoWidth) {
+      stopPrediction();
+      return;
+    }
     // As the video progresses, update results
     if (videoEl.currentTime !== lastVideoTime) {
       results = gestureRecognizer.current.recognizeForVideo(videoEl, nowInMs);
@@ -149,10 +174,9 @@ const Camera = ({
 
     const drawingUtils = new DrawingUtils(canvasCtx);
     canvas.current.style.height = `${canvasHeight}px`;
-      video.current.style.height = `${canvasHeight}px`;
+    video.current.style.height = `${canvasHeight}px`;
     canvas.current.style.width = `${canvasWidth}px`;
-      video.current.style.width = `${canvasWidth}px`;
-
+    video.current.style.width = `${canvasWidth}px`;
 
     /** If hand landmarks are included, draw it on the canvas */
     if (results && results.landmarks) {
@@ -191,13 +215,11 @@ const Camera = ({
       outputText.current.style.display = "none";
     }
 
-    
-        requestAnimationFrame(() => {
-            if (webcamRunning){
-                predict()
-            }
-        });
-    
+    requestAnimationFrame(() => {
+      if (webcamRunning) {
+        predict();
+      }
+    });
   };
 
   return (
@@ -214,12 +236,15 @@ const Camera = ({
           >
             <span>{btnContent}</span>
           </button>
-          <div style={videoContainer}
-               ref={videoContainerRef}>
-            <video  width={canvasWidth}
-                    height={canvasHeight}
-                    ref={video} 
-                    onLoadedData = {predict} autoPlay playsInline></video>
+          <div style={videoContainer} ref={videoContainerRef}>
+            <video
+              width={canvasWidth}
+              height={canvasHeight}
+              ref={video}
+              onLoadedData={predict}
+              autoPlay
+              playsInline
+            ></video>
             <canvas
               ref={canvas}
               className="outputCanvas"
@@ -230,6 +255,22 @@ const Camera = ({
             <p ref={outputText} className="output" color={textColor}></p>
           </div>
         </div>
+
+        <CustomModal 
+            title="Warning"
+            body="Computer vision model is not loaded yet."
+            btnText=""
+            show={showModalNotLoaded}
+            onHide={() => setModalNotLoaded(false)}
+        ></CustomModal>
+
+        <CustomModal
+            title="Camera access disabled"
+            body="Please allow webcam access to continue."
+            btnText=""
+            show={showModalWebcamDenied}
+            onHide={() => setModalWebcamDenied(false)}
+        ></CustomModal>
       </section>
     </>
   );
