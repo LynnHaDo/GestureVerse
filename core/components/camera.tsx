@@ -58,6 +58,7 @@ const Camera = ({
   const canvas = useRef<HTMLCanvasElement>(null);
   const outputText = useRef<HTMLParagraphElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const localStream = useRef<MediaStream>(null);
   
   /** Trigger button */
   let [btnContent, btnContentSetter] = useState("Enable prediction");
@@ -106,21 +107,24 @@ const Camera = ({
       triggerBtn.current.addEventListener("click", togglePrediction);
     }
 
-    //return () => stopPrediction();
+    return () => stopPrediction();
   }, []);
 
   /**
    * Stop model and disable prediction
    */
   const stopPrediction = () => {
-    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      stream.getTracks().forEach((track) => {
-        console.log("running");
-        track.stop();
-      });
-      //gestureRecognizer.current.close();
-      videoContainerRef.current.style.display = "none";
-    });
+    video.current.pause();
+    video.current.src = "";
+    video.current.srcObject = null;
+    canvas.current.getContext("2d").clearRect(0, 0, canvasWidth, canvasHeight);
+    outputText.current.innerHTML = "";
+
+    if (localStream.current) {
+        localStream.current.getTracks().forEach(track => {
+            track.stop()
+        })
+    }
   };
 
   /**
@@ -132,12 +136,14 @@ const Camera = ({
       return;
     }
 
-    // Change display text based on whether the webcam is running or not
-    webcamSetter(!webcamRunning);
-    btnContentSetter(webcamRunning? "Disable prediction" : "Enable prediction");
-
-    // Start video prediction
-    startVideo();
+    if (webcamRunning) {
+        webcamSetter(false);
+        btnContentSetter("Enable prediction");
+    } else {
+        webcamSetter(true);
+        // Start video prediction
+        startVideo();
+    }
   };
 
   /**
@@ -147,10 +153,10 @@ const Camera = ({
     // Activate the webcam stream
     navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
       video.current.srcObject = stream;
+      localStream.current = stream;
+      btnContentSetter("Disable prediction")
     }).catch(() => {
         setModalWebcamDenied(true);
-        webcamSetter(false);
-        btnContentSetter("Enable prediction");
     });
   };
 
@@ -160,6 +166,7 @@ const Camera = ({
     let nowInMs = Date.now();
     const canvasCtx = canvasEl.getContext("2d");
     if (!videoEl.videoHeight || !videoEl.videoWidth) {
+      btnContentSetter("Enable prediction");
       stopPrediction();
       return;
     }
