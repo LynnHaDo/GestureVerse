@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, useEffect, useRef, useState } from "react";
 import CustomModal from "./modal";
 
 /** Styling */
@@ -18,7 +18,22 @@ import {
   GestureRecognizer,
   FilesetResolver,
   DrawingUtils,
+  GestureRecognizerResult,
 } from "@mediapipe/tasks-vision";
+
+/** Constants */
+const ENABLE_TEXT = "Open webcam"
+const DISABLE_TEXT = "Close webcam"
+
+export interface HandGesture {
+    /** Type of gesture. One of the following: "None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou" */
+    category: string,
+    /** Prediction confidence score */
+    score: number,
+    /** Left/right hand */
+    handedness: string
+}
+
 
 /**
  * Camera widget properties
@@ -33,6 +48,8 @@ interface CameraProps {
   btnBackgroundColor: string;
   /** Text color for styling trigger button and output text */
   textColor: string;
+  /** Result object (if any) */
+  resultSetter: Dispatch<HandGesture>,
 }
 
 /**
@@ -45,6 +62,7 @@ const Camera = ({
   numHands = 1,
   btnBackgroundColor,
   textColor,
+  resultSetter
 }: CameraProps) => {
   let gestureRecognizer = useRef<GestureRecognizer>(null);
 
@@ -61,7 +79,7 @@ const Camera = ({
   const localStream = useRef<MediaStream>(null);
   
   /** Trigger button */
-  let [btnContent, btnContentSetter] = useState("Enable prediction");
+  let [btnContent, btnContentSetter] = useState(ENABLE_TEXT);
   const triggerBtn = useRef<HTMLButtonElement>(null);
 
   /** Warnings */
@@ -138,7 +156,7 @@ const Camera = ({
 
     if (webcamRunning) {
         webcamSetter(false);
-        btnContentSetter("Enable prediction");
+        btnContentSetter(ENABLE_TEXT);
     } else {
         webcamSetter(true);
         // Start video prediction
@@ -154,7 +172,7 @@ const Camera = ({
     navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
       video.current.srcObject = stream;
       localStream.current = stream;
-      btnContentSetter("Disable prediction")
+      btnContentSetter(DISABLE_TEXT)
     }).catch(() => {
         setModalWebcamDenied(true);
     });
@@ -166,7 +184,7 @@ const Camera = ({
     let nowInMs = Date.now();
     const canvasCtx = canvasEl.getContext("2d");
     if (!videoEl.videoHeight || !videoEl.videoWidth) {
-      btnContentSetter("Enable prediction");
+      btnContentSetter(ENABLE_TEXT);
       stopPrediction();
       return;
     }
@@ -208,16 +226,32 @@ const Camera = ({
 
     canvasCtx.restore();
 
-    if (results && results.gestures.length > 0) {
+    if (results && results.gestures.length > 0 && results.gestures[0][0].categoryName != "None") {
+      const resultObj = {
+        category: results.gestures[0][0].categoryName,
+        score: results.gestures[0][0].score * 100,
+        handedness: results.handedness[0][0].displayName
+      };
+
+      setTimeout(() => {
+        stopPrediction();
+      }, 5000);
+
+      resultSetter(resultObj);
+
+      return;
+      /** 
       outputText.current.style.display = "block";
       outputText.current.style.width = `${canvasWidth}px`;
-
-      const categoryName = results.gestures[0][0].categoryName;
-      const categoryScore = results.gestures[0][0].score * 100;
-      const handedness = results.handedness[0][0].displayName;
-      outputText.current.innerText = `Type: ${categoryName}\n
-                                                    Confidence: ${categoryScore}%\n
-                                                    Handedness: ${handedness}`;
+      /** 
+      result.category = results.gestures[0][0].categoryName;
+      result.score = results.gestures[0][0].score * 100;
+      result.handedness = results.handedness[0][0].displayName;
+      
+      outputText.current.innerText = `Type: ${result.category}\n
+                                      Confidence: ${result.score}%\n
+                                      Handedness: ${result.handedness}`;*/
+            
     } else {
       outputText.current.style.display = "none";
     }

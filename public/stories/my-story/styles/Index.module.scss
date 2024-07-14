@@ -26,6 +26,10 @@ $text-color: colors.$very-light;
         font-weight: 700;
     }
 
+    a {
+        color: $text-color!important;
+    }
+
     .text_center {
         text-align: center;
     }
