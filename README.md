@@ -64,7 +64,7 @@ Link to the [wireframes](https://www.figma.com/design/YQvqcC4Nai3QUIconlEFeb/Sto
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a web application that guides users through a choose-your-own-adventure game using Windrift. During the game, instead of inputting text or clicking on buttons to proceed like usual, users can interact using hand movements through the devices’ web camera to answer questions prompted on the screen. For example, a thumbs-up gesture would mean “yes”, and a thumbs-down gesture would mean “no”. Handedness (i.e. left or right hand) can also be used to provide input to questions, depending on the story chosen.
+This is Next.js application that guides users through a choose-your-own-adventure game using Windrift. During the game, instead of inputting text or clicking on buttons to proceed like usual, users can interact using hand movements through the devices’ web camera to answer questions prompted on the screen. For example, a thumbs-up gesture would mean “yes”, and a thumbs-down gesture would mean “no”. Handedness (i.e. left or right hand) can also be used to provide input to questions, depending on the story chosen.
 
 Depending on the progress of the project, various stories can be chosen to suit various interests. Stories can range from solving (computer science) challenges to earn the maximum points and unlock new levels, to going through a set of questions to identify your personality test. 
 
@@ -90,6 +90,15 @@ See the [open issues](https://github.com/LynnHaDo/Storytelling/issues) for a ful
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
+
+- Node 18.20.3
+- react@18.3.1
+- redux@4.2.1
+- @mediapipe/tasks-vision@0.10.14
+- next@13.5.6
+- sass@1.43.4
+- sass@1.77.7
+- bootstrap@5.3.3
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
