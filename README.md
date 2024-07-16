@@ -70,7 +70,15 @@ Link to the [wireframes](https://www.figma.com/design/YQvqcC4Nai3QUIconlEFeb/Sto
 
 - [x] Wireframes
 - [x] Set up game in Windrift
-- [ ] Integrate MediaPipe
+- [x] Integrate MediaPipe
+    - [x] Set up MediaPipe component to listen to events of the story
+    - [ ] Refactor instructions and camera into a component (called game block)
+    - [ ] Set up game blocks to listen to each other
+    - [ ] Enhance the UI
+        - [ ] Add animations 
+- [ ] Set up game in Bitsy
+    - [ ] Set up MediaPipe component to interact with events of the game
+
  
 
 See the [open issues](https://github.com/LynnHaDo/Storytelling/issues) for a full list of proposed features (and known issues).
@@ -89,7 +97,28 @@ See the [open issues](https://github.com/LynnHaDo/Storytelling/issues) for a ful
 1. Clone the repo
 
 ```
-git clone https://github.com/LynnHaDo/Storytelling.git
+git clone https://github.com/LynnHaDo/GestureVerse.git
+```
+
+According to the Windrift instructions:
+
+2. Install a fully-compaticble version of Node:
+
+```
+nvm install 18
+nvm use 18
+```
+
+3. Install packages
+
+```
+npm install
+```
+
+4. Run the local development environment
+
+```
+npm run dev
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
