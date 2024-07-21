@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { HandGesture } from "core/components/camera";
 import { makeChoice } from "core/features/choice";
+import { Gestures } from "core/components/constants/gesture";
 
 export const Page: PageType = () => {
   const [drink] = useInventory(["drink"]);
@@ -13,14 +14,25 @@ export const Page: PageType = () => {
 
   useEffect(() => {
     if (result) {
-      dispatch(makeChoice("drink", result.category));
+      let answer: string;
+      switch (result.category) {
+        case Gestures[5]:
+            answer = "coffee"
+            break;
+        case Gestures[4]:
+            answer = "green tea"
+            break;
+        case Gestures[3]:
+            answer = "matcha latte"
+      }
+      dispatch(makeChoice("drink", answer));
     }
   }, [result]);
 
   return (
-    <Chapter filename="chapter1">
+    <Chapter filename="choice">
       <Section>
-        <h1>Chapter 1</h1>
+        <h1>Chapter 2</h1>
 
         <div className="row">
           <div className="col-lg-6">

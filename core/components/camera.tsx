@@ -132,10 +132,10 @@ const Camera = ({
    * Stop model and disable prediction
    */
   const stopPrediction = () => {
+    canvas.current.getContext("2d").clearRect(0, 0, canvasWidth, canvasHeight);
     video.current.pause();
     video.current.src = "";
     video.current.srcObject = null;
-    canvas.current.getContext("2d").clearRect(0, 0, canvasWidth, canvasHeight);
     outputText.current.innerHTML = "";
 
     if (localStream.current) {

@@ -1,7 +1,10 @@
 title: my-story
 language: en
 chapters:
-  - filename: "chapter1"
-    title: "Chapter title"
+  - filename: "start"
+    title: "Go for a walk"
+  - filename: "choice"
+    title: "Turn left or right"
+  
 players:
-  - start: "chapter1"
+  - start: "start"
