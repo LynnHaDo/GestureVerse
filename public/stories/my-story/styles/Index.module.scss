@@ -10,7 +10,6 @@ $text-color: colors.$very-light;
 @use '/public/styles/header' with (
     $background-color: $theme-color,
     $foreground-color: $text-color,
-    $min-height: 1em,
     $max-height: 1vh,
 );
 
@@ -37,9 +36,10 @@ $text-color: colors.$very-light;
 
 .header {
     nav {
-       .controls {
-          justify-items: left;
-       }
+       padding: 0 125px;
+       align-items: center;
+       display: flex;
+       height: 10em;
 
        button {
           color: $text-color!important;

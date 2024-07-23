@@ -18,7 +18,6 @@ import {
   GestureRecognizer,
   FilesetResolver,
   DrawingUtils,
-  GestureRecognizerResult,
 } from "@mediapipe/tasks-vision";
 
 /** Constants */

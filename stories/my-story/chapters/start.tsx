@@ -10,21 +10,20 @@ import FadeIn from "core/components/ui/fadein";
 export const Page: PageType = () => {
   const [walk] = useInventory(["walk"]);
 
+  useEffect(() => {});
+
   return (
     <Chapter filename="start">
       <Section>
         <div className="row">
-            <FadeIn children={<img src='/stories/my-story/images/01.png' />}>
-            </FadeIn>
+          <p>
             It is a lovely day to go for a {" "}
-            <Nav
-              text="walk"
-              next="choice"
-              tag="walk"
-            />
-            
+            <Nav text="walk" next="choice" tag="walk" persist={false} />
+          </p>
+          <FadeIn
+            children={<img src="/stories/my-story/images/01.png" />}
+          ></FadeIn>
         </div>
-        
       </Section>
     </Chapter>
   );

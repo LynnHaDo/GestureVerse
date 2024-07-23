@@ -6,53 +6,29 @@ import { useDispatch } from "react-redux";
 import { HandGesture } from "core/components/camera";
 import { makeChoice } from "core/features/choice";
 import { Gestures } from "core/components/constants/gesture";
+import FadeIn from "core/components/ui/fadein";
+import ChoiceBlock from "core/components/choiceBlock";
+import { Options } from "core/components/constants/options";
 
 export const Page: PageType = () => {
-  const [drink] = useInventory(["drink"]);
+  const [leftOrRight] = useInventory(["leftOrRight"]);
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null);
 
   useEffect(() => {
     if (result) {
-      let answer: string;
-      switch (result.category) {
-        case Gestures[5]:
-            answer = "coffee"
-            break;
-        case Gestures[4]:
-            answer = "green tea"
-            break;
-        case Gestures[3]:
-            answer = "matcha latte"
-      }
-      dispatch(makeChoice("drink", answer));
+      let answer = result.category == "Thumb_Up"? "left" : "right";
+      dispatch(makeChoice("leftOrRight", answer));
     }
   }, [result]);
 
   return (
     <Chapter filename="choice">
       <Section>
-        <h1>Chapter 2</h1>
-
         <div className="row">
           <div className="col-lg-6">
-            In a coffee shop, you chose to order a{" "}
-            <C
-              options={[["matcha latte", "coffee", "green tea"]]}
-              tag="drink"
-            />
-            <p></p>
-            <p>Point upwards for matcha latte</p>
-            <p>Thumbs up for coffee</p>
-            <p>Thumbs down for green tea</p>
-            <p>Keep the posture for at least 5 seconds</p>
-            {drink == undefined || drink == null ? (
-              ""
-            ) : (
-              <p>You chose {drink}</p>
-            )}
-          </div>
-          <div className="col-lg-6">
+            <ChoiceBlock tag="leftOrRight" />
+
             <Camera
               canvasWidth={480}
               canvasHeight={360}
@@ -61,6 +37,16 @@ export const Page: PageType = () => {
               numHands={1}
               resultSetter={resultSetter}
             />
+            {leftOrRight == undefined || leftOrRight == null ? (
+              ""
+            ) : (
+              <p>You chose {leftOrRight}</p>
+            )}
+          </div>
+          <div className="col-lg-6">
+            <FadeIn
+              children={<img src="/stories/my-story/images/02.png" />}
+            ></FadeIn>
           </div>
         </div>
       </Section>
