@@ -20,7 +20,15 @@ const FadeIn: ReactFCC<Props> = ({ children, wrapper = animated('span') }) => {
             items={children}
             from={{ opacity: 0 }}
             enter={{ opacity: 1 }}
-            leave={{ opacity: 0 }}
+            leave={{ 
+                opacity: 0,
+                /** To stop the component from jumping downward */
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0
+             }}
             delay={50}
             config={config.molasses}>
             {(styles, item) => item && <AnimatedContent style={styles}>{item}</AnimatedContent>}

@@ -33,7 +33,6 @@ export interface HandGesture {
     handedness: string
 }
 
-
 /**
  * Camera widget properties
  */
@@ -76,6 +75,7 @@ const Camera = ({
   const outputText = useRef<HTMLParagraphElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const localStream = useRef<MediaStream>(null);
+  const { hand_connectors, joint } = styles;
   
   /** Trigger button */
   let [btnContent, btnContentSetter] = useState(ENABLE_TEXT);
@@ -173,7 +173,7 @@ const Camera = ({
       localStream.current = stream;
       btnContentSetter(DISABLE_TEXT)
     }).catch(() => {
-        setModalWebcamDenied(true);
+      setModalWebcamDenied(true);
     });
   };
 
@@ -210,14 +210,14 @@ const Camera = ({
           landmark,
           GestureRecognizer.HAND_CONNECTIONS,
           {
-            color: "rgb(103, 169, 215)",
+            color: hand_connectors,
             lineWidth: 2,
           }
         );
 
         /** Draw the joints */
         drawingUtils.drawLandmarks(landmark, {
-          color: "rgb(241, 229, 192)",
+          color: joint,
           lineWidth: 1,
         });
       }
@@ -225,7 +225,9 @@ const Camera = ({
 
     canvasCtx.restore();
 
-    if (results && results.gestures.length > 0 && results.gestures[0][0].categoryName != "None") {
+    if (results 
+        && results.gestures.length > 0 
+        && results.gestures[0][0].categoryName != "None") {
       const resultObj = {
         category: results.gestures[0][0].categoryName,
         score: results.gestures[0][0].score * 100,

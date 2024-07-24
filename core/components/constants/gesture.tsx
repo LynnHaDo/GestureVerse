@@ -1,3 +1,6 @@
+/**
+ * List of gestures classified by MediaPipe and the corresponding description
+ */
 export const Gestures = {
     "None": "No action", 
     "Closed_Fist": "Close your fist ✊", 
