@@ -76,8 +76,8 @@ Depending on the progress of the project, various stories can be chosen to suit 
 - [x] Set up game in Windrift
 - [x] Integrate MediaPipe
     - [x] Set up MediaPipe component to listen to events of the story
-    - [ ] Refactor instructions and camera into a component (called game block)
-    - [ ] Set up game blocks to listen to each other
+    - [x] Refactor instructions and camera into a component (called game block)
+    - [x] Set up game blocks to listen to each other
     - [ ] Enhance the UI
         - [ ] Add animations 
 - [ ] Set up game in Bitsy

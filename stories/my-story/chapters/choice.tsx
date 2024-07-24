@@ -1,14 +1,12 @@
-import { C, R, Section, Chapter, Nav, Camera } from "core/components";
+import { Section, Chapter, Camera } from "core/components";
 import useInventory from "core/hooks/use-inventory";
-import { Next, PageType } from "core/types";
-import { useRef, useEffect, useState } from "react";
+import { PageType } from "core/types";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { HandGesture } from "core/components/camera";
 import { makeChoice } from "core/features/choice";
-import { Gestures } from "core/components/constants/gesture";
 import FadeIn from "core/components/ui/fadein";
 import ChoiceBlock from "core/components/choiceBlock";
-import { Options } from "core/components/constants/options";
 
 export const Page: PageType = () => {
   const [leftOrRight] = useInventory(["leftOrRight"]);
