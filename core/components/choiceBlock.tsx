@@ -66,7 +66,7 @@ const ChoiceBlock = ({
         <div className={styles.instruction}>
           {Object.keys(options).map((key: any) => {
             return (
-              <p>
+              <p key={key}>
                 {options[key]} for {key}.
               </p>
             );
@@ -74,21 +74,19 @@ const ChoiceBlock = ({
           <p>Note: Keep the posture for at least 5 seconds.</p>
         </div>
 
-        <p>
-          {decision == undefined || decision == null ? (
-            ""
-          ) : (
-            <p>You chose {decision}.</p>
-          )}
-        </p>
+        {decision == undefined || decision == null ? (
+          ""
+        ) : (
+          <p>You chose {decision}.</p>
+        )}
 
         <Camera
           canvasWidth={480}
           canvasHeight={360}
-          btnBackgroundColor={ btnBackgroundColor }
-          textColor={ btnTextColor }
-          numHands={ maxNumHands }
-          resultSetter={ resultSetter }
+          btnBackgroundColor={btnBackgroundColor}
+          textColor={btnTextColor}
+          numHands={maxNumHands}
+          resultSetter={resultSetter}
         />
       </>
     )
