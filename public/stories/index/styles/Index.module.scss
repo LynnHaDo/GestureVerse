@@ -8,9 +8,9 @@ $text-color: colors.$very-dark;
 );
 
 @use '/public/styles/header' with (
-    $background-color: $theme-color,
+    $background-color: rgba(237, 233, 180, 0.5),
     $foreground-color: $text-color,
-    $max-height: 1vh,
+    $min-height: 10em
 );
 
 @use '/public/styles/grid';
@@ -18,9 +18,12 @@ $text-color: colors.$very-dark;
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 .main {
-    background-color: $theme-color;
+    /* From https://css.glass */
+    background: rgba(237, 233, 180, 0.5);
+    backdrop-filter: blur(15.3px);
+    -webkit-backdrop-filter: blur(15.3px);
 
-    grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
+    //grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
 
     h1, h2, h3, h4, h5, h6 {
         font-weight: 700;
@@ -63,10 +66,13 @@ $text-color: colors.$very-dark;
 }
 
 .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     nav {
        justify-content: center;
        align-items: center;
        display: flex;
-       height: 10em;
     }
  }

@@ -67,7 +67,7 @@ const ChoiceBlock = ({
           {Object.keys(options).map((key: any) => {
             return (
               <p key={key}>
-                {options[key]} for {key}.
+                {options[key]} for <span className={styles.underline}>{key}</span>.
               </p>
             );
           })}

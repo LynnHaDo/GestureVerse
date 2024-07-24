@@ -8,7 +8,6 @@
     background: colors.$very-light;
 
     font-family: fonts.$body;
-    padding-top: 2rem;
     font-size: sizing.$font-size-default;
     color: colors.$very-dark;
 
@@ -30,11 +29,11 @@
 
 
     .left {
-        min-height: 100vh;
+        //min-height: 100vh;
     }
 
     .story {
-        min-height: 100vh;
+        //min-height: 100vh;
 
         aside, p, li {
             margin: 0 0 1rem 0;
@@ -54,7 +53,7 @@
     }
 
     .right {
-        min-height: 100vh;
+        min-height: calc(100vh - 10em);
 
     }
 }

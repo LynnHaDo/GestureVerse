@@ -274,9 +274,9 @@ const Camera = ({
         <div className={styles.videoView}>
           <button
             ref={triggerBtn}
-            style={{ backgroundColor: btnBackgroundColor, color: textColor }}
+            style={{ backgroundColor: btnBackgroundColor, color: textColor, border: `1px solid ${textColor}` }}
           >
-            <span>{btnContent}</span>
+            <span>{btnContent.toUpperCase()}</span>
           </button>
           <div style={videoContainer} ref={videoContainerRef}>
             <video

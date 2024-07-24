@@ -3,6 +3,8 @@ import { PageType } from "core/types";
 import FadeIn from "core/components/ui/fadein";
 import ChoiceBlock from "core/components/choiceBlock";
 
+import { Image } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const tag = "leftOrRight";
 
@@ -10,12 +12,13 @@ export const Page: PageType = () => {
     <Chapter filename="choice">
       <Section>
         <div className="row">
-          <div className="col-lg-6">
-            <ChoiceBlock tag={tag} />
+          <div className="col-lg-4">
+            <ChoiceBlock tag={tag} 
+                         btnBackgroundColor="transparent"/>
           </div>
-          <div className="col-lg-6">
+          <div className="col-lg-8">
             <FadeIn
-              children={<img src="/stories/my-story/images/02.png" />}
+              children={<Image src="/stories/my-story/images/02.png" />}
             ></FadeIn>
           </div>
         </div>

@@ -17,6 +17,7 @@
         "node": "=18"
     },
     "dependencies": {
+        "@firecms/neat": "^0.2.2",
         "@mdx-js/loader": "^2.1.2",
         "@mediapipe/tasks-vision": "^0.10.14",
         "@next/mdx": "^12.2.0",
@@ -46,6 +47,7 @@
         "redux-persist": "^6.0.0",
         "redux-thunk": "^2.4.1",
         "redux-undo": "^1.0.1",
+        "three.js": "^0.77.1",
         "uuid": "^8.3.1",
         "voca": "^1.4.0"
     },
