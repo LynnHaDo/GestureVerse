@@ -4,7 +4,7 @@ import { HandGesture } from "core/components/camera";
 import { Gestures } from "core/components/constants/gesture";
 
 /** Hooks */
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useInventory from "core/hooks/use-inventory";
 import { Options } from "./constants/options";
@@ -79,10 +79,10 @@ const ChoiceBlock = ({
         ) : (
           <p>You chose {decision}.</p>
         )}
-
+        
         <Camera
-          canvasWidth={480}
-          canvasHeight={360}
+          canvasWidth={300}
+          canvasHeight={170}
           btnBackgroundColor={btnBackgroundColor}
           textColor={btnTextColor}
           numHands={maxNumHands}

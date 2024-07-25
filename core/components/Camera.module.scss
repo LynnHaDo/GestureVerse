@@ -1,6 +1,8 @@
+@import '/public/styles/colors';
+
 :export {
-    hand_connectors: rgb(103, 169, 215);
-    joint: rgb(241, 229, 192)
+    hand_connectors: $blue;
+    joint: $light-yellow
 }
 
 .videoSection {

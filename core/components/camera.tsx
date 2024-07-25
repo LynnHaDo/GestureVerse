@@ -5,7 +5,9 @@ import CustomModal from "./modal";
 import styles from "./Camera.module.scss";
 
 const videoContainer: React.CSSProperties = {
-  position: "relative",
+  position: "fixed",
+  right: '1rem',
+  top: '1rem'
 };
 const outputContainer: React.CSSProperties = {
   position: "absolute",
@@ -142,6 +144,8 @@ const Camera = ({
             track.stop()
         })
     }
+    video.current.style.display = "none";
+    canvas.current.style.display = "none";
   };
 
   /**
@@ -158,6 +162,8 @@ const Camera = ({
         btnContentSetter(ENABLE_TEXT);
     } else {
         webcamSetter(true);
+        video.current.style.display = 'block';
+        canvas.current.style.display = 'block';
         // Start video prediction
         startVideo();
     }
@@ -211,14 +217,14 @@ const Camera = ({
           GestureRecognizer.HAND_CONNECTIONS,
           {
             color: hand_connectors,
-            lineWidth: 2,
+            lineWidth: 0.4,
           }
         );
 
         /** Draw the joints */
         drawingUtils.drawLandmarks(landmark, {
           color: joint,
-          lineWidth: 1,
+          lineWidth: 0.2,
         });
       }
     }

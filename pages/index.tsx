@@ -7,6 +7,7 @@ import styles from "public/stories/index/styles/Index.module.scss";
 
 import { NeatConfig, NeatGradient } from "@firecms/neat";
 import { useEffect, useRef } from "react";
+import { backgroundFillStyle } from "core/components/backgroundFill";
 
 interface StoryProps {
   paths: string[];
@@ -28,13 +29,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-
-const backgroundGradient: React.CSSProperties = {
-    width: "100%",
-    height: "100%",
-    position: "fixed",
-    zIndex: -1
-}
 
 export const config: NeatConfig = {
     colors: [
@@ -112,7 +106,7 @@ function Index({ paths }: StoryProps): JSX.Element {
       </Head>
       <div className="loader"></div>
       <div className="gradient">
-        <canvas ref={gradient} style={backgroundGradient}/>
+        <canvas ref={gradient} style={backgroundFillStyle}/>
       </div>
       <header className={styles.header}>
         <nav>

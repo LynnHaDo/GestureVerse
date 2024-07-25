@@ -1,25 +1,20 @@
 @use '/public/styles/colors';
 
-$theme-color: colors.$retro-green;
 $text-color: colors.$very-light;
 
-@use '/public/styles/sizing' with (
-   $story-margin: 25vh
-);
-
+/**
 @use '/public/styles/header' with (
-    $background-color: $theme-color,
+    $background-color: 'transparent',
     $foreground-color: $text-color,
     $max-height: 1vh,
 );
+*/
 
-@use '/public/styles/grid';
 @use '/public/styles/fonts';
 
 .main {
-    background-color: $theme-color;
+    background-color: transparent;
     color: $text-color;
-    grid-template-columns: [left] 125px 1fr [right] minmax(5px, 20vh);
 
     h1, h2, h3, h4, h5, h6 {
         font-weight: 700;
