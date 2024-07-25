@@ -12,5 +12,10 @@ export { default as Response } from './response'
 export { default as C } from './choice'
 export { default as Choice } from './choice'
 
+export { default as BackgroundFill } from './backgroundFill'
+export { default as ChoiceBlock } from './choiceBlock'
+export { default as Modal } from './modal';
+export { default as TextBlock } from './textBlock';
+
 export { default as Nav } from 'core/components/nav'
 export { default as When } from './when'

@@ -1,14 +1,11 @@
-.content {
-    z-index: 9;
-    position: relative
-}
+
 
 /** Styling borrowed from https://codepen.io/silas/pen/rNYqZoz */
 .gradientBlur {
+    position: relative;
     inset: auto 0 0 0;
     height: 65%;
     pointer-events: none;
-    box-shadow: 10px 10px 10 px 10px #555;
 
     div, ::before, ::after {
         position: absolute;

@@ -1,11 +1,6 @@
-import { Section, Chapter } from "core/components";
+import { Section, Chapter, ChoiceBlock, BackgroundFill, TextBlock } from "core/components";
 import { PageType } from "core/types";
-import FadeIn from "core/components/ui/fadein";
-import ChoiceBlock from "core/components/choiceBlock";
-
-import { Image } from "react-bootstrap";
-import BackgroundFill from "core/components/backgroundFill";
-import TextBlock from "core/components/textBlock";
+import { useEffect } from "react";
 
 export const Page: PageType = () => {
   const tag = "leftOrRight";
@@ -18,7 +13,7 @@ export const Page: PageType = () => {
         <Section>
             <div className="row">
                 <ChoiceBlock tag={tag} 
-                            btnBackgroundColor="transparent"/>
+                             btnBackgroundColor="transparent"/>
             </div>
         </Section>
         </Chapter>

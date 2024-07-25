@@ -5,6 +5,10 @@ chapters:
     title: "Go for a walk"
   - filename: "choice"
     title: "Turn left or right"
+  - filename: "left"
+    title: "Go to the left"
+  - filename: "right"
+    title: "Go to the right"
   
 players:
   - start: "start"

@@ -52,7 +52,7 @@ const ChoiceBlock = ({
       let answer = Object.keys(Options[tag]).find(
         (k) => Options[tag][k] == description
       );
-      dispatch(makeChoice(tag, answer));
+      dispatch(makeChoice(tag, answer, answer, answer))
     }
   }, [result]);
 
@@ -60,7 +60,7 @@ const ChoiceBlock = ({
     options && (
       <>
         <p>
-          <C options={[Object.keys(options)]} tag={tag} />
+            <C options={[Object.keys(options)]} tag={tag} />
         </p>
 
         <div className={styles.instruction}>

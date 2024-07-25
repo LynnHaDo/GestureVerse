@@ -10,11 +10,12 @@ $text-color: colors.$very-light;
 );
 */
 
-@use '/public/styles/fonts';
+@import '/public/styles/fonts';
 
 .main {
     background-color: transparent;
     color: $text-color;
+    font-family: $body;
 
     h1, h2, h3, h4, h5, h6 {
         font-weight: 700;

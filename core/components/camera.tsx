@@ -6,8 +6,8 @@ import styles from "./Camera.module.scss";
 
 const videoContainer: React.CSSProperties = {
   position: "fixed",
-  right: '1rem',
-  top: '1rem'
+  right: "1rem",
+  top: "1rem",
 };
 const outputContainer: React.CSSProperties = {
   position: "absolute",
@@ -23,16 +23,16 @@ import {
 } from "@mediapipe/tasks-vision";
 
 /** Constants */
-const ENABLE_TEXT = "Open webcam"
-const DISABLE_TEXT = "Close webcam"
+const ENABLE_TEXT = "Open webcam";
+const DISABLE_TEXT = "Close webcam";
 
 export interface HandGesture {
-    /** Type of gesture. One of the following: "None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou" */
-    category: string,
-    /** Prediction confidence score */
-    score: number,
-    /** Left/right hand */
-    handedness: string
+  /** Type of gesture. One of the following: "None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou" */
+  category: string;
+  /** Prediction confidence score */
+  score: number;
+  /** Left/right hand */
+  handedness: string;
 }
 
 /**
@@ -49,12 +49,12 @@ interface CameraProps {
   /** Text color for styling trigger button and output text */
   textColor: string;
   /** Result object (if any) */
-  resultSetter: Dispatch<HandGesture>,
+  resultSetter: Dispatch<HandGesture>;
 }
 
 /**
  * Camera widget for rendering prediction results from MediaPipe
- * @returns 
+ * @returns
  */
 const Camera = ({
   canvasWidth,
@@ -62,7 +62,7 @@ const Camera = ({
   numHands = 1,
   btnBackgroundColor,
   textColor,
-  resultSetter
+  resultSetter,
 }: CameraProps) => {
   let gestureRecognizer = useRef<GestureRecognizer>(null);
 
@@ -78,13 +78,13 @@ const Camera = ({
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const localStream = useRef<MediaStream>(null);
   const { hand_connectors, joint } = styles;
-  
+
   /** Trigger button */
   let [btnContent, btnContentSetter] = useState(ENABLE_TEXT);
   const triggerBtn = useRef<HTMLButtonElement>(null);
 
   /** Warnings */
-  let [showModalNotLoaded,setModalNotLoaded] = useState(false);
+  let [showModalNotLoaded, setModalNotLoaded] = useState(false);
   let [showModalWebcamDenied, setModalWebcamDenied] = useState(false);
 
   /**
@@ -133,19 +133,24 @@ const Camera = ({
    * Stop model and disable prediction
    */
   const stopPrediction = () => {
-    canvas.current.getContext("2d").clearRect(0, 0, canvasWidth, canvasHeight);
-    video.current.pause();
-    video.current.src = "";
-    video.current.srcObject = null;
-    outputText.current.innerHTML = "";
+    if (canvas.current != null && video.current != null) {
+      canvas.current
+        .getContext("2d")
+        .clearRect(0, 0, canvasWidth, canvasHeight);
+      video.current.pause();
+      video.current.src = "";
+      video.current.srcObject = null;
+      outputText.current.innerHTML = "";
+
+      video.current.style.display = "none";
+      canvas.current.style.display = "none";
+    }
 
     if (localStream.current) {
-        localStream.current.getTracks().forEach(track => {
-            track.stop()
-        })
+        localStream.current.getTracks().forEach((track) => {
+          track.stop();
+        });
     }
-    video.current.style.display = "none";
-    canvas.current.style.display = "none";
   };
 
   /**
@@ -158,14 +163,14 @@ const Camera = ({
     }
 
     if (webcamRunning) {
-        webcamSetter(false);
-        btnContentSetter(ENABLE_TEXT);
+      webcamSetter(false);
+      btnContentSetter(ENABLE_TEXT);
     } else {
-        webcamSetter(true);
-        video.current.style.display = 'block';
-        canvas.current.style.display = 'block';
-        // Start video prediction
-        startVideo();
+      webcamSetter(true);
+      video.current.style.display = "block";
+      canvas.current.style.display = "block";
+      // Start video prediction
+      startVideo();
     }
   };
 
@@ -174,13 +179,16 @@ const Camera = ({
    */
   const startVideo = () => {
     // Activate the webcam stream
-    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      video.current.srcObject = stream;
-      localStream.current = stream;
-      btnContentSetter(DISABLE_TEXT)
-    }).catch(() => {
-      setModalWebcamDenied(true);
-    });
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then((stream) => {
+        video.current.srcObject = stream;
+        localStream.current = stream;
+        btnContentSetter(DISABLE_TEXT);
+      })
+      .catch(() => {
+        setModalWebcamDenied(true);
+      });
   };
 
   const predict = () => {
@@ -231,13 +239,15 @@ const Camera = ({
 
     canvasCtx.restore();
 
-    if (results 
-        && results.gestures.length > 0 
-        && results.gestures[0][0].categoryName != "None") {
+    if (
+      results &&
+      results.gestures.length > 0 &&
+      results.gestures[0][0].categoryName != "None"
+    ) {
       const resultObj = {
         category: results.gestures[0][0].categoryName,
         score: results.gestures[0][0].score * 100,
-        handedness: results.handedness[0][0].displayName
+        handedness: results.handedness[0][0].displayName,
       };
 
       setTimeout(() => {
@@ -258,7 +268,6 @@ const Camera = ({
       outputText.current.innerText = `Type: ${result.category}\n
                                       Confidence: ${result.score}%\n
                                       Handedness: ${result.handedness}`;*/
-            
     } else {
       outputText.current.style.display = "none";
     }
@@ -280,7 +289,11 @@ const Camera = ({
         <div className={styles.videoView}>
           <button
             ref={triggerBtn}
-            style={{ backgroundColor: btnBackgroundColor, color: textColor, border: `1px solid ${textColor}` }}
+            style={{
+              backgroundColor: btnBackgroundColor,
+              color: textColor,
+              border: `1px solid ${textColor}`,
+            }}
           >
             <span>{btnContent.toUpperCase()}</span>
           </button>
@@ -304,20 +317,20 @@ const Camera = ({
           </div>
         </div>
 
-        <CustomModal 
-            title="Warning"
-            body="Computer vision model is not loaded yet."
-            btnText=""
-            show={showModalNotLoaded}
-            onHide={() => setModalNotLoaded(false)}
+        <CustomModal
+          title="Warning"
+          body="Computer vision model is not loaded yet."
+          btnText=""
+          show={showModalNotLoaded}
+          onHide={() => setModalNotLoaded(false)}
         ></CustomModal>
 
         <CustomModal
-            title="Camera access disabled"
-            body="Please allow webcam access to continue."
-            btnText=""
-            show={showModalWebcamDenied}
-            onHide={() => setModalWebcamDenied(false)}
+          title="Camera access disabled"
+          body="Please allow webcam access to continue."
+          btnText=""
+          show={showModalWebcamDenied}
+          onHide={() => setModalWebcamDenied(false)}
         ></CustomModal>
       </section>
     </>

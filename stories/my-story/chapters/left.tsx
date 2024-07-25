@@ -4,13 +4,12 @@ import { PageType } from "core/types";
 export const Page: PageType = () => {
   return (
     <>
-        <BackgroundFill imageSrc="/stories/my-story/images/Buttermilk.jpg"/>
+        <BackgroundFill imageSrc="/stories/my-story/images/02.png"/>
         <TextBlock>
-            <Chapter filename="start">
+            <Chapter filename="left">
                 <Section>
                     <p>
-                        It is a lovely day to go for a {" "}
-                        <Nav text="walk" next="choice" tag="walk" />
+                        Left 
                     </p>
                 </Section>
             </Chapter>
