@@ -1,6 +1,5 @@
 @use '/public/styles/colors';
 
-$theme-color: colors.$light-yellow;
 $text-color: colors.$very-dark;
 
 @use '/public/styles/sizing' with (

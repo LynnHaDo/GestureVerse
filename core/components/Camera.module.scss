@@ -1,8 +1,8 @@
-@import '/public/styles/colors';
+@import '/public/themeColors.module.scss';
 
 :export {
-    hand_connectors: $blue;
-    joint: $light-yellow
+    hand_connectors: map-get($theme-colors, 'blue');
+    joint: map-get($theme-colors, 'lightYellow');
 }
 
 .videoSection {

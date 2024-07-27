@@ -50,6 +50,8 @@ interface CameraProps {
   textColor: string;
   /** Result object (if any) */
   resultSetter: Dispatch<HandGesture>;
+  /** List of available options to predict for */
+  availableOptions: string[]
 }
 
 /**
@@ -63,6 +65,7 @@ const Camera = ({
   btnBackgroundColor,
   textColor,
   resultSetter,
+  availableOptions
 }: CameraProps) => {
   let gestureRecognizer = useRef<GestureRecognizer>(null);
 
@@ -195,7 +198,13 @@ const Camera = ({
     const videoEl = video.current;
     const canvasEl = canvas.current;
     let nowInMs = Date.now();
+
+    if (canvasEl == null || videoEl == null) {
+        return;
+    }
+    
     const canvasCtx = canvasEl.getContext("2d");
+
     if (!videoEl.videoHeight || !videoEl.videoWidth) {
       btnContentSetter(ENABLE_TEXT);
       stopPrediction();
@@ -225,14 +234,14 @@ const Camera = ({
           GestureRecognizer.HAND_CONNECTIONS,
           {
             color: hand_connectors,
-            lineWidth: 0.4,
+            lineWidth: 0.5,
           }
         );
 
         /** Draw the joints */
         drawingUtils.drawLandmarks(landmark, {
           color: joint,
-          lineWidth: 0.2,
+          radius: 1
         });
       }
     }
@@ -242,17 +251,13 @@ const Camera = ({
     if (
       results &&
       results.gestures.length > 0 &&
-      results.gestures[0][0].categoryName != "None"
+      availableOptions.includes(results.gestures[0][0].categoryName)
     ) {
       const resultObj = {
         category: results.gestures[0][0].categoryName,
         score: results.gestures[0][0].score * 100,
         handedness: results.handedness[0][0].displayName,
       };
-
-      setTimeout(() => {
-        stopPrediction();
-      }, 5000);
 
       resultSetter(resultObj);
 

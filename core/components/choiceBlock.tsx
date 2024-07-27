@@ -1,12 +1,11 @@
 /** Components and constants */
 import { C, Camera } from "core/components";
 import { HandGesture } from "core/components/camera";
-import { Gestures } from "core/components/constants/gesture";
+import { Gestures } from "./constants/gesture";
 
 /** Hooks */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import useInventory from "core/hooks/use-inventory";
 import { Options } from "./constants/options";
 
 /** Utils */
@@ -24,6 +23,8 @@ export interface ChoiceBlockProps {
   btnBackgroundColor?: string;
   /** Text color of button used to trigger webcam */
   btnTextColor?: string;
+  /** Additional config params for the list of options */
+  extraConfig?: Record<string, unknown>
 }
 
 /**
@@ -38,21 +39,26 @@ const ChoiceBlock = ({
   maxNumHands = 1,
   btnBackgroundColor = "rgb(34, 33, 31)",
   btnTextColor = "rgb(250, 250, 250)",
+  extraConfig = null
 }: ChoiceBlockProps): JSX.Element => {
   const options = Options[tag];
+  const decision = useRef<HTMLParagraphElement>(null);
   const dispatch = useDispatch<any>();
-  const [decision] = useInventory([tag]);
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
 
   useEffect(() => {
     if (result) {
-      // Get the description based on the category of the result
-      let description = Gestures[result.category];
       // Get the answer
-      let answer = Object.keys(Options[tag]).find(
-        (k) => Options[tag][k] == description
+      let answer = Object.keys(options).find(
+        (k) => options[k] == result.category
       );
-      dispatch(makeChoice(tag, answer, answer, answer))
+
+       decision.current.textContent = `You chose ${answer}.`
+        setTimeout(() => {
+            dispatch(makeChoice(tag, answer, 
+                answer.toLowerCase().replace(" ", ""), 
+                answer.toLowerCase().replace(" ", "")))
+        }, 5000)
     }
   }, [result]);
 
@@ -60,25 +66,26 @@ const ChoiceBlock = ({
     options && (
       <>
         <p>
-            <C options={[Object.keys(options)]} tag={tag} />
+            {
+                extraConfig == null ? 
+                <C options={[Object.keys(options)]} tag={tag} /> :
+                <C options={[Object.keys(options)]} tag={tag} extra={extraConfig}/>
+            }
         </p>
 
         <div className={styles.instruction}>
-          {Object.keys(options).map((key: any) => {
+          {Object.keys(options).map((key: string) => {
             return (
               <p key={key}>
-                {options[key]} for <span className={styles.underline}>{key}</span>.
+                {Gestures[options[key]]} for <span className={styles.underline}>{key}</span>.
               </p>
             );
           })}
           <p>Note: Keep the posture for at least 5 seconds.</p>
+          {
+            <p ref={decision}></p>
+          }
         </div>
-
-        {decision == undefined || decision == null ? (
-          ""
-        ) : (
-          <p>You chose {decision}.</p>
-        )}
         
         <Camera
           canvasWidth={300}
@@ -87,6 +94,7 @@ const ChoiceBlock = ({
           textColor={btnTextColor}
           numHands={maxNumHands}
           resultSetter={resultSetter}
+          availableOptions={Object.values(options)}
         />
       </>
     )

@@ -9,6 +9,10 @@ chapters:
     title: "Go to the left"
   - filename: "right"
     title: "Go to the right"
+  - filename: "findome"
+    title: "Fin Dome"
+  - filename: "joshuatree"
+    title: "Joshua Tree"
   
 players:
   - start: "start"

@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { padding, size, 
     positionBottomLeft, positionBottomMiddle, positionBottomRight, 
     positionUpperLeft, positionUpperMiddle, positionUpperRight } from './constants/positions';

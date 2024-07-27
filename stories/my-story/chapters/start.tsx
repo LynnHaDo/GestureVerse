@@ -7,19 +7,22 @@ import {
   Artwork,
 } from "core/components";
 import { PageType } from "core/types";
+import colors from 'public/themeColors.module.scss';
 
 export const Page: PageType = () => {
   return (
     <>
-      <BackgroundFill color="rgb(27, 93, 56)" />
+      <BackgroundFill color={colors.retroGreen} />
       <Artwork
               link="/stories/my-story/images/Buttermilk.jpg"
               source="https://leeariel.com/landscapes-2020"
               name="Buttermilk and Bitterbush, Gouache on paper, 2020, 8x8 in"
-              width="100%"
+              width="500px"
               height="500px"
               position={{
-                top: '1vh'
+                top: '1vh',
+                left: "50%",
+                transform: "translate(-50%, 0)"
               }}
             />
       <TextBlock position="bottom_middle" textAlign="center">

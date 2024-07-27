@@ -2,14 +2,6 @@
 
 $text-color: colors.$very-light;
 
-/**
-@use '/public/styles/header' with (
-    $background-color: 'transparent',
-    $foreground-color: $text-color,
-    $max-height: 1vh,
-);
-*/
-
 @import '/public/styles/fonts';
 
 .main {

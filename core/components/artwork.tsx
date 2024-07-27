@@ -47,6 +47,9 @@ const Artwork = ({ link, name, source, width, height, position }: ArtworkProps) 
           <div className={styles.icon}>
             <IonIcon icon={addOutline}></IonIcon>
           </div>
+          <div className={styles.background}>
+            <div className={styles.backdrop}></div>
+          </div>
         </div>
       </div>
     </div>

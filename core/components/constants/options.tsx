@@ -1,4 +1,3 @@
-import { Gestures } from "./gesture";
 /**
  * const Gestures = {
     0: "None", 
@@ -16,15 +15,15 @@ import { Gestures } from "./gesture";
  */
 export const Options = {
     "leftOrRight": {
-        "left": Gestures["Thumb_Up"], // thumbs up
-        "right": Gestures["Thumb_Down"], // thumbs down
+        "left": "Thumb_Up", // thumbs up
+        "right": "Thumb_Down", // thumbs down
     },
     "left": {
-        "lighthouse": Gestures["Pointing_Up"], // point up
-        "stairs": Gestures["Closed_Fist"] // closed fist
+        "Fin Dome": "Pointing_Up", // point up
+        "Joshua Tree": "Closed_Fist" // closed fist
     },
     "right": {
-        "fence": Gestures["Open_Palm"], // open palm
-        "further": Gestures["Victory"] // victory (v sign)
+        "fence": "Open_Palm", // open palm
+        "further": "Victory" // victory (v sign)
     }
 }

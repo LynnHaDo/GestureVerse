@@ -16,7 +16,17 @@ export interface InlineListProps extends WidgetProps {
     /** The conjunction terminating a list of items
      * @default "or"
      */
-    conjunction: string
+    conjunction: string,
+    /**
+     * The string preceding the list of items
+     * @default ''
+     */
+    prefix: string,
+    /**
+     * The string succeeding the list of items
+     * @default ''
+     */
+    suffix: string
 }
 declare function InlineListType(props: InlineListProps): JSX.Element
 
@@ -26,7 +36,9 @@ export const InlineList: typeof InlineListType = ({
     group = null,
     handler = null,
     tag = null,
-    className = null
+    className = null,
+    prefix = '',
+    suffix = ''
 }: InlineListProps): JSX.Element => {
     if (conjunction.length > 0) {
         conjunction = ` ${conjunction} `
@@ -34,7 +46,10 @@ export const InlineList: typeof InlineListType = ({
 
     return (
         <>
-            {[...group]
+            <span>
+            {`${prefix} `}
+            {
+            [...group]
                 .filter((c) => c !== null && c !== undefined)
                 .map((t, i) => (
                     <span key={i} className={className}>
@@ -42,19 +57,25 @@ export const InlineList: typeof InlineListType = ({
                         <Link handler={handler} text={t} tag={tag} />
                         {i < group.length - 1 && group.length > 2 ? separator : ''}
                     </span>
-                ))}
+                ))
+            }
+            {suffix}
+            </span>
         </>
     )
 }
+
 export const InlineListEN: typeof InlineList = ({
     separator = ', ',
     conjunction = 'or',
     group = null,
     handler = null,
     tag = null,
-    className = null
+    className = null,
+    prefix = '',
+    suffix = ''
 }: InlineListProps): JSX.Element =>
-    InlineList({ separator, conjunction, group, handler, tag, className })
+    InlineList({ separator, conjunction, group, handler, tag, className, prefix, suffix })
 
 /** Portuguese version of an inline list with an "or" conjunction */
 export const InlineListPT: typeof InlineList = ({
@@ -63,6 +84,8 @@ export const InlineListPT: typeof InlineList = ({
     group = null,
     handler = null,
     tag = null,
-    className = null
+    className = null,
+    prefix = '',
+    suffix = ''
 }: InlineListProps): JSX.Element =>
-    InlineList({ separator, conjunction, group, handler, tag, className })
+    InlineList({ separator, conjunction, group, handler, tag, className, prefix, suffix })
