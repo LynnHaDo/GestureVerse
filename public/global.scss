@@ -14,11 +14,6 @@ html, body {
     padding: 0;
 }
 
-/* Ensure the last Section element has some bottom margin. */
-section.windrift--section:last-of-type {
-    margin-bottom: 4em;
-}
-
 .windrift--image-choice {
     margin: 20px !important;
     padding: 0 !important;

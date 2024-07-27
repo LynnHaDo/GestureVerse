@@ -20,16 +20,12 @@ export interface backgroundFillProps {
  * @param color (optional) source of
  * @returns
  */
-const BackgroundFill = ({ imageSrc, color }: backgroundFillProps) => {
+const BackgroundFill = ({ imageSrc, color }: backgroundFillProps) => {  
   return (
-    <div style={backgroundFillStyle}>
+    <div style={{...backgroundFillStyle, backgroundColor: color}}>
       {imageSrc &&
       <Image src={imageSrc} style={{width: '100%'}}/>
       }
-      color &&
-      <div
-        style={{ backgroundColor: color, width: "100%", height: "100%" }}
-      ></div>
     </div>
   );
 };

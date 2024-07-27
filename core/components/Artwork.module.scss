@@ -1,0 +1,91 @@
+.container {
+  padding: 1rem;
+  position: fixed;
+
+  .card {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+
+    .cardImage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .cardInfo {
+      height: 35px;
+      width: 35px;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 3px;
+      position: absolute;
+      transition: width 500ms ease, height 550ms ease, right 550ms ease,
+        background 550ms ease;
+      overflow: hidden;
+      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.014),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.02), 0 12.5px 10px rgba(0, 0, 0, 0.025),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.03),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.036), 0 100px 80px rgba(0, 0, 0, 0.05),
+        0 0px 2.2px rgba(0, 0, 0, 0.045), 0 0px 5.3px rgba(0, 0, 0, 0.065),
+        0 0px 10px rgba(0, 0, 0, 0.08), 0 0px 17.9px rgba(0, 0, 0, 0.095),
+        0 0px 33.4px rgba(0, 0, 0, 0.115), 0 0px 80px rgba(0, 0, 0, 0.16),
+        0 0.2px 2.2px rgba(0, 0, 0, 0.014), 0 0.6px 5.3px rgba(0, 0, 0, 0.02),
+        0 1.1px 10px rgba(0, 0, 0, 0.025), 0 2px 17.9px rgba(0, 0, 0, 0.03),
+        0 3.8px 33.4px rgba(0, 0, 0, 0.036), 0 9px 80px rgba(0, 0, 0, 0.05);
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.65) 0%,
+          rgba(0, 0, 0, 0.25) 50%,
+          transparent 100%
+        );
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 550ms ease;
+      }
+
+      .infoText {
+        font-family: inherit;
+        font-size: 0.8rem;
+        display: block;
+        position: absolute;
+        left: 10%;
+        bottom: 5%;
+        z-index: 2;
+        opacity: 0;
+        transform: translateX(25%);
+        transition: opacity 250ms ease, transform 250ms ease;
+      }
+
+      .icon {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        IonIcon {
+          color: white;
+        }
+      }
+    }
+  }
+}
