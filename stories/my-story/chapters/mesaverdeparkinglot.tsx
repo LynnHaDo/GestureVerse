@@ -23,7 +23,7 @@ export const Page: PageType = () => {
           right: "0"
         }}
       />
-      <TextBlock position="bottom_left">
+      <TextBlock>
         <Chapter filename="mesaverdeparkinglot">
           <Section>
             <p>

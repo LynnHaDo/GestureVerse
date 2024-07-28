@@ -56,8 +56,8 @@ const ChoiceBlock = ({
        decision.current.textContent = `You chose ${answer}.`
         setTimeout(() => {
             dispatch(makeChoice(tag, answer, 
-                answer.toLowerCase().replace(" ", ""), 
-                answer.toLowerCase().replace(" ", "")))
+                answer.toLowerCase().replaceAll(" ", ""), 
+                answer.toLowerCase().replaceAll(" ", "")))
         }, 5000)
     }
   }, [result]);
@@ -88,8 +88,8 @@ const ChoiceBlock = ({
         </div>
         
         <Camera
-          canvasWidth={270}
-          canvasHeight={170}
+          canvasWidth={230}
+          canvasHeight={130}
           btnBackgroundColor={btnBackgroundColor}
           textColor={btnTextColor}
           numHands={maxNumHands}

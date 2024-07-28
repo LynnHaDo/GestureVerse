@@ -25,7 +25,6 @@ const ENABLE_TEXT = "Open webcam";
 const DISABLE_TEXT = "Close webcam";
 
 const MIN_CONFIDENCE_SCORE = 0.7;
-const TEXT_WRAPPER_WIDTH = 95;
 
 export interface HandGesture {
   /** Type of gesture. One of the following: "None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou" */
@@ -82,6 +81,7 @@ const Camera = ({
   const outputScore = useRef<HTMLSpanElement>(null);
   const outputHandedness = useRef<HTMLSpanElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const textWrapperRef = useRef<HTMLDivElement>(null);
   const localStream = useRef<MediaStream>(null);
   const { hand_connectors, joint } = styles;
 
@@ -150,7 +150,8 @@ const Camera = ({
       outputScore.current.innerHTML = "";
       outputHandedness.current.innerHTML = "";
 
-      videoContainerRef.current.style.opacity = '0';
+      videoContainerRef.current.style.opacity,
+      textWrapperRef.current.style.opacity = '0';
     }
 
     if (localStream.current) {
@@ -174,7 +175,7 @@ const Camera = ({
       btnContentSetter(ENABLE_TEXT);
     } else {
       webcamSetter(true);
-      videoContainerRef.current.style.opacity = '1';
+      videoContainerRef.current.style.opacity = '1'
       // Start video prediction
       startVideo();
     }
@@ -198,9 +199,7 @@ const Camera = ({
   };
 
   const setText = (results: any) => {
-    outputCategory.current.style.display,
-        outputScore.current.style.display,
-        (outputHandedness.current.style.opacity = '1');
+    textWrapperRef.current.style.opacity = '1';
 
       outputCategory.current.innerHTML = `Type: ${results.gestures[0][0].categoryName.replace(
         "_",
@@ -275,6 +274,7 @@ const Camera = ({
           score: results.gestures[0][0].score * 100,
           handedness: results.handedness[0][0].displayName,
         };
+        setText(results);
         resultSetter(resultObj);
         return;
       }
@@ -282,9 +282,7 @@ const Camera = ({
       setText(results);
 
     } else {
-      outputCategory.current.style.display,
-        outputScore.current.style.display,
-        (outputHandedness.current.style.opacity = '0');
+        textWrapperRef.current.style.opacity = '0';
     }
 
     requestAnimationFrame(() => {
@@ -315,13 +313,35 @@ const Camera = ({
         <div
           className={styles.videoWrapper}
           style={{
-            width: canvasWidth + TEXT_WRAPPER_WIDTH
+            width: `calc(${canvasWidth}+1rem)`
           }}
           ref={videoContainerRef}
         >
+          
+          <div
+            style={{
+              ...videoContainer,
+              width: canvasWidth,
+              height: canvasHeight,
+            }}
+          >
+            <video
+              ref={video}
+              onLoadedData={predict}
+              autoPlay
+              playsInline
+            ></video>
+            <canvas
+              ref={canvas}
+              className="outputCanvas"
+              style={outputContainer}
+            ></canvas>
+          </div>
+
           <div
             className={styles.textWrapper}
-            style={{ width: TEXT_WRAPPER_WIDTH, height: '100%', display: "block" }}
+            style={{ maxWidth: canvasWidth }}
+            ref={textWrapperRef}
           >
             <span
               ref={outputCategory}
@@ -343,25 +363,6 @@ const Camera = ({
                 border: `1px solid ${textColor}`
               }}
             ></span>
-          </div>
-          <div
-            style={{
-              ...videoContainer,
-              width: canvasWidth,
-              height: canvasHeight,
-            }}
-          >
-            <video
-              ref={video}
-              onLoadedData={predict}
-              autoPlay
-              playsInline
-            ></video>
-            <canvas
-              ref={canvas}
-              className="outputCanvas"
-              style={outputContainer}
-            ></canvas>
           </div>
         </div>
 

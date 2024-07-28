@@ -37,20 +37,20 @@
         right: 1rem;
         top: 1rem;
         border-radius: 3px;
-        display: flex;
-        align-items: middle;
         padding: 0.5rem;
-        border: 1px solid map-get($theme-colors, 'black');
+        background-color: rgba(0, 0, 0);
 
         .textWrapper {
-            display: flexbox;
+            display: flex;
             flex-wrap: wrap;
+            opacity: 0;
 
             .output {
-                padding: 0.2rem;
+                padding: 0.2rem 0.3rem;
                 border-radius: 5rem;
                 font-size: 0.8rem;
-                margin-top: 0.1rem;
+                margin-top: 0.3rem;
+                margin-right: 0.3rem;
             }
         }
     }

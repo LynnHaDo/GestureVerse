@@ -36,11 +36,7 @@ export const Page: PageType = () => {
               of the Sierra Nevada. The scenery in Sierra Valley varies from
               conifer and aspen forests, to drier woodland forests, to a large
               valley covered with crops, pastures, and wildflowers in the
-              spring. Smaller valleys and meadows are laced with meandering
-              streams. Old platy-barked ponderosa pine trees are a special
-              feature in the landscape along the upper stretches of Highway 89
-              near Truckee. Cattle share the pastures with deer and other
-              wildlife. If you’re lucky, you might see a cattle drive.{"  "}
+              spring. Go{"  "}
               <Nav text="back" next="right" tag="back" />.
             </p>
           </Section>
