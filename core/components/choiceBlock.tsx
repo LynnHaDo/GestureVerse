@@ -88,7 +88,7 @@ const ChoiceBlock = ({
         </div>
         
         <Camera
-          canvasWidth={300}
+          canvasWidth={270}
           canvasHeight={170}
           btnBackgroundColor={btnBackgroundColor}
           textColor={btnTextColor}

@@ -23,7 +23,7 @@ export const Options = {
         "Joshua Tree": "Closed_Fist" // closed fist
     },
     "right": {
-        "fence": "Open_Palm", // open palm
-        "further": "Victory" // victory (v sign)
+        "Sierra Valley": "Open_Palm", // open palm
+        "Mesa Verde Parking Lot": "Victory" // victory (v sign)
     }
 }

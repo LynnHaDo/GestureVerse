@@ -25,11 +25,7 @@ const Artwork = ({ link, name, source, width, height, position }: ArtworkProps) 
  * @returns a random integer < 80 and >= 0
  */
   const getRandomPosition = () => {
-    return Math.floor(Math.random() * 80); // leave a bit padding on the sides
-  }
-
-  if (height) {
-    
+    return Math.floor(Math.random() * 50); // leave a bit padding on the sides
   }
 
   return (

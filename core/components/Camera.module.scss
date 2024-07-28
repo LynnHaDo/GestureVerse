@@ -7,22 +7,20 @@
 
 .videoSection {
     font-family: inherit;
-    opacity: 1;
-    transition: opacity 500ms ease-in-out;
-  
-    video {
-      display: block;
-    }
-  
-    .videoView {
-      p {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        z-index: 2;
-        margin: 0;
-      }
 
-      button {
+    video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    button {
         font-family: inherit;
         font-size: 0.8rem;
         letter-spacing: 2px;
@@ -30,23 +28,31 @@
         width: 150px;
         height: 35px;
         cursor: pointer;
-      }
-    }
-  
-    .highlighter {
-      background: rgba(0, 255, 0, 0.25);
-      border: 1px dashed #fff;
-      z-index: 1;
-      position: absolute;
     }
     
-    .outputCanvas {
-      pointer-events: none;
-    }
-    
-    .output {
-      display: none;
-      width: 100%;
+    .videoWrapper {
+        opacity: 0;
+        transition: opacity 500ms ease-in-out;
+        position: fixed;
+        right: 1rem;
+        top: 1rem;
+        border-radius: 3px;
+        display: flex;
+        align-items: middle;
+        padding: 0.5rem;
+        border: 1px solid map-get($theme-colors, 'black');
+
+        .textWrapper {
+            display: flexbox;
+            flex-wrap: wrap;
+
+            .output {
+                padding: 0.2rem;
+                border-radius: 5rem;
+                font-size: 0.8rem;
+                margin-top: 0.1rem;
+            }
+        }
     }
 
   }

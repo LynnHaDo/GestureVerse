@@ -5,9 +5,7 @@ import CustomModal from "./modal";
 import styles from "./Camera.module.scss";
 
 const videoContainer: React.CSSProperties = {
-  position: "fixed",
-  right: "1rem",
-  top: "1rem",
+  position: "relative",
 };
 const outputContainer: React.CSSProperties = {
   position: "absolute",
@@ -25,6 +23,9 @@ import {
 /** Constants */
 const ENABLE_TEXT = "Open webcam";
 const DISABLE_TEXT = "Close webcam";
+
+const MIN_CONFIDENCE_SCORE = 0.7;
+const TEXT_WRAPPER_WIDTH = 95;
 
 export interface HandGesture {
   /** Type of gesture. One of the following: "None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou" */
@@ -51,7 +52,7 @@ interface CameraProps {
   /** Result object (if any) */
   resultSetter: Dispatch<HandGesture>;
   /** List of available options to predict for */
-  availableOptions: string[]
+  availableOptions: string[];
 }
 
 /**
@@ -65,7 +66,7 @@ const Camera = ({
   btnBackgroundColor,
   textColor,
   resultSetter,
-  availableOptions
+  availableOptions,
 }: CameraProps) => {
   let gestureRecognizer = useRef<GestureRecognizer>(null);
 
@@ -77,7 +78,9 @@ const Camera = ({
   /** HTML Elements */
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
-  const outputText = useRef<HTMLParagraphElement>(null);
+  const outputCategory = useRef<HTMLSpanElement>(null);
+  const outputScore = useRef<HTMLSpanElement>(null);
+  const outputHandedness = useRef<HTMLSpanElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const localStream = useRef<MediaStream>(null);
   const { hand_connectors, joint } = styles;
@@ -143,16 +146,17 @@ const Camera = ({
       video.current.pause();
       video.current.src = "";
       video.current.srcObject = null;
-      outputText.current.innerHTML = "";
+      outputCategory.current.innerHTML = "";
+      outputScore.current.innerHTML = "";
+      outputHandedness.current.innerHTML = "";
 
-      video.current.style.display = "none";
-      canvas.current.style.display = "none";
+      videoContainerRef.current.style.opacity = '0';
     }
 
     if (localStream.current) {
-        localStream.current.getTracks().forEach((track) => {
-          track.stop();
-        });
+      localStream.current.getTracks().forEach((track) => {
+        track.stop();
+      });
     }
   };
 
@@ -170,8 +174,7 @@ const Camera = ({
       btnContentSetter(ENABLE_TEXT);
     } else {
       webcamSetter(true);
-      video.current.style.display = "block";
-      canvas.current.style.display = "block";
+      videoContainerRef.current.style.opacity = '1';
       // Start video prediction
       startVideo();
     }
@@ -194,15 +197,28 @@ const Camera = ({
       });
   };
 
+  const setText = (results: any) => {
+    outputCategory.current.style.display,
+        outputScore.current.style.display,
+        (outputHandedness.current.style.opacity = '1');
+
+      outputCategory.current.innerHTML = `Type: ${results.gestures[0][0].categoryName.replace(
+        "_",
+        " "
+      )}`;
+      outputScore.current.innerHTML = `Confidence: ${(results.gestures[0][0].score * 100).toFixed(2)}%`;
+      outputHandedness.current.innerHTML = `Handedness: ${results.handedness[0][0].displayName}`;
+  }
+
   const predict = () => {
     const videoEl = video.current;
     const canvasEl = canvas.current;
     let nowInMs = Date.now();
 
     if (canvasEl == null || videoEl == null) {
-        return;
+      return;
     }
-    
+
     const canvasCtx = canvasEl.getContext("2d");
 
     if (!videoEl.videoHeight || !videoEl.videoWidth) {
@@ -241,7 +257,7 @@ const Camera = ({
         /** Draw the joints */
         drawingUtils.drawLandmarks(landmark, {
           color: joint,
-          radius: 1
+          radius: 1,
         });
       }
     }
@@ -251,30 +267,24 @@ const Camera = ({
     if (
       results &&
       results.gestures.length > 0 &&
-      availableOptions.includes(results.gestures[0][0].categoryName)
+      results.gestures[0][0].score > MIN_CONFIDENCE_SCORE
     ) {
-      const resultObj = {
-        category: results.gestures[0][0].categoryName,
-        score: results.gestures[0][0].score * 100,
-        handedness: results.handedness[0][0].displayName,
-      };
+      if (availableOptions.includes(results.gestures[0][0].categoryName)) {
+        const resultObj = {
+          category: results.gestures[0][0].categoryName,
+          score: results.gestures[0][0].score * 100,
+          handedness: results.handedness[0][0].displayName,
+        };
+        resultSetter(resultObj);
+        return;
+      }
 
-      resultSetter(resultObj);
+      setText(results);
 
-      return;
-      /** 
-      outputText.current.style.display = "block";
-      outputText.current.style.width = `${canvasWidth}px`;
-      /** 
-      result.category = results.gestures[0][0].categoryName;
-      result.score = results.gestures[0][0].score * 100;
-      result.handedness = results.handedness[0][0].displayName;
-      
-      outputText.current.innerText = `Type: ${result.category}\n
-                                      Confidence: ${result.score}%\n
-                                      Handedness: ${result.handedness}`;*/
     } else {
-      outputText.current.style.display = "none";
+      outputCategory.current.style.display,
+        outputScore.current.style.display,
+        (outputHandedness.current.style.opacity = '0');
     }
 
     requestAnimationFrame(() => {
@@ -291,21 +301,57 @@ const Camera = ({
           styles.videoSection + ` ${gestureRecognizer ? "" : styles.invisible}`
         }
       >
-        <div className={styles.videoView}>
-          <button
-            ref={triggerBtn}
+        <button
+          ref={triggerBtn}
+          style={{
+            backgroundColor: btnBackgroundColor,
+            color: textColor,
+            border: `1px solid ${textColor}`,
+          }}
+        >
+          <span>{btnContent.toUpperCase()}</span>
+        </button>
+
+        <div
+          className={styles.videoWrapper}
+          style={{
+            width: canvasWidth + TEXT_WRAPPER_WIDTH
+          }}
+          ref={videoContainerRef}
+        >
+          <div
+            className={styles.textWrapper}
+            style={{ width: TEXT_WRAPPER_WIDTH, height: '100%', display: "block" }}
+          >
+            <span
+              ref={outputCategory}
+              className={styles.output}
+              style={{
+                color: textColor,
+                border: `1px solid ${textColor}`
+              }}
+            ></span>
+            <span ref={outputScore} className={styles.output} style={{
+                color: textColor,
+                border: `1px solid ${textColor}`
+              }}></span>
+            <span
+              ref={outputHandedness}
+              className={styles.output}
+              style={{
+                color: textColor,
+                border: `1px solid ${textColor}`
+              }}
+            ></span>
+          </div>
+          <div
             style={{
-              backgroundColor: btnBackgroundColor,
-              color: textColor,
-              border: `1px solid ${textColor}`,
+              ...videoContainer,
+              width: canvasWidth,
+              height: canvasHeight,
             }}
           >
-            <span>{btnContent.toUpperCase()}</span>
-          </button>
-          <div style={videoContainer} ref={videoContainerRef}>
             <video
-              width={canvasWidth}
-              height={canvasHeight}
               ref={video}
               onLoadedData={predict}
               autoPlay
@@ -314,11 +360,8 @@ const Camera = ({
             <canvas
               ref={canvas}
               className="outputCanvas"
-              width={canvasWidth}
-              height={canvasHeight}
               style={outputContainer}
             ></canvas>
-            <p ref={outputText} className="output" color={textColor}></p>
           </div>
         </div>
 

@@ -13,6 +13,10 @@ chapters:
     title: "Fin Dome"
   - filename: "joshuatree"
     title: "Joshua Tree"
+  - filename: "sierravalley"
+    title: "Sierra Valley"
+  - filename: "mesaverdeparkinglot"
+    title: "Mesa Verde Parking Lot"
   
 players:
   - start: "start"

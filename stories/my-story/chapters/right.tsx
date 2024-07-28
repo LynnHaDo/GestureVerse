@@ -1,16 +1,29 @@
-import { Section, Chapter, BackgroundFill, TextBlock } from "core/components";
+import { Section, Chapter, BackgroundFill, TextBlock, Artwork, ChoiceBlock } from "core/components";
 import { PageType } from "core/types";
+import colors from "public/themeColors.module.scss";
 
 export const Page: PageType = () => {
+  const tag = "right";
   return (
     <>
-        <BackgroundFill imageSrc="/stories/my-story/images/02_right.png"/>
+        <BackgroundFill color={colors.darkYellow}/>
+        <Artwork 
+            link="/stories/my-story/images/02_right.jpg"
+            source="https://leeariel.com/2021"
+            name="Bitterbrush Mountains, Gouache on paper, 2021, 11x15 in"
+            width="500px"
+            position={{
+                left: '0',
+                top: '1vh'
+            }}/>
         <TextBlock>
             <Chapter filename="right">
-                <Section>
-                    <p>
-                        Right
-                    </p>
+            <Section>
+                    <div className = "row">
+                        <ChoiceBlock tag={tag} 
+                                    btnBackgroundColor="transparent"
+                                    extraConfig={{prefix: "Go see", suffix: "?"}}/>
+                    </div>                    
                 </Section>
             </Chapter>
         </TextBlock>
