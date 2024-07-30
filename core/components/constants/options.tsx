@@ -19,11 +19,11 @@ export const Options = {
         "right": "Thumb_Down", // thumbs down
     },
     "left": {
-        "Fin Dome": "Pointing_Up", // point up
-        "Joshua Tree": "Closed_Fist" // closed fist
+        "lighthouse": "Pointing_Up", // point up
+        "stairs": "Closed_Fist" // closed fist
     },
     "right": {
-        "Sierra Valley": "Open_Palm", // open palm
-        "Mesa Verde Parking Lot": "Victory" // victory (v sign)
+        "fence": "Open_Palm", // open palm
+        "further": "Victory" // victory (v sign)
     }
 }
