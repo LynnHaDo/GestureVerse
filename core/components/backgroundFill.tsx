@@ -24,7 +24,7 @@ const BackgroundFill = ({ imageSrc, color }: backgroundFillProps) => {
   return (
     <div style={{...backgroundFillStyle, backgroundColor: color}}>
       {imageSrc &&
-      <Image src={imageSrc} style={{width: '100%'}}/>
+      <Image src={imageSrc} style={{objectFit: 'cover'}}/>
       }
     </div>
   );

@@ -23,9 +23,10 @@ export const Page: PageType = () => {
         <Chapter filename="choice">
         <Section>
             <div className="row">
-                <ChoiceBlock tag={tag} 
+                {/* <ChoiceBlock tag={tag} 
                              btnBackgroundColor="transparent"
-                             />
+                             /> 
+                */}
             </div>
         </Section>
         </Chapter>

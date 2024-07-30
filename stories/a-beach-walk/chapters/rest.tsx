@@ -25,7 +25,7 @@ export const Page: PageType = () => {
               }}
             />
       <TextBlock position="bottom_middle" textAlign="center">
-        <Chapter filename="end">
+        <Chapter filename="rest">
           <Section>
             
             <p>

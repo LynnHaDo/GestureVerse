@@ -20,9 +20,9 @@ export const Page: PageType = () => {
             <Chapter filename="right">
             <Section>
                     <div className = "row">
-                        <ChoiceBlock tag={tag} 
+                        {/* <ChoiceBlock tag={tag} 
                                     btnBackgroundColor="transparent"
-                                    extraConfig={{prefix: "Go see", suffix: "?"}}/>
+                                    extraConfig={{prefix: "Go see", suffix: "?"}}/> */}
                     </div>                    
                 </Section>
             </Chapter>

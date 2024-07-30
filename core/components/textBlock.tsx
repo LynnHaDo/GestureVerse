@@ -11,6 +11,8 @@ export interface TextBlockProps {
     textColor?: string,
     /** Position of the text within the box (left, center, right) */
     textAlign?: string,
+    /** Any additional style */
+    additionalStyle?: Object,
     children: React.ReactNode
 }
 
@@ -18,6 +20,7 @@ const TextBlock = ({position,
                     backgroundColor, 
                     textColor, 
                     textAlign,
+                    additionalStyle,
                     children}: TextBlockProps) => {
 
     let positionStyle: React.CSSProperties;
@@ -72,7 +75,8 @@ const TextBlock = ({position,
     return (
         <div style={{...positionStyle, 
                     ...padding,
-                    ...size}}>
+                    ...size,
+                    ...additionalStyle}}>
             <div style={{...colorStyle, ...textPositionStyle}}>
                 {children}
             </div>            

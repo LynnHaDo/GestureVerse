@@ -31,7 +31,7 @@ export const Page: PageType = () => {
             
             <p>
             After a long walk, it’s nice to just sit and{"  "}
-              <Nav text="rest" next="end" tag="rest" />.
+              <Nav text="rest" next="rest" tag="rest" />.
             </p>
           </Section>
         </Chapter>

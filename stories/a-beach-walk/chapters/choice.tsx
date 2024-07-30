@@ -1,4 +1,11 @@
-import { Section, Chapter, ChoiceBlock, BackgroundFill, TextBlock, Artwork } from "core/components";
+import {
+  Section,
+  Chapter,
+  ChoiceBlock,
+  BackgroundFill,
+  TextBlock,
+  Artwork,
+} from "core/components";
 import { PageType } from "core/types";
 
 import colors from "public/themeColors.module.scss";
@@ -8,27 +15,34 @@ export const Page: PageType = () => {
 
   return (
     <>
-    <BackgroundFill color={colors.orange} />
-    <Artwork 
+      <BackgroundFill color={colors.orange} />
+      <Artwork
         link="/stories/a-beach-walk/images/02.png"
         source="https://interstellar-bird.itch.io/beach-walk"
         name="Left or right"
-        width="500px"
+        width="400px"
         position={{
-            top: '1vh',
-            left: '0'
-        }}/>
-    <TextBlock textAlign="right" position="bottom_right">
+            left: "49%",
+            top: "11vh",
+            transform: "translate(-50%, 0)",
+            backgroundColor: `${colors.white}`,
+        }}
+      />
+      <TextBlock position="bottom_middle"
+        additionalStyle={{
+          width: "400px",
+          padding: 0,
+          left: "49%",
+          bottom: "calc(7vh)",
+        }}>
         <Chapter filename="choice">
-        <Section>
+          <Section>
             <div className="row">
-                <ChoiceBlock tag={tag} 
-                             btnBackgroundColor="transparent"
-                             />
+              <ChoiceBlock tag={tag} btnBackgroundColor="transparent" />
             </div>
-        </Section>
+          </Section>
         </Chapter>
-    </TextBlock>
-   </>
+      </TextBlock>
+    </>
   );
 };
