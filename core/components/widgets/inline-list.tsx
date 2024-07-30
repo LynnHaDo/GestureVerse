@@ -26,7 +26,8 @@ export interface InlineListProps extends WidgetProps {
      * The string succeeding the list of items
      * @default ''
      */
-    suffix: string
+    suffix: string,
+    textColor?: string
 }
 declare function InlineListType(props: InlineListProps): JSX.Element
 
@@ -38,7 +39,8 @@ export const InlineList: typeof InlineListType = ({
     tag = null,
     className = null,
     prefix = '',
-    suffix = ''
+    suffix = '',
+    textColor = ''
 }: InlineListProps): JSX.Element => {
     if (conjunction.length > 0) {
         conjunction = ` ${conjunction} `
@@ -54,7 +56,7 @@ export const InlineList: typeof InlineListType = ({
                 .map((t, i) => (
                     <span key={i} className={className}>
                         {group.length > 1 && i === group.length - 1 ? conjunction : ''}
-                        <Link handler={handler} text={t} tag={tag} />
+                        <Link handler={handler} text={t} tag={tag} color={textColor}/>
                         {i < group.length - 1 && group.length > 2 ? separator : ''}
                     </span>
                 ))

@@ -12,26 +12,34 @@ import colors from 'public/themeColors.module.scss';
 export const Page: PageType = () => {
   return (
     <>
-      <BackgroundFill color={colors.retroGreen} />
+      <BackgroundFill color={colors.vanilla} />
       <Artwork
               link="/stories/a-beach-walk/images/02_left_sand.png"
-              source="https://leeariel.com/landscapes-2020"
-              name="Buttermilk and Bitterbush, Gouache on paper, 2020, 8x8 in"
-              width="500px"
-              height="500px"
+              source="https://interstellar-bird.itch.io/beach-walk"
+              name="Stairs"
+              width="400px"
               position={{
-                top: '1vh',
-                left: "50%",
-                transform: "translate(-50%, 0)"
+                left: "49%",
+                top: "11vh",
+                transform: "translate(-50%, 0)",
+                backgroundColor: `${colors.white}`,
               }}
             />
-      <TextBlock position="bottom_middle" textAlign="center">
+      <TextBlock position="bottom_middle" 
+                textAlign="center"
+                additionalStyle={{
+                    width: "400px",
+                    padding: 0,
+                    left: "49%",
+                    bottom: "calc(16vh)",
+                    color: `${colors.dark}`
+                  }}>
         <Chapter filename="sand">
           <Section>
             
             <p>
               Walk past the{"  "}
-              <Nav text="kelp" next="kelp" tag="kelp" />.
+              <Nav text="kelp" next="kelp" tag="kelp" textColor={colors.dark}/>.
             </p>
           </Section>
         </Chapter>

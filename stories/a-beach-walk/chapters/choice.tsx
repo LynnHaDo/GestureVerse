@@ -30,16 +30,13 @@ export const Page: PageType = () => {
       />
       <TextBlock position="bottom_middle"
         additionalStyle={{
-          width: "400px",
           padding: 0,
           left: "49%",
-          bottom: "calc(7vh)",
+          top: "calc(70vh)"
         }}>
         <Chapter filename="choice">
           <Section>
-            <div className="row">
               <ChoiceBlock tag={tag} btnBackgroundColor="transparent" />
-            </div>
           </Section>
         </Chapter>
       </TextBlock>

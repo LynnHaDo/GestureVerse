@@ -15,18 +15,26 @@ export const Page: PageType = () => {
       <BackgroundFill color={colors.brown} />
       <Artwork
               link="/stories/a-beach-walk/images/02_left_stairs.png"
-              source="https://leeariel.com/landscapes-2020"
-              name="Joshua Tree Sunshine, Gouache on paper, 2020, 11x10 in"
-              width="700px"
+              source="https://interstellar-bird.itch.io/beach-walk"
+              name="Stairs"
+              width="400px"
               position={{
-                bottom: '1vh',
-                right: "0",
+                left: "49%",
+                top: "11vh",
+                transform: "translate(-50%, 0)",
+                backgroundColor: `${colors.white}`,
               }}
             />
-      <TextBlock>
+      <TextBlock position="bottom_middle" 
+                textAlign="center"
+                additionalStyle={{
+                    width: "400px",
+                    padding: 0,
+                    left: "49%",
+                    bottom: "calc(16vh)",
+                  }}>
         <Chapter filename="stairs">
           <Section>
-            
             <p>
             Walk into the{"  "}
               <Nav text="sand" next="sand" tag="back" />.

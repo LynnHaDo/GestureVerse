@@ -11,14 +11,23 @@ export const Page: PageType = () => {
         <BackgroundFill color={colors.blue}/>
         <Artwork 
             link="/stories/a-beach-walk/images/02_left.png"
-            source="https://leeariel.com/landscapes-2020"
+            source="https://interstellar-bird.itch.io/beach-walk"
             name="Left"
-            width="500px"
+            width="400px"
             position={{
-                bottom: '1vh',
-                right: '0'
+                left: "49%",
+                top: "11vh",
+                transform: "translate(-50%, 0)",
+                backgroundColor: `${colors.white}`,
             }}/>
-        <TextBlock position="upper_left">
+        <TextBlock 
+                position="bottom_middle"
+                additionalStyle={{
+                    padding: 0,
+                    left: "49%",
+                    top: "calc(70vh)"
+                }}
+                >
             <Chapter filename="left">
                 <Section>
                     <div className = "row">

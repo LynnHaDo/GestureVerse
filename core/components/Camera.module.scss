@@ -1,3 +1,4 @@
+@use '/public/styles/fonts';
 @import '/public/themeColors.module.scss';
 
 :export {
@@ -28,6 +29,10 @@
         width: 150px;
         height: 35px;
         cursor: pointer;
+
+        &:hover {
+            font-family: fonts.$secondary;
+        }
     }
     
     .videoWrapper {

@@ -21,14 +21,17 @@ export interface NavProps {
     /** Tag to be supplied if the text string is non-unique */
     tag?: Tag
     /** Class name to based to the widget */
-    className?: string
+    className?: string,
+    /** Color of the hyperlinks */
+    textColor?: string
 }
 const Nav = ({
     text = 'More...',
     next = Next.Section,
     persist = true,
     tag = undefined,
-    className = undefined
+    className = undefined,
+    textColor = ''
 }: NavProps): JSX.Element => {
     const { filename } = useContext(ChapterContext)
 
@@ -40,6 +43,7 @@ const Nav = ({
             next={next}
             persist={persist}
             className={className}
+            textColor={textColor}
         />
     )
 }

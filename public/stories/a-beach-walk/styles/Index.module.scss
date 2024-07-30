@@ -14,7 +14,11 @@ $text-color: colors.$very-light;
     }
 
     a {
-        color: $text-color!important;
+        color: $text-color;
+    }
+
+    .text-black a {
+        color: colors.$very-dark;
     }
 
     .text_center {
