@@ -17,7 +17,8 @@ export const Page: PageType = () => {
         link="/stories/a-beach-walk/images/01.png"
         source="https://interstellar-bird.itch.io/beach-walk"
         name="Start"
-        width="400px"
+        width="300px"
+        height="300px"
         position={{
           left: "49%",
           top: "11vh",
@@ -25,15 +26,16 @@ export const Page: PageType = () => {
           backgroundColor: `${colors.white}`,
         }}
       />
-      <TextBlock position="bottom_middle" 
-                textAlign="center"
-                additionalStyle={{
-                    width: "400px",
-                    padding: 0,
-                    left: "49%",
-                    bottom: "calc(16vh)",
-                  }}
-                >
+      <TextBlock
+        position="bottom_middle"
+        textAlign="center"
+        additionalStyle={{
+          width: "300px",
+          padding: 0,
+          left: "49%",
+          bottom: "calc(16vh)",
+        }}
+      >
         <Chapter filename="start">
           <Section>
             <p>

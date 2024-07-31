@@ -36,6 +36,7 @@ const Artwork = ({ link, name, source, width, height, position }: ArtworkProps) 
             src={link}
             alt={name}
             onClick={() => window.open(source, "_blank")}
+            style={{objectFit: 'cover', height: '100%'}}
           />
         </div>
         <div className={styles.cardInfo} style = {{top: `${getRandomPosition()}%`, left: `${getRandomPosition()}%`}}>

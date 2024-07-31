@@ -136,7 +136,10 @@ const Camera = ({
       triggerBtn.current.addEventListener("click", togglePrediction);
     }
 
-    return () => stopPrediction();
+    return () => {
+        console.log("terminated")
+        stopPrediction();
+    };
   }, []);
 
   /**
@@ -218,7 +221,7 @@ const Camera = ({
     outputScore.current.innerHTML = `Confidence: ${(
       results.gestures[0][0].score * 100
     ).toFixed(2)}%`;
-    outputHandedness.current.innerHTML = `Handedness: ${results.handedness[0][0].displayName}`;
+    outputHandedness.current.innerHTML = `Hand: ${results.handedness[0][0].displayName}`;
   };
 
   const predict = () => {
@@ -292,7 +295,8 @@ const Camera = ({
       }
 
       setText(results);
-    } else {
+    } 
+    else {
       textWrapperRef.current.style.opacity = "0";
     }
 
@@ -390,6 +394,7 @@ const Camera = ({
               autoPlay
               playsInline
             ></video>
+
             <canvas
               ref={canvas}
               className="outputCanvas"
@@ -407,7 +412,7 @@ const Camera = ({
               className={styles.output}
               style={{
                 color: textColor,
-                border: `1px solid ${textColor}`,
+                border: `1px solid ${textColor}`
               }}
             ></span>
             <span

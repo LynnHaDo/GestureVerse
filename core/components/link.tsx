@@ -30,7 +30,7 @@ const Link = ({ text, handler, tag, color }: LinkProps): JSX.Element => {
                     handler(option)
                 }}
                 dangerouslySetInnerHTML={{ __html: text }}
-                style={{color: color}}
+                style={{color: `${color} !important`}}
             />
         )
     }

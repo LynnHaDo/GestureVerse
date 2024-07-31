@@ -7,29 +7,38 @@ import {
   Artwork,
 } from "core/components";
 import { PageType } from "core/types";
-import colors from 'public/themeColors.module.scss';
+import colors from "public/themeColors.module.scss";
 
 export const Page: PageType = () => {
   return (
     <>
       <BackgroundFill color={colors.retroGreen} />
       <Artwork
-              link="/stories/a-beach-walk/images/05_rest.png"
-              source="https://leeariel.com/landscapes-2020"
-              name="Buttermilk and Bitterbush, Gouache on paper, 2020, 8x8 in"
-              width="500px"
-              position={{
-                top: '1vh',
-                left: "50%",
-                transform: "translate(-50%, 0)"
-              }}
-            />
-      <TextBlock position="bottom_middle" textAlign="center">
+        link="/stories/a-beach-walk/images/05_rest.png"
+        source="https://interstellar-bird.itch.io/beach-walk"
+        name="Rest"
+        width="300px" height="300px"
+        position={{
+          left: "49%",
+          top: "11vh",
+          transform: "translate(-50%, 0)",
+          backgroundColor: `${colors.white}`,
+        }}
+      />
+      <TextBlock
+        position="bottom_middle"
+        textAlign="center"
+        additionalStyle={{
+          width: "300px",
+          padding: 0,
+          left: "49%",
+          bottom: "calc(16vh)",
+        }}
+      >
         <Chapter filename="rest">
           <Section>
-            
             <p>
-              thank you for visiting my beach, to walk again go back to the
+              Thank you for visiting my beach. To walk again go back to the{" "}
               <Nav text="start" next="start" tag="endOfStory" />.
             </p>
           </Section>

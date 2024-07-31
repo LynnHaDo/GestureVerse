@@ -24,7 +24,7 @@ export interface ChoiceBlockProps {
   /** Text color of button used to trigger webcam */
   btnTextColor?: string;
   /** Additional config params for the list of options */
-  extraConfig?: Record<string, unknown>
+  extraConfig?: Record<string, unknown>;
 }
 
 /**
@@ -39,7 +39,7 @@ const ChoiceBlock = ({
   maxNumHands = 1,
   btnBackgroundColor = "rgb(34, 33, 31)",
   btnTextColor = "rgb(250, 250, 250)",
-  extraConfig = null
+  extraConfig = null,
 }: ChoiceBlockProps): JSX.Element => {
   const options = Options[tag];
   const decision = useRef<HTMLParagraphElement>(null);
@@ -53,12 +53,17 @@ const ChoiceBlock = ({
         (k) => options[k] == result.category
       );
 
-       decision.current.textContent = `You chose ${answer}.`
-        setTimeout(() => {
-            dispatch(makeChoice(tag, answer, 
-                answer.toLowerCase().replaceAll(" ", ""), 
-                answer.toLowerCase().replaceAll(" ", "")))
-        }, 5000)
+      decision.current.textContent = `You chose ${answer}.`;
+      setTimeout(() => {
+        dispatch(
+          makeChoice(
+            tag,
+            answer,
+            answer.toLowerCase().replaceAll(" ", ""),
+            answer.toLowerCase().replaceAll(" ", "")
+          )
+        );
+      }, 5000);
     }
   }, [result]);
 
@@ -66,27 +71,26 @@ const ChoiceBlock = ({
     options && (
       <>
         <p>
-            {
-                extraConfig == null ? 
-                <C options={[Object.keys(options)]} tag={tag} /> :
-                <C options={[Object.keys(options)]} tag={tag} extra={extraConfig}/>
-            }
+          {extraConfig == null ? (
+            <C options={[Object.keys(options)]} tag={tag} />
+          ) : (
+            <C options={[Object.keys(options)]} tag={tag} extra={extraConfig} />
+          )}
         </p>
 
         <div className={styles.instruction}>
           {Object.keys(options).map((key: string) => {
             return (
               <p key={key}>
-                {Gestures[options[key]]} for <span className={styles.underline}>{key}</span>.
+                {Gestures[options[key]]} for{" "}
+                <span className={styles.underline}>{key}</span>.
               </p>
             );
           })}
           <p>Note: Keep the posture for at least 5 seconds.</p>
-          {
-            <p ref={decision}></p>
-          }
+          {<p ref={decision}></p>}
         </div>
-        
+
         <Camera
           canvasWidth={230}
           canvasHeight={130}

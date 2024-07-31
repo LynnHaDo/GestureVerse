@@ -13,7 +13,7 @@ export const Page: PageType = () => {
             link="/stories/a-beach-walk/images/02_left.png"
             source="https://interstellar-bird.itch.io/beach-walk"
             name="Left"
-            width="400px"
+            width="300px" height="300px"
             position={{
                 left: "49%",
                 top: "11vh",

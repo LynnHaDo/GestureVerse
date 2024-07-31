@@ -2,8 +2,8 @@
 @import '/public/themeColors.module.scss';
 
 :export {
-    hand_connectors: map-get($theme-colors, 'blue');
-    joint: map-get($theme-colors, 'lightYellow');
+    hand_connectors: map-get($theme-colors, 'darkBlue');
+    joint: map-get($theme-colors, 'retroGreen');
 }
 
 .videoSection {
@@ -38,12 +38,12 @@
     .videoWrapper {
         opacity: 0;
         transition: opacity 500ms ease-in-out;
-        position: fixed;
-        right: 1rem;
-        top: 1rem;
         border-radius: 3px;
         padding: 0.5rem;
         background-color: rgba(0, 0, 0);
+        position: fixed;
+        right: 1rem;
+        top: 1rem;
 
         .iconWrapper {
             width: 100%;
@@ -68,11 +68,15 @@
             opacity: 0;
 
             .output {
-                padding: 0.2rem 0.3rem;
+                padding: 0.1rem 0.2rem;
                 border-radius: 5rem;
-                font-size: 0.8rem;
-                margin-top: 0.3rem;
+                font-size: 0.7rem;
+                margin-top: 0.2rem;
                 margin-right: 0.3rem;
+
+                &:nth-child(1) {
+                    background-color: map-get($theme-colors, 'darkYellow');
+                }
             }
         }
     }
