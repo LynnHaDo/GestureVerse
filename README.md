@@ -22,7 +22,7 @@
 
   <p align="center">
     <br />
-    <a href="#">View Demo</a>
+    <a href="https://drive.google.com/file/d/1ksS3PHsW3q9o_auQ11SnHJ5wVTxSeQN5/view?usp=sharing">View Demo</a>
     ·
     <a href="https://github.com/LynnHaDo/Storytelling/issues">Report Bug</a>
     ·
@@ -82,7 +82,7 @@ Depending on the progress of the project, various stories can be chosen to suit 
         - [x] Add animations 
         - [x] Add gradient background config setup
 - [ ] Finish story (edit UI, texts, citations, ...)
-    - [x] A beach walk
+    - [x] A beach walk (View [demo](https://drive.google.com/file/d/1ksS3PHsW3q9o_auQ11SnHJ5wVTxSeQN5/view?usp=sharing))
 - [ ] Set up game in Bitsy
     - [ ] Set up MediaPipe component to interact with events of the game
 
