@@ -1,11 +1,13 @@
 /** Components and constants */
-import { C, Camera } from "core/components";
+import { C, Camera, R } from "core/components";
 import { HandGesture } from "core/components/camera";
 import { Gestures } from "./constants/gesture";
 
 /** Hooks */
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import useInventory from "core/hooks/use-inventory";
+import { useAppSelector } from "core/types";
 import { Options } from "./constants/options";
 
 /** Utils */
@@ -43,8 +45,12 @@ const ChoiceBlock = ({
 }: ChoiceBlockProps): JSX.Element => {
   const options = Options[tag];
   const decision = useRef<HTMLParagraphElement>(null);
+
+  /** Decision-making-related states/handlers */
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
+  const choice = useAppSelector((state) => state.choices.present[tag]);
+  const [inventory] = useInventory([tag]);
 
   useEffect(() => {
     if (result) {
@@ -54,6 +60,7 @@ const ChoiceBlock = ({
       );
 
       decision.current.textContent = `You chose ${answer}.`;
+
       setTimeout(() => {
         dispatch(
           makeChoice(
@@ -70,36 +77,50 @@ const ChoiceBlock = ({
   return (
     options && (
       <>
-        <p>
-          {extraConfig == null ? (
-            <C options={[Object.keys(options)]} tag={tag} />
-          ) : (
-            <C options={[Object.keys(options)]} tag={tag} extra={extraConfig} />
-          )}
-        </p>
+        {!choice.resolved ? (
+          <>
+            <p>
+              {extraConfig == null ? (
+                <C options={[Object.keys(options)]} tag={tag} />
+              ) : (
+                <C
+                  options={[Object.keys(options)]}
+                  tag={tag}
+                  extra={extraConfig}
+                />
+              )}
+            </p>
+            <div className={styles.instruction}>
+              {Object.keys(options).map((key: string) => {
+                return (
+                  <p key={key}>
+                    {Gestures[options[key]]} for{" "}
+                    <span className={styles.underline}>{key}</span>.
+                  </p>
+                );
+              })}
+              <p>Note: Keep the posture for at least 5 seconds.</p>
+              {<p ref={decision}></p>}
+            </div>
 
-        <div className={styles.instruction}>
-          {Object.keys(options).map((key: string) => {
-            return (
-              <p key={key}>
-                {Gestures[options[key]]} for{" "}
-                <span className={styles.underline}>{key}</span>.
-              </p>
-            );
-          })}
-          <p>Note: Keep the posture for at least 5 seconds.</p>
-          {<p ref={decision}></p>}
-        </div>
-
-        <Camera
-          canvasWidth={230}
-          canvasHeight={130}
-          btnBackgroundColor={btnBackgroundColor}
-          textColor={btnTextColor}
-          numHands={maxNumHands}
-          resultSetter={resultSetter}
-          availableOptions={Object.values(options)}
-        />
+            <Camera
+              canvasWidth={230}
+              canvasHeight={130}
+              btnBackgroundColor={btnBackgroundColor}
+              textColor={btnTextColor}
+              numHands={maxNumHands}
+              resultSetter={resultSetter}
+              availableOptions={Object.values(options)}
+            />
+          </>
+        ) : (
+          <>
+            <C
+              options={[Object.keys(options).filter((key) => key != inventory)]}
+              tag={tag}
+            />
+          </>
+        )}
       </>
     )
   );

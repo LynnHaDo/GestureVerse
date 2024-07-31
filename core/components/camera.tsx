@@ -41,7 +41,7 @@ export interface HandGesture {
 interface CameraProps {
   /** Video/canvas width */
   canvasWidth: number;
-    /** Video/canvas height */
+  /** Video/canvas height */
   canvasHeight: number;
   /** Number of hands to detect at max */
   numHands: number;
@@ -51,7 +51,7 @@ interface CameraProps {
   textColor: string;
   /** Result object (if any) */
   resultSetter: Dispatch<HandGesture>;
-  /** List of available options to predict for */
+  /** List of available gesture options to predict for */
   availableOptions: string[];
 }
 
@@ -62,7 +62,7 @@ interface CameraProps {
 const Camera = ({
   canvasWidth,
   canvasHeight,
-  numHands = 2,
+  numHands = 1,
   btnBackgroundColor,
   textColor,
   resultSetter,
@@ -171,7 +171,7 @@ const Camera = ({
   };
 
   /**
-   * Trigger prediction
+   * Toggle prediction state
    */
   const togglePrediction = () => {
     if (!gestureRecognizer) {
@@ -195,7 +195,8 @@ const Camera = ({
   };
 
   /**
-   * Start media prediction via webcam
+   * Start media prediction via webcam. 
+   * Display error message if webcam is not enabled
    */
   const startVideo = () => {
     // Activate the webcam stream
@@ -212,6 +213,10 @@ const Camera = ({
       });
   };
 
+  /**
+   * Display the prediction result underneath the video
+   * @param results result object obtained from the model (not null)
+   */
   const setText = (results: any) => {
     textWrapperRef.current.style.opacity = "1";
 
@@ -241,6 +246,7 @@ const Camera = ({
       stopPrediction();
       return;
     }
+
     // As the video progresses, update results
     if (videoEl.currentTime !== lastVideoTime) {
       results = gestureRecognizer.current.recognizeForVideo(videoEl, nowInMs);
@@ -291,6 +297,9 @@ const Camera = ({
           handedness: results.handedness[0][0].displayName,
         };
         setText(results);
+        if (canvas.current != null) {
+            canvas.current.getContext("2d").clearRect(0, 0, canvasWidth, canvasHeight)
+        }
         resultSetter(resultObj);
         return;
       }
@@ -437,7 +446,7 @@ const Camera = ({
 
         <CustomModal
           title="Warning"
-          body="Computer vision model is not loaded yet."
+          body="Wait for the detection model to load."
           btnText=""
           show={showModalNotLoaded}
           onHide={() => setModalNotLoaded(false)}
