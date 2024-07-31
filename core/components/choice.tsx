@@ -34,8 +34,6 @@ export interface ChoiceProps {
     persist?: boolean
     /** Optional className to be passed through to the outer-most element rendering the Choice */
     className?: string
-    /** Color of the link */
-    textColor?: string
 }
 
 const Choice = ({
@@ -48,7 +46,6 @@ const Choice = ({
     last = null,
     defaultOption = null,
     className = null,
-    textColor = 'rgb(0,0,0)'
 }: ChoiceProps): JSX.Element => {
     const dispatch = useAppDispatch()
     const choice = useAppSelector((state) => {
@@ -70,7 +67,6 @@ const Choice = ({
                 persist={persist}
                 last={last}
                 className={className}
-                textColor={textColor}
             />
         )
     }
@@ -86,7 +82,6 @@ const MutableChoice = ({
     persist,
     last,
     className,
-    textColor
 }: ChoiceProps): JSX.Element => {
     const dispatch = useAppDispatch()
     const { filename } = React.useContext(ChapterContext)
@@ -121,7 +116,6 @@ const MutableChoice = ({
         tag,
         initialOptions: options,
         className,
-        textColor,
         ...extra
     })
 }

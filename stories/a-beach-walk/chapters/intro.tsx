@@ -17,7 +17,7 @@ export const Page: PageType = () => {
       <Artwork
         link="/stories/a-beach-walk/images/bg.gif"
         source="#"
-        name="Sunset at the beach"
+        name="Sunset at the beach, Digital art, 12x12 in"
         width="300px"
         position={{
           left: "49%",
@@ -29,10 +29,8 @@ export const Page: PageType = () => {
       <TextBlock
         position="bottom_middle"
         additionalStyle={{
-          width: "300px",
           padding: 0,
-          left: "49%",
-          bottom: "calc(16vh)",
+          width: '300px'
         }}
       >
         <Chapter filename="intro">

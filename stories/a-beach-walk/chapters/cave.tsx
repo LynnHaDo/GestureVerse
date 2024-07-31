@@ -12,12 +12,11 @@ import colors from 'public/themeColors.module.scss';
 export const Page: PageType = () => {
   return (
     <>
-      <BackgroundFill color={colors.retroGreen} />
+      <BackgroundFill color={colors.beige} />
       <Artwork
               link="/stories/a-beach-walk/images/03_cave.png"
               source="https://interstellar-bird.itch.io/beach-walk"
-              name="Stairs"
-              width="300px"
+              name="View of the sea from the cave, Digital art, 600x400 pixel"
               height="300px"
               position={{
                 left: "49%",
@@ -29,10 +28,7 @@ export const Page: PageType = () => {
       <TextBlock position="bottom_middle" 
                 textAlign="center"
                 additionalStyle={{
-                    width: "300px",
                     padding: 0,
-                    left: "49%",
-                    bottom: "calc(16vh)",
                   }}>
         <Chapter filename="cave">
           <Section>

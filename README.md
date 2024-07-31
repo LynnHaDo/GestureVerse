@@ -78,8 +78,11 @@ Depending on the progress of the project, various stories can be chosen to suit 
     - [x] Set up MediaPipe component to listen to events of the story
     - [x] Refactor instructions and camera into a component (called game block)
     - [x] Set up game blocks to listen to each other
-    - [ ] Enhance the UI
-        - [ ] Add animations 
+    - [x] Enhance the UI
+        - [x] Add animations 
+        - [x] Add gradient background config setup
+- [ ] Finish story (edit UI, texts, citations, ...)
+    - [x] A beach walk
 - [ ] Set up game in Bitsy
     - [ ] Set up MediaPipe component to interact with events of the game
 

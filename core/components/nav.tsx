@@ -43,7 +43,7 @@ const Nav = ({
             next={next}
             persist={persist}
             className={className}
-            textColor={textColor}
+            extra={{textColor: textColor}}
         />
     )
 }

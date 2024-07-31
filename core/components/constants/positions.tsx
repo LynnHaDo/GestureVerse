@@ -10,10 +10,6 @@ export const position: React.CSSProperties = {
     zIndex: 2
 }
 
-export const size: React.CSSProperties = {
-    width: '50%',
-}
-
 export const positionBottomLeft: React.CSSProperties = {
     ...position,
     bottom: DISTANCE_MARGIN,
@@ -41,13 +37,11 @@ export const positionUpperRight: React.CSSProperties = {
 export const positionUpperMiddle: React.CSSProperties = {
     ...position,
     top: "calc(20vh)",
-    left: "50%",
-    transform: "translate(-50%, -50%)"
+    left: "34%",
 }
 
 export const positionBottomMiddle: React.CSSProperties = {
     ...position,
-    bottom: "calc(10vh)",
-    left: "50%",
-    transform: "translate(-50%, -50%)"
+    top: "calc(60vh)",
+    left: "34%",
 }

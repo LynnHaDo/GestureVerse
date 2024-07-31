@@ -3,6 +3,7 @@ import CustomModal from "./modal";
 
 /** Styling */
 import styles from "./Camera.module.scss";
+import colors from 'public/themeColors.module.scss';
 
 const videoContainer: React.CSSProperties = {
   position: "relative",
@@ -159,8 +160,8 @@ const Camera = ({
       outputScore.current.innerHTML = "";
       outputHandedness.current.innerHTML = "";
 
-      videoContainerRef.current.style.opacity,
-        (textWrapperRef.current.style.opacity = "0");
+      videoContainerRef.current.style.opacity = "0";
+      textWrapperRef.current.style.opacity = "0";
     }
 
     if (localStream.current) {
@@ -421,24 +422,21 @@ const Camera = ({
               ref={outputCategory}
               className={styles.output}
               style={{
-                color: textColor,
-                border: `1px solid ${textColor}`
+                color: `${colors.dark}`
               }}
             ></span>
             <span
               ref={outputScore}
               className={styles.output}
               style={{
-                color: textColor,
-                border: `1px solid ${textColor}`,
+                color: `${colors.dark}`
               }}
             ></span>
             <span
               ref={outputHandedness}
               className={styles.output}
               style={{
-                color: textColor,
-                border: `1px solid ${textColor}`,
+                color: `${colors.dark}`
               }}
             ></span>
           </div>

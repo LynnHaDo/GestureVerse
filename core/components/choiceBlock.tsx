@@ -1,5 +1,5 @@
 /** Components and constants */
-import { C, Camera, R } from "core/components";
+import { C, Camera, Nav, R } from "core/components";
 import { HandGesture } from "core/components/camera";
 import { Gestures } from "./constants/gesture";
 
@@ -49,7 +49,6 @@ const ChoiceBlock = ({
   /** Decision-making-related states/handlers */
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
-  const choice = useAppSelector((state) => state.choices.present[tag]);
   const [inventory] = useInventory([tag]);
 
   useEffect(() => {
@@ -77,7 +76,7 @@ const ChoiceBlock = ({
   return (
     options && (
       <>
-        {!choice.resolved ? (
+        {inventory == null || inventory == undefined ? (
           <>
             <p>
               {extraConfig == null ? (
@@ -115,10 +114,9 @@ const ChoiceBlock = ({
           </>
         ) : (
           <>
-            <C
-              options={[Object.keys(options).filter((key) => key != inventory)]}
-              tag={tag}
-            />
+            {Object.keys(options).filter(k => k != inventory).map(k => {
+                return <Nav text={k} next={k} tag={`returnFrom${tag}`}/>
+            })}
           </>
         )}
       </>

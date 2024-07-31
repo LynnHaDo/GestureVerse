@@ -12,12 +12,12 @@ import colors from "public/themeColors.module.scss";
 export const Page: PageType = () => {
   return (
     <>
-      <BackgroundFill color={colors.retroGreen} />
+      <BackgroundFill color={colors.lightYellow} />
       <Artwork
         link="/stories/a-beach-walk/images/02_right_fence.png"
         source="https://interstellar-bird.itch.io/beach-walk"
-        name="Start"
-        width="300px" height="300px"
+        name="Flowers growing on coastal rocks, Digital art, 600x400 pixel"
+        height="300px"
         position={{
           left: "49%",
           top: "11vh",
@@ -27,12 +27,10 @@ export const Page: PageType = () => {
       />
       <TextBlock
         position="bottom_middle"
-        textAlign="center"
         additionalStyle={{
-          width: "300px",
           padding: 0,
-          left: "49%",
-          bottom: "calc(16vh)",
+          width: '460px',
+          color: `${colors.dark}`
         }}
       >
         <Chapter filename="fence">
@@ -41,7 +39,7 @@ export const Page: PageType = () => {
               You duck through the fence and sit on the shrubbery. You watch the
               waves for a while and enjoy the sweet-smelling flowers before
               climbing back up to the{"  "}
-              <Nav text="path" next="right" tag="path" />.
+              <Nav text="path" next="right" tag="path" textColor={colors.dark}/>.
             </p>
           </Section>
         </Chapter>

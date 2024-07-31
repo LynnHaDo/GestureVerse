@@ -29,7 +29,13 @@ const Index: ReactFCC = ({ children }) => {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        <button className={styles.backButton}
+                onClick={() => window.location.replace(window.location.origin)}>
+            Back to home
+        </button>
+        {children}
+      </main>
     </>
   );
 };

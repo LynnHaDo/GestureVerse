@@ -13,7 +13,7 @@ interface LinkProps {
     tag?: Tag
     color?: string
 }
-const Link = ({ text, handler, tag, color }: LinkProps): JSX.Element => {
+const Link = ({ text, index, handler, tag, color }: LinkProps): JSX.Element => {
     if (handler) {
         return (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -30,7 +30,7 @@ const Link = ({ text, handler, tag, color }: LinkProps): JSX.Element => {
                     handler(option)
                 }}
                 dangerouslySetInnerHTML={{ __html: text }}
-                style={{color: `${color} !important`}}
+                style={{color: color}}
             />
         )
     }

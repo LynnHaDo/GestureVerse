@@ -27,6 +27,10 @@ export interface InlineListProps extends WidgetProps {
      * @default ''
      */
     suffix: string,
+    /** 
+     * Color of text
+     * @default ''
+     */
     textColor?: string
 }
 declare function InlineListType(props: InlineListProps): JSX.Element
@@ -75,9 +79,10 @@ export const InlineListEN: typeof InlineList = ({
     tag = null,
     className = null,
     prefix = '',
-    suffix = ''
+    suffix = '',
+    textColor = ''
 }: InlineListProps): JSX.Element =>
-    InlineList({ separator, conjunction, group, handler, tag, className, prefix, suffix })
+    InlineList({ separator, conjunction, group, handler, tag, className, prefix, suffix, textColor })
 
 /** Portuguese version of an inline list with an "or" conjunction */
 export const InlineListPT: typeof InlineList = ({

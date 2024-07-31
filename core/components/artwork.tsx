@@ -12,14 +12,14 @@ export interface ArtworkProps {
   /** Source */
   source: string;
   /** Width of the image */
-  width: number | string;
+  width?: number | string;
   /** Height of the image */
   height?: number | string;
   /** Position of the image */
   position: React.CSSProperties
 }
 
-const Artwork = ({ link, name, source, width, height, position }: ArtworkProps) => {
+const Artwork = ({ link, name, source, width = 'auto', height = 'auto', position }: ArtworkProps) => {
  /**
  * Get a random integer < 80 and >= 0
  * @returns a random integer < 80 and >= 0

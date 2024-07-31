@@ -1,4 +1,4 @@
-import { padding, size, 
+import { padding, 
     positionBottomLeft, positionBottomMiddle, positionBottomRight, 
     positionUpperLeft, positionUpperMiddle, positionUpperRight } from './constants/positions';
 
@@ -75,7 +75,6 @@ const TextBlock = ({position,
     return (
         <div style={{...positionStyle, 
                     ...padding,
-                    ...size,
                     ...additionalStyle}}>
             <div style={{...colorStyle, ...textPositionStyle}}>
                 {children}

@@ -17,8 +17,8 @@ export const Page: PageType = () => {
       <Artwork
         link="/stories/a-beach-walk/images/02_right.png"
         source="https://interstellar-bird.itch.io/beach-walk"
-        name="On the right"
-        width="300px" height="300px"
+        name="Beach footpath with flowers on the sides, Digital art, 600x400 pixel"
+        height="300px"
         position={{
           left: "49%",
           top: "11vh",
@@ -28,12 +28,8 @@ export const Page: PageType = () => {
       />
       <TextBlock
         position="bottom_middle"
-        textAlign="center"
         additionalStyle={{
-          width: "300px",
-          padding: 0,
-          left: "49%",
-          bottom: "calc(16vh)",
+          padding: 0
         }}
       >
         <Chapter filename="right">

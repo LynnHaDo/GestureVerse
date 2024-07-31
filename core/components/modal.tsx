@@ -32,14 +32,14 @@ const CustomModalHeader = ({ title }) => {
 const CustomModalFooter = ({ btnContent, onHide, btnActionHandler = ()=>{return;} }) => {
   return (
     <Modal.Footer>
+        <Button variant="secondary" onClick={() => onHide()}>
+        Close
+      </Button>
       {btnContent !== "" && (
         <Button variant="primary" onClick={() => btnActionHandler()}>
           {btnContent}
         </Button>
       )}
-      <Button variant="secondary" onClick={() => onHide()}>
-        Close
-      </Button>
     </Modal.Footer>
   );
 };
