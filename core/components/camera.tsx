@@ -39,8 +39,9 @@ export interface HandGesture {
  * Camera widget properties
  */
 interface CameraProps {
-  /** Canvas dimensions */
+  /** Video/canvas width */
   canvasWidth: number;
+    /** Video/canvas height */
   canvasHeight: number;
   /** Number of hands to detect at max */
   numHands: number;
@@ -61,7 +62,7 @@ interface CameraProps {
 const Camera = ({
   canvasWidth,
   canvasHeight,
-  numHands = 1,
+  numHands = 2,
   btnBackgroundColor,
   textColor,
   resultSetter,
@@ -101,7 +102,7 @@ const Camera = ({
    * Prepare hand gesture detection model for prediction
    * @param numHands maximum number of hands to detect
    */
-  const createGestureRecognizer = async (numHands: number) => {
+  const createGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks(
       "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.12/wasm"
     );
@@ -132,7 +133,7 @@ const Camera = ({
     // If user allows access
     if (isUserCameraAllowed()) {
       // Set up gesture recognizer model
-      createGestureRecognizer(numHands);
+      createGestureRecognizer();
       triggerBtn.current.addEventListener("click", togglePrediction);
     }
 
@@ -440,7 +441,7 @@ const Camera = ({
           btnText=""
           show={showModalNotLoaded}
           onHide={() => setModalNotLoaded(false)}
-        ></CustomModal>
+        />
 
         <CustomModal
           title="Camera access disabled"
@@ -448,7 +449,7 @@ const Camera = ({
           btnText=""
           show={showModalWebcamDenied}
           onHide={() => setModalWebcamDenied(false)}
-        ></CustomModal>
+        />
       </section>
     </>
   );

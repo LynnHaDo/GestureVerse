@@ -1,11 +1,13 @@
 import {
   Section,
   Chapter,
-  Nav,
   TextBlock,
   BackgroundFill,
   Artwork,
 } from "core/components";
+
+import { ResetButton } from "core/components/ui";
+
 import { PageType } from "core/types";
 import colors from "public/themeColors.module.scss";
 
@@ -39,7 +41,7 @@ export const Page: PageType = () => {
           <Section>
             <p>
               Thank you for visiting my beach. To walk again go back to the{" "}
-              <Nav text="start" next="start" tag="endOfStory" />.
+              <ResetButton children="start"/>{"."}
             </p>
           </Section>
         </Chapter>

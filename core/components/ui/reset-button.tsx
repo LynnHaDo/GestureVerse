@@ -5,24 +5,24 @@ import { NextRouter, useRouter } from 'next/router'
 import { Config } from 'core/types'
 import { StoryContext } from 'core/containers/store-container'
 
+import CustomModal from 'core/components/modal';
+
 /* Reset the story and remove the local storage */
 export const resetStory = (
     userInitiated: boolean,
     config: Config,
     persistor: Persistor,
-    router: NextRouter,
-    message = 'Restart story from the beginning?'
+    router: NextRouter
 ): void => {
     // Drop any chapter-level path info
     const url = '/' + router.basePath + config.identifier
+
     if (userInitiated) {
-        if (confirm(message)) {
-            persistor.flush().then(() => {
-                persistor.pause()
-                localStorage.clear()
-                window.location.replace(url)
-            })
-        }
+        persistor.flush().then(() => {
+            persistor.pause()
+            localStorage.clear()
+            window.location.replace(url)
+        })
     } else {
         persistor.flush().then(() => {
             persistor.pause()
@@ -37,12 +37,23 @@ type ResetType = {
 }
 const ResetButton = ({ children = 'Reset', message }: ResetType): JSX.Element => {
     const { persistor, config } = React.useContext(StoryContext)
-    const router = useRouter()
+    const router = useRouter();
+
+    let [showConfirmModal, setConfirmModal] = React.useState(false);
     return (
         <>
-            <button onClick={() => resetStory(true, config, persistor, router, message)}>
+            <button onClick={() => setConfirmModal(true)}>
                 {children}
             </button>
+
+            <CustomModal 
+                title={'Reset'}
+                body={message}
+                btnText="Confirm"
+                customBtnHandler={() => resetStory(true, config, persistor, router)}
+                show={showConfirmModal}
+                onHide={() => setConfirmModal(false)}
+            />
         </>
     )
 }
