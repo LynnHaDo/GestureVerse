@@ -1,0 +1,99 @@
+@use "/public/styles/colors";
+
+@use "/public/styles/fonts" with (
+  $body: "Sentient-Regular",
+  $header: "Sentient-Medium"
+);
+
+@use '/public/styles/sizing' with (
+    $story-margin: 100px,
+);
+
+@use "/public/styles/header" with (
+  $min-height: 1em,
+  $max-height: 1vh,
+  $background-color: colors.$lightYellow,
+  $reset-background: colors.$lightYellow,
+  $reset-color: colors.$very-dark,
+  $foreground-color: colors.$very-dark
+);
+
+@use "/public/styles/grid";
+
+
+
+$text-color: colors.$very-dark;
+
+.main {
+  background-color: colors.$lightYellow;
+  color: $text-color;
+  // More padding than the default grid
+  grid-template-columns: [left] 125px [center] 1fr [right] 125px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+  }
+
+  a {
+    color: $text-color !important;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    border-radius: 3px;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+
+    &:hover {
+      font-family: fonts.$secondary;
+    }
+
+    &.backButton {
+      background-color: transparent;
+
+      border: 1px solid $text-color;
+      color: $text-color;
+    }
+  }
+
+  .text_center {
+    text-align: center;
+  }
+}
+
+.header {
+  nav {
+    padding: 0 125px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 10em;
+
+    button {
+      color: $text-color !important;
+
+      &.backButton {
+        background-color: transparent;
+        width: 150px;
+        height: 35px;
+        border: 1px solid $text-color;
+        color: $text-color;
+        font-family: inherit;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        border-radius: 3px;
+      }
+      &.backButton:hover {
+        font-family: fonts.$secondary;
+      }
+    }
+  }
+}

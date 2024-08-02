@@ -13,16 +13,7 @@ export const Page: PageType = () => {
   return (
     <>
       <BackgroundFill color={colors.brown} />
-      <Artwork
-        link="/stories/my-story/images/02_right_mesa_verde_parking_lot.jpg"
-        source="https://leeariel.com/landscapes-2020"
-        name="Plant in Mesa Verde Parking Lot, Gouache on paper, 2020, 11x13 in"
-        width="390px"
-        position={{
-          top: "1vh",
-          right: "0"
-        }}
-      />
+      
       <TextBlock>
         <Chapter filename="mesaverdeparkinglot">
           <Section>

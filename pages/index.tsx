@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .filter(
       (dir) =>
         dir.isDirectory() &&
-        (dir.name.includes("my-story") ||
+        (dir.name.includes("procrastinate") ||
           dir.name.includes("my-game") ||
           dir.name.includes("a-beach-walk"))
     )

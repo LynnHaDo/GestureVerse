@@ -1,0 +1,22 @@
+title: procrastinate
+language: en
+chapters:
+  - filename: "start"
+    title: "A long day"
+  - filename: "menu"
+    title: "Choose your adventure"
+  - filename: "tv"
+    title: "Watch TV"
+  - filename: "game"
+    title: "Play video games"
+  - filename: "eat"
+    title: "Go eat something"
+  - filename: "nap"
+    title: "Take a nap"
+  - filename: "clean"
+    title: "Clean my room"
+  - filename: "homework"
+    title: "Do homework"
+  
+players:
+  - start: "start"

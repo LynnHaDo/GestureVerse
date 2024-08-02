@@ -49,7 +49,9 @@ const Grid: ReactFCC<GridProps> = ({ children, head, header, left, right, styles
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 {head}
             </Head>
-            <header className={styles.header} lang={config.language}>
+            {
+                header != null && header != undefined? header : (
+                    <header className={styles.header} lang={config.language}>
                 {header || (
                     <nav>
                         <div></div>
@@ -60,6 +62,8 @@ const Grid: ReactFCC<GridProps> = ({ children, head, header, left, right, styles
                     </nav>
                 )}
             </header>
+                )
+            }
             <main className={styles.main} lang={config.language}>
                 <nav className={styles.left}>{left}</nav>
                 <article className={styles.story}>{children}</article>

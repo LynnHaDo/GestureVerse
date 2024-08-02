@@ -5,7 +5,39 @@ $body: "Sofia Sans", sans-serif !default;
 $secondary: "Pixelify Sans", sans-serif;
 
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
-
-// url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap')
 @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+$sentient-font-path: "../fonts/sentient";
+$sentient-regular: "Sentient-Regular", serif;
+$sentient-medium: "Sentient-Medium", serif;
+$sentient-italic: "Sentient-Italic", serif;
+$sentient-medium-italic: "Sentient-MediumItalic", serif;
+$sentient-bold: "Sentient-Bold", serif;
+
+@font-face {
+    font-family: 'Sentient-Regular';
+    src: url("#{$sentient-font-path}/Sentient-Regular.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'Sentient-Medium';
+    src: url("#{$sentient-font-path}/Sentient-Medium.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'Sentient-Italic';
+    src: url('#{$sentient-font-path}/Sentient-Italic.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Sentient-MediumItalic';
+    src: url('#{$sentient-font-path}/Sentient-MediumItalic.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Sentient-Bold';
+    src: url('#{$sentient-font-path}/Sentient-Bold.otf') format('opentype');
+}
+
+
 

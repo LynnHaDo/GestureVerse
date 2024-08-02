@@ -13,17 +13,7 @@ export const Page: PageType = () => {
   return (
     <>
       <BackgroundFill color={colors.brown} />
-      <Artwork
-        link="/stories/my-story/images/02_right_sierra_valley.jpg"
-        source="https://leeariel.com/landscapes-2020"
-        name="Sierra Valley, Gouache on paper, 2020, 15x22 in"
-        width="440px"
-        position={{
-          top: "1vh",
-          left: "50%",
-          transform: "translate(-50%, 0)",
-        }}
-      />
+      
       <TextBlock position="bottom_middle" textAlign="center">
         <Chapter filename="sierravalley">
           <Section>

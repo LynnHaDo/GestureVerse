@@ -7,15 +7,7 @@ export const Page: PageType = () => {
   return (
     <>
         <BackgroundFill color={colors.darkYellow}/>
-        <Artwork 
-            link="/stories/my-story/images/02_right.jpg"
-            source="https://leeariel.com/2021"
-            name="Bitterbrush Mountains, Gouache on paper, 2021, 11x15 in"
-            width="500px"
-            position={{
-                left: '0',
-                top: '1vh'
-            }}/>
+       
         <TextBlock>
             <Chapter filename="right">
             <Section>
