@@ -18,9 +18,7 @@ export const Page: PageType = () => {
           <Section>
             
             <p>
-            Fin Dome is an 11,673-foot-elevation granite summit located 1.5 mile west of the crest of the Sierra Nevada mountain range, 
-            in the southeast corner of Fresno County, in northern California. 
-            You watch for a while before heading {"  "}
+            tv{"  "} <Nav text="back" tag = "tvFromMenu" next="menu"/>
               
             </p>
           </Section>

@@ -10,27 +10,48 @@
     7: "ILoveYou"
     }
  */
+
+export interface optionItemProps {
+    /** Gesture corresponding to the item */
+    action: 'Closed_Fist' | 'Open_Palm' | 'Pointing_Up' | "Thumb_Down" | "Thumb_Up" | "Victory" | "ILoveYou"
+    /** Detailed description of the text representing the link */
+    description: string
+    /** Whether or not the choice should be disabled (default false) */
+    disabled?: boolean
+}
+
+export const optionItem = ( action: optionItemProps['action'], 
+                            description: optionItemProps['description'],
+                            disabled: optionItemProps['disabled'] = false) => {
+    return {
+        'action': action,
+        'description': description,
+        'disabled': disabled
+    }
+}
+
 /**
  * List of tags and the corresponding options
  */
 export const Options = {
     "leftOrRight": {
-        "left": "Thumb_Up", // thumbs up
-        "right": "Thumb_Down", // thumbs down
+        "left": optionItem('Thumb_Up', 'turn left'), // thumbs up
+        "right": optionItem('Thumb_Down', 'turn right'), // thumbs down
     },
     "left": {
-        "lighthouse": "Pointing_Up", // point up
-        "stairs": "Closed_Fist" // closed fist
+        "lighthouse": optionItem('Pointing_Up', 'visit the lighthouse'), // point up
+        "stairs": optionItem('Closed_Fist', 'go down the stairs') // closed fist
     },
     "right": {
-        "fence": "Open_Palm", // open palm
-        "further": "Victory" // victory (v sign)
+        "fence": optionItem('Open_Palm', 'look through the broken fence'), // open palm
+        "further": optionItem("Victory", 'go further') // victory (v sign)
     },
     "menuPro": {
-        "tv": "Thumb_Down",
-        "nap": "Thumb_Up",
-        "game": "Open_Palm",
-        "eat": "Victory",
-        "clean": "Closed_Fist"
+        "homework": optionItem('Thumb_Down', 'start on some homework', true),
+        "tv": optionItem("Thumb_Up", 'watch TV'),
+        "nap": optionItem("Victory", 'take a nap'),
+        "game": optionItem("Open_Palm", 'play video games'),
+        "eat": optionItem("Pointing_Up", 'eat something'),
+        "clean": optionItem("Closed_Fist", 'clean my room')
     }
 }

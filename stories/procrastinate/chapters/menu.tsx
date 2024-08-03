@@ -13,9 +13,10 @@ export const Page: PageType = () => {
         <Chapter filename="menu">
         <Section>
             <p>What should I do now?</p>
-
                 <ChoiceBlock tag={tag} 
-                             btnBackgroundColor="transparent"
+                             btnBackgroundColor={colors.orange}
+                             btnTextColor={colors.lightYellow}
+                             widget={BulletedList}
                              /> 
             
         </Section>

@@ -2,8 +2,9 @@
 @use '../../public/styles/fonts';
 
 .instruction {
+    margin-top: 1rem;
     p {
-        font-family: fonts.$body;
+        font-family: inherit;
         font-weight: 400;
         font-style: italic;
     }

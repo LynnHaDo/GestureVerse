@@ -3,96 +3,122 @@
  * @example Will produce: "foo, bar, and baz"
  *
  */
-import * as React from 'react'
+import * as React from "react";
 
-import { WidgetProps } from 'core/components/widgets'
-import Link from 'core/components/link'
+import { WidgetProps } from "core/components/widgets";
+import Link from "core/components/link";
 
 export interface InlineListProps extends WidgetProps {
-    /** The separator between list items
-     * @default ","
-     */
-    separator: string
-    /** The conjunction terminating a list of items
-     * @default "or"
-     */
-    conjunction: string,
-    /**
-     * The string preceding the list of items
-     * @default ''
-     */
-    prefix: string,
-    /**
-     * The string succeeding the list of items
-     * @default ''
-     */
-    suffix: string,
-    /** 
-     * Color of text
-     * @default ''
-     */
-    textColor?: string
+  /** The separator between list items
+   * @default ","
+   */
+  separator: string;
+  /** The conjunction terminating a list of items
+   * @default "or"
+   */
+  conjunction: string;
+  /**
+   * Color of text
+   * @default ''
+   */
+  textColor?: string;
 }
-declare function InlineListType(props: InlineListProps): JSX.Element
+declare function InlineListType(props: InlineListProps): JSX.Element;
 
 export const InlineList: typeof InlineListType = ({
-    separator = ', ',
-    conjunction = 'or',
-    group = null,
-    handler = null,
-    tag = null,
-    className = null,
-    prefix = '',
-    suffix = '',
-    textColor = ''
+  separator = ", ",
+  conjunction = "or",
+  group = null,
+  optionList = null,
+  handler = null,
+  tag = null,
+  className = null,
+  textColor = "",
+  type = "link",
 }: InlineListProps): JSX.Element => {
-    if (conjunction.length > 0) {
-        conjunction = ` ${conjunction} `
-    }
+  if (conjunction.length > 0) {
+    conjunction = ` ${conjunction} `;
+  }
 
-    return (
-        <>
-            <span>
-            {`${prefix} `}
-            {
-            [...group]
-                .filter((c) => c !== null && c !== undefined)
-                .map((t, i) => (
-                    <span key={i} className={className}>
-                        {group.length > 1 && i === group.length - 1 ? conjunction : ''}
-                        <Link handler={handler} text={t} tag={tag} color={textColor}/>
-                        {i < group.length - 1 && group.length > 2 ? separator : ''}
-                    </span>
-                ))
-            }
-            {suffix}
+  return (
+    <>
+      {optionList == null || optionList.length == 0? (
+      <span>
+        {[...group]
+          .filter((c) => c !== null && c !== undefined)
+          .map((t, i) => (
+            <span key={i} className={className}>
+              {group.length > 1 && i === group.length - 1 ? conjunction : ""}
+              {type == "link" ? (
+                <Link
+                  handler={handler}
+                  text={t}
+                  tag={tag}
+                  color={textColor}
+                />
+              ) : (
+                t
+              )}
+              {i < group.length - 1 && group.length > 2 ? separator : ""}
             </span>
-        </>
-    )
-}
+          ))}
+      </span>
+      ) : (
+      <span>
+        {[...group]
+          .filter((c) => c !== null && c !== undefined)
+          .map((t, i) => (
+            <span key={i} className={className}>
+              {group.length > 1 && i === group.length - 1 ? conjunction : ""}
+              {type == "link" ? (
+                <Link handler={() => handler(t)} text={optionList.at(i).description} tag={tag} color={textColor} />
+              ) : (
+                optionList.at(i).description
+              )}
+              {i < group.length - 1 && group.length > 2 ? separator : ""}
+            </span>
+          ))}
+      </span>
+      )
+    }
+    </>
+    
+  );
+  
+};
 
 export const InlineListEN: typeof InlineList = ({
-    separator = ', ',
-    conjunction = 'or',
-    group = null,
-    handler = null,
-    tag = null,
-    className = null,
-    prefix = '',
-    suffix = '',
-    textColor = ''
+  separator = ", ",
+  conjunction = "or",
+  group = null,
+  handler = null,
+  tag = null,
+  className = null,
+  textColor = "",
+  optionList = null,
+  type = 'link'
 }: InlineListProps): JSX.Element =>
-    InlineList({ separator, conjunction, group, handler, tag, className, prefix, suffix, textColor })
+  InlineList({
+    separator,
+    conjunction,
+    group,
+    handler,
+    tag,
+    className,
+    textColor,
+    optionList,
+    type
+  });
 
 /** Portuguese version of an inline list with an "or" conjunction */
 export const InlineListPT: typeof InlineList = ({
-    separator = ', ',
-    conjunction = 'e',
-    group = null,
-    handler = null,
-    tag = null,
-    className = null,
-    prefix = '',
-    suffix = ''
+  separator = ", ",
+  conjunction = "e",
+  group = null,
+  handler = null,
+  tag = null,
+  className = null,
+  optionList = null,
+  type = 'link'
 }: InlineListProps): JSX.Element =>
-    InlineList({ separator, conjunction, group, handler, tag, className, prefix, suffix })
+  InlineList({ separator, conjunction, group, handler, tag, className, optionList, type });

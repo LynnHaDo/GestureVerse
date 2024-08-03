@@ -7,15 +7,13 @@ import { Gestures } from "./constants/gesture";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import useInventory from "core/hooks/use-inventory";
-import { useAppSelector } from "core/types";
-import { Options } from "./constants/options";
+import { optionItemProps, Options } from "./constants/options";
 
 /** Utils */
 import { makeChoice } from "core/features/choice";
 
 /** Styling */
 import styles from "./ChoiceBlock.module.scss";
-import { WidgetProps } from "./widgets";
 import { InlineListEN } from "./widgets/inline-list";
 
 export interface ChoiceBlockProps {
@@ -48,6 +46,9 @@ const ChoiceBlock = ({
   extraConfig = null,
 }: ChoiceBlockProps): JSX.Element => {
   const options = Options[tag];
+  const optionKeys: string[] = Object.keys(options);
+  const optionValues: Array<optionItemProps> = Object.values(options);
+
   const decision = useRef<HTMLParagraphElement>(null);
 
   /** Decision-making-related states/handlers */
@@ -55,14 +56,18 @@ const ChoiceBlock = ({
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
   const [inventory] = useInventory([tag]);
 
-  console.log(inventory)
+  let remainingOptions: any;
+
+  if (inventory != null && inventory != undefined) {
+    remainingOptions = Object.entries(options).filter(
+      ([key, value], i) => key != inventory
+    );
+  }
 
   useEffect(() => {
     if (result) {
       // Get the answer
-      let answer = Object.keys(options).find(
-        (k) => options[k] == result.category
-      );
+      let answer = optionKeys.find((k) => options[k].action == result.category);
 
       decision.current.textContent = `You chose ${answer}.`;
 
@@ -75,7 +80,7 @@ const ChoiceBlock = ({
             answer.toLowerCase().replaceAll(" ", "")
           )
         );
-      }, 5000);
+      }, 4000);
     }
   }, [result]);
 
@@ -84,22 +89,29 @@ const ChoiceBlock = ({
       <>
         {inventory == null || inventory == undefined ? (
           <>
-              {extraConfig == null && widget == null ? (
-                <C options={[Object.keys(options)]} tag={tag} />
-              ) : (
-                <C
-                  options={[Object.keys(options)]}
-                  tag={tag}
-                  extra={extraConfig}
-                  widget={widget}
-                />
-              )}
-            
+            {extraConfig == null && widget == null ? (
+              <C
+                options={[optionKeys]}
+                tag={tag}
+                optionList={optionValues}
+                type="string"
+              />
+            ) : (
+              <C
+                options={[optionKeys]}
+                tag={tag}
+                extra={extraConfig}
+                widget={widget}
+                optionList={optionValues}
+                type="string"
+              />
+            )}
+
             <div className={styles.instruction}>
-              {Object.keys(options).map((key: string) => {
+              {optionKeys.map((key: string) => {
                 return (
                   <p key={key}>
-                    {Gestures[options[key]]} for{" "}
+                    {Gestures[options[key].action]} for{" "}
                     <span className={styles.underline}>{key}</span>.
                   </p>
                 );
@@ -115,14 +127,46 @@ const ChoiceBlock = ({
               textColor={btnTextColor}
               numHands={maxNumHands}
               resultSetter={resultSetter}
-              availableOptions={Object.values(options)}
+              availableOptions={optionValues.map((i) => i.action)}
             />
           </>
         ) : (
           <>
-            {Object.keys(options).filter(k => k != inventory).map(k => {
-                return <Nav text={k} next={k} tag={`returnFrom${tag}`}/>
-            })}
+            <C
+              options={[optionKeys.filter((k) => k != inventory)]}
+              tag={tag}
+              optionList={optionValues.filter(
+                (v) => v.action != options[inventory].action
+              )}
+              type="string"
+              widget={widget}
+            />
+            <div className={styles.instruction}>
+              {optionKeys
+                .filter((k) => k != inventory)
+                .map((key: string) => {
+                  return (
+                    <p key={key}>
+                      {Gestures[options[key].action]} for{" "}
+                      <span className={styles.underline}>{key}</span>.
+                    </p>
+                  );
+                })}
+              <p>Note: Keep the posture for at least 5 seconds.</p>
+              {<p ref={decision}></p>}
+            </div>
+
+            <Camera
+              canvasWidth={230}
+              canvasHeight={130}
+              btnBackgroundColor={btnBackgroundColor}
+              textColor={btnTextColor}
+              numHands={maxNumHands}
+              resultSetter={resultSetter}
+              availableOptions={optionValues
+                .filter((v) => v.action != options[inventory].action)
+                .map((i) => i.action)}
+            />
           </>
         )}
       </>

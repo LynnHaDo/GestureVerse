@@ -6,36 +6,79 @@
  * the desired HTML.
  */
 
-import * as React from 'react'
-import { isEqual } from 'lodash'
+import * as React from "react";
+import { isEqual } from "lodash";
 
-import Link from 'core/components/link'
-import { WidgetProps } from '.'
+import Link from "core/components/link";
+import { WidgetProps } from ".";
 
-declare function BulletedListType(props: WidgetProps): JSX.Element
+declare function BulletedListType(props: WidgetProps): JSX.Element;
 
 // Passing initialChoices means you can leave the existing ones there
 const InlineList: typeof BulletedListType = ({
-    group = [],
-    handler = null,
-    tag = null,
-    initialOptions = [],
-    className = null
+  group = [],
+  handler = null,
+  tag = null,
+  initialOptions = [],
+  optionList = [],
+  className = null,
+  type = "link",
 }: WidgetProps): JSX.Element => {
-    return (
+  return (
+    <>
+      {optionList == null || optionList.length == 0 ? (
         <ul>
-            {[...initialOptions[0]].map((t, i) => (
-                <li key={i} className={className}>
-                    <Link handler={handler} text={t} tag={tag} />
-                    {group.map((g) => {
-                        if (!isEqual(initialOptions[0], group) && g === t) {
-                            return ' (selected)'
-                        }
-                    })}
-                </li>
-            ))}
+          {[...initialOptions[0]].map((t, i) => (
+            <li key={i} className={className}>
+              {type == "link" ? (
+                <Link
+                  handler={() => handler(t)}
+                  text={optionList.at(i).description}
+                  tag={tag}
+                />
+              ) : (
+                <p>{t}</p>
+              )}
+              {group.map((g) => {
+                if (!isEqual(initialOptions[0], group) && g === t) {
+                  return " (selected)";
+                }
+              })}
+            </li>
+          ))}
         </ul>
-    )
-}
+      ) : (
+        <ul>
+          {[...initialOptions[0]].map((t, i) => (
+            <li key={i} className={className}>
+              {optionList.at(i).disabled ? (
+                <p style={{ textDecoration: "line-through" }}>
+                  {optionList.at(i).description}
+                </p>
+              ) : (
+                <>
+                  {type == "link" ? (
+                    <Link
+                      handler={() => handler(t)}
+                      text={optionList.at(i).description}
+                      tag={tag}
+                    />
+                  ) : (
+                    <p>{optionList.at(i).description}</p>
+                  )}
+                  {group.map((g) => {
+                    if (!isEqual(initialOptions[0], group) && g === t) {
+                      return " (selected)";
+                    }
+                  })}
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+};
 
-export default InlineList
+export default InlineList;

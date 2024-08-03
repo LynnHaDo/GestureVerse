@@ -18,9 +18,13 @@ import { init as initInventory } from 'core/features/inventory'
 
 import useInventory from 'core/hooks/use-inventory'
 
+import { optionItemProps } from './constants/options'
+
 export interface ChoiceProps {
     tag: string
+    type?: 'link' | 'string'
     options: Options
+    optionList?: Array<optionItemProps>
     /** At completion of the choice list, go to the Next section/chapter, go to the named chapter (if a string) or do nothing */
     next?: NextType
     widget?: WidgetType
@@ -39,7 +43,9 @@ export interface ChoiceProps {
 const Choice = ({
     options,
     tag,
+    type = 'link',
     extra,
+    optionList = null,
     widget = InlineListEN,
     next = Next.Section,
     persist = false,
@@ -60,6 +66,7 @@ const Choice = ({
         return (
             <MutableChoice
                 options={options}
+                optionList={optionList}
                 tag={tag}
                 extra={extra}
                 widget={widget}
@@ -67,6 +74,7 @@ const Choice = ({
                 persist={persist}
                 last={last}
                 className={className}
+                type={type}
             />
         )
     }
@@ -76,12 +84,14 @@ const Choice = ({
 const MutableChoice = ({
     tag,
     options,
+    optionList,
     extra,
     widget,
     next,
     persist,
     last,
     className,
+    type
 }: ChoiceProps): JSX.Element => {
     const dispatch = useAppDispatch()
     const { filename } = React.useContext(ChapterContext)
@@ -95,6 +105,7 @@ const MutableChoice = ({
     let handler = (option: Option): void => {
         dispatch(makeChoice(tag, option, next, filename))
     }
+    
     let group = options[choice.index]
 
     // If a choice is resolved, it will have no handler. If `last` is defined, display that instead of the
@@ -115,7 +126,9 @@ const MutableChoice = ({
         handler,
         tag,
         initialOptions: options,
+        optionList: optionList,
         className,
+        type,
         ...extra
     })
 }
