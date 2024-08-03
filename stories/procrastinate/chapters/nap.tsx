@@ -12,10 +12,7 @@ import colors from "public/themeColors.module.scss";
 export const Page: PageType = () => {
   return (
     <>
-      <BackgroundFill color={colors.brown} />
-      
-      <TextBlock>
-        <Chapter filename="mesaverdeparkinglot">
+        <Chapter filename="nap">
           <Section>
             <p>
               For over 700 years, the Ancestral Pueblo people built thriving
@@ -25,11 +22,11 @@ export const Page: PageType = () => {
               This World Heritage Site and International Dark Sky Park is home
               to over a thousand species, including several that live nowhere
               else on earth. You saw a tree, and observed it for a while before going{"  "}
-              <Nav text="back" next="right" tag="back" />.
+              
             </p>
           </Section>
         </Chapter>
-      </TextBlock>
+      
     </>
   );
 };

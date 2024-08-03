@@ -3,27 +3,32 @@ import * as React from "react";
 import { ReactFCC } from "core/types";
 
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
+import colors from "public/themeColors.module.scss";
 import Head from "next/head";
 import Grid, { GridProps } from "core/components/ui/layouts/grid";
 import { ResetButton } from "core/components/ui";
 
-const headerEl = React.createElement("header", {'className': styles.header}, <nav>
-    <div>
+const headerEl = React.createElement(
+  "header",
+  { className: styles.header },
+  <nav>
+    <h1>procrastinate</h1>
+    <div className={styles.controls}>
       <button
         className={styles.backButton}
         onClick={() => window.location.replace(window.location.origin)}
       >
-        Back to home
+        home
       </button>
+      <ResetButton
+        message="Do you want to reset the story?"
+        style={{ textDecoration: "none", fontSize: "0.8rem" }}
+      />
     </div>
-    <h1>procrastinate</h1>
-    <div className={styles.controls}>
-        <ResetButton message = "Do you want to reset the story?"/>
-    </div>
-  </nav>);
+  </nav>
+);
 
 const Index: ReactFCC = ({ children }: GridProps) => {
-    
   return (
     <>
       <Head>
@@ -47,10 +52,8 @@ const Index: ReactFCC = ({ children }: GridProps) => {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-      
-      <Grid styles={styles} header={headerEl}>
-        <main className={styles.main}>{children}</main>
-      </Grid>
+
+      <Grid styles={styles} header={headerEl}>{children}</Grid>
     </>
   );
 };

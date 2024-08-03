@@ -25,5 +25,12 @@ export const Options = {
     "right": {
         "fence": "Open_Palm", // open palm
         "further": "Victory" // victory (v sign)
+    },
+    "menuPro": {
+        "tv": "Thumb_Down",
+        "nap": "Thumb_Up",
+        "game": "Open_Palm",
+        "eat": "Victory",
+        "clean": "Closed_Fist"
     }
 }

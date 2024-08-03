@@ -15,6 +15,8 @@ import { makeChoice } from "core/features/choice";
 
 /** Styling */
 import styles from "./ChoiceBlock.module.scss";
+import { WidgetProps } from "./widgets";
+import { InlineListEN } from "./widgets/inline-list";
 
 export interface ChoiceBlockProps {
   /** Tag of the choice (used for the Choice component) */
@@ -25,6 +27,7 @@ export interface ChoiceBlockProps {
   btnBackgroundColor?: string;
   /** Text color of button used to trigger webcam */
   btnTextColor?: string;
+  widget?: (props: any) => JSX.Element;
   /** Additional config params for the list of options */
   extraConfig?: Record<string, unknown>;
 }
@@ -41,6 +44,7 @@ const ChoiceBlock = ({
   maxNumHands = 1,
   btnBackgroundColor = "rgb(34, 33, 31)",
   btnTextColor = "rgb(250, 250, 250)",
+  widget = InlineListEN,
   extraConfig = null,
 }: ChoiceBlockProps): JSX.Element => {
   const options = Options[tag];
@@ -50,6 +54,8 @@ const ChoiceBlock = ({
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
   const [inventory] = useInventory([tag]);
+
+  console.log(inventory)
 
   useEffect(() => {
     if (result) {
@@ -78,17 +84,17 @@ const ChoiceBlock = ({
       <>
         {inventory == null || inventory == undefined ? (
           <>
-            <p>
-              {extraConfig == null ? (
+              {extraConfig == null && widget == null ? (
                 <C options={[Object.keys(options)]} tag={tag} />
               ) : (
                 <C
                   options={[Object.keys(options)]}
                   tag={tag}
                   extra={extraConfig}
+                  widget={widget}
                 />
               )}
-            </p>
+            
             <div className={styles.instruction}>
               {Object.keys(options).map((key: string) => {
                 return (

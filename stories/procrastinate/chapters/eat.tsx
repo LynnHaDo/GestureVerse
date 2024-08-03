@@ -8,10 +8,8 @@ export const Page: PageType = () => {
 
   return (
     <>
-        <BackgroundFill color={colors.blue}/>
         
-        <TextBlock position="upper_left">
-            <Chapter filename="left">
+            <Chapter filename="eat">
                 <Section>
                     <div className = "row">
 
@@ -22,7 +20,7 @@ export const Page: PageType = () => {
                     </div>                    
                 </Section>
             </Chapter>
-        </TextBlock>
+        
     </>
   );
 };

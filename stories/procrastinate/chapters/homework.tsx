@@ -12,10 +12,7 @@ import colors from "public/themeColors.module.scss";
 export const Page: PageType = () => {
   return (
     <>
-      <BackgroundFill color={colors.brown} />
-      
-      <TextBlock position="bottom_middle" textAlign="center">
-        <Chapter filename="sierravalley">
+        <Chapter filename="homework">
           <Section>
             <p>
               Sierra Valley is part of the continental crust that was dropped by
@@ -27,11 +24,10 @@ export const Page: PageType = () => {
               conifer and aspen forests, to drier woodland forests, to a large
               valley covered with crops, pastures, and wildflowers in the
               spring. Go{"  "}
-              <Nav text="back" next="right" tag="back" />.
+              
             </p>
           </Section>
         </Chapter>
-      </TextBlock>
     </>
   );
 };

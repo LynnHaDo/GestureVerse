@@ -6,10 +6,8 @@ export const Page: PageType = () => {
   const tag = "right";
   return (
     <>
-        <BackgroundFill color={colors.darkYellow}/>
-       
-        <TextBlock>
-            <Chapter filename="right">
+        
+            <Chapter filename="clean">
             <Section>
                     <div className = "row">
                         {/* <ChoiceBlock tag={tag} 
@@ -18,7 +16,6 @@ export const Page: PageType = () => {
                     </div>                    
                 </Section>
             </Chapter>
-        </TextBlock>
     </>
   );
 };

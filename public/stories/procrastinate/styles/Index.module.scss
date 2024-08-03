@@ -1,12 +1,9 @@
 @use "/public/styles/colors";
 
-@use "/public/styles/fonts" with (
-  $body: "Sentient-Regular",
-  $header: "Sentient-Medium"
-);
+@use "/public/styles/fonts";
 
-@use '/public/styles/sizing' with (
-    $story-margin: 100px,
+@use "/public/styles/sizing" with (
+  $story-margin: 100px
 );
 
 @use "/public/styles/header" with (
@@ -20,8 +17,7 @@
 
 @use "/public/styles/grid";
 
-
-
+$font-family: fonts.$procrastinate-typeface;
 $text-color: colors.$very-dark;
 
 .main {
@@ -29,6 +25,7 @@ $text-color: colors.$very-dark;
   color: $text-color;
   // More padding than the default grid
   grid-template-columns: [left] 125px [center] 1fr [right] 125px;
+  font-family: $font-family;
 
   h1,
   h2,
@@ -39,6 +36,9 @@ $text-color: colors.$very-dark;
     font-weight: 700;
   }
 
+  p {
+    font-size: 1.2rem;
+  }
   a {
     color: $text-color !important;
   }
@@ -48,8 +48,6 @@ $text-color: colors.$very-dark;
     font-size: 0.8rem;
     letter-spacing: 2px;
     border-radius: 3px;
-    width: 150px;
-    height: 35px;
     cursor: pointer;
 
     &:hover {
@@ -77,22 +75,31 @@ $text-color: colors.$very-dark;
     justify-content: space-between;
     height: 10em;
 
-    button {
-      color: $text-color !important;
+    h1 {
+      font-family: $font-family !important;
+      font-weight: 600;
+    }
 
-      &.backButton {
-        background-color: transparent;
-        width: 150px;
+    .controls {
+      display: flex;
+      button {
+        width: 100px;
         height: 35px;
         border: 1px solid $text-color;
-        color: $text-color;
-        font-family: inherit;
         font-size: 0.8rem;
         letter-spacing: 2px;
         border-radius: 3px;
-      }
-      &.backButton:hover {
-        font-family: fonts.$secondary;
+        text-decoration: none;
+        margin-left: 0.5rem;
+
+        &.backButton {
+          background-color: colors.$retroGreen;
+          color: colors.$lightYellow;
+        }
+
+        &:hover {
+          font-family: fonts.$secondary;
+        }
       }
     }
   }
