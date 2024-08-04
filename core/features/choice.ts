@@ -145,6 +145,7 @@ export default undoable(choicesSlice.reducer, {
 
 export const choiceBlock = (
   tag: string,
+  predictionType: 'gesture' | 'handedness' = 'gesture',
   maxNumHands: number = 1,
   btnBackgroundColor: string = "rgb(0,0,0)",
   btnTextColor: string = "rgb(250,250,250",
@@ -194,6 +195,7 @@ export const choiceBlock = (
 
     return React.createElement(ChoiceBlock, {
       tag: tag,
+      predictionType: predictionType,
       options: Object.fromEntries(remainingOptions),
       maxNumHands: maxNumHands,
       btnBackgroundColor: btnBackgroundColor,
@@ -204,6 +206,7 @@ export const choiceBlock = (
 
   return React.createElement(ChoiceBlock, {
     tag: tag,
+    predictionType: predictionType,
     maxNumHands: maxNumHands,
     btnBackgroundColor: btnBackgroundColor,
     btnTextColor: btnTextColor,

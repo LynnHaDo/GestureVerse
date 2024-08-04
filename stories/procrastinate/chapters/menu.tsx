@@ -7,15 +7,17 @@ import { choiceBlock } from "core/features/choice";
 import colors from "public/themeColors.module.scss";
 
 export const Page: PageType = () => {
-  const tag = "menuPro";
+  const tag = "procrastinate__menu";
+
+  let displayText = 'What should I do now?'
 
   return (
     <>    
         <Chapter filename="menu">
         <Section>
-            <p>What should I do now?</p>
+            <p>{displayText}</p>
                 {
-                    choiceBlock(tag, 1, `${colors.orange}`, `${colors.lightYellow}`, BulletedList)
+                    choiceBlock(tag, 'gesture', 1, `${colors.orange}`, `${colors.lightYellow}`, BulletedList)
                 }
         </Section>
         </Chapter>

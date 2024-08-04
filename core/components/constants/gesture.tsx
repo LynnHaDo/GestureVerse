@@ -11,3 +11,8 @@ export const Gestures = {
     "Victory": "Make a V sign ✌️", 
     "ILoveYou": "Make a heart 🫶"
 }
+
+export const Handedness = {
+    "Left": "Raise your left hand",
+    "Right": "Raise your right hand"
+}

@@ -1,7 +1,7 @@
 /** Components and constants */
 import { C, Camera } from "core/components";
 import { HandGesture } from "core/components/camera";
-import { Gestures } from "./constants/gesture";
+import { Gestures, Handedness } from "./constants/gesture";
 
 /** Hooks */
 import { useState, useEffect, useRef } from "react";
@@ -18,8 +18,9 @@ import { InlineListEN } from "./widgets/inline-list";
 export interface ChoiceBlockProps {
   /** Tag of the choice (used for the Choice component) */
   tag: string;
+  predictionType: "gesture" | "handedness";
   /** List of available options */
-  options?: { [key: string]: optionItemProps; };
+  options?: { [key: string]: optionItemProps };
   /** Maximum number of hands detected */
   maxNumHands?: number;
   /** Background color of button used to trigger webcam */
@@ -38,11 +39,12 @@ export interface ChoiceBlockProps {
  */
 const ChoiceBlock = ({
   tag,
+  predictionType = "gesture",
   options = Options[tag],
   maxNumHands = 1,
   btnBackgroundColor = "rgb(34, 33, 31)",
   btnTextColor = "rgb(250, 250, 250)",
-  widget = InlineListEN
+  widget = InlineListEN,
 }: ChoiceBlockProps): JSX.Element => {
   if (options == null || options == undefined) {
     return;
@@ -56,12 +58,21 @@ const ChoiceBlock = ({
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
 
+  const availableOptions =
+    predictionType == "gesture"
+      ? optionValues.map((i) => i.action)
+      : optionValues.map((i) => i.handedness);
+
   useEffect(() => {
     if (result) {
       // Get the answer
-      let answer = optionKeys.find((k) => options[k].action == result.category);
-
-      decision.current.textContent = `You chose ${answer}.`;
+      let answer =
+        predictionType == "gesture"
+          ? optionKeys.find((k) => options[k].action == result.category)
+          : optionKeys.find((k) => options[k].handedness == result.handedness);
+      
+      let answerText = options[answer].description;
+      decision.current.textContent = `You chose ${answerText}.`;
 
       setTimeout(() => {
         dispatch(
@@ -100,8 +111,17 @@ const ChoiceBlock = ({
           {optionKeys.map((key: string) => {
             return (
               <p key={key}>
-                {Gestures[options[key].action]} for{" "}
-                <span className={styles.underline}>{key}</span>.
+                {predictionType == "gesture" ? (
+                  <>
+                    {Gestures[options[key].action]} for{" "}
+                    <span className={styles.underline}>{options[key].description}</span>.
+                  </>
+                ) : (
+                  <>
+                    {Handedness[options[key].handedness]} for{" "}
+                    <span className={styles.underline}>{options[key].description}</span>.
+                  </>
+                )}
               </p>
             );
           })}
@@ -116,7 +136,8 @@ const ChoiceBlock = ({
           textColor={btnTextColor}
           numHands={maxNumHands}
           resultSetter={resultSetter}
-          availableOptions={optionValues.map((i) => i.action)}
+          predictionType={predictionType}
+          availableOptions={availableOptions}
         />
       </>
     )
