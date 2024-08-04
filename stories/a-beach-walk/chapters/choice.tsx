@@ -10,6 +10,8 @@ import { PageType } from "core/types";
 
 import colors from "public/themeColors.module.scss";
 
+import { choiceBlock } from "core/features/choice";
+
 export const Page: PageType = () => {
   const tag = "leftOrRight";
 
@@ -34,7 +36,9 @@ export const Page: PageType = () => {
         }}>
         <Chapter filename="choice">
           <Section>
-              <ChoiceBlock tag={tag} btnBackgroundColor="transparent" />
+              {
+                choiceBlock(tag, 1, 'transparent')
+              }
           </Section>
         </Chapter>
       </TextBlock>

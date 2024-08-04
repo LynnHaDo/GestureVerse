@@ -8,6 +8,7 @@ import {
 } from "core/components";
 import { PageType } from "core/types";
 import colors from "public/themeColors.module.scss";
+import { choiceBlock } from "core/features/choice";
 
 export const Page: PageType = () => {
   const tag = "right";
@@ -34,11 +35,9 @@ export const Page: PageType = () => {
       >
         <Chapter filename="right">
           <Section>
-            <ChoiceBlock
-              tag={tag}
-              btnBackgroundColor="transparent"
-              extraConfig={{ prefix: "Look through the broken", conjunction: 'or walk' ,suffix: "?" }}
-            />
+            {
+                choiceBlock(tag, 1, 'transparent')
+            }
           </Section>
         </Chapter>
       </TextBlock>

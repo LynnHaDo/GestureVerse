@@ -30,10 +30,16 @@ export const optionItem = ( action: optionItemProps['action'],
     }
 }
 
+export interface OptionProps {
+    [tag: string]: {
+        [key: string]: optionItemProps
+    }
+}
+
 /**
  * List of tags and the corresponding options
  */
-export const Options = {
+export const Options: OptionProps = {
     "leftOrRight": {
         "left": optionItem('Thumb_Up', 'turn left'), // thumbs up
         "right": optionItem('Thumb_Down', 'turn right'), // thumbs down

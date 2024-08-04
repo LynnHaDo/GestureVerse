@@ -2,6 +2,8 @@ import { Section, Chapter, ChoiceBlock, BackgroundFill, TextBlock, Artwork } fro
 import { BulletedList } from "core/components/widgets";
 import { PageType } from "core/types";
 
+import { choiceBlock } from "core/features/choice";
+
 import colors from "public/themeColors.module.scss";
 
 export const Page: PageType = () => {
@@ -9,16 +11,12 @@ export const Page: PageType = () => {
 
   return (
     <>    
-    
         <Chapter filename="menu">
         <Section>
             <p>What should I do now?</p>
-                <ChoiceBlock tag={tag} 
-                             btnBackgroundColor={colors.orange}
-                             btnTextColor={colors.lightYellow}
-                             widget={BulletedList}
-                             /> 
-            
+                {
+                    choiceBlock(tag, 1, `${colors.orange}`, `${colors.lightYellow}`, BulletedList)
+                }
         </Section>
         </Chapter>
    </>

@@ -15,11 +15,7 @@ export const Page: PageType = () => {
         <Chapter filename="game">
           <Section>
             
-            <p>
-            Joshua Tree National Park is a vast protected area in southern California. It's characterized by rugged rock formations and stark desert landscapes. Named for the region’s twisted, bristled Joshua trees, the park straddles the cactus-dotted Colorado Desert and the Mojave Desert, which is higher and cooler. Keys View looks out over the Coachella Valley. 
-            Hiking trails weave through the boulders of Hidden Valley. {"  "}
-              
-            </p>
+          game {" "}<Nav text="back" tag = "gameFromMenu" next="menu"/>
           </Section>
         </Chapter>
       

@@ -13,10 +13,7 @@ export const Page: PageType = () => {
                 <Section>
                     <div className = "row">
 
-                        {/*<ChoiceBlock tag={tag} 
-                                    btnBackgroundColor="transparent"
-                                    extraConfig={{prefix: "Go see", suffix: "?"}}/>
-                        */}
+                    eat {" "}<Nav text="back" tag = "eatFromMenu" next="menu"/>
                     </div>                    
                 </Section>
             </Chapter>
