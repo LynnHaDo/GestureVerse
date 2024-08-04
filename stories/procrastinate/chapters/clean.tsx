@@ -27,7 +27,7 @@ export const Page: PageType = () => {
           `${colors.lightBlue}`,
           `${colors.white}`,
           BulletedList,
-          //<Nav text="Start cleaning..." tag="moveFromCleanStarttoClean" next="clean_start"/>
+          <Nav text="Start cleaning..." tag="moveFromCleanStarttoClean" next="clean_start"/>
         )}
       </Section>
     </Chapter>
