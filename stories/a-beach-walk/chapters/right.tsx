@@ -36,7 +36,7 @@ export const Page: PageType = () => {
         <Chapter filename="right">
           <Section>
             {
-                choiceBlock(tag, 1, 'transparent')
+                choiceBlock(tag, 'gesture', 1, 'transparent')
             }
           </Section>
         </Chapter>

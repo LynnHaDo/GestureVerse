@@ -72,7 +72,23 @@ export const Options: OptionProps = {
         "tv_regulartv_pawnstars": optionItem(null, 'Left', 'Pawn Stars'),
         "tv_regulartv_carshow": optionItem(null, 'Right', 'car restoration show'),
     },
-    'procrastinate__tv_netflix_theoffice': {
-        
+    "procrastinate__games": {
+        "game_relaxing": optionItem(null, 'Left', 'Relaxing'),
+        "game_phone": optionItem(null, 'Right', 'Something on my phone')
+    },
+    "procrastinate__games_relaxing": {
+        "game_relaxing_breathofthewild": optionItem('Open_Palm', null, 'Breath of the Wild'),
+        "game_relaxing_supermarioodyssey": optionItem('Pointing_Up', null, 'Super Mario Odyssey'),
+        "game_relaxing_goosegame": optionItem('Closed_Fist', null, 'Untitled goose game')
+    },
+    "procrastinate__games_phone": {
+        "game_phone_phonegame": optionItem('Open_Palm', null, 'Play a boring (?) phone game'),
+        "game_phone_instagram": optionItem('Pointing_Up', null, 'Instagram time'),
+        "game_phone_article": optionItem('Closed_Fist', null, "Educate myself on why Tesla's stock is dropping."),
+    },
+    "procrastinate__clean": {
+        "clean_clothes": optionItem('Thumb_Up', null, 'Collect the clothes on the floor'),
+        "clean_trash": optionItem('Thumb_Down', null, 'Empty the trash'),
+        "clean_desk": optionItem('ILoveYou', null, "Let's clean the desk")
     }
 }

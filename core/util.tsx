@@ -1,5 +1,4 @@
 import { Toc, TocItem, Option } from 'core/types'
-import path from 'path'
 
 const OFFSET_DEFAULT = -1
 

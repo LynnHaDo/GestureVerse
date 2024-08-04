@@ -164,6 +164,7 @@ const Camera = ({
       outputHandedness.current.innerHTML = "";
 
       videoContainerRef.current.style.opacity = "0";
+      videoContainerRef.current.style.visibility = 'hidden';
       textWrapperRef.current.style.opacity = "0";
     }
 
@@ -193,6 +194,7 @@ const Camera = ({
       playIcon.current.style.display = "block";
       pauseIcon.current.style.display = "none";
       videoContainerRef.current.style.opacity = "1";
+      videoContainerRef.current.style.visibility = 'visible';
       // Start video prediction
       startVideo();
     }

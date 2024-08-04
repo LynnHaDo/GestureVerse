@@ -1,15 +1,20 @@
 import {
   Section,
   Chapter,
-  Nav,
-  TextBlock,
-  BackgroundFill,
-  Artwork,
+  Nav
 } from "core/components";
-import { PageType } from "core/types";
-import colors from "public/themeColors.module.scss";
+
+import { PageType, useAppDispatch } from "core/types";
+import { useEffect } from "react";
+
+import { incrementScore } from "core/features/score";
 
 export const Page: PageType = () => {
+    const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(incrementScore())
+  }, [])
   return (
     <>
         <Chapter filename="nap">

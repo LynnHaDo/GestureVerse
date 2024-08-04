@@ -149,7 +149,8 @@ export const choiceBlock = (
   maxNumHands: number = 1,
   btnBackgroundColor: string = "rgb(0,0,0)",
   btnTextColor: string = "rgb(250,250,250",
-  widget: (props: any) => JSX.Element = InlineListEN
+  widget: (props: any) => JSX.Element = InlineListEN,
+  last?: null | JSX.Element
 ): JSX.Element => {
   const [inventory] = useInventory([tag]);
   const options = Options[tag];
@@ -159,7 +160,6 @@ export const choiceBlock = (
   }
 
   if (inventory != null && inventory != undefined) {
-    console.log(inventory);
     if (localStorage.getItem(tag) == null) {
       localStorage.setItem(tag, JSON.stringify([inventory]));
     }
@@ -182,7 +182,7 @@ export const choiceBlock = (
     );
 
     if (remainingOptions.length == 0) {
-      return React.createElement("p", null, "No more options to choose.");
+      return last == null? React.createElement("p", null, "No more options to choose.") : last;
     }
 
     if (remainingOptions.length == 1) {

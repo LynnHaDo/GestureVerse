@@ -1,21 +1,23 @@
 import {
   Section,
   Chapter,
-  Nav,
-  TextBlock,
-  BackgroundFill,
-  Artwork,
+  Nav
 } from "core/components";
+import { choiceBlock } from "core/features/choice";
+import colors from 'public/themeColors.module.scss'
 import { PageType } from "core/types";
-import colors from 'public/themeColors.module.scss';
+import { BulletedList } from "core/components/widgets";
 
 export const Page: PageType = () => {
+  const tag = "procrastinate__games"
   return (
     <>
         <Chapter filename="game">
           <Section>
-            
-          game {" "}<Nav text="back" tag = "gameFromMenu" next="menu"/>
+          <p>What kind of games should I play?</p>
+          {
+            choiceBlock(tag, 'handedness', 1, `${colors.vanilla}`, `${colors.dark}`, BulletedList)
+          }
           </Section>
         </Chapter>
       

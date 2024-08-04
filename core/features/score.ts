@@ -1,21 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit'
-import undoable from 'redux-undo'
+import undoable from "redux-undo";
+
+import {
+  AnyAction,
+  createSlice,
+  Dispatch,
+  PayloadAction,
+  ThunkAction,
+} from "@reduxjs/toolkit";
+
+import { Config, RootState } from "core/types";
+
+import { AppDispatch } from "core/containers/store-container";
+import { useSelector } from "react-redux";
 
 interface ScoreState {
-    value: number
+  value: number;
 }
 
-const initialState = { value: 0 } satisfies ScoreState as ScoreState
+const initialState = { value: 0 } satisfies ScoreState as ScoreState;
 
-const scoreSlice = createSlice({
-    name: 'score',
-    initialState,
-    reducers: {
-        incrementScore(state) {
-            state.value++
-        }
-    }
-})
+const score = createSlice({
+  name: "score",
+  initialState,
+  reducers: {
+    increment(state) {
+      state.value += 1;
+    },
+  },
+});
 
-export const { incrementScore } = scoreSlice.actions
-export default undoable(scoreSlice.reducer)
+export const { increment } = score.actions;
+
+export const incrementScore =
+  (): ThunkAction<void, RootState, unknown, AnyAction> =>
+  (dispatch: AppDispatch, getState: () => RootState, config: Config): void => {
+    dispatch(increment());
+  };
+
+export default undoable(score.reducer);

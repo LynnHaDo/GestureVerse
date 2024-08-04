@@ -5,6 +5,8 @@ import { connect, ConnectedProps } from 'react-redux'
 
 import { Counter } from 'core/components'
 import { Config, RootState } from 'core/types'
+import { increment } from 'core/features/score'
+import Score from 'core/components/score'
 
 interface StoryProps extends PropsFromRedux {
     config: Config
@@ -40,6 +42,7 @@ class StoryContainer extends React.Component<StoryProps> {
         return (
             <div id="container">
                 <Counter identifier={this.props.config.identifier} counter={this.props.counter} />
+                <Score identifier={this.props.config.identifier} score={this.props.score} />
                 {this.props.children}
             </div>
         )
@@ -47,10 +50,12 @@ class StoryContainer extends React.Component<StoryProps> {
 }
 
 const mapState = (state: RootState) => ({
-    counter: state.counter.present.value
+    counter: state.counter.present.value,
+    score: state.score.present.value
 })
 const mapDispatch = (dispatch) => ({
-    jump: (offset: number) => dispatch(ActionCreators.jump(offset))
+    jump: (offset: number) => dispatch(ActionCreators.jump(offset)),
+    incrementScore: () => dispatch(increment())
 })
 
 const connector = connect(mapState, mapDispatch)
