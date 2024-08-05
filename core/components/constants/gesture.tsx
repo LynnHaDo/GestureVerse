@@ -9,7 +9,7 @@ export const Gestures = {
     "Thumb_Down": "Put your thumb down 👎", 
     "Thumb_Up": "Put your thumb up 👍", 
     "Victory": "Make a V sign ✌️", 
-    "ILoveYou": "Make a heart 🫶"
+    "ILoveYou": "Do the I Love You sign 🤟 (you can try doing 🫶 to see what happens)"
 }
 
 export const Handedness = {

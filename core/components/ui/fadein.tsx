@@ -2,8 +2,9 @@ import { Transition, AnimatedComponent, animated, config } from '@react-spring/w
 import { ReactFCC } from 'core/types'
 
 interface Props {
-    wrapper?: AnimatedComponent<any>
-    children: React.ReactNode
+    wrapper?: AnimatedComponent<any>,
+    children: React.ReactNode,
+    delayTime?: number
 }
 /**
  * Animate a fade-in transition for a single React node. This is typically used inside a <Response>.
@@ -13,7 +14,7 @@ interface Props {
  * @param wrapper The animated HTML element type that will wrap the children; defaults to <span>
  * @returns
  */
-const FadeIn: ReactFCC<Props> = ({ children, wrapper = animated('span') }) => {
+const FadeIn: ReactFCC<Props> = ({ children, wrapper = animated('span'), delayTime = 50 }) => {
     const AnimatedContent = wrapper
     return (
         <Transition
@@ -29,7 +30,7 @@ const FadeIn: ReactFCC<Props> = ({ children, wrapper = animated('span') }) => {
                 right: 0,
                 bottom: 0
              }}
-            delay={50}
+            delay={delayTime}
             config={config.molasses}>
             {(styles, item) => item && <AnimatedContent style={styles}>{item}</AnimatedContent>}
         </Transition>

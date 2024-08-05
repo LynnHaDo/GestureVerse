@@ -1,8 +1,10 @@
 import { Section, Chapter, Nav } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
-import { FadeIn } from "core/components/ui";
 import { useEffect } from "react";
 import { incrementScore } from "core/features/score";
+import { animated } from "@react-spring/web";
+
+import FadeIn from "core/components/ui/fadein";
 import { updateVariable } from "core/features/variable-manager";
 import useChapter from "core/hooks/use-chapter";
 
@@ -12,28 +14,24 @@ export const Page: PageType = () => {
 
   useEffect(() => {
     dispatch(incrementScore());
-    dispatch(updateVariable('game', true))
+    dispatch(updateVariable('nap', true))
   }, []);
-
+  
   return (
     <>
-      <Chapter filename={chapter.filename}>
+      <Chapter filename="nap_time">
         <Section>
-          <FadeIn><p>Honk</p></FadeIn>
-          <FadeIn><p>Honk</p></FadeIn>
-          <FadeIn><p>Honk</p></FadeIn>
-          <FadeIn><p>Honk</p></FadeIn>
+          <p>
+            That was a little longer than I hoped, but naps are so wonderful. I
+            probably just destroyed my sleep schedule, but it was worth it.
+          </p>
 
-          <FadeIn>
-            <p>
-            I'm bored. Let's go {" "}
+          <FadeIn wrapper={animated("p")} delayTime={600}>
             <Nav
-              text="back"
+              text="Let's get out of bed..."
               next="menu"
               tag={`moveFrom${chapter.filename}toMenu`}
             />
-            {"."}
-            </p>
           </FadeIn>
         </Section>
       </Chapter>

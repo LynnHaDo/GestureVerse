@@ -9,24 +9,23 @@ export const Page: PageType = () => {
   const tag = "procrastinate__tv_regulartv";
   return (
     <>
-      <Chapter filename='tv_regulartv'>
+      <Chapter filename="tv_regulartv">
         <Section>
           <p>
-          I flip aimlessly through channels, and settle on a car restoration show. It was either that or reruns of Pawn Stars.
+            I flip aimlessly through channels, and settle on a car restoration
+            show. It was either that or reruns of Pawn Stars.
           </p>
 
           <p>Hmm... which one?</p>
 
-          {
-            choiceBlock(
-                tag,
-                "handedness",
-                1,
-                `${colors.midBlue}`,
-                `${colors.white}`,
-                BulletedList
-              )
-          }
+          {choiceBlock(
+            tag,
+            "handedness",
+            1,
+            `${colors.midBlue}`,
+            `${colors.white}`,
+            BulletedList
+          )}
         </Section>
       </Chapter>
     </>

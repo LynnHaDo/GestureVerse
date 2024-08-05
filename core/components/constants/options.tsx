@@ -90,5 +90,21 @@ export const Options: OptionProps = {
         "clean_clothes": optionItem('Thumb_Up', null, 'Collect the clothes on the floor'),
         "clean_trash": optionItem('Thumb_Down', null, 'Empty the trash'),
         "clean_desk": optionItem('ILoveYou', null, "Let's clean the desk")
-    }
+    },
+    "procrastinate__eat": {
+        "eat_cook": optionItem(null, 'Left', 'Cook'),
+        "eat_buy": optionItem(null, 'Right', 'Go get something')
+    },
+    "procrastinate__eat_cook": {
+        "eat_cook_fridge": optionItem(null, 'Left', 'fridge'),
+        "eat_cook_fridge_cupboard": optionItem(null, 'Right', 'cupboard')
+    },
+    "procrastinate__eat_cook_fridge": {
+        "eat_cook_fridge_freezer": optionItem(null, 'Left', 'Check the freezer'),
+        "eat_cook_fridge_cupboard": optionItem(null, 'Right', 'Check the cupboard')
+    },
+    "procrastinate__eat_buy": {
+        "eat_cook_fridge_freezer": optionItem(null, 'Left', 'Check the freezer'),
+        "eat_buy_doordash": optionItem(null, 'Right', 'Open the phone to order something on Doordash')
+    },
 }

@@ -1,10 +1,12 @@
 import { Section, Chapter, Nav } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 import { PageType } from "core/types";
+import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
+  const chapter = useChapter();
   return (
-    <Chapter filename="clean_clothes">
+    <Chapter filename={chapter.filename}>
       <Section>
         <p>
           There's a Ratatouille movie shirt and the same pair of pants I've been
@@ -17,7 +19,7 @@ export const Page: PageType = () => {
             <Nav
               text="else"
               next="clean"
-              tag={`moveFrom${__filename}toClean`}
+              tag={`moveFrom${chapter.filename}toClean`}
             />
             {"?"}
             </p>

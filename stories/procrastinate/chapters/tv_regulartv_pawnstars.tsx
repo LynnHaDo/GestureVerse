@@ -1,11 +1,11 @@
 import { Section, Chapter, Nav } from "core/components";
-import { BulletedList } from "core/components/widgets";
-import { choiceBlock } from "core/features/choice";
 import { PageType } from "core/types";
 
 import colors from "public/themeColors.module.scss";
+import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
+  const chapter = useChapter();
   return (
     <>
       <Chapter filename="tv_regulartv_pawnstars">
@@ -22,7 +22,7 @@ export const Page: PageType = () => {
             <Nav
               text="car show"
               next="tv_regulartv_carshow"
-              tag="moveToCarShow"
+              tag={`moveFrom${chapter.filename}CarShow`}
             />
             {"."}
           </p>

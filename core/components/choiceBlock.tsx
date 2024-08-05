@@ -47,7 +47,7 @@ const ChoiceBlock = ({
   widget = InlineListEN,
 }: ChoiceBlockProps): JSX.Element => {
   if (options == null || options == undefined) {
-    return;
+    return null;
   }
   const optionKeys: string[] = Object.keys(options);
   const optionValues: Array<optionItemProps> = Object.values(options);
@@ -58,10 +58,10 @@ const ChoiceBlock = ({
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
 
-  const availableOptions =
+  let availableOptions =
     predictionType == "gesture"
-      ? optionValues.map((i) => i.action)
-      : optionValues.map((i) => i.handedness);
+      ? optionValues.filter(val => !val.disabled).map((i) => i.action)
+      : optionValues.filter(val => !val.disabled).map((i) => i.handedness);
 
   useEffect(() => {
     if (result) {
@@ -70,7 +70,7 @@ const ChoiceBlock = ({
         predictionType == "gesture"
           ? optionKeys.find((k) => options[k].action == result.category)
           : optionKeys.find((k) => options[k].handedness == result.handedness);
-      
+
       let answerText = options[answer].description;
       decision.current.textContent = `You chose ${answerText}.`;
 
@@ -110,16 +110,22 @@ const ChoiceBlock = ({
         <div className={styles.instruction}>
           {optionKeys.map((key: string) => {
             return (
-              <p key={key}>
+              <p key={key} className={options[key].disabled? `${styles.crossOut}` : ''}>
                 {predictionType == "gesture" ? (
                   <>
-                    {Gestures[options[key].action]} for{" "}
-                    <span className={styles.underline}>{options[key].description}</span>.
-                  </>
+                  {Gestures[options[key].action]} for{" "}
+                  <span className={styles.underline}>
+                    {options[key].description}
+                  </span>
+                  .
+                </>
                 ) : (
                   <>
                     {Handedness[options[key].handedness]} for{" "}
-                    <span className={styles.underline}>{options[key].description}</span>.
+                    <span className={styles.underline}>
+                      {options[key].description}
+                    </span>
+                    .
                   </>
                 )}
               </p>

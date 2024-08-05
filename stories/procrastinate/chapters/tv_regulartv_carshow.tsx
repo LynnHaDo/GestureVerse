@@ -4,12 +4,16 @@ import { PageType, useAppDispatch } from "core/types";
 import { useEffect } from "react";
 
 import { incrementScore } from "core/features/score";
+import { updateVariable } from "core/features/variable-manager";
+import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
+  const chapter = useChapter();
 
   useEffect(() => {
     dispatch(incrementScore());
+    dispatch(updateVariable('tv', true))
   }, []);
   
   return (
@@ -26,7 +30,7 @@ export const Page: PageType = () => {
 
           <p>
             What should I do{" "}
-            <Nav text="next" next="menu" tag="moveFromCarShow" />
+            <Nav text="next" next="menu" tag={`moveFrom${chapter.filename}CarShow`} />
             {"?"}
           </p>
         </Section>

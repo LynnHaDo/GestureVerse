@@ -1,14 +1,18 @@
 import { Section, Chapter, Nav, C } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 import { incrementScore } from "core/features/score";
+import { updateVariable } from "core/features/variable-manager";
 import { Next, PageType, useAppDispatch } from "core/types";
 
 import { useEffect } from "react";
+import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
+  const chapter = useChapter();
   useEffect(() => {
     dispatch(incrementScore());
+    dispatch(updateVariable('tv', true))
   }, []);
 
   return (
@@ -38,7 +42,7 @@ export const Page: PageType = () => {
 
           <p>
             What should I do{" "}
-            <Nav text="next" next="menu" tag="moveFromTheOffice" />
+            <Nav text="next" next="menu" tag={`moveFrom${chapter.filename}TheOffice`} />
             {"?"}
           </p>
         </Section>

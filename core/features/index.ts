@@ -5,6 +5,7 @@ import counter from './counter'
 import navigation from './navigation'
 import log from './log'
 import score from './score'
+import variableManager from './variable-manager'
 
 const rootReducer = combineReducers({
     inventory,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     choices,
     navigation,
     log,
-    score
+    score,
+    variableManager
 })
 
 export default rootReducer

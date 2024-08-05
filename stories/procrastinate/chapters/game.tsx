@@ -16,7 +16,7 @@ export const Page: PageType = () => {
           <Section>
           <p>What kind of games should I play?</p>
           {
-            choiceBlock(tag, 'handedness', 1, `${colors.vanilla}`, `${colors.dark}`, BulletedList)
+            choiceBlock(tag, 'handedness', 1, `${colors.vanilla}`, `${colors.dark}`, BulletedList, <Nav text="Oh no is it already time to do homework??" next="menu" tag="endGame"/>)
           }
           </Section>
         </Chapter>

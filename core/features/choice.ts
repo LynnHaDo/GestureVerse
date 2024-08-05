@@ -26,7 +26,6 @@ import useInventory from "core/hooks/use-inventory";
 import { optionItemProps, Options } from "core/components/constants/options";
 import { ChoiceBlock, Nav } from "core/components";
 import { InlineListEN } from "core/components/widgets/inline-list";
-import { wordFromInventory } from "core/util";
 import { isEqual } from "lodash";
 
 export type Option = string;
@@ -152,7 +151,8 @@ export const choiceBlock = (
   btnBackgroundColor: string = "rgb(0,0,0)",
   btnTextColor: string = "rgb(250,250,250",
   widget: (props: any) => JSX.Element = InlineListEN,
-  last?: JSX.Element
+  last?: JSX.Element,
+  keepSelectedChoice?: boolean
 ): JSX.Element => {
   const [inventory, oneLastOption] = useInventory([
     tag,
@@ -173,19 +173,13 @@ export const choiceBlock = (
         items.push(inventory);
       }
 
-      if (
-        oneLastOption != null &&
-        oneLastOption != undefined
-      ) {
-        console.log(options);
-        console.log(oneLastOption);
-        let itemLeft : Array<[string, optionItemProps]> = Object.entries(
-            options
-          ).filter(([key, value], i) => isEqual(value.description, oneLastOption))
-          ;
-        let itemKey = itemLeft.map(
-            ([key, value]) => key
-          )[0]
+      if (oneLastOption != null && oneLastOption != undefined) {
+        let itemLeft: Array<[string, optionItemProps]> = Object.entries(
+          options
+        ).filter(([key, value], i) =>
+          isEqual(value.description, oneLastOption)
+        );
+        let itemKey = itemLeft.map(([key, value]) => key)[0];
         items.push(itemKey);
       }
 
@@ -193,11 +187,11 @@ export const choiceBlock = (
     }
 
     let chosenItems: Array<string> = JSON.parse(localStorage.getItem(tag));
-
-    let remainingOptions: Array<[string, optionItemProps]> = Object.entries(
-      options
-    ).filter(([key, value], i) => !chosenItems.includes(key));
-
+    let remainingOptions: Array<[string, optionItemProps]> = keepSelectedChoice
+      ? Object.entries(options)
+      : Object.entries(options).filter(
+          ([key, value], i) => !chosenItems.includes(key)
+        );
     let remainingOptionKeys: string[] = remainingOptions.map(
       ([key, value]) => key
     );

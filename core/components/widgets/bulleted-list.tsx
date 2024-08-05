@@ -26,28 +26,7 @@ const InlineList: typeof BulletedListType = ({
 }: WidgetProps): JSX.Element => {
   return (
     <>
-      {optionList == null || optionList.length == 0 ? (
-        <ul>
-          {[...initialOptions[0]].map((t, i) => (
-            <li key={i} className={className}>
-              {type == "link" ? (
-                <Link
-                  handler={() => handler(t)}
-                  text={optionList.at(i).description}
-                  tag={tag}
-                />
-              ) : (
-                <p>{t}</p>
-              )}
-              {group.map((g) => {
-                if (!isEqual(initialOptions[0], group) && g === t) {
-                  return " (selected)";
-                }
-              })}
-            </li>
-          ))}
-        </ul>
-      ) : (
+      {optionList && (
         <ul>
           {[...initialOptions[0]].map((t, i) => (
             <li key={i} className={className}>
@@ -66,11 +45,6 @@ const InlineList: typeof BulletedListType = ({
                   ) : (
                     <p>{optionList.at(i).description}</p>
                   )}
-                  {group.map((g) => {
-                    if (!isEqual(initialOptions[0], group) && g === t) {
-                      return " (selected)";
-                    }
-                  })}
                 </>
               )}
             </li>
