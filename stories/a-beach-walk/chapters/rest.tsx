@@ -5,6 +5,7 @@ import {
   BackgroundFill,
   Artwork,
 } from "core/components";
+import End from "core/components/end";
 
 import { ResetButton } from "core/components/ui";
 
@@ -32,29 +33,21 @@ export const Page: PageType = () => {
         textAlign="center"
         additionalStyle={{
           padding: 0,
-          width: '460px'
+          width: "460px",
         }}
       >
         <Chapter filename="rest">
           <Section>
-            <p>
-              Thank you for visiting my beach. To walk again go back to the{" "}
-              <ResetButton
-                children="start"
-                message="Do you want to restart the story?"
-                style={{
-                  backgroundColor: `${colors.white}`,
-                  border: `1px solid ${colors.white}`,
-                  textTransform: "uppercase",
-                  width: 'auto'
-                }}
-              />
-            </p>
-
-            <h4>Reference</h4>
-            <p style={{fontStyle: 'italic'}}>
-            interstellar-bird (n.d.). Beach Walk by interstellar-bird. [online] itch.io. Available at: https://interstellar-bird.itch.io/beach-walk [Accessed 16 Jul. 2024].
-            </p>
+            <End
+              storyName="a beach walk"
+              sources={[
+                "interstellar-bird (n.d.). Beach Walk by interstellar-bird. [online] itch.io. Available at: https://interstellar-bird.itch.io/beach-walk [Accessed 16 Jul. 2024].",
+              ]}
+              additionalButtonStyle={{
+                backgroundColor: `${colors.white}`,
+                border: `1px solid ${colors.white}`,
+              }}
+            />
           </Section>
         </Chapter>
       </TextBlock>

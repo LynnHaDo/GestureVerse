@@ -16,7 +16,7 @@ export const Page: PageType = () => {
 
   return (
     <>
-      <Chapter filename="game_phone_article">
+      <Chapter filename={chapter.filename}>
         <Section>
           <p>
             I don't know why I always get recommended articles about Tesla. I

@@ -18,7 +18,7 @@ export const Page: PageType = () => {
   
   return (
     <>
-      <Chapter filename="tv_regulartv_carshow">
+      <Chapter filename={chapter.filename}>
         <Section>
           <p>
             I like watching these. I get so much satisfaction from seeing a
@@ -30,7 +30,7 @@ export const Page: PageType = () => {
 
           <p>
             What should I do{" "}
-            <Nav text="next" next="menu" tag={`moveFrom${chapter.filename}CarShow`} />
+            <Nav text="next" next="menu" tag={`moveFrom${chapter.filename}ToMenu`} />
             {"?"}
           </p>
         </Section>

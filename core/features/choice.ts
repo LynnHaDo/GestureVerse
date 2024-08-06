@@ -151,8 +151,8 @@ export const choiceBlock = (
   btnBackgroundColor: string = "rgb(0,0,0)",
   btnTextColor: string = "rgb(250,250,250",
   widget: (props: any) => JSX.Element = InlineListEN,
-  last?: JSX.Element,
-  keepSelectedChoice?: boolean
+  last: JSX.Element = null,
+  keepSelectedChoice: boolean = true
 ): JSX.Element => {
   const [inventory, oneLastOption] = useInventory([
     tag,

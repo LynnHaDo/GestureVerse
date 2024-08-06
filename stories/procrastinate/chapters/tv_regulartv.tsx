@@ -1,15 +1,17 @@
 import { Section, Chapter } from "core/components";
 import { BulletedList } from "core/components/widgets";
 import { choiceBlock } from "core/features/choice";
+import useChapter from "core/hooks/use-chapter";
 import { PageType } from "core/types";
 
 import colors from "public/themeColors.module.scss";
 
 export const Page: PageType = () => {
+  const chapter = useChapter();
   const tag = "procrastinate__tv_regulartv";
   return (
     <>
-      <Chapter filename="tv_regulartv">
+      <Chapter filename={chapter.filename}>
         <Section>
           <p>
             I flip aimlessly through channels, and settle on a car restoration

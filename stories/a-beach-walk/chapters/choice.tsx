@@ -11,6 +11,7 @@ import { PageType } from "core/types";
 import colors from "public/themeColors.module.scss";
 
 import { choiceBlock } from "core/features/choice";
+import { InlineListEN } from "core/components/widgets/inline-list";
 
 export const Page: PageType = () => {
   const tag = "leftOrRight";
@@ -37,7 +38,7 @@ export const Page: PageType = () => {
         <Chapter filename="choice">
           <Section>
               {
-                choiceBlock(tag, 'gesture', 1, 'transparent')
+                choiceBlock(tag, 'gesture', 1, 'transparent',`${colors.white}`, InlineListEN, null, false)
               }
           </Section>
         </Chapter>

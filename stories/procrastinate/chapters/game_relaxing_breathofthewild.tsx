@@ -20,7 +20,7 @@ export const Page: PageType = () => {
       <Chapter filename={chapter.filename}>
         <Section>
           <p>
-            A Fabulously relaxing game. I love just walking around and exploring
+            A fabulously relaxing game. I love just walking around and exploring
             the beautiful world. It makes me happy. But then I glide down from a
             mountain top and land with a striking blow on a lynel. I jump into
             the air and fire a flurry of arrows straight into its chiseled

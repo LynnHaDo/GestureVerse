@@ -107,4 +107,8 @@ export const Options: OptionProps = {
         "eat_cook_fridge_freezer": optionItem(null, 'Left', 'Check the freezer'),
         "eat_buy_doordash": optionItem(null, 'Right', 'Open the phone to order something on Doordash')
     },
+    "procrastinate__homework_fail": {
+        "homework_start": optionItem('Thumb_Up', null, 'Try again'),
+        "homework_quit": optionItem('Thumb_Down', null, 'Quit')
+    }
 }

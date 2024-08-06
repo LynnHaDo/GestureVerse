@@ -11,7 +11,11 @@ export const Page: PageType = () => {
       <Chapter filename="game_phone">
         <Section>
           <p>
-          Ah yes, mobile games, the pinnacle of quality design and narrative. When it comes to my phone, I only do a few things: Read random articles, go on social media, or play stupid phone games. Games are fun, but I also love the rush I get from refreshing my instagram feed repeatedly and looking at the same pictures over and over.
+            Ah yes, mobile games, the pinnacle of quality design and narrative.
+            When it comes to my phone, I only do a few things: Read random
+            articles, go on social media, or play stupid phone games. Games are
+            fun, but I also love the rush I get from refreshing my instagram
+            feed repeatedly and looking at the same pictures over and over.
           </p>
 
           {choiceBlock(

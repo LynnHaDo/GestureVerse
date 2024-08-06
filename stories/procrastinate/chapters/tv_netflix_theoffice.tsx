@@ -12,12 +12,12 @@ export const Page: PageType = () => {
   const chapter = useChapter();
   useEffect(() => {
     dispatch(incrementScore());
-    dispatch(updateVariable('tv', true))
+    dispatch(updateVariable("tv", true));
   }, []);
 
   return (
     <>
-      <Chapter filename="tv_netflix_theoffice">
+      <Chapter filename={chapter.filename}>
         <Section>
           <FadeIn>
             <p>...</p>
@@ -42,7 +42,11 @@ export const Page: PageType = () => {
 
           <p>
             What should I do{" "}
-            <Nav text="next" next="menu" tag={`moveFrom${chapter.filename}TheOffice`} />
+            <Nav
+              text="next"
+              next="menu"
+              tag={`moveFrom${chapter.filename}TheOffice`}
+            />
             {"?"}
           </p>
         </Section>

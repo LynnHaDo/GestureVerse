@@ -23,7 +23,8 @@ export const Page: PageType = () => {
             `${colors.lightBlue}`,
             `${colors.white}`,
             BulletedList,
-            <Nav text="Oh no is it already time to do homework??" next="menu" tag="endEat"/>
+            null,
+            true
           )}
         </Section>
       </Chapter>

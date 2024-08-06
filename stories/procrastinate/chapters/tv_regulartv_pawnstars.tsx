@@ -8,7 +8,7 @@ export const Page: PageType = () => {
   const chapter = useChapter();
   return (
     <>
-      <Chapter filename="tv_regulartv_pawnstars">
+      <Chapter filename={chapter.filename}>
         <Section>
           <p>
             I'M RICK HARRISON, AND THIS IS MY PAWN SHOP. I WORK HERE WITH MY OLD
@@ -22,7 +22,7 @@ export const Page: PageType = () => {
             <Nav
               text="car show"
               next="tv_regulartv_carshow"
-              tag={`moveFrom${chapter.filename}CarShow`}
+              tag={`moveFrom${chapter.filename}ToCarShow`}
             />
             {"."}
           </p>

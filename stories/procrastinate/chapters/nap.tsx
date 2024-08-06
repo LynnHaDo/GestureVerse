@@ -1,6 +1,6 @@
 import { Section, Chapter, Nav } from "core/components";
 import { PageType } from "core/types";
-import { animated } from "@react-spring/web"
+import { animated } from "@react-spring/web";
 
 import FadeIn from "core/components/ui/fadein";
 import useChapter from "core/hooks/use-chapter";
@@ -8,14 +8,20 @@ import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
-  const nap = useVariable('nap');
+  const nap = useVariable("nap");
 
   if (nap) {
-    return <Chapter filename="nap">
+    return (
+      <Chapter filename="nap">
         <Section>
-            <Nav text="Oh no is it already time to do homework??" next="menu" tag="endNap"/>
+          <Nav
+            text="Oh no is it already time to do homework??"
+            next="menu"
+            tag="endNap"
+          />
         </Section>
-    </Chapter>
+      </Chapter>
+    );
   }
 
   return (
@@ -45,27 +51,30 @@ export const Page: PageType = () => {
               via Giphy
             </a>
           </p>
-          
-          <FadeIn wrapper={animated('p')} delayTime={500}>
+
+          <FadeIn wrapper={animated("p")} delayTime={500}>
             Zzzzzz
           </FadeIn>
 
-          <FadeIn wrapper={animated('p')} delayTime={800}>
+          <FadeIn wrapper={animated("p")} delayTime={800}>
             Zzzzzz
           </FadeIn>
 
-          <FadeIn wrapper={animated('p')} delayTime={1100}>
+          <FadeIn wrapper={animated("p")} delayTime={1100}>
             Zzzzzz
           </FadeIn>
 
-          <FadeIn wrapper={animated('p')} delayTime={1400}>
+          <FadeIn wrapper={animated("p")} delayTime={1400}>
             Zzzzzz
           </FadeIn>
-          
-          <FadeIn wrapper={animated('p')} delayTime={1700}>
-            <Nav text = "Wait, what time is it?" tag = {`moveFrom${chapter.filename}toTime`} next="nap_time"/>
-          </FadeIn>
 
+          <FadeIn wrapper={animated("p")} delayTime={1700}>
+            <Nav
+              text="Wait, what time is it?"
+              tag={`moveFrom${chapter.filename}toTime`}
+              next="nap_time"
+            />
+          </FadeIn>
         </Section>
       </Chapter>
     </>

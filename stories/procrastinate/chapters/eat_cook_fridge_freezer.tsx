@@ -13,16 +13,11 @@ import useChapter from "core/hooks/use-chapter";
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
-
-  let displayText: string =
-    "Mmmmm yes a frozen Amy's bean and cheese burrito. The organic beans and cheese lend themselves beautifully to the whole wheat tortilla they are so tenderly wrapped up in. I expertly pop one of these bad boys out of their packaging and slap it onto a plate, microwaving for NO MORE and NO LESS than 65 seconds, only to flip and repeat for the same amount of time. Afterwards, a heavy dousing of hot sauce is recommended. I am satiated. Now I can waste more time.";
-
   const freezer = useVariable("freezer");
 
-  if (freezer) {
-    displayText =
-      "It is completeley barren.";
-  }
+  let displayText: string = freezer? "It is completeley barren." : 
+    "Mmmmm yes a frozen Amy's bean and cheese burrito. The organic beans and cheese lend themselves beautifully to the whole wheat tortilla they are so tenderly wrapped up in. I expertly pop one of these bad boys out of their packaging and slap it onto a plate, microwaving for NO MORE and NO LESS than 65 seconds, only to flip and repeat for the same amount of time. Afterwards, a heavy dousing of hot sauce is recommended. I am satiated. Now I can waste more time.";
+
   useEffect(() => {
     dispatch(incrementScore());
     dispatch(updateVariable("eat", true));

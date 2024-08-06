@@ -3,9 +3,6 @@ import { updateVariable } from "core/features/variable-manager";
 import { PageType, useAppDispatch } from "core/types";
 import { useEffect } from "react";
 
-import { init as initVariable } from "core/features/variable-manager";
-import { useVariable } from "core/hooks/use-variable";
-
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
 

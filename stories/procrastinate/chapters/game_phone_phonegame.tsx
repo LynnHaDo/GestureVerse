@@ -12,7 +12,7 @@ export const Page: PageType = () => {
 
   useEffect(() => {
     dispatch(incrementScore());
-    dispatch(updateVariable('game', true))
+    dispatch(updateVariable("game", true));
   }, []);
 
   return (
@@ -20,17 +20,20 @@ export const Page: PageType = () => {
       <Chapter filename={chapter.filename}>
         <Section>
           <p>
-          Wow I forgot this is addicting, it's been nearly 2 hours. This game isn't even fun, it just drives me to keep playing, it's kind of scary? Is this good design? Or something far more dangerous?
+            Wow I forgot this is addicting, it's been nearly 2 hours. This game
+            isn't even fun, it just drives me to keep playing, it's kind of
+            scary? Is this good design? Or something far more dangerous?
           </p>
 
           <FadeIn>
-            <p>Okay game over. What's {" "}
-            <Nav
-              text="next"
-              next="menu"
-              tag={`moveFrom${chapter.filename}toMenu`}
-            />
-            {"?"}
+            <p>
+              Okay game over. What's{" "}
+              <Nav
+                text="next"
+                next="menu"
+                tag={`moveFrom${chapter.filename}toMenu`}
+              />
+              {"?"}
             </p>
           </FadeIn>
         </Section>

@@ -5,6 +5,8 @@ chapters:
     title: "A long day"
   - filename: "menu"
     title: "Choose your adventure"
+
+    # TV
   - filename: "tv"
     title: "Watch TV"
   - filename: "tv_netflix"
@@ -17,8 +19,11 @@ chapters:
     title: "TV shows: Car show"
   - filename: "tv_regulartv_pawnstars"
     title: "TV shows: Pawn stars"
+
+    # GAME
   - filename: "game"
     title: "Play video games"
+
   - filename: "game_relaxing"
     title: "Play video games: Relaxing"
   - filename: "game_relaxing_breathofthewild"
@@ -27,6 +32,7 @@ chapters:
     title: "Play video games: Goose game"
   - filename: "game_relaxing_supermarioodyssey"
     title: "Play video games: Mario"
+
   - filename: "game_phone"
     title: "Play video games: Phone scrolling"
   - filename: "game_phone_phonegame"
@@ -35,24 +41,32 @@ chapters:
     title: "Play video games: Instagram"
   - filename: "game_phone_article"
     title: "Play video games: Article"
+
+    # EAT
   - filename: "eat"
     title: "Go eat something"
+
   - filename: "eat_cook"
     title: "Go eat something: Cook"
+  - filename: "eat_cook_fridge"
+    title: "Go eat something: Fridge"
   - filename: "eat_cook_fridge_cupboard"
     title: "Go eat something: Cupboard"
   - filename: "eat_cook_fridge_freezer"
     title: "Go eat something: Freezer"
-  - filename: "eat_cook_fridge"
-    title: "Go eat something: Fridge"
+
   - filename: "eat_buy"
     title: "Go eat something: Buy"
   - filename: "eat_buy_doordash"
     title: "Go eat something: Doordash"
+
+    # NAP
   - filename: "nap"
     title: "Take a nap"
   - filename: "nap_time"
     title: "Take a nap: What's the time?"
+
+    # CLEAN
   - filename: "clean"
     title: "Clean my room"
   - filename: "clean_clothes"
@@ -63,8 +77,14 @@ chapters:
     title: "Clean my desk"
   - filename: "clean_start"
     title: "Start cleaning"
+
+    # HW
   - filename: "homework"
     title: "Do homework"
+  - filename: "homework_start"
+    title: "Do homework: Start"
+  - filename: "homework_quit"
+    title: "Do homework_quit"
   
 players:
   - start: "start"

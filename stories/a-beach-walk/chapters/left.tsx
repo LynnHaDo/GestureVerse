@@ -1,11 +1,9 @@
 import {
   Section,
   Chapter,
-  Nav,
   BackgroundFill,
   TextBlock,
   Artwork,
-  ChoiceBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -13,6 +11,7 @@ import { choiceBlock } from "core/features/choice";
 
 /** Style */
 import colors from "public/themeColors.module.scss";
+import { InlineListEN } from "core/components/widgets/inline-list";
 
 export const Page: PageType = () => {
   let tag = "left";
@@ -41,7 +40,7 @@ export const Page: PageType = () => {
         <Chapter filename="left">
           <Section>
             {
-                choiceBlock(tag, 'gesture', 1, 'transparent')
+                choiceBlock(tag, 'gesture', 1, 'transparent', `${colors.white}`, InlineListEN, null, false)
             }
           </Section>
         </Chapter>

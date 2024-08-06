@@ -13,26 +13,21 @@ import useChapter from "core/hooks/use-chapter";
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
+  const chili = useVariable("chili");
 
-  let displayText: string =
-    "Perhaps I shall partake in a can of chili. Cracking open a can of chili and heating \
+  let displayText: string = chili
+    ? "I can't eat more chili, that's too depressing. Two cans in a day? One is bad enough."
+    : "Perhaps I shall partake in a can of chili. Cracking open a can of chili and heating \
     it up slowly on the stove is the pinnacle of fine dining. Maybe I should crack a bottle \
     of wine to enjoy with my delicious meal. Perhaps a fine Zinfandel or Cabernet Sauvignon \
     (2009 was a good year) would make an excellent pairing for my beef morsels and slow cooked \
     bean medley in a hearty tomato and herb reduction. That hits the spot. Now I can get back to \
     procrastinating.";
 
-  const chili = useVariable("chili");
-
-  if (chili) {
-    displayText =
-      "I can't eat more chili, that's too depressing. Two cans in a day? One is bad enough.";
-  }
-
   useEffect(() => {
     dispatch(incrementScore());
     dispatch(updateVariable("eat", true));
-    dispatch(updateVariable('chili', true));
+    dispatch(updateVariable("chili", true));
   });
 
   return (
