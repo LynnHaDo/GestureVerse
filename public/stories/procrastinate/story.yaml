@@ -83,8 +83,10 @@ chapters:
     title: "Do homework"
   - filename: "homework_start"
     title: "Do homework: Start"
+  - filename: "homework_start_again"
+    title: "Do homework: Start again"
   - filename: "homework_quit"
     title: "Do homework_quit"
   
 players:
-  - start: "start"
+  - start: "homework"

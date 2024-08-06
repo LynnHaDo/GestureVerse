@@ -17,36 +17,25 @@ export const Page: PageType = () => {
   const chapter = useChapter();
   /** App dispatch */
   const dispatch = useAppDispatch();
-
-  /** Number of minutes left */
-  let counterMins: number = useVariable("counterMins");
-  let counterStarted: boolean = useVariable("counterStarted");
-
-  let displayWrapper: JSX.Element = (
-    <>
-      <p>{counterMins} minutes left...</p>
-    </>
-  );
-
-  setTimeout(() => {
-    counterMins--;
-    dispatch(updateVariable('counterMins', counterMins))
-  }, 1000 * 60);
-
-  if (counterMins <= 0 && counterStarted) {
-    dispatch(makeChoice("timeOut", 'fail', "homework_start_again", "homework_start_again"));
-  }
-
-  useEffect(() => {
-    console.log(counterMins)
-  }, [counterMins]);
+  const tag = "procrastinate__homework_fail";
 
   return (
-    <Chapter filename={chapter.filename}>
-      <Section>
-        {displayWrapper}
-
-      </Section>
+    <Chapter filename={`${chapter.filename}`}>
+      <p>Wait the deadline has passed already??</p>
+      <p>
+        I don't think I can finish in time. Should I just give up or use the
+        grace period?
+      </p>
+      {choiceBlock(
+        tag,
+        "gesture",
+        1,
+        `${colors.orang}`,
+        `${colors.white}`,
+        BulletedList,
+        null,
+        true
+      )}
     </Chapter>
   );
 };

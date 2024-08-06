@@ -15,7 +15,7 @@ export const Page: PageType = () => {
       <Chapter filename="nap">
         <Section>
           <Nav
-            text="Oh no is it already time to do homework??"
+            text="I feel refreshed and energized to do anything (but homework)."
             next="menu"
             tag="endNap"
           />

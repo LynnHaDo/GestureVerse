@@ -13,7 +13,7 @@ import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   const tag = "procrastinate__menu";
-  let [tv, game, eat, nap, clean ] = useVariable(null, [
+  let [tv, game, eat, nap, clean] = useVariable(null, [
     "tv",
     "game",
     "eat",
@@ -56,34 +56,33 @@ export const Page: PageType = () => {
       displayText = "Wow I really need to start, it's pretty late.";
   }
 
-  useEffect(() => {
-    console.log(tv, game, eat, nap, clean)
+  if (tv && game && eat) {
+    Options[tag]["homework"].disabled = false;
+  }
 
-    if (tv && game && eat) {
-        Options[tag]["homework"].disabled = false;
-    }
+  if (tv) {
+    Options[tag]["tv"].description = "Watch more tv";
+  }
 
-    if (tv) {
-        Options[tag]['tv'].description = 'Watch more tv'
-    }
+  if (game) {
+    Options[tag]["game"].description = "Play more games";
+  }
 
-    if (game) {
-        Options[tag]['game'].description = 'Play more games'
-    }
+  if (eat) {
+    Options[tag]["eat"].description = "Eat more";
+  }
 
-    if (eat) {
-        Options[tag]['eat'].description = 'Eat more'
-    }
+  if (nap) {
+    Options[tag]["nap"].description = "I feel refreshed";
+    Options[tag]["nap"].disabled = true;
+  }
 
-    if (nap) {
-        Options[tag]['nap'].description = 'I feel refreshed'
-    }
+  if (clean) {
+    Options[tag]["clean"].description = "Now my room is nice and clean!";
+    Options[tag]["clean"].disabled = true;
+  }
 
-    if (clean) {
-        Options[tag]['clean'].description = 'Now my room is nice and clean!'
-    }
-
-  }, [ tv, game, eat, nap, clean ]);
+  // tv, game, eat, nap, clean, Options[tag]["homework"].disabled, Options[tag]["clean"].disabled, Options[tag]["nap"].disabled
 
   return (
     <>

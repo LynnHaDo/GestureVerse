@@ -4,8 +4,6 @@ import { PageType } from "core/types";
 import { choiceBlock } from "core/features/choice";
 
 import colors from "public/themeColors.module.scss";
-import { BulletedList } from "core/components/widgets";
-import { InlineListEN } from "core/components/widgets/inline-list";
 
 export const Page: PageType = () => {
   const tag = "procrastinate__eat_cook";

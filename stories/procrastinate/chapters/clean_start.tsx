@@ -7,13 +7,17 @@ import { PageType, useAppDispatch } from "core/types";
 import { useEffect } from "react";
 import { incrementScore } from "core/features/score";
 import useChapter from "core/hooks/use-chapter";
+import { updateVariable } from "core/features/variable-manager";
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
+
   useEffect(() => {
     dispatch(incrementScore());
+    dispatch(updateVariable('clean', true));
   }, []);
+  
   return (
     <Chapter filename="clean_start">
       <Section>

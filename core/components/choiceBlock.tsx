@@ -131,7 +131,7 @@ const ChoiceBlock = ({
               </p>
             );
           })}
-          <p>Note: Keep the posture for at least 5 seconds.</p>
+          <p>Note: Keep the gesture for at least 5 seconds.</p>
           {<p ref={decision}></p>}
         </div>
 

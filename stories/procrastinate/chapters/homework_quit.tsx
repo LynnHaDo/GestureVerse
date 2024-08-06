@@ -1,17 +1,10 @@
-import { Section, Chapter, Nav, TextBlock } from "core/components";
+import { Section, Chapter } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
-import FadeIn from "core/components/ui/fadein";
-
-import { animated } from "@react-spring/web";
 
 import colors from "public/themeColors.module.scss";
-import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
-import { choiceBlock } from "core/features/choice";
-import { BulletedList } from "core/components/widgets";
-import ResetButton from "core/components/ui/reset-button";
 import End from "core/components/end";
 
 export const Page: PageType = () => {
@@ -19,16 +12,6 @@ export const Page: PageType = () => {
   const chapter = useChapter();
   /** App dispatch */
   const dispatch = useAppDispatch();
-
-  const tag = "procrastinate__homework_fail";
-
-  /** Deadline previously set */
-  const deadline: Date = useVariable("deadline");
-  /** Number of minutes left */
-  let counterMins: number = useVariable("counterMins");
-  let counterStarted: boolean = useVariable("counterStarted");
-
-  
 
   useEffect(() => {
     dispatch(updateVariable('counterStarted', false));
@@ -50,6 +33,7 @@ export const Page: PageType = () => {
           additionalButtonStyle={{
             backgroundColor: `${colors.orange}`,
             color: `${colors.white}`,
+            border: `1px solid ${colors.dark}`
           }}
         />
       </Section>

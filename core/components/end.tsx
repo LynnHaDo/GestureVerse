@@ -7,6 +7,7 @@ const highlighter: React.CSSProperties = {
 const resetButtonStyle: React.CSSProperties = {
   textTransform: "uppercase",
   width: "auto",
+  border: "none"
 };
 
 export interface EndProps {
@@ -26,11 +27,12 @@ const End = ({
   sources = [],
   additionalButtonStyle,
 }: EndProps): JSX.Element => {
+    console.log(sources)
   return (
     <>
       <p>
-        Thank you for playing <span style={highlighter}>{storyName}</span>
-        To play again go back to the{" "}
+        Thank you for playing <span style={highlighter}>{storyName}</span>{". "}
+        To play again press{" "}
         <ResetButton
           children="start"
           message="Do you want to restart the story?"
@@ -41,8 +43,8 @@ const End = ({
       {reference && (
         <>
           <h5>Reference</h5>
-          {sources.map((source) => {
-            <p style={{ fontStyle: "italic" }}>{source}</p>;
+          {...sources.map((source) => {
+            return <p style={{ fontStyle: "italic" }}>{source}</p>;
           })}
         </>
       )}
