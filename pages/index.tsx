@@ -75,22 +75,14 @@ export const config: NeatConfig = {
 function Index({ paths }: StoryProps): JSX.Element {
   const gradient = useRef<HTMLCanvasElement>(null);
 
-  let loaderRef = useRef<HTMLSpanElement>();
-
   useEffect(() => {
     const neat = new NeatGradient({
       ref: gradient.current,
       ...config,
     });
 
-    setTimeout(() => {
-        
-    }, 2000)
-
     return () => neat.destroy();
   }, []);
-
-  
 
   return (
     <>
@@ -115,10 +107,7 @@ function Index({ paths }: StoryProps): JSX.Element {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-      
-      
-       <Loader />
-      
+      <Loader />
       <div className="gradient">
         <canvas ref={gradient} style={backgroundFillStyle} />
       </div>

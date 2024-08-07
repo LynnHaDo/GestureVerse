@@ -12,7 +12,7 @@ export const Loader = ({ backgroundColor = 'rgba(255, 255, 255, 0.53)'}: LoaderP
     loaderRef.current.style.opacity = "0";
     loaderRef.current.style.visibility = "hidden";
   }, 500);
-
+  
   return (
     <span className={styles.loaderWrapper} ref={loaderRef} style={{backgroundColor: backgroundColor}}>
       <span className={styles.loaderFlex}>
