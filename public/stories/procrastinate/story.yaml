@@ -93,4 +93,4 @@ chapters:
     title: "Do homework: Done"
   
 players:
-  - start: "homework_start_timer"
+  - start: "start"

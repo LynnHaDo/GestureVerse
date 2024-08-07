@@ -47,7 +47,7 @@ export const InlineList: typeof InlineListType = ({
         {[...group]
           .filter((c) => c !== null && c !== undefined)
           .map((t, i) => (
-            <span key={i} className={className}>
+            <span key={i}>
               {group.length > 1 && i === group.length - 1 ? conjunction : ""}
               {type == "link" ? (
                 <Link
@@ -55,6 +55,7 @@ export const InlineList: typeof InlineListType = ({
                   text={t}
                   tag={tag}
                   color={textColor}
+                  className={className}
                 />
               ) : (
                 t
@@ -71,7 +72,7 @@ export const InlineList: typeof InlineListType = ({
             <span key={i} className={className}>
               {group.length > 1 && i === group.length - 1 ? conjunction : ""}
               {type == "link" ? (
-                <Link handler={() => handler(t)} text={optionList.at(i).description} tag={tag} color={textColor} />
+                <Link handler={() => handler(t)} text={optionList.at(i).description} className={className} tag={tag} color={textColor} />
               ) : (
                 optionList.at(i).description
               )}

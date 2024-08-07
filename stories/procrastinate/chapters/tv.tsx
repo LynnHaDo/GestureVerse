@@ -19,7 +19,7 @@ export const Page: PageType = () => {
             tag,
             "handedness",
             1,
-            `${colors.brown}`,
+            `${colors.retroGreen}`,
             `${colors.white}`,
             BulletedList
           )}

@@ -50,8 +50,8 @@ export const Page: PageType = () => {
           tag,
           "gesture",
           1,
-          `${colors.lightBlue}`,
-          `${colors.white}`,
+          `${colors.darkYellow}`,
+          `${colors.dark}`,
           BulletedList,
           <Nav
             text="Start cleaning..."

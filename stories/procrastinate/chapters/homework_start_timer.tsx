@@ -10,10 +10,14 @@ import colors from "public/themeColors.module.scss";
 
 import { animated } from "@react-spring/web";
 
-import { setupIonicReact } from "@ionic/react";
 import '@ionic/react/css/core.css';
 
-import { IonButton, IonInput, IonItem } from "@ionic/react";
+import { IonInput } from "@ionic/react";
+import { useContext } from "react";
+
+import { StoryContext } from 'core/containers/store-container'
+import { useRouter } from "next/router";
+import { resetStory } from "core/components/ui/reset-button";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -21,15 +25,18 @@ export const Page: PageType = () => {
   /** App dispatch */
   const dispatch = useAppDispatch();
 
-  setupIonicReact();
+  const { persistor, config } = useContext(StoryContext)
+  const router = useRouter();
 
   const handleCounterInput = (val: string | number) => {
     if (typeof val == "string" && val.match('[0-9]+')) {
         let valNum = parseInt(val)
+
         if (valNum < 0) {
             return;
         }
 
+        resetStory(true, config, persistor, router);
         dispatch(updateVariable("counterMins", valNum));
         dispatch(
           makeChoice("timeSet", "start_again", "homework_start", "homework_start")

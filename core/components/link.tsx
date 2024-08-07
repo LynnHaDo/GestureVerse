@@ -12,6 +12,7 @@ interface LinkProps {
   handler: any;
   tag?: Tag;
   color?: string;
+  className?: string;
 }
 const Link = ({
   text,
@@ -19,6 +20,7 @@ const Link = ({
   handler,
   tag,
   color,
+  className
 }: LinkProps): JSX.Element => {
   if (handler) {
     return (
@@ -37,11 +39,12 @@ const Link = ({
         }}
         dangerouslySetInnerHTML={{ __html: text }}
         style={{ color: color }}
+        className={className}
       />
     );
   }
   return (
-    <span className="selected" dangerouslySetInnerHTML={{ __html: text }} />
+    <span className={`selected ${className}`} dangerouslySetInnerHTML={{ __html: text }} />
   );
 };
 

@@ -25,7 +25,7 @@ import {
 const ENABLE_TEXT = "Open webcam";
 const DISABLE_TEXT = "Close webcam";
 
-const MIN_CONFIDENCE_SCORE = 0.7;
+const MIN_CONFIDENCE_SCORE = 0.6;
 
 export interface HandGesture {
   /** Type of gesture. One of the following: "None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou" */
@@ -52,8 +52,6 @@ interface CameraProps {
   textColor: string;
   /** Result object (if any) */
   resultSetter: Dispatch<HandGesture>;
-  /** Type of prediction (gesture or handedness) */
-  predictionType: 'gesture' | 'handedness';
   /** List of available gesture options to predict for */
   availableOptions: string[];
 }
@@ -69,7 +67,6 @@ const Camera = ({
   btnBackgroundColor,
   textColor,
   resultSetter,
-  predictionType = 'gesture',
   availableOptions,
 }: CameraProps): JSX.Element => {
   let gestureRecognizer = useRef<GestureRecognizer>(null);
@@ -141,10 +138,7 @@ const Camera = ({
       triggerBtn.current.addEventListener("click", togglePrediction);
     }
 
-    return () => {
-        console.log("terminated")
-        stopPrediction();
-    };
+    return () => stopPrediction()
   }, []);
 
   /**

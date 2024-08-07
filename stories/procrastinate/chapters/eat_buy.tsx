@@ -23,7 +23,7 @@ export const Page: PageType = () => {
             tag,
             "handedness",
             1,
-            `${colors.lightBlue}`,
+            `${colors.blue}`,
             `${colors.white}`,
             BulletedList
           )}

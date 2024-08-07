@@ -36,12 +36,20 @@ $text-color: colors.$very-dark;
     font-weight: 700;
   }
 
-  p,a, .choiceContent {
+  p,a {
     font-size: 1.2rem;
   }
 
   a {
     color: $text-color !important;
+  }
+
+  .choiceContent {
+    font-size: 1.2rem;
+  }
+
+  section {
+    margin-bottom: 2rem;
   }
 
   button {
@@ -61,6 +69,11 @@ $text-color: colors.$very-dark;
       border: 1px solid $text-color;
       color: $text-color;
     }
+
+    &.webcamOpenner {
+        width: 100px;
+        height: 35px;
+    }
   }
 
   .text_center {
@@ -70,10 +83,6 @@ $text-color: colors.$very-dark;
   .gracePeriodInput {
     font-family: inherit;
     font-size: 1rem;
-
-    &.has-focus {
-        border-color: colors.$retroGreen;
-    }
   }
 }
 

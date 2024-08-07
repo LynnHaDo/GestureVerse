@@ -35,7 +35,7 @@ export const Page: PageType = () => {
     setTimeout(() => {
       counterMins--;
       dispatch(updateVariable("counterMins", counterMins));
-    }, 1000 * 60);
+    }, 1000);
   }
 
   if (counterMins <= 0) {
@@ -53,17 +53,18 @@ export const Page: PageType = () => {
     <>
       <Chapter filename={chapter.filename}>
         <Section>
-            <p>{counterMins} minutes left...</p>
+          <p>{counterMins} minutes left...</p>
           {textsZero && (
             <div className={styles.panicWrapper}>
               {Object.entries(textsZero).map(([initial, later], i) => {
                 return (
                   <span key={i}>
                     <C
-                      options={[[initial]]}
-                      last={later}
+                      options={[[`${initial} `]]}
+                      last={`${later} `}
                       tag={`item${i}IsClickedInTextsZero`}
                       next={Next.None}
+                      className={styles.choiceContent}
                     />
                   </span>
                 );
@@ -87,10 +88,11 @@ export const Page: PageType = () => {
                 return (
                   <span key={i}>
                     <C
-                      options={[[initial]]}
-                      last={later}
+                      options={[[`${initial} `]]}
+                      last={`${later} `}
                       tag={`item${i}IsClickedInTextsOne`}
                       next={Next.None}
+                      className={styles.choiceContent}
                     />
                   </span>
                 );
@@ -114,10 +116,11 @@ export const Page: PageType = () => {
                 return (
                   <span key={i}>
                     <C
-                      options={[[initial]]}
-                      last={later}
+                      options={[[`${initial} `]]}
+                      last={`${later} `}
                       tag={`item${i}IsClickedInTextsTwo`}
                       next={Next.None}
+                      className={styles.choiceContent}
                     />
                   </span>
                 );
@@ -125,6 +128,16 @@ export const Page: PageType = () => {
             </div>
           )}
 
+          <p>
+            <Nav
+              text="Just a bit more..."
+              next={Next.Section}
+              tag="goToPanicSectionFour"
+            />
+          </p>
+        </Section>
+
+        <Section>
           <p>
             <Nav
               text="DONE 🎉🎉🎉"
