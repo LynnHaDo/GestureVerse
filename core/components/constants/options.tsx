@@ -108,7 +108,35 @@ export const Options: OptionProps = {
         "eat_buy_doordash": optionItem(null, 'Right', 'Open the phone to order something on Doordash')
     },
     "procrastinate__homework_fail": {
-        "homework_start": optionItem('Thumb_Up', null, 'Try again'),
+        "homework_start_timer": optionItem('Thumb_Up', null, 'Try again'),
         "homework_quit": optionItem('Thumb_Down', null, 'Quit')
+    }
+}
+
+export interface TextReplacementProps {
+    [filename: string]: {
+        [initialSentence: string]: string
+    }
+}
+
+export const TextReplacements: TextReplacementProps = {
+    "homework_start": {
+        "Oh god I gotta grab my school stuff I think I can still finish in time": "No, I need to focus.",
+        "Let's see, I have a chapter to read and a response to write on it, which I really don't want to do but it needs to get done.": "I can't keep doing this to myself.",
+        "I have art I need to make but that's due tommorow evening I think I can get that done tonight too so I can relax tommorow.": "Why can't I just make myself do work.",
+        "I gotta figure out what to do first.": "..."
+    },
+    "homework_start_one": {
+        "Ok good, one thing out of the way.": "Argh... I dont want to do this anymore.",
+        "So now I should probably start my art homework.": "I'm tired from doing nothing.",
+        "I've been holding off on that one because I just haven't been inspired": "Ughhhhhhhhhhhhhh.",
+        "OH NO I HAD MATH TOO!!! I THOUGHT I WAS ALMOST DONE. NOW I'M GOING TO STAY UP SUPER LATE TO FINISH THAT.": "I DONT WANT TO PRACTICE INTEGRATION TECHNIQUES.",
+        "Ugh ok I'll do that now it's more important and probably takes longer.": "What a long day (sigh)..."
+    },
+    "homework_start_two": {
+        "I'm so close.": "Almost done.",
+        "Keep going!": "I can do this.",
+        "Boom, math done!": "Now for art.",
+        "I'm suddenly inspired, I'm forcing myself to be.": "So closeeeee..."
     }
 }

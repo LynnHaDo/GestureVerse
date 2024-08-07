@@ -96,6 +96,7 @@ const ChoiceBlock = ({
             tag={tag}
             optionList={optionValues}
             type="string"
+            className="choiceContent"
           />
         ) : (
           <C
@@ -104,6 +105,7 @@ const ChoiceBlock = ({
             widget={widget}
             optionList={optionValues}
             type="string"
+            className="choiceContent"
           />
         )}
 

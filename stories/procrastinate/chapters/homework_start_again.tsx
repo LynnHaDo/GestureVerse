@@ -9,7 +9,7 @@ import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
-import { choiceBlock, makeChoice } from "core/features/choice";
+import { choiceBlock } from "core/features/choice";
 import { BulletedList } from "core/components/widgets";
 
 export const Page: PageType = () => {
@@ -19,8 +19,12 @@ export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const tag = "procrastinate__homework_fail";
 
+  useEffect(() => {
+    dispatch(updateVariable('counterStarted', false));
+  })
+
   return (
-    <Chapter filename={`${chapter.filename}`}>
+    <Chapter filename={chapter.filename}>
       <p>Wait the deadline has passed already??</p>
       <p>
         I don't think I can finish in time. Should I just give up or use the
@@ -30,7 +34,7 @@ export const Page: PageType = () => {
         tag,
         "gesture",
         1,
-        `${colors.orang}`,
+        `${colors.orange}`,
         `${colors.white}`,
         BulletedList,
         null,

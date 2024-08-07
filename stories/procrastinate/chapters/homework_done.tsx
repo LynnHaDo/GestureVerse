@@ -10,12 +10,21 @@ import End from "core/components/end";
 export const Page: PageType = () => {
   /** Current chapter */
   const chapter = useChapter();
+  /** App dispatch */
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(updateVariable('counterStarted', false));
+  });
+
   return (
     <Chapter filename={chapter.filename}>
       <Section>
         <p>
-          I give up. I'm just gonna skip it. I just can't do it. I need to
-          relax...
+        Thank god...
+        </p>
+        <p>
+        Now I can finally relax....
         </p>
 
         <End

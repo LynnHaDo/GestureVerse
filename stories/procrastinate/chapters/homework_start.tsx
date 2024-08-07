@@ -1,16 +1,19 @@
-import { Section, Chapter, Nav } from "core/components";
-import { PageType, useAppDispatch } from "core/types";
-import FadeIn from "core/components/ui/fadein";
-
-import { animated } from "@react-spring/web";
-
-import colors from "public/themeColors.module.scss";
-import { useVariable } from "core/hooks/use-variable";
-import useChapter from "core/hooks/use-chapter";
-import { useEffect } from "react";
-import { updateVariable } from "core/features/variable-manager";
+import { Section, Chapter, Nav, C } from "core/components";
+import { Next, PageType, useAppDispatch } from "core/types";
 import { choiceBlock, makeChoice } from "core/features/choice";
 import { BulletedList } from "core/components/widgets";
+
+import { useVariable } from "core/hooks/use-variable";
+import useChapter from "core/hooks/use-chapter";
+import { useEffect, useState } from "react";
+import { updateVariable } from "core/features/variable-manager";
+
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
+import colors from "public/themeColors.module.scss";
+import { animated } from "@react-spring/web";
+
+import { TextReplacements } from "core/components/constants/options";
+import { IonInput, IonItem } from "@ionic/react";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -20,33 +23,117 @@ export const Page: PageType = () => {
 
   /** Number of minutes left */
   let counterMins: number = useVariable("counterMins");
-  let counterStarted: boolean = useVariable("counterStarted");
 
-  let displayWrapper: JSX.Element = (
-    <>
-      <p>{counterMins} minutes left...</p>
-    </>
-  );
+  /** Whether or not to open the time dialog */
+  let [openTimeDialog, setOpenTimeDialog] = useState(false);
 
-  setTimeout(() => {
-    counterMins--;
-    dispatch(updateVariable('counterMins', counterMins))
-  }, 1000 * 60);
+  const textsZero = TextReplacements[chapter.filename];
+  const textsOne = TextReplacements[`${chapter.filename}_one`];
+  const textsTwo = TextReplacements[`${chapter.filename}_two`];
 
-  if (counterMins <= 0 && counterStarted) {
-    dispatch(makeChoice("timeOut", 'fail', "homework_start_again", "homework_start_again"));
+  if (counterMins > 0) {
+    setTimeout(() => {
+      counterMins--;
+      dispatch(updateVariable("counterMins", counterMins));
+    }, 1000);
   }
 
-  useEffect(() => {
-    console.log(counterMins)
-  }, [counterMins]);
+  if (counterMins <= 0) {
+    dispatch(
+      makeChoice(
+        "timeOut",
+        "fail",
+        "homework_start_again",
+        "homework_start_again"
+      )
+    );
+  }
 
   return (
-    <Chapter filename={chapter.filename}>
-      <Section>
-        {displayWrapper}
+    <>
+      <Chapter filename={chapter.filename}>
+        <Section>
+            <p>{counterMins} minutes left...</p>
+          {textsZero && (
+            <div className={styles.panicWrapper}>
+              {Object.entries(textsZero).map(([initial, later], i) => {
+                return (
+                  <span key={i}>
+                    <C
+                      options={[[initial]]}
+                      last={later}
+                      tag={`item${i}IsClickedInTextsZero`}
+                      next={Next.None}
+                    />
+                  </span>
+                );
+              })}
+            </div>
+          )}
 
-      </Section>
-    </Chapter>
+          <p>
+            <Nav
+              text="It's all about tradeoffs. I relaxed earlier but I relaxed too much so now I will suffer for it."
+              next={Next.Section}
+              tag="goToPanicSectionTwo"
+            />
+          </p>
+        </Section>
+
+        <Section>
+          {textsOne && (
+            <div className={styles.panicWrapper}>
+              {Object.entries(textsOne).map(([initial, later], i) => {
+                return (
+                  <span key={i}>
+                    <C
+                      options={[[initial]]}
+                      last={later}
+                      tag={`item${i}IsClickedInTextsOne`}
+                      next={Next.None}
+                    />
+                  </span>
+                );
+              })}
+            </div>
+          )}
+
+          <p>
+            <Nav
+              text="Oh well, guess I won't get to relax more tonight."
+              next={Next.Section}
+              tag="goToPanicSectionThree"
+            />
+          </p>
+        </Section>
+
+        <Section>
+          {textsTwo && (
+            <div className={styles.panicWrapper}>
+              {Object.entries(textsTwo).map(([initial, later], i) => {
+                return (
+                  <span key={i}>
+                    <C
+                      options={[[initial]]}
+                      last={later}
+                      tag={`item${i}IsClickedInTextsTwo`}
+                      next={Next.None}
+                    />
+                  </span>
+                );
+              })}
+            </div>
+          )}
+
+          <p>
+            <Nav
+              text="DONE 🎉🎉🎉"
+              next="homework_done"
+              tag="goToHomeworkDone"
+            />
+          </p>
+        </Section>
+      </Chapter>
+    </>
   );
 };

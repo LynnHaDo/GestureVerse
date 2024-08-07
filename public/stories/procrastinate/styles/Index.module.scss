@@ -36,9 +36,10 @@ $text-color: colors.$very-dark;
     font-weight: 700;
   }
 
-  p,a {
+  p,a, .choiceContent {
     font-size: 1.2rem;
   }
+
   a {
     color: $text-color !important;
   }
@@ -64,6 +65,15 @@ $text-color: colors.$very-dark;
 
   .text_center {
     text-align: center;
+  }
+
+  .gracePeriodInput {
+    font-family: inherit;
+    font-size: 1rem;
+
+    &.has-focus {
+        border-color: colors.$retroGreen;
+    }
   }
 }
 

@@ -80,7 +80,7 @@ export const Page: PageType = () => {
           </ul>
 
           <FadeIn wrapper={animated("div")} delayTime={500}>
-            <p>OH NO IT'S LITERALLY DUE IN {counterMins} MINUTES.</p>
+            <p>OH NO THE MATH HOMEWORK IS LITERALLY DUE IN {counterMins} MINUTES.</p>
           </FadeIn>
 
           <p>
