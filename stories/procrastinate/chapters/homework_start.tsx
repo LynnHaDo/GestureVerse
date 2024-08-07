@@ -35,7 +35,7 @@ export const Page: PageType = () => {
     setTimeout(() => {
       counterMins--;
       dispatch(updateVariable("counterMins", counterMins));
-    }, 1000);
+    }, 1000 * 60);
   }
 
   if (counterMins <= 0) {
