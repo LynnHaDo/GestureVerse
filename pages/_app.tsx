@@ -10,10 +10,13 @@
 import 'public/global.scss'
 
 import type { AppProps } from 'next/app'
-
+import { Loader } from 'core/components/loader'
 
 function WindriftApp({ Component, pageProps }: AppProps): JSX.Element {
-    return <Component {...pageProps} />
+    return <>
+    <Loader />
+    <Component {...pageProps} />
+    </>
 }
 
 export default WindriftApp
