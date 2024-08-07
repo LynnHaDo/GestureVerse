@@ -4,9 +4,6 @@ import fs from "fs";
 import path from "path";
 
 import styles from "public/stories/index/styles/Index.module.scss";
-import { Sofia_Sans, Pixelify_Sans } from "next/font/google";
-const sofia_sans = Sofia_Sans({ subsets: ["latin"], display: 'swap'});
-const pixelify_sans = Pixelify_Sans({ subsets: ["latin"], display: 'swap' });
 
 import { NeatConfig, NeatGradient } from "@firecms/neat";
 import { useEffect, useRef, useState } from "react";
@@ -114,7 +111,7 @@ function Index({ paths }: StoryProps): JSX.Element {
       <div className="gradient">
         <canvas ref={gradient} style={backgroundFillStyle} />
       </div>
-      <header className={`${styles.header} ${sofia_sans.className}`}>
+      <header className={styles.header}>
         <nav>
           <div></div>
           <h1>gestureverse</h1>
@@ -122,7 +119,7 @@ function Index({ paths }: StoryProps): JSX.Element {
         </nav>
       </header>
       <main
-        className={`${styles.main} ${sofia_sans.className} ${pixelify_sans.className}`}
+        className={styles.main}
         lang="en"
       >
         <nav className={styles.left}></nav>
