@@ -6,8 +6,9 @@ import path from "path";
 import styles from "public/stories/index/styles/Index.module.scss";
 
 import { NeatConfig, NeatGradient } from "@firecms/neat";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { backgroundFillStyle } from "core/components/backgroundFill";
+import { Loader } from "core/components/loader";
 
 interface StoryProps {
   paths: string[];
@@ -20,7 +21,6 @@ export const getStaticProps: GetStaticProps = async () => {
       (dir) =>
         dir.isDirectory() &&
         (dir.name.includes("procrastinate") ||
-          dir.name.includes("my-game") ||
           dir.name.includes("a-beach-walk"))
     )
     .map((dir) => dir.name)
@@ -75,14 +75,23 @@ export const config: NeatConfig = {
 function Index({ paths }: StoryProps): JSX.Element {
   const gradient = useRef<HTMLCanvasElement>(null);
 
+  let loaderRef = useRef<HTMLSpanElement>();
+
   useEffect(() => {
     const neat = new NeatGradient({
       ref: gradient.current,
       ...config,
     });
 
+    setTimeout(() => {
+        
+    }, 2000)
+
     return () => neat.destroy();
-  });
+  }, []);
+
+  
+
   return (
     <>
       <Head>
@@ -106,6 +115,10 @@ function Index({ paths }: StoryProps): JSX.Element {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
+      
+      
+       <Loader />
+      
       <div className="gradient">
         <canvas ref={gradient} style={backgroundFillStyle} />
       </div>

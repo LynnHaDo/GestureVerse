@@ -1,0 +1,56 @@
+@use '/public/styles/colors';
+
+.loaderWrapper {
+    width: calc(100vw);
+    height: calc(100vh);
+    margin-left: -50vw;
+    left: 50%;
+    margin-top: -50vh;
+    top: 50%;
+    position: fixed;
+    /* From https://css.glass */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.7px);
+    -webkit-backdrop-filter: blur(6.7px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.3s linear, opacity 0.4s linear;
+  
+    .loader {
+      margin: 3px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      background-color: colors.$very-light;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+      box-shadow: 0px 0px 9px 4px #c6c6c6 inset;
+    }
+    .loader::after {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      background-color: colors.$very-dark;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+    }
+  
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  

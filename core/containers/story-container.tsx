@@ -9,6 +9,7 @@ import { increment } from 'core/features/score'
 import Score from 'core/components/score'
 import VariableManager from 'core/components/variableManager'
 import { update as updateVariable } from 'core/features/variable-manager'
+import { Loader } from 'core/components/loader'
 
 interface StoryProps extends PropsFromRedux {
     config: Config
@@ -23,12 +24,15 @@ class StoryContainer extends React.Component<StoryProps> {
             // If we received a browser forward/back, jump to the relevant point in history
             window.addEventListener('popstate', this.jumpFromHistory)
         }
+        
     }
     componentDidMount() {
         // On the first mount, also jump from the history
         if (this.props.config.enableUndo) {
             this.jumpFromHistory()
         }
+
+        
     }
     jumpFromHistory() {
         const browserState = window.history.state

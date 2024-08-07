@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { Toc, TocItem, RootState } from 'core/types'
 import Chapter from './chapter'
 import { MDXContent } from 'mdx/types'
+import { Loader } from './loader'
 
 interface ChapterComponent {
     component: JSX.Element
@@ -41,9 +42,10 @@ interface StoryProps {
 const Story = ({ story }: StoryProps): JSX.Element => {
     const toc = useSelector((state: RootState) => state.navigation.present.toc)
     const [components, setComponents] = React.useState<ChapterComponent[]>(null)
+    const loaderRef = React.useRef<HTMLSpanElement>(null);
 
     React.useEffect(() => {
-        setComponents(chapterComponents(toc, story))
+        setComponents(chapterComponents(toc, story));
     }, [])
 
     return components ? (
@@ -52,6 +54,7 @@ const Story = ({ story }: StoryProps): JSX.Element => {
                 .filter((c) => c.visible)
                 .map((chapter) => (
                     <div key={chapter.filename}>
+                        <Loader />
                         {
                             components
                                 .filter((co) => co.item.filename === chapter.filename)

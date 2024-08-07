@@ -4,6 +4,7 @@ import { PageType } from "core/types";
 import { choiceBlock } from "core/features/choice";
 
 import colors from "public/themeColors.module.scss";
+import { BulletedList } from "core/components/widgets";
 
 export const Page: PageType = () => {
   const tag = "procrastinate__eat_cook";
@@ -14,14 +15,15 @@ export const Page: PageType = () => {
         <Section>
           <p>
             I'm not sure what to cook. Where should I look for something tasty:{" "}
-            {choiceBlock(
+          </p>
+          {choiceBlock(
               tag,
               "handedness",
               1,
               `${colors.blue}`,
-              `${colors.white}`
+              `${colors.white}`,
+              BulletedList
             )}
-          </p>
         </Section>
       </Chapter>
     </>
