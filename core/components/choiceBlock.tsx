@@ -144,7 +144,6 @@ const ChoiceBlock = ({
           textColor={btnTextColor}
           numHands={maxNumHands}
           resultSetter={resultSetter}
-          predictionType={predictionType}
           availableOptions={availableOptions}
         />
       </>

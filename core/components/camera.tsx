@@ -54,6 +54,7 @@ interface CameraProps {
   resultSetter: Dispatch<HandGesture>;
   /** List of available gesture options to predict for */
   availableOptions: string[];
+  
 }
 
 /**
