@@ -82,8 +82,13 @@ Through this project, I also want to introduce additional advanced features comp
         - "ILoveYou": "Do the I Love You sign 🤟 (you can try doing 🫶 to see what happens)"
     - [x] Navigate based on handedness
     - [x] Display category, confidence score, and handedness in real-time
+    - [x] Adjust the number of hands the model can predict for.
 
-- [x] Additional configuration to the original `Choice` class to allow custom handling, add custom styling, ...
+- [x] Additional configuration to the original `Choice`, `Nav` classes to allow custom handling, add custom styling, ...
+
+- [x] A variable management system that allows keeping track of variables within the story. 
+    - [x] Score keeping feature
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -102,7 +107,7 @@ Through this project, I also want to introduce additional advanced features comp
     - [x] A beach walk (View [demo](https://drive.google.com/file/d/1ksS3PHsW3q9o_auQ11SnHJ5wVTxSeQN5/view?usp=sharing))
     - [x] Procrastinate (View [demo]())
 
-- [] Create an account to save story (pending)
+- [ ] Create an account to save story (pending)
 
 See the [open issues](https://github.com/LynnHaDo/Storytelling/issues) for a full list of proposed features (and known issues).
 
