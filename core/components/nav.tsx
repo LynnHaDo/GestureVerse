@@ -8,7 +8,7 @@ import React, { useContext } from 'react'
 
 import { BaseList } from 'core/components/widgets'
 import { Choice } from 'core/components'
-import { Tag, Next } from 'core/types'
+import { Tag, Next, Option } from 'core/types'
 import { ChapterContext } from 'core/components/chapter'
 
 export interface NavProps {
@@ -23,18 +23,22 @@ export interface NavProps {
     /** Class name to based to the widget */
     className?: string,
     /** Color of the hyperlinks */
-    textColor?: string
+    textColor?: string,
+    /** Handler for clicking event */
+    handler?: Function
 }
+
 const Nav = ({
     text = 'More...',
     next = Next.Section,
     persist = true,
     tag = undefined,
     className = undefined,
-    textColor = ''
+    textColor = '',
+    handler = undefined
 }: NavProps): JSX.Element => {
     const { filename } = useContext(ChapterContext)
-
+    
     return (
         <Choice
             options={[[text]]}
@@ -44,6 +48,7 @@ const Nav = ({
             persist={persist}
             className={className}
             extra={{textColor: textColor}}
+            handler={handler}
         />
     )
 }

@@ -3,17 +3,22 @@ import { Section, Chapter, Nav } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 
 /** Hooks */
-import { PageType, useAppDispatch } from "core/types";
+import { PageType, useAppDispatch, Option } from "core/types";
 import { useEffect } from "react";
 import { incrementScore } from "core/features/score";
 import { updateVariable } from "core/features/variable-manager";
 import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
+import { makeChoice } from "core/features/choice";
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
   const chili = useVariable("chili");
+
+  let tag = `moveFrom${chapter.filename}toMenu`;
+  let next = "menu";
+  let text = "things";
 
   let displayText: string = chili
     ? "I can't eat more chili, that's too depressing. Two cans in a day? One is bad enough."
@@ -27,8 +32,12 @@ export const Page: PageType = () => {
   useEffect(() => {
     dispatch(incrementScore());
     dispatch(updateVariable("eat", true));
-    dispatch(updateVariable("chili", true));
   });
+
+  const updateChili = (option: Option): void => {
+    dispatch(updateVariable("chili", true));
+    dispatch(makeChoice(tag, option, next, next));
+  };
 
   return (
     <Chapter filename={chapter.filename}>
@@ -38,9 +47,10 @@ export const Page: PageType = () => {
           <p>
             Hmm... Are there any interesting{" "}
             <Nav
-              text="things"
-              next="menu"
+              text={text}
+              next={next}
               tag={`moveFrom${chapter.filename}toMenu`}
+              handler={updateChili}
             />{" "}
             left to do
             {"?"}

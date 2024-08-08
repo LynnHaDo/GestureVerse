@@ -16,6 +16,7 @@ const BaseList: typeof BaseListType = ({
     className = null,
     textColor = ''
 }: WidgetProps): JSX.Element => {
+    
     return (
         <>
             {[...group].map((t, i) => (

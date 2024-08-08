@@ -1,11 +1,7 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Chapter } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
-import FadeIn from "core/components/ui/fadein";
-
-import { animated } from "@react-spring/web";
 
 import colors from "public/themeColors.module.scss";
-import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";

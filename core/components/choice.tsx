@@ -38,6 +38,7 @@ export interface ChoiceProps {
     persist?: boolean
     /** Optional className to be passed through to the outer-most element rendering the Choice */
     className?: string
+    handler?: Function
 }
 
 const Choice = ({
@@ -52,6 +53,7 @@ const Choice = ({
     last = null,
     defaultOption = null,
     className = null,
+    handler = null
 }: ChoiceProps): JSX.Element => {
     const dispatch = useAppDispatch()
     const choice = useAppSelector((state) => {
@@ -75,6 +77,7 @@ const Choice = ({
                 last={last}
                 className={className}
                 type={type}
+                handler={handler}
             />
         )
     }
@@ -91,7 +94,8 @@ const MutableChoice = ({
     persist,
     last,
     className,
-    type
+    type,
+    handler
 }: ChoiceProps): JSX.Element => {
     const dispatch = useAppDispatch()
     const { filename } = React.useContext(ChapterContext)
@@ -102,9 +106,11 @@ const MutableChoice = ({
     const [inventory] = useInventory([tag])
 
     // Generic handler that a widget-specific handler will call once the player has made their choice
-    let handler = (option: Option): void => {
+    let genericHandler = (option: Option): void => {
         dispatch(makeChoice(tag, option, next, filename))
     }
+
+    let handlerFunct: Function = handler == null || handler == undefined? genericHandler : handler
     
     let group = options[choice.index]
 
@@ -112,7 +118,7 @@ const MutableChoice = ({
     // current option
     if (choice.resolved) {
         if (!persist) {
-            handler = null
+            handlerFunct = null
         }
         if (last !== undefined && last !== null) {
             group = [last]
@@ -122,9 +128,9 @@ const MutableChoice = ({
     }
 
     return React.createElement(widget, {
-        group,
-        handler,
-        tag,
+        group: group,
+        handler: handlerFunct,
+        tag: tag,
         initialOptions: options,
         optionList: optionList,
         className,

@@ -32,7 +32,7 @@ export const Page: PageType = () => {
             interesting and I just wasted 7 hours of my day sitting and staring
             at a wall. I have some homework but I don't remember when it's due.
             Oh well. Now's the time to{"  "}
-            <Nav text="relax" next="menu" tag="start" />.
+            <Nav text="relax" next="menu" tag="startProcrastinate" />.
           </p>
         </Section>
       </Chapter>

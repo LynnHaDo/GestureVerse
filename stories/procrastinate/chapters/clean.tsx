@@ -32,6 +32,7 @@ export const Page: PageType = () => {
   }
 
   let clean = useVariable("clean");
+
   if (clean) {
     return (
       <Chapter filename="clean">
@@ -55,7 +56,7 @@ export const Page: PageType = () => {
           BulletedList,
           <Nav
             text="Start cleaning..."
-            tag="moveFromCleanStarttoClean"
+            tag="moveFromCleantoCleanStart"
             next="clean_start"
           />,
           false

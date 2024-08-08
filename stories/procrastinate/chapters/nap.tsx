@@ -31,7 +31,7 @@ export const Page: PageType = () => {
           {/* Giphy */}
           <div
             style={{
-              width: "100%",
+              width: "400px",
               height: 0,
               paddingBottom: "56%",
               position: "relative",

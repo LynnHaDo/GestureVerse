@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav, C } from "core/components";
+import { Section, Chapter } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
 import { makeChoice } from "core/features/choice";
 
@@ -6,9 +6,6 @@ import useChapter from "core/hooks/use-chapter";
 import { updateVariable } from "core/features/variable-manager";
 
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
-import colors from "public/themeColors.module.scss";
-
-import { animated } from "@react-spring/web";
 
 import '@ionic/react/css/core.css';
 
@@ -36,7 +33,7 @@ export const Page: PageType = () => {
             return;
         }
 
-        resetStory(true, config, persistor, router);
+        resetStory(true, config, persistor, router); // clear previous clicking history
         dispatch(updateVariable("counterMins", valNum));
         dispatch(
           makeChoice("timeSet", "start_again", "homework_start", "homework_start")

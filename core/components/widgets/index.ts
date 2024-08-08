@@ -9,7 +9,7 @@ export interface WidgetProps {
     group?: OptionGroup
     initialOptions?: Options
     optionList?: Array<optionItemProps>
-    handler?: any // TODO type this better
+    handler?: Function // TODO type this better
     tag?: Tag
     className?: string
     textColor?: string

@@ -9,7 +9,7 @@ import { Tag } from "core/types";
 interface LinkProps {
   text: string;
   index?: number;
-  handler: any;
+  handler: Function;
   tag?: Tag;
   color?: string;
   className?: string;

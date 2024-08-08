@@ -8,7 +8,6 @@ import { choiceBlock } from "core/features/choice";
 import colors from "public/themeColors.module.scss";
 
 import { useScore } from "core/hooks/use-score";
-import { useEffect } from "react";
 import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
@@ -44,7 +43,7 @@ export const Page: PageType = () => {
       break;
     case 5:
       displayText =
-        "Am I hungry? All I know is I'm not hungry for homework, YUCK!";
+        "Am I hungry? All I know is I'm not hungry for homework.";
       break;
     case 6:
       displayText = "Sooooooo booooored.";
@@ -81,8 +80,6 @@ export const Page: PageType = () => {
     Options[tag]["clean"].description = "Now my room is nice and clean!";
     Options[tag]["clean"].disabled = true;
   }
-
-  // tv, game, eat, nap, clean, Options[tag]["homework"].disabled, Options[tag]["clean"].disabled, Options[tag]["nap"].disabled
 
   return (
     <>

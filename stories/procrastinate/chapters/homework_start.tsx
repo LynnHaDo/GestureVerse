@@ -1,19 +1,15 @@
 import { Section, Chapter, Nav, C } from "core/components";
 import { Next, PageType, useAppDispatch } from "core/types";
-import { choiceBlock, makeChoice } from "core/features/choice";
-import { BulletedList } from "core/components/widgets";
+import { makeChoice } from "core/features/choice";
 
 import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateVariable } from "core/features/variable-manager";
 
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
-import colors from "public/themeColors.module.scss";
-import { animated } from "@react-spring/web";
 
 import { TextReplacements } from "core/components/constants/options";
-import { IonInput, IonItem } from "@ionic/react";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -24,9 +20,7 @@ export const Page: PageType = () => {
   /** Number of minutes left */
   let counterMins: number = useVariable("counterMins");
 
-  /** Whether or not to open the time dialog */
-  let [openTimeDialog, setOpenTimeDialog] = useState(false);
-
+  
   const textsZero = TextReplacements[chapter.filename];
   const textsOne = TextReplacements[`${chapter.filename}_one`];
   const textsTwo = TextReplacements[`${chapter.filename}_two`];
@@ -140,7 +134,7 @@ export const Page: PageType = () => {
         <Section>
           <p>
             <Nav
-              text="DONE 🎉🎉🎉"
+              text="DONE 🎉 🎉 🎉"
               next="homework_done"
               tag="goToHomeworkDone"
             />

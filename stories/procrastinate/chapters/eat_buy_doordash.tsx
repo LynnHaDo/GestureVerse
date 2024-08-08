@@ -1,17 +1,22 @@
 import { Section, Chapter, Nav } from "core/components";
-import { PageType, useAppDispatch } from "core/types";
+import { PageType, useAppDispatch, Option } from "core/types";
 
-import colors from "public/themeColors.module.scss";
 import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { useVariable } from "core/hooks/use-variable";
 import { incrementScore } from "core/features/score";
 import { updateVariable } from "core/features/variable-manager";
+import { makeChoice } from "core/features/choice";
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
   const doordash = useVariable("doordash");
+
+  let tag = `moveFrom${chapter.filename}toMenu`;
+  let next = "menu";
+  let text = "things";
+
   let displayText: string = doordash
     ? "No... That's enough fast food for today."
     : "I select a burger and a large fry, with a medium coke (because a large is just too much for today). \
@@ -20,8 +25,12 @@ export const Page: PageType = () => {
   useEffect(() => {
     dispatch(incrementScore());
     dispatch(updateVariable("eat", true));
-    dispatch(updateVariable("doordash", true));
   });
+
+  const updateDoordash = (option: Option): void => {
+    dispatch(updateVariable("doordash", true));
+    dispatch(makeChoice(tag, option, next, next));
+  }
 
   return (
     <>
@@ -31,9 +40,10 @@ export const Page: PageType = () => {
           <p>
             Hmm... Are there any interesting{" "}
             <Nav
-              text="things"
-              next="menu"
+              text={text}
+              next={next}
               tag={`moveFrom${chapter.filename}toMenu`}
+              handler={updateDoordash}
             />{" "}
             left to do
             {"?"}
