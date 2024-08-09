@@ -16,7 +16,7 @@ export interface ArtworkProps {
   /** Height of the image */
   height?: number | string;
   /** Position of the image */
-  position: React.CSSProperties
+  position?: React.CSSProperties
 }
 
 const Artwork = ({ link, name, source, width = 'auto', height = 'auto', position }: ArtworkProps) => {

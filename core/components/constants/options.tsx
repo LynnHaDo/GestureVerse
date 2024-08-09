@@ -44,6 +44,8 @@ export interface OptionProps {
  * List of tags and the corresponding options
  */
 export const Options: OptionProps = {
+
+    /** A BEACH WALK */
     "leftOrRight": {
         "left": optionItem('Thumb_Up', null, 'turn left'), // thumbs up
         "right": optionItem('Thumb_Down', null, 'turn right'), // thumbs down
@@ -56,6 +58,8 @@ export const Options: OptionProps = {
         "fence": optionItem('Open_Palm', null, 'look through the broken fence'), // open palm
         "further": optionItem("Victory", null, 'go further') // victory (v sign)
     },
+
+    /** PROCRASTINATE */
     "procrastinate__menu": {
         "homework": optionItem('Thumb_Down', null, 'Start on some homework', true),
         "tv": optionItem("Thumb_Up", null, 'Watch TV'),
@@ -110,6 +114,31 @@ export const Options: OptionProps = {
     "procrastinate__homework_fail": {
         "homework_start_timer": optionItem('Thumb_Up', null, 'Try again'),
         "homework_quit": optionItem('Thumb_Down', null, 'Quit')
+    },
+
+    /** CONGEE */
+    "congee_start": {
+        "start_kick_blanket": optionItem('Open_Palm', null, 'Kick your blanket off'),
+        "start_curl": optionItem('Victory', null, 'Curl up into a ball')
+    },
+    "congee_tell": {
+        "tell_internet": optionItem(null, 'Left', 'Look up your symptoms on the internet'),
+        "tell_allison": optionItem(null, 'Right', 'Text Allison, your best friend')
+    },
+    "congee_tell_allison": {
+        "tell_allison_response_death": optionItem('Pointing_Up', null, "I'm not being melodramatic but I think death is near dfdsfdf."),
+        "tell_allison_response_netflix": optionItem('ILoveYou', null, 'I need a very distracting Netflix recommendation.'),
+        'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel.')
+    }
+}
+
+export const Variables: OptionProps = {    
+    /** CONGEE */
+    "congee_disease": {
+        'fever': optionItem('Thumb_Up', null, 'fever'),
+        "food_poisoning": optionItem('Thumb_Down', null, 'food poisoning thing'),
+        "lurgy": optionItem('Victory', null, 'general sense of lurgy'),
+        "rare_illness": optionItem('Open_Palm', null, 'rare illness from swimming in that river in the jungle last month. Bad idea')
     }
 }
 

@@ -1,0 +1,33 @@
+title: congee
+language: en
+chapters:
+  - filename: "intro"
+    title: "Introduction"
+  - filename: "start"
+    title: "Start"
+
+  - filename: "start_kick_blanket"
+    title: "Kick your blanket off"
+  - filename: "start_curl"
+    title: "Curl into a ball"
+  - filename: "start_collapse"
+    title: "Collapse into bed"
+  - filename: "start_collapse_sleeping_pattern"
+    title: "Sleeping pattern"
+
+  - filename: "tell"
+    title: "Tell someone"
+  - filename: "tell_internet"
+    title: "Tell someone: Internet"
+  - filename: "tell_allison"
+    title: "Tell someone: Allison"
+  
+  - filename: "tell_allison_response_death"
+    title: "Tell someone: Allison (1)"
+  - filename: "tell_allison_response_netflix"
+    title: "Tell someone: Allison (2)"
+  - filename: "tell_allison_response_vessel"
+    title: "Tell someone: Allison (3)"
+  
+players:
+  - start: "start"

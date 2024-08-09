@@ -152,7 +152,9 @@ export const choiceBlock = (
   btnTextColor: string = "rgb(250,250,250",
   widget: (props: any) => JSX.Element = InlineListEN,
   last: JSX.Element = null,
-  keepSelectedChoice: boolean = true
+  keepSelectedChoice: boolean = true,
+  purpose: 'navigation' | 'variableSetter' = 'navigation',
+  className?: string
 ): JSX.Element => {
   const [inventory, oneLastOption] = useInventory([
     tag,
@@ -206,7 +208,7 @@ export const choiceBlock = (
       return React.createElement(Nav, {
         text: options[remainingOptionKeys[0]].description,
         tag: `OneOptionLeftFor${tag}`,
-        next: remainingOptionKeys[0],
+        next: remainingOptionKeys[0]
       });
     }
 
@@ -218,6 +220,8 @@ export const choiceBlock = (
       btnBackgroundColor: btnBackgroundColor,
       btnTextColor: btnTextColor,
       widget: widget,
+      purpose: purpose,
+      className: className
     });
   }
 
@@ -228,5 +232,7 @@ export const choiceBlock = (
     btnBackgroundColor: btnBackgroundColor,
     btnTextColor: btnTextColor,
     widget: widget,
+    purpose: purpose,
+    className: className
   });
 };

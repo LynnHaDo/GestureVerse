@@ -14,6 +14,7 @@ import { makeChoice } from "core/features/choice";
 /** Styling */
 import styles from "./ChoiceBlock.module.scss";
 import { InlineListEN } from "./widgets/inline-list";
+import { updateVariable } from "core/features/variable-manager";
 
 export interface ChoiceBlockProps {
   /** Tag of the choice (used for the Choice component) */
@@ -28,6 +29,9 @@ export interface ChoiceBlockProps {
   /** Text color of button used to trigger webcam */
   btnTextColor?: string;
   widget?: (props: any) => JSX.Element;
+  /** Whether the choice block has the purpose of navigating to a different chapter or setting a variable */
+  purpose?: "navigation" | "variableSetter";
+  className?: string
 }
 
 /**
@@ -45,6 +49,8 @@ const ChoiceBlock = ({
   btnBackgroundColor = "rgb(34, 33, 31)",
   btnTextColor = "rgb(250, 250, 250)",
   widget = InlineListEN,
+  purpose = "navigation",
+  className = '',
 }: ChoiceBlockProps): JSX.Element => {
   if (options == null || options == undefined) {
     return null;
@@ -60,8 +66,8 @@ const ChoiceBlock = ({
 
   let availableOptions =
     predictionType == "gesture"
-      ? optionValues.filter(val => !val.disabled).map((i) => i.action)
-      : optionValues.filter(val => !val.disabled).map((i) => i.handedness);
+      ? optionValues.filter((val) => !val.disabled).map((i) => i.action)
+      : optionValues.filter((val) => !val.disabled).map((i) => i.handedness);
 
   useEffect(() => {
     if (result) {
@@ -74,15 +80,22 @@ const ChoiceBlock = ({
       let answerText = options[answer].description;
       decision.current.textContent = `You chose ${answerText}.`;
 
+      if (purpose == "navigation") {
+        setTimeout(() => {
+          dispatch(
+            makeChoice(
+              tag,
+              answer,
+              answer.toLowerCase().replaceAll(" ", ""),
+              answer.toLowerCase().replaceAll(" ", "")
+            )
+          );
+        }, 4000);
+        return;
+      }
+
       setTimeout(() => {
-        dispatch(
-          makeChoice(
-            tag,
-            answer,
-            answer.toLowerCase().replaceAll(" ", ""),
-            answer.toLowerCase().replaceAll(" ", "")
-          )
-        );
+        dispatch(updateVariable(tag, answer));
       }, 4000);
     }
   }, [result]);
@@ -96,7 +109,7 @@ const ChoiceBlock = ({
             tag={tag}
             optionList={optionValues}
             type="string"
-            className="choiceContent"
+            className={`choiceContent ${className}`}
           />
         ) : (
           <C
@@ -105,22 +118,25 @@ const ChoiceBlock = ({
             widget={widget}
             optionList={optionValues}
             type="string"
-            className="choiceContent"
+            className={`choiceContent ${className}`}
           />
         )}
 
         <div className={styles.instruction}>
           {optionKeys.map((key: string) => {
             return (
-              <p key={key} className={options[key].disabled? `${styles.crossOut}` : ''}>
+              <p
+                key={key}
+                className={options[key].disabled ? `${styles.crossOut}` : ""}
+              >
                 {predictionType == "gesture" ? (
                   <>
-                  {Gestures[options[key].action]} for{" "}
-                  <span className={styles.underline}>
-                    {options[key].description}
-                  </span>
-                  .
-                </>
+                    {Gestures[options[key].action]} for{" "}
+                    <span className={styles.underline}>
+                      {options[key].description}
+                    </span>
+                    .
+                  </>
                 ) : (
                   <>
                     {Handedness[options[key].handedness]} for{" "}

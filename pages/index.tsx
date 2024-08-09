@@ -21,7 +21,8 @@ export const getStaticProps: GetStaticProps = async () => {
       (dir) =>
         dir.isDirectory() &&
         (dir.name.includes("procrastinate") ||
-          dir.name.includes("a-beach-walk"))
+          dir.name.includes("a-beach-walk") ||
+          dir.name.includes("congee")) 
     )
     .map((dir) => dir.name)
     .flat();

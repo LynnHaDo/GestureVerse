@@ -1,0 +1,124 @@
+@use "/public/styles/colors";
+@use "/public/styles/fonts";
+
+@use "/public/styles/header" with (
+  $min-height: 1em,
+  $max-height: 1vh,
+  $background-color: colors.$dark,
+  $reset-background: colors.$dark,
+  $reset-color: colors.$lightYellow,
+  $foreground-color: colors.$lightYellow
+);
+
+@use "/public/styles/grid";
+
+$font-family: fonts.$congee-typeface;
+$text-color: colors.$lightYellow;
+
+.main {
+  font-family: $font-family;
+  background-color: colors.$dark;
+  color: $text-color;
+  grid-template-columns: [left] 120px [center] 1fr [right] 120px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+  }
+
+  p,
+  a {
+    font-size: 1rem;
+  }
+
+  a {
+    color: $text-color !important;
+  }
+
+  .choiceContent {
+    font-size: 1rem;
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      font-family: fonts.$secondary;
+    }
+
+    &.backButton {
+      background-color: transparent;
+      color: $text-color;
+    }
+
+    &.webcamOpenner {
+      width: 100px;
+      height: 35px;
+    }
+  }
+
+  .chatBubble {
+    font-family: $font-family;
+    padding: 0.5rem 1rem;
+    --border-radius: 0.3rem;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+	-moz-border-radius: var(--border-radius);
+    position: relative;
+    margin-top: 0.8rem;
+    animation: mebubble 0.4s ease-in;
+    background-color: colors.$lightYellow;
+    color: colors.$dark;
+    text-align: left;
+
+    &.other {
+        background-color: colors.$retroGreen;
+        color: colors.$lightYellow;
+    }
+  }
+
+  @keyframes mebubble {
+    0%   {background-color:black; left:0px; top:100px;}
+    100% {background-color: colors.$lightYellow;; left:0px; top:0px;}
+  }
+
+  
+
+}
+
+.header {
+  nav {
+    padding: 0 120px;
+    display: flex;
+    justify-content: flex-end;
+    height: 10em;
+
+    .controls {
+      display: flex;
+      button {
+        font-family: $font-family;
+        font-size: 1rem;
+        margin-left: 0.5rem;
+
+        &.backButton {
+          background-color: transparent;
+          color: colors.$lightYellow;
+        }
+
+        &:hover {
+          font-family: fonts.$secondary;
+        }
+      }
+    }
+  }
+}
