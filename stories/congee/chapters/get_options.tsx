@@ -6,23 +6,22 @@ import { choiceBlock } from "core/features/choice";
 
 import colors from "public/themeColors.module.scss";
 import { BulletedList } from "core/components/widgets";
+import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
-  const tag = "congee_start";
+  const tag = "congee_get_options";
+  const chapter = useChapter();
 
   return (
-    <Chapter filename="start">
+    <Chapter filename={chapter.filename}>
       <Section>
         <Container>
           <Row>
             <Col>
               <p>
-                It’s the middle of the night. The streetlight pouring through
-                the window is unbearable; it burns your eyeballs. Your body is
-                sweating underneath the covers, but somehow you still feel
-                frozen to the bone. Raindrops patter against the glass.
+                She’s right. You live in a town - you should be able to find
+                congee. Right?
               </p>
-
               {choiceBlock(
                 tag,
                 "gesture",
@@ -33,12 +32,7 @@ export const Page: PageType = () => {
               )}
             </Col>
 
-            <Col>
-              <Artwork link="https://i.imgur.com/rwZUriJ.gif"
-                        name="Window with view of the rain, GIF image"
-                        source="https://imgur.com/rwZUriJ"
-                        width="350px"/>
-            </Col>
+            <Col></Col>
           </Row>
         </Container>
       </Section>

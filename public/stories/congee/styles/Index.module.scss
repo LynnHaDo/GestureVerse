@@ -4,8 +4,8 @@
 @use "/public/styles/header" with (
   $min-height: 1em,
   $max-height: 1vh,
-  $background-color: colors.$dark,
-  $reset-background: colors.$dark,
+  $background-color: rgb(0,0,0),
+  $reset-background: rgb(0,0,0),
   $reset-color: colors.$lightYellow,
   $foreground-color: colors.$lightYellow
 );
@@ -17,7 +17,7 @@ $text-color: colors.$lightYellow;
 
 .main {
   font-family: $font-family;
-  background-color: colors.$dark;
+  background-color: rgb(0,0,0);
   color: $text-color;
   grid-template-columns: [left] 120px [center] 1fr [right] 120px;
 
@@ -103,8 +103,7 @@ $text-color: colors.$lightYellow;
         background-color: colors.$lightYellow;
         color: colors.$dark;
         text-align: left;
-        float: left;
-        margin-right: auto;
+        float: right;
     
         &::before {
           content: "You";
@@ -118,8 +117,7 @@ $text-color: colors.$lightYellow;
         &.other {
           background-color: colors.$retroGreen;
           color: colors.$lightYellow;
-          float: right;
-          margin-left: auto;
+          float: left;
     
           &::before {
             content: "Allison";

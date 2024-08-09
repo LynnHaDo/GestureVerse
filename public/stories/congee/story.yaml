@@ -28,12 +28,16 @@ chapters:
     title: "Tell someone: Allison (2)"
   - filename: "tell_allison_response_vessel"
     title: "Tell someone: Allison (3)"
+  - filename: "tell_allison_close"
+    title: "Tell someone: Allison (Close)"
   
   - filename: "congee"
     title: "What is congee"
   
   - filename: "get"
     title: "Get congee: Options"
+  - filename: "get_options"
+    title: "Get congee: Options (1)"
   
 players:
   - start: "intro"

@@ -28,7 +28,7 @@ export const Page: PageType = () => {
               </FadeIn>
 
               <FadeIn wrapper={animated("p")} delayTime={400}>
-                Oh yeah, it's early morning in Hanoi. It's Saturday, so she is
+                Oh yeah, it's early morning at home. It's Saturday, so she is
                 probably still sleeping in now. "Hmm, should I...
               </FadeIn>
 

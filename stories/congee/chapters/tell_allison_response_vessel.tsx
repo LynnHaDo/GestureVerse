@@ -21,41 +21,32 @@ export const Page: PageType = () => {
             <Col xs={6}>
               <div className={styles.chatWrapper}>
                 <div>
-                    <p className={styles.chatBubble}>
-                    I'm not being melodramatic but I think death is near dfdsfdf.
-                    </p>
+                  <p className={styles.chatBubble}>
+                    The body is but a weak vessel 😔
+                  </p>
                 </div>
 
-                <FadeIn wrapper={animated("div")} delayTime={5*200}>
-                  <p className={`${styles.chatBubble} ${styles.other}`}>?</p>
-                </FadeIn>
-
-                <FadeIn wrapper={animated("div")} delayTime={5*1000}>
+                <FadeIn wrapper={animated("div")} delayTime={5 * 100}>
                   <p className={`${styles.chatBubble} ${styles.other}`}>
-                    if you die can I have your games?
+                    nah that's not true
                   </p>
                 </FadeIn>
 
-                <FadeIn wrapper={animated("div")} delayTime={5*1200}>
-                  <p className={styles.chatBubble}>You hate all my games 😒</p>
-                </FadeIn>
-
-                <FadeIn wrapper={animated("div")} delayTime={5*2000}>
+                <FadeIn wrapper={animated("div")} delayTime={5 * 900}>
                   <p className={`${styles.chatBubble} ${styles.other}`}>
-                    true, but i could sell them though 😏
+                    wait. are you having some kind of crisis?
                   </p>
                 </FadeIn>
 
-                <FadeIn wrapper={animated("div")} delayTime={5*2500}>
+                <FadeIn wrapper={animated("div")} delayTime={5 * 1500}>
                   <p className={`${styles.chatBubble} ${styles.other}`}>
-                    hopefully you aren't actually dying or this will age badly
+                    this seems to be the thing nowadays
                   </p>
                 </FadeIn>
 
-                <FadeIn wrapper={animated("div")} delayTime={5 * 2900}>
-                  <p className={styles.chatBubble}>
-                    Such an opportunist. Sadly I'm not truly dying but I do feel
-                    awful though 😫
+                <FadeIn wrapper={animated("div")} delayTime={5 * 2000}>
+                  <p className={`${styles.chatBubble}`}>
+                    ... maybe. i'm feeling a bit unwell 😢
                   </p>
                 </FadeIn>
               </div>
@@ -64,7 +55,7 @@ export const Page: PageType = () => {
                 <Nav
                   text="Continue"
                   next="tell_allison_close"
-                  tag="continueDeath"
+                  tag="continueNetflix"
                   className={styles.navEnd}
                 />
               </p>

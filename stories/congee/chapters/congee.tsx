@@ -24,7 +24,7 @@ export const Page: PageType = () => {
                 kid was getting a hot bowl of congee to slurp on. It made you
                 feel warm inside out – like glowing embers gently simmering in
                 your stomach. If only it was easier to {" "}
-                <Nav text="get" next="get" tag="getCongee" />
+                <Nav text="get" next="get" tag="getCongee" />{"."}
               </p>
             </Col>
           </Row>
