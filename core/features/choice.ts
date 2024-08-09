@@ -23,10 +23,15 @@ import { increment } from "core/features/counter";
 import { AppDispatch } from "core/containers/store-container";
 
 import useInventory from "core/hooks/use-inventory";
-import { optionItemProps, Options } from "core/components/constants/options";
+import {
+  optionItemProps,
+  Options,
+  Variables,
+} from "core/components/constants/options";
 import { ChoiceBlock, Nav } from "core/components";
 import { InlineListEN } from "core/components/widgets/inline-list";
 import { isEqual } from "lodash";
+import { useVariable } from "core/hooks/use-variable";
 
 export type Option = string;
 export type OptionGroup = Array<Option>;
@@ -153,14 +158,20 @@ export const choiceBlock = (
   widget: (props: any) => JSX.Element = InlineListEN,
   last: JSX.Element = null,
   keepSelectedChoice: boolean = true,
-  purpose: 'navigation' | 'variableSetter' = 'navigation',
+  purpose: "navigation" | "variableSetter" = "navigation",
   className?: string
 ): JSX.Element => {
-  const [inventory, oneLastOption] = useInventory([
+  let [inventory, oneLastOption] = useInventory([
     tag,
     `OneOptionLeftFor${tag}`,
   ]);
-  const options = Options[tag];
+  let options = Options[tag];
+
+  if (purpose == "variableSetter") {
+    options = Variables[tag];
+    inventory = useVariable(tag);
+    oneLastOption = null;
+  }
 
   if (options == null || options == undefined) {
     return null;
@@ -208,7 +219,7 @@ export const choiceBlock = (
       return React.createElement(Nav, {
         text: options[remainingOptionKeys[0]].description,
         tag: `OneOptionLeftFor${tag}`,
-        next: remainingOptionKeys[0]
+        next: remainingOptionKeys[0],
       });
     }
 
@@ -221,7 +232,7 @@ export const choiceBlock = (
       btnTextColor: btnTextColor,
       widget: widget,
       purpose: purpose,
-      className: className
+      className: className,
     });
   }
 
@@ -233,6 +244,6 @@ export const choiceBlock = (
     btnTextColor: btnTextColor,
     widget: widget,
     purpose: purpose,
-    className: className
+    className: className,
   });
 };

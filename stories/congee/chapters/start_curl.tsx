@@ -23,7 +23,7 @@ export const Page: PageType = () => {
                   text="collapsed into bed"
                   next="start_collapse"
                   tag="collapseCurl"
-                />{" "}
+                />
                 {"."}
               </p>
             </Col>

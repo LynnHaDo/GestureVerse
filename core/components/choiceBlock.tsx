@@ -6,7 +6,7 @@ import { Gestures, Handedness } from "./constants/gesture";
 /** Hooks */
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { optionItemProps, Options } from "./constants/options";
+import { optionItemProps, Options, Variables } from "./constants/options";
 
 /** Utils */
 import { makeChoice } from "core/features/choice";
@@ -52,9 +52,14 @@ const ChoiceBlock = ({
   purpose = "navigation",
   className = '',
 }: ChoiceBlockProps): JSX.Element => {
+
+  if (purpose == 'variableSetter') {
+    options = Variables[tag];
+  }
   if (options == null || options == undefined) {
     return null;
   }
+
   const optionKeys: string[] = Object.keys(options);
   const optionValues: Array<optionItemProps> = Object.values(options);
 
@@ -96,6 +101,7 @@ const ChoiceBlock = ({
 
       setTimeout(() => {
         dispatch(updateVariable(tag, answer));
+        return null;
       }, 4000);
     }
   }, [result]);

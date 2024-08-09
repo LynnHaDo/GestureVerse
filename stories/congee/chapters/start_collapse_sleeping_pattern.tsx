@@ -21,7 +21,7 @@ export const Page: PageType = () => {
             <Col>
               <p>
                 But it isn't your fault. You felt really bad and you still feel
-                awful. You’re pretty sure you’ve come down with:
+                awful. You’re pretty sure you’ve come down with a...
               </p>
 
               {choiceBlock(

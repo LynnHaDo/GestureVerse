@@ -67,33 +67,85 @@ $text-color: colors.$lightYellow;
     }
   }
 
-  .chatBubble {
-    font-family: $font-family;
-    padding: 0.5rem 1rem;
-    --border-radius: 0.3rem;
-    border-radius: var(--border-radius);
-    -webkit-border-radius: var(--border-radius);
-	-moz-border-radius: var(--border-radius);
-    position: relative;
-    margin-top: 0.8rem;
-    animation: mebubble 0.4s ease-in;
-    background-color: colors.$lightYellow;
-    color: colors.$dark;
-    text-align: left;
+  ul {
+    padding-left: 0;
+    list-style: none;
 
-    &.other {
-        background-color: colors.$retroGreen;
-        color: colors.$lightYellow;
+    li {
+      padding: 0.5rem 1rem;
+      --border-radius: 0.3rem;
+      border-radius: var(--border-radius);
+      -webkit-border-radius: var(--border-radius);
+      -moz-border-radius: var(--border-radius);
+      border: 1px solid colors.$lightYellow;
+
+      p {
+        margin-bottom: 0 !important;
+        display: inline-block;
+      }
     }
   }
 
-  @keyframes mebubble {
-    0%   {background-color:black; left:0px; top:100px;}
-    100% {background-color: colors.$lightYellow;; left:0px; top:0px;}
+  .chatWrapper {
+    display: flex;
+    flex-direction: column;
+    p.chatBubble {
+        padding: 0.5rem 1rem;
+        --border-radius: 0.3rem;
+        border-radius: var(--border-radius);
+        -webkit-border-radius: var(--border-radius);
+        -moz-border-radius: var(--border-radius);
+        max-width: 80%;
+        font-family: $font-family;
+        position: relative;   
+        margin-top: 0.8rem;
+        animation: mebubble 0.4s ease-in;
+        background-color: colors.$lightYellow;
+        color: colors.$dark;
+        text-align: left;
+        float: left;
+        margin-right: auto;
+    
+        &::before {
+          content: "You";
+          position: absolute;
+          left: 0;
+          top: -1.3rem;
+          font-size: 0.7rem;
+          color: colors.$lightYellow;
+        }
+    
+        &.other {
+          background-color: colors.$retroGreen;
+          color: colors.$lightYellow;
+          float: right;
+          margin-left: auto;
+    
+          &::before {
+            content: "Allison";
+          }
+        }
+      }
   }
 
   
 
+  .navEnd {
+    float: inline-end;
+  }
+
+  @keyframes mebubble {
+    0% {
+      background-color: black;
+      left: 0px;
+      top: 100px;
+    }
+    100% {
+      background-color: colors.$lightYellow;
+      left: 0px;
+      top: 0px;
+    }
+  }
 }
 
 .header {

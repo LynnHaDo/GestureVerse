@@ -29,7 +29,7 @@ export const Page: PageType = () => {
 
               <FadeIn wrapper={animated("p")} delayTime={400}>
                 Oh yeah, it's early morning in Hanoi. It's Saturday, so she is
-                probably still sleeping in now. Hmm, should I...
+                probably still sleeping in now. "Hmm, should I...
               </FadeIn>
 
               <FadeIn wrapper={animated("div")} delayTime={600}>
@@ -38,7 +38,8 @@ export const Page: PageType = () => {
                   "handedness",
                   1,
                   `${colors.lightYellow}`,
-                  `${colors.dark}`
+                  `${colors.dark}`,
+                  BulletedList
                 )}
               </FadeIn>
             </Col>

@@ -126,9 +126,9 @@ export const Options: OptionProps = {
         "tell_allison": optionItem(null, 'Right', 'Text Allison, your best friend')
     },
     "congee_tell_allison": {
-        "tell_allison_response_death": optionItem('Pointing_Up', null, "I'm not being melodramatic but I think death is near dfdsfdf."),
-        "tell_allison_response_netflix": optionItem('ILoveYou', null, 'I need a very distracting Netflix recommendation.'),
-        'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel.')
+        "tell_allison_response_death": optionItem('Pointing_Up', null, "I'm not being melodramatic but I think death is near dfdsfdf"),
+        "tell_allison_response_netflix": optionItem('ILoveYou', null, 'I need a very distracting Netflix recommendation'),
+        'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel')
     }
 }
 
