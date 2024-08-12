@@ -22,7 +22,7 @@
 
   <p align="center">
     <br />
-    <a href="https://drive.google.com/file/d/1ksS3PHsW3q9o_auQ11SnHJ5wVTxSeQN5/view?usp=sharing">View Demo</a>
+    <a href="https://drive.google.com/file/d/1F3Nh6uCjEazwcf4wDj3azgG2ffsYEzAq/view?usp=sharing">View Demo</a>
     ·
     <a href="https://github.com/LynnHaDo/Storytelling/issues">Report Bug</a>
     ·
@@ -56,6 +56,10 @@
   </ol>
 </details>
 
+## Disclaimer
+
+I do not own the stories included in this project--this is the gesture-driven version of the original Twine/hyperlink-based stories. The sources for the original stories are included in the reference section at the end of the stories. 
+
 <!-- UPDATES -->
 ## Wireframes
 
@@ -88,6 +92,7 @@ Through this project, I also want to introduce additional advanced features comp
 
 - [x] A variable management system that allows keeping track of variables within the story. 
     - [x] Score keeping feature
+    - [x] Update/access the variables any time during the story
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -104,10 +109,10 @@ Through this project, I also want to introduce additional advanced features comp
         - [x] Add animations 
         - [x] Add gradient background config setup
 - [x] Finish story (edit UI, texts, citations, ...)
-    - [x] A beach walk (View [demo](https://drive.google.com/file/d/1ksS3PHsW3q9o_auQ11SnHJ5wVTxSeQN5/view?usp=sharing))
-    - [x] Procrastinate (View [demo]())
-
-- [ ] Create an account to save story (pending)
+    - [x] A beach walk (View [demo](https://drive.google.com/file/d/1F3Nh6uCjEazwcf4wDj3azgG2ffsYEzAq/view?usp=sharing))
+    - [x] Procrastinate (View [demo](https://drive.google.com/file/d/1sSbgktSOBnkgGuw0SVtz1korQ8Cks_9z/view?usp=sharing))
+    - [x] Congee (View [demo](https://drive.google.com/file/d/1CjH5T0aX4iGS7d_ALgiiTBas0e3XNX94/view?usp=sharing))
+- [x] Add background music widget
 
 See the [open issues](https://github.com/LynnHaDo/Storytelling/issues) for a full list of proposed features (and known issues).
 
@@ -177,5 +182,20 @@ npm run dev
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- Works cited -->
+## Works cited
+
+1. interstellar-bird (n.d.). Beach Walk by interstellar-bird. [online] itch.io. Available at: https://interstellar-bird.itch.io/beach-walk [Accessed 16 Jul. 2024].
+2. j-mo (2024). Procrastinate. [online] itch.io. Available at: https://j-mo.itch.io/procrastinate [Accessed 6 Aug. 2024].
+3. Becci (2020). Congee. [online] itch.io. Available at: https://becciness.itch.io/congee [Accessed 12 Aug. 2024]. 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- Contact -->
+## Contact
+
+Email: <a href="mailto:do24l@mtholyoke.edu">do24l@mtholyoke.edu</a>
+
 
 
