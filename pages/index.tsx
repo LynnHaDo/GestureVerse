@@ -3,10 +3,11 @@ import Head from "next/head";
 import fs from "fs";
 import path from "path";
 
+import { useEffect, useRef } from "react";
+
 import styles from "public/stories/index/styles/Index.module.scss";
 
 import { NeatConfig, NeatGradient } from "@firecms/neat";
-import { useEffect, useRef, useState } from "react";
 import { backgroundFillStyle } from "core/components/backgroundFill";
 import { Loader } from "core/components/loader";
 
@@ -22,7 +23,7 @@ export const getStaticProps: GetStaticProps = async () => {
         dir.isDirectory() &&
         (dir.name.includes("procrastinate") ||
           dir.name.includes("a-beach-walk") ||
-          dir.name.includes("congee")) 
+          dir.name.includes("congee"))
     )
     .map((dir) => dir.name)
     .flat();
@@ -119,10 +120,7 @@ function Index({ paths }: StoryProps): JSX.Element {
           <div> </div>
         </nav>
       </header>
-      <main
-        className={styles.main}
-        lang="en"
-      >
+      <main className={styles.main} lang="en">
         <nav className={styles.left}></nav>
         <article className={styles.story}>
           <p>Choose your own adventure</p>
@@ -134,6 +132,14 @@ function Index({ paths }: StoryProps): JSX.Element {
                 </li>
               ))}
             </ul>
+          </div>
+          <div className={styles.footer}>
+            <a href="https://github.com/LynnHaDo/GestureVerse" target="_blank">
+                <img src="/images/github.svg" alt="Github" />
+            </a>
+            <a href="mailto:do24l@mtholyoke.edu">
+              <img src="/images/mail.svg" alt="Gmail" />
+            </a>
           </div>
         </article>
         <nav className={styles.right}></nav>

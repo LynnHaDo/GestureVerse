@@ -3,11 +3,14 @@ import * as React from "react";
 import { ReactFCC } from "core/types";
 
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
+import colors from "public/themeColors.module.scss";
+
 import Head from "next/head";
 import Grid, { GridProps } from "core/components/ui/layouts/grid";
 import { ResetButton } from "core/components/ui";
 
 import { setupIonicReact } from "@ionic/react";
+import MusicPlayer from "core/components/musicPlayer";
 
 const headerEl = React.createElement(
   "header",
@@ -58,6 +61,7 @@ const Index: ReactFCC = ({ children }: GridProps) => {
       </Head>
 
       <Grid styles={styles} header={headerEl}>{children}</Grid>
+      <MusicPlayer source="https://open.spotify.com/embed/playlist/7hpupoXdDEnbuApMlfL1hr?utm_source=generator" color={`${colors.retroGreen}`}/>
     </>
   );
 };

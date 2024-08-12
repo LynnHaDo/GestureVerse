@@ -102,7 +102,7 @@ export const Page: PageType = () => {
                   Bzzzzt
                 </FadeIn>
 
-                <FadeIn wrapper={animated("p")} delayTime={5 * 1800}>
+                <FadeIn wrapper={animated("div")} delayTime={5 * 1800}>
                   <p>
                     The phone is vibrating - someone's calling. Should you
                     answer it? Probably not, as it’ll just keep you up. Or are

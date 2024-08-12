@@ -4,10 +4,12 @@ import { ReactFCC } from "core/types";
 import Grid from "core/components/ui/layouts/grid";
 
 import styles from "public/stories/congee/styles/Index.module.scss";
-import ResetButton from "core/components/ui/reset-button";
+import colors from "public/themeColors.module.scss";
 
+import ResetButton from "core/components/ui/reset-button";
 import { setupIonicReact } from "@ionic/react";
 import Head from "next/head";
+import MusicPlayer from "core/components/musicPlayer";
 
 const headerEl = React.createElement(
   "header",
@@ -56,6 +58,7 @@ const Index: ReactFCC = ({ children }) => {
         />
       </Head>
       <Grid styles={styles} header={headerEl}>{children}</Grid>
+      <MusicPlayer source="https://open.spotify.com/embed/playlist/63dbhcfrs5DyCRxmoZc0VS?utm_source=generator" color={`${colors.lightYellow}`}/>
     </>
   );
 };

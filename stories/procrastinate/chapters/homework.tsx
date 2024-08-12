@@ -69,18 +69,24 @@ export const Page: PageType = () => {
             <li>
               Art homework due date:{" "}
               {`${Intl.DateTimeFormat("en-US", dateOptions).format(
-                roundTime(new Date(new Date().getTime() + 1000 * 60 * 60 * 12))
+                roundTime(new Date(new Date().getTime() + 1000 * 60 * 60 * 2))
               )}`}
             </li>
             <li>
               Math homework due date:{" "}
+              {`${Intl.DateTimeFormat("en-US", dateOptions).format(
+                roundTime(new Date(new Date().getTime() + 1000 * 60 * 60))
+              )}`}
+            </li>
+            <li>
+              Sociology homework due date:{" "}
               {`${Intl.DateTimeFormat("en-US", dateOptions).format(deadline)}`}{" "}
               (!!!)
             </li>
           </ul>
 
           <FadeIn wrapper={animated("div")} delayTime={500}>
-            <p>OH NO THE MATH HOMEWORK IS LITERALLY DUE IN {counterMins} MINUTES.</p>
+            <p>OH NO THE SOCIOLOGY HOMEWORK IS LITERALLY DUE IN {counterMins} MINUTES.</p>
           </FadeIn>
 
           <p>

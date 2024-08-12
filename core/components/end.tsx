@@ -27,7 +27,6 @@ const End = ({
   sources = [],
   additionalButtonStyle,
 }: EndProps): JSX.Element => {
-    console.log(sources)
   return (
     <>
       <p>

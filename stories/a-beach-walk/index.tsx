@@ -4,6 +4,7 @@ import { ReactFCC } from "core/types";
 
 import styles from "public/stories/a-beach-walk/styles/Index.module.scss";
 import Head from "next/head";
+import MusicPlayer from "core/components/musicPlayer";
 
 const Index: ReactFCC = ({ children }) => {
   return (
@@ -36,6 +37,7 @@ const Index: ReactFCC = ({ children }) => {
         </button>
         {children}
       </main>
+      <MusicPlayer source="https://open.spotify.com/embed/playlist/6uu5gqmyjVYtytd9EFEKrM?utm_source=generator" />
     </>
   );
 };

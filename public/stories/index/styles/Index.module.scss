@@ -37,6 +37,34 @@ $secondary: fonts.$secondary;
 
   .story {
     text-align: center;
+    position: relative;
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        --icon-size: 25px;
+        position: absolute;
+        bottom: 100px;
+      
+        a {
+          &:nth-child(1) {
+              img {
+                  width: 21px;
+                  height: 21px;
+                  margin-right: 20px;
+                }
+          }
+      
+          &:nth-child(2) {
+              img {
+                  width: var(--icon-size);
+                  height: var(--icon-size);
+                }
+          }
+        }
+      }
 
     ul {
       list-style-type: none;

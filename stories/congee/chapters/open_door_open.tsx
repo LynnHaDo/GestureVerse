@@ -47,7 +47,7 @@ export const Page: PageType = () => {
             </Col>
 
             <Col>
-              <FadeIn wrapper={animated("p")} delayTime={5 * 400}>
+              <FadeIn wrapper={animated("div")} delayTime={5 * 400}>
                 <Artwork
                   link="https://i.imgur.com/y3a2Eck.gif"
                   source="https://i.imgur.com/y3a2Eck"
