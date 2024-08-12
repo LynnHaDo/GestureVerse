@@ -1,8 +1,9 @@
-import { Section, Chapter, Artwork, C } from "core/components";
+import { Section, Chapter, Artwork, C, Nav } from "core/components";
 import { choiceBlock } from "core/features/choice";
-import { Next, PageType } from "core/types";
+import { Next, PageType, useAppDispatch } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
+import { useEffect } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -12,12 +13,25 @@ import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
 import { BulletedList } from "core/components/widgets";
 import { TextReplacements } from "core/components/constants/options";
+import { useVariable } from "core/hooks/use-variable";
+import { updateVariable } from "core/features/variable-manager";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
   const tag = "congee_sub_options_doordash";
 
+  const dispatch = useAppDispatch();
+  const takeaway = useVariable("congee_takeaway");
+  let displayText: string = "";
+
   const texts = TextReplacements[chapter.filename];
+
+  if (takeaway) {
+    displayText =
+      "Wait... Isn't this the local Chinese takeaway place? Wow my head is not working properly today.";
+  } else {
+    dispatch(updateVariable("congee_doordash", true));
+  }
 
   return (
     <Chapter filename={chapter.filename}>
@@ -47,15 +61,24 @@ export const Page: PageType = () => {
               </FadeIn>
 
               <FadeIn wrapper={animated("div")} delayTime={2000}>
-                {choiceBlock(
-                  tag,
-                  "handedness",
-                  1,
-                  `${colors.lightYellow}`,
-                  `${colors.dark}`,
-                  BulletedList,
-                  null,
-                  true
+                <p>{displayText}</p>
+                {takeaway ? (
+                  <Nav
+                    tag={tag}
+                    text="No more searching today..."
+                    next="get_finish"
+                  />
+                ) : (
+                  choiceBlock(
+                    tag,
+                    "handedness",
+                    1,
+                    `${colors.lightYellow}`,
+                    `${colors.dark}`,
+                    BulletedList,
+                    null,
+                    false
+                  )
                 )}
               </FadeIn>
             </Col>

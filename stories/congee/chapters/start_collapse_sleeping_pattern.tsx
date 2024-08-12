@@ -8,10 +8,23 @@ import { choiceBlock } from "core/features/choice";
 
 import colors from "public/themeColors.module.scss";
 import { BulletedList } from "core/components/widgets";
+import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
   const tag = "congee_disease";
+
+  let navBlock: JSX.Element = null;
+
+  if (useVariable(tag)) {
+    navBlock = (
+      <p>
+        Maybe you should{" "}
+        <Nav text="tell someone" next="tell" tag="tellSomeone" />
+        {"."}
+      </p>
+    );
+  }
 
   return (
     <Chapter filename={chapter.filename}>
@@ -36,11 +49,7 @@ export const Page: PageType = () => {
                 "variableSetter"
               )}
 
-              <p>
-                Maybe you should{" "}
-                <Nav text="tell someone" next="tell" tag="tellSomeone" />
-                {"."}
-              </p>
+              {navBlock}
             </Col>
 
             <Col></Col>
