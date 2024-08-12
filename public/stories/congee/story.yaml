@@ -38,6 +38,30 @@ chapters:
     title: "Get congee: Options"
   - filename: "get_options"
     title: "Get congee: Options (1)"
+  - filename: "get_takeaway"
+    title: "Get congee: Takeaway"
+  - filename: "get_doordash"
+    title: "Get congee: Doordash"
+  - filename: "get_finish"
+    title: "Finish ordering"
+  - filename: "get_text_allison"
+    title: "Text Allison"
+  
+  - filename: "open_door"
+    title: "Open the door"
+  - filename: "open_door_ignore"
+    title: "Open the door"
+  - filename: "open_door_open"
+    title: "Open the door"
+  
+  - filename: "end_congee_club"
+    title: 'Congee club'
+  - filename: "end_asian_celebration"
+    title: "Asian celebration"
+  - filename: "end_no_more_western_food"
+    title: "No more Western food"
+  - filename: "end"
+    title: "End"
   
 players:
   - start: "intro"

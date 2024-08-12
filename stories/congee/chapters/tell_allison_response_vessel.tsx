@@ -49,16 +49,18 @@ export const Page: PageType = () => {
                     ... maybe. i'm feeling a bit unwell 😢
                   </p>
                 </FadeIn>
-              </div>
 
-              <p>
-                <Nav
-                  text="Continue"
-                  next="tell_allison_close"
-                  tag="continueNetflix"
-                  className={styles.navEnd}
-                />
-              </p>
+                <FadeIn wrapper={animated("div")} delayTime={5 * 2100}>
+                  <p>
+                    <Nav
+                      text="Continue"
+                      next="tell_allison_close"
+                      tag="continueNetflix"
+                      className={styles.navEnd}
+                    />
+                  </p>
+                </FadeIn>
+              </div>
             </Col>
 
             <Col></Col>

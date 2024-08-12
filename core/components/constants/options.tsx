@@ -131,8 +131,25 @@ export const Options: OptionProps = {
         'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel')
     },
     "congee_get_options": {
-        "takeaway": optionItem('Thumb_Up', null, 'Check your local Chinese takeaway.'),
-        "doordash": optionItem('Thumb_Down', null, 'Check Doordash')
+        "get_takeaway": optionItem('Thumb_Up', null, 'Check your local Chinese takeaway'),
+        "get_doordash": optionItem('Thumb_Down', null, 'Check Doordash')
+    },
+    "congee_sub_options_takeaway": {
+        "get_doordash": optionItem(null, 'Left', 'Check Doordash'),
+        "get_finish": optionItem(null, 'Right', "No more searching today...")
+    },
+    "congee_sub_options_doordash": {
+        "get_takeaway": optionItem(null, 'Left', 'Check the Chinese Palace place out'),
+        "get_finish": optionItem(null, 'Right', "Too tired... no more searching today...")
+    },
+    "congee_open_door": {
+        "open_door_ignore": optionItem('Open_Palm', null, 'Just ignore it'),
+        "open_door_open": optionItem('Closed_Fist', null, 'Open the door')
+    },
+    "congee_end": {
+        "end_congee_club": optionItem('Pointing_Up', null, "Congee Club?"),
+        "end_asian_celebration": optionItem('Victory', null, "Asian celebration?"),
+        "end_no_more_western_food": optionItem('ILoveYou', null, "No more Western food day?")
     }
 }
 
@@ -171,5 +188,12 @@ export const TextReplacements: TextReplacementProps = {
         "Keep going!": "I can do this.",
         "Boom, math done!": "Now for art.",
         "I'm suddenly inspired, I'm forcing myself to be.": "So closeeeee..."
+    },
+    "get_doordash": {
+        "Nandos": "You don't really feel like that right now.",
+        "KFC": "Definitely not.",
+        "Five Guys": "Greasy burger? No thanks.",
+        "Mission Burrito": "Nahh",
+        "China Palace": "Looks promising"
     }
 }

@@ -23,9 +23,11 @@ export const Page: PageType = () => {
             <Col></Col>
             <Col xs={6}>
               <div className={styles.chatWrapper}>
-                <p className={styles.chatBubble}>
-                  I need a very distracting Netflix recommendation 😫
-                </p>
+                <div>
+                  <p className={styles.chatBubble}>
+                    I need a very distracting Netflix recommendation 😫
+                  </p>
+                </div>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 100}>
                   <p className={`${styles.chatBubble} ${styles.other}`}>
@@ -35,39 +37,40 @@ export const Page: PageType = () => {
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 900}>
                   <p className={styles.chatBubble}>
-                  i heard the latest season is a bit dark
+                    i heard the latest season is a bit dark
                   </p>
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 1500}>
                   <p className={`${styles.chatBubble} ${styles.other}`}>
-                  it’s the kind of thing you need to be in the mood for. you asked for DISTRACTING 🙄
+                    it’s the kind of thing you need to be in the mood for. you
+                    asked for DISTRACTING 🙄
                   </p>
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 2000}>
                   <p className={`${styles.chatBubble}`}>
-                  something to distract me from disease, not make me feel worse...
+                    something to distract me from disease, not make me feel
+                    worse...
                   </p>
                 </FadeIn>
               </div>
-
-              <p>
-                <Nav
-                  text="Continue"
-                  next="tell_allison_close"
-                  tag="continueNetflix"
-                  className={styles.navEnd}
-                />
-              </p>
+              <FadeIn wrapper={animated("div")} delayTime={5 * 2100}>
+                <p>
+                  <Nav
+                    text="Continue"
+                    next="tell_allison_close"
+                    tag="continueNetflix"
+                    className={styles.navEnd}
+                  />
+                </p>
+              </FadeIn>
             </Col>
 
             <Col></Col>
           </Row>
         </Container>
       </Section>
-
-      
     </Chapter>
   );
 };

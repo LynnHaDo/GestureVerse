@@ -43,6 +43,12 @@ $text-color: colors.$lightYellow;
     font-size: 1rem;
   }
 
+  .darkText {
+    a {
+        color: colors.$very-dark !important
+    }
+  }
+
   section {
     margin-bottom: 2rem;
   }
