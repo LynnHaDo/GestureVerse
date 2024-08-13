@@ -9,6 +9,8 @@ import { incrementScore } from "core/features/score";
 import useChapter from "core/hooks/use-chapter";
 import { updateVariable } from "core/features/variable-manager";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
@@ -21,6 +23,8 @@ export const Page: PageType = () => {
   return (
     <Chapter filename="clean_start">
       <Section>
+      <Container>
+      <Row>
         <p>
           I spend an hour organizing everything and making sure to not do my
           homework. Cleaning your room is only fun when you have other things to
@@ -38,6 +42,8 @@ export const Page: PageType = () => {
             {"?"}
           </p>
         </FadeIn>
+        </Row>
+        </Container>
       </Section>
     </Chapter>
   );

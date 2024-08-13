@@ -19,7 +19,6 @@ export const Page: PageType = () => {
   const tag = "congee_sub_options_takeaway";
 
   const dispatch = useAppDispatch();
-  const takeaway = useVariable("congee_takeaway");
   const doordash = useVariable("congee_doordash");
 
   let displayText1: string =
@@ -39,7 +38,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} style={{position: 'relative'}}>
               <p>{displayText1}</p>
               <FadeIn wrapper={animated("div")} delayTime={1000}>
                 <p>{displayText2}</p>
@@ -70,13 +69,17 @@ export const Page: PageType = () => {
                 )}
               </FadeIn>
             </Col>
-            <Col>
+            <Col lg={6}>
               <FadeIn wrapper={animated("div")} delayTime={1600}>
                 <Artwork
                   link="https://i.imgur.com/you2Ff2.png"
                   source="https://imgur.com/you2Ff2"
                   name="Chinese local restaurant menu, Digital image"
                   width="350px"
+                  position={{
+                    margin: '20px auto',
+                    padding: 0
+                  }}
                 />
               </FadeIn>
             </Col>

@@ -15,7 +15,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You aren’t expecting anybody. It's probably some kids playing a
                 prank. You roll over and close your eyes.
@@ -45,7 +45,7 @@ export const Page: PageType = () => {
               </FadeIn>
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

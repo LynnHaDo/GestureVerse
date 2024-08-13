@@ -38,7 +38,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} style={{position: 'relative'}}>
               <p>You scroll through the app.</p>
               <FadeIn wrapper={animated("div")} delayTime={1000}>
                 {texts && (
@@ -82,7 +82,7 @@ export const Page: PageType = () => {
                 )}
               </FadeIn>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

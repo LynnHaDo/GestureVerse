@@ -13,7 +13,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 In fact, you don’t remember much of the day. You got home with a
                 splitting headache and you fell into bed with your work clothes
@@ -23,7 +23,7 @@ export const Page: PageType = () => {
               </p>
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>
@@ -32,7 +32,7 @@ export const Page: PageType = () => {
         <Container>
           <Row>
             
-            <Col>
+            <Col lg={6}>
               <p>
                 You turn to look at your clock on your bedside table. 8:30pm.
               </p>
@@ -40,7 +40,7 @@ export const Page: PageType = () => {
                 You really messed up your{" "}<Nav text="sleeping pattern" next="start_collapse_sleeping_pattern" tag="sleepingPattern" />{"."}
               </p>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

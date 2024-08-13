@@ -34,16 +34,17 @@ export const resetStory = (
 type ResetType = {
     message?: string
     children?: React.ReactNode
+    className?: string
     style?: React.CSSProperties
 }
-const ResetButton = ({ children = 'Reset', message, style }: ResetType): JSX.Element => {
+const ResetButton = ({ children = 'Reset', message, className, style }: ResetType): JSX.Element => {
     const { persistor, config } = React.useContext(StoryContext)
     const router = useRouter();
 
     let [showConfirmModal, setConfirmModal] = React.useState(false);
     return (
         <>
-            <button onClick={() => setConfirmModal(true)} style={style}>
+            <button onClick={() => setConfirmModal(true)} className={className} style={style}>
                 {children}
             </button>
 

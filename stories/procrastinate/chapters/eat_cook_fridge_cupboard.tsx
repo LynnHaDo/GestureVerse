@@ -11,6 +11,8 @@ import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
 import { makeChoice } from "core/features/choice";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
@@ -42,20 +44,24 @@ export const Page: PageType = () => {
   return (
     <Chapter filename={chapter.filename}>
       <Section>
-        <p>{displayText}</p>
-        <FadeIn>
-          <p>
-            Hmm... Are there any interesting{" "}
-            <Nav
-              text={text}
-              next={next}
-              tag={`moveFrom${chapter.filename}toMenu`}
-              handler={updateChili}
-            />{" "}
-            left to do
-            {"?"}
-          </p>
-        </FadeIn>
+        <Container>
+          <Row>
+            <p>{displayText}</p>
+            <FadeIn>
+              <p>
+                Hmm... Are there any interesting{" "}
+                <Nav
+                  text={text}
+                  next={next}
+                  tag={`moveFrom${chapter.filename}toMenu`}
+                  handler={updateChili}
+                />{" "}
+                left to do
+                {"?"}
+              </p>
+            </FadeIn>
+          </Row>
+        </Container>
       </Section>
     </Chapter>
   );

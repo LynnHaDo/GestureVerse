@@ -14,7 +14,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You bring your knees to your chest. Even your chest is moist
                 with sweat. Maybe you left the heating on or something? You’re
@@ -28,7 +28,7 @@ export const Page: PageType = () => {
               </p>
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

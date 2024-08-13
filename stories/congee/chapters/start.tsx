@@ -15,7 +15,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 It’s the middle of the night. The streetlight pouring through
                 the window is unbearable; it burns your eyeballs. Your body is
@@ -33,11 +33,15 @@ export const Page: PageType = () => {
               )}
             </Col>
 
-            <Col>
+            <Col lg={6}>
               <Artwork link="https://i.imgur.com/rwZUriJ.gif"
                         name="Window with view of the rain, GIF image"
                         source="https://imgur.com/rwZUriJ"
-                        width="350px"/>
+                        width="350px"
+                        position={{
+                            margin: '10px auto'
+                        }}
+                        />
             </Col>
           </Row>
         </Container>

@@ -3,11 +3,15 @@ import FadeIn from "core/components/ui/fadein";
 import { PageType } from "core/types";
 import useChapter from "core/hooks/use-chapter";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const chapter = useChapter();
   return (
     <Chapter filename={chapter.filename}>
       <Section>
+      <Container>
+      <Row>
         <p>
           My trashcan is overflowing from the loose paper and food wrappers I
           have shoved into it. Every day I stomp it down a little more, but if I
@@ -24,6 +28,8 @@ export const Page: PageType = () => {
             {"?"}
           </p>
         </FadeIn>
+        </Row>
+        </Container>
       </Section>
     </Chapter>
   );

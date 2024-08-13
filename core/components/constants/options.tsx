@@ -88,7 +88,7 @@ export const Options: OptionProps = {
     "procrastinate__games_phone": {
         "game_phone_phonegame": optionItem('Open_Palm', null, 'Play a boring (?) phone game'),
         "game_phone_instagram": optionItem('Pointing_Up', null, 'Instagram time'),
-        "game_phone_article": optionItem('Closed_Fist', null, "Educate myself on why Tesla's stock is dropping."),
+        "game_phone_article": optionItem('Closed_Fist', null, "Educate myself on why Tesla's stock is dropping"),
     },
     "procrastinate__clean": {
         "clean_clothes": optionItem('Thumb_Up', null, 'Collect the clothes on the floor'),

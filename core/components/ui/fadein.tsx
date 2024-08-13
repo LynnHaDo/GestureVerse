@@ -28,7 +28,6 @@ const FadeIn: ReactFCC<Props> = ({ children, wrapper = animated('span'), delayTi
                 top: 0,
                 left: 0,
                 right: 0,
-                bottom: 0
              }}
             delay={delayTime}
             config={config.molasses}>

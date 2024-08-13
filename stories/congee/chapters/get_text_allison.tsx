@@ -17,8 +17,8 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col></Col>
-            <Col xs={6}>
+            <Col lg={4}></Col>
+            <Col lg={4} style={{ position: "relative" }}>
               <div className={styles.chatWrapper}>
                 <div>
                   <p className={styles.chatBubble}>
@@ -59,13 +59,18 @@ export const Page: PageType = () => {
                 <FadeIn wrapper={animated("div")} delayTime={5 * 2800}>
                   <p className={`${styles.chatBubble}`}>
                     What{" "}
-                    <Nav text="thing" next={Next.Section} tag="continueThing" className={styles.darkText}/>
+                    <Nav
+                      text="thing"
+                      next={Next.Section}
+                      tag="continueThing"
+                      className={styles.darkText}
+                    />
                     {"?"}
                   </p>
                 </FadeIn>
               </div>
             </Col>
-            <Col></Col>
+            <Col lg={4}></Col>
           </Row>
         </Container>
       </Section>
@@ -73,8 +78,8 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col></Col>
-            <Col xs={6}>
+            <Col lg={4}></Col>
+            <Col lg={4} style={{ position: "relative" }}>
               <div className={styles.chatWrapper}>
                 <div>
                   <p className={styles.chatBubble}>What thing?</p>
@@ -117,7 +122,7 @@ export const Page: PageType = () => {
                 </FadeIn>
               </div>
             </Col>
-            <Col></Col>
+            <Col lg={4}></Col>
           </Row>
         </Container>
       </Section>
@@ -125,26 +130,30 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} style={{ position: "relative" }}>
               <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
                 Oh yeah—you called mum a while back, didn’t you? You check your
                 phone and you’ve missed a call from her. You should dial back.
               </FadeIn>
 
               <FadeIn wrapper={animated("div")} delayTime={5 * 800}>
-                <p>She picks up on the third {" "}<Nav text="ring" next={Next.Section} tag="callMom" />{"."}</p>
+                <p>
+                  She picks up on the third{" "}
+                  <Nav text="ring" next={Next.Section} tag="callMom" />
+                  {"."}
+                </p>
               </FadeIn>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>
 
       <Section>
         <Container>
-            <Row>
-                <Col>
-                <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
+          <Row>
+            <Col lg={6} style={{ position: "relative" }}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
                 "Hi, honey. I just saw your call, are you OK?"
               </FadeIn>
 
@@ -188,21 +197,23 @@ export const Page: PageType = () => {
               </FadeIn>
 
               <FadeIn wrapper={animated("div")} delayTime={5 * 3600}>
-                <p>“I know...
-                <Nav text="Bye mom" next={Next.Section} tag="endMomCalling" />
-                {'"'}</p>
+                <p>
+                  “I know...
+                  <Nav text="Bye mom" next={Next.Section} tag="endMomCalling" />
+                  {'"'}
+                </p>
               </FadeIn>
-                </Col>
-                <Col></Col>
-            </Row>
+            </Col>
+            <Col lg={6}></Col>
+          </Row>
         </Container>
       </Section>
 
       <Section>
         <Container>
-            <Row>
-                <Col>
-                <FadeIn wrapper={animated("p")}>
+          <Row>
+            <Col lg={6} style={{ position: "relative" }}>
+              <FadeIn wrapper={animated("p")}>
                 Hearing her voice makes you feel a little better, as if for a
                 second there wasn’t ten thousand kilometres between you both.
               </FadeIn>
@@ -220,9 +231,9 @@ export const Page: PageType = () => {
                 That’s the doorbell. You glance at your clock: 21:45.{" "}
                 <Nav text="What is it?" next="open_door" tag="doorbellRing" />
               </FadeIn>
-                </Col>
-                <Col></Col>
-            </Row>
+            </Col>
+            <Col lg={6}></Col>
+          </Row>
         </Container>
       </Section>
     </Chapter>

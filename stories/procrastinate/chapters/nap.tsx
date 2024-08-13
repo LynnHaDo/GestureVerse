@@ -6,34 +6,23 @@ import FadeIn from "core/components/ui/fadein";
 import useChapter from "core/hooks/use-chapter";
 import { useVariable } from "core/hooks/use-variable";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const chapter = useChapter();
-  const nap = useVariable("nap");
-
-  if (nap) {
-    return (
-      <Chapter filename="nap">
-        <Section>
-          <Nav
-            text="I feel refreshed and energized to do anything (but homework)."
-            next="menu"
-            tag="endNap"
-          />
-        </Section>
-      </Chapter>
-    );
-  }
 
   return (
     <>
       <Chapter filename="nap">
         <Section>
-          {/* Giphy */}
+          <Container>
+            <Row>
+                {/* Giphy */}
           <div
             style={{
               width: "400px",
               height: 0,
-              paddingBottom: "56%",
+              paddingBottom: "20px",
               position: "relative",
             }}
           >
@@ -75,6 +64,8 @@ export const Page: PageType = () => {
               next="nap_time"
             />
           </FadeIn>
+            </Row>
+          </Container>
         </Section>
       </Chapter>
     </>

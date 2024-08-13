@@ -17,7 +17,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 She’s right. You live in a town - you should be able to find
                 congee. Right?
@@ -32,7 +32,7 @@ export const Page: PageType = () => {
               )}
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

@@ -21,7 +21,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
               You flick on WhatsApp. You feel so dizzy, you can barely focus on the screen. You can do this.
               </p>
@@ -44,7 +44,7 @@ export const Page: PageType = () => {
               )}
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

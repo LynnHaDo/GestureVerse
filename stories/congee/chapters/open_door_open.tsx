@@ -20,7 +20,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} style={{position: 'relative'}}>
               <p>“Uh… hi.” You stare.</p>
               <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
                 It's Allison.
@@ -30,29 +30,27 @@ export const Page: PageType = () => {
                 "I wanted to make sure you really weren’t dying. I have an
                 interest in your continued existence.", she said.
               </FadeIn>
-              <FadeIn wrapper={animated("p")} delayTime={5 * 1000}>
-                "Um ... yep, still alive. Is everything okay? Come in-"
-              </FadeIn>
-              <FadeIn wrapper={animated("div")} delayTime={5 * 1300}>
-                <p>
-                  "Wait...{" "}
+              <FadeIn wrapper={animated("p")} delayTime={5 * 1200}>
+                "Um ... yep, still alive. Is everything okay? Come in... <span>Wait...{" "}
                   <Nav
                     text="Is that congee?"
                     next={Next.Section}
                     tag="allisonBringCongee"
                   />
-                  {'"'}
-                </p>
+                  {'"'}</span>
               </FadeIn>
             </Col>
 
-            <Col>
+            <Col lg={6}>
               <FadeIn wrapper={animated("div")} delayTime={5 * 400}>
                 <Artwork
                   link="https://i.imgur.com/y3a2Eck.gif"
                   source="https://i.imgur.com/y3a2Eck"
                   name="Allison, GIF image"
                   width="350px"
+                  position={{
+                    margin: '0 auto'
+                  }}
                 />
               </FadeIn>
             </Col>
@@ -63,7 +61,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} style={{position: 'relative'}}>
               <p>“Yep”, she replied.</p>
               <FadeIn wrapper={animated("p")} delayTime={5 * 600}>
                 “I think ... you might be the best person alive.”
@@ -96,7 +94,7 @@ export const Page: PageType = () => {
                 />
               </FadeIn>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>
@@ -104,7 +102,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You both sit in the kitchen, slurping at the congee. The rice is
                 a bit chunkier than usual but it is unmistakeably familiar. The
@@ -144,7 +142,7 @@ export const Page: PageType = () => {
                 )}
               </FadeIn>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

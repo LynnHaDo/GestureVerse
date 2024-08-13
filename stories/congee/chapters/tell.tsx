@@ -17,22 +17,22 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You fumble for your phone and call mom. It rings endlessly but
                 she doesn’t pick up.
               </p>
 
-              <FadeIn wrapper={animated("p")} delayTime={200}>
+              <FadeIn wrapper={animated("p")} delayTime={5*200}>
                 Hmm...
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={400}>
+              <FadeIn wrapper={animated("p")} delayTime={5*400}>
                 Oh yeah, it's early morning at home. It's Saturday, so she is
                 probably still sleeping in now. "Hmm, should I...
               </FadeIn>
 
-              <FadeIn wrapper={animated("div")} delayTime={600}>
+              <FadeIn wrapper={animated("div")} delayTime={5*600}>
                 {choiceBlock(
                   tag,
                   "handedness",
@@ -43,7 +43,7 @@ export const Page: PageType = () => {
                 )}
               </FadeIn>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

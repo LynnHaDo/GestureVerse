@@ -19,7 +19,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
                 <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
                 *RIIIING.*
               </FadeIn>
@@ -35,7 +35,7 @@ export const Page: PageType = () => {
               </FadeIn>
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

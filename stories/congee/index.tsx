@@ -1,34 +1,14 @@
 import * as React from "react";
 
 import { ReactFCC } from "core/types";
-import Grid from "core/components/ui/layouts/grid";
 
 import styles from "public/stories/congee/styles/Index.module.scss";
 import colors from "public/themeColors.module.scss";
 
-import ResetButton from "core/components/ui/reset-button";
 import { setupIonicReact } from "@ionic/react";
 import Head from "next/head";
 import MusicPlayer from "core/components/musicPlayer";
-
-const headerEl = React.createElement(
-  "header",
-  { className: styles.header },
-  <nav>
-    <div className={styles.controls}>
-      <button
-        className={styles.backButton}
-        onClick={() => window.location.replace(window.location.origin)}
-      >
-        home
-      </button>
-      <ResetButton
-        message="Do you want to reset the story?"
-        style={{ fontSize: "1rem" }}
-      />
-    </div>
-  </nav>
-);
+import { Header } from "core/components";
 
 const Index: ReactFCC = ({ children }) => {
   React.useEffect(() => {
@@ -57,8 +37,18 @@ const Index: ReactFCC = ({ children }) => {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-      <Grid styles={styles} header={headerEl}>{children}</Grid>
-      <MusicPlayer source="https://open.spotify.com/embed/playlist/63dbhcfrs5DyCRxmoZc0VS?utm_source=generator" color={`${colors.lightYellow}`}/>
+      <Header
+        className={styles.header}
+        controlsClassName={styles.controls}
+        backButtonClassName={styles.backButton}
+        backgroundColor='rgb(0, 0, 0)'
+        position="right"
+      />
+      <main className={styles.main}>{children}</main>
+      <MusicPlayer
+        source="https://open.spotify.com/embed/playlist/63dbhcfrs5DyCRxmoZc0VS?utm_source=generator"
+        color={`${colors.lightYellow}`}
+      />
     </>
   );
 };

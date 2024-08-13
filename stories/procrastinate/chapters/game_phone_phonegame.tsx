@@ -6,6 +6,8 @@ import { incrementScore } from "core/features/score";
 import { updateVariable } from "core/features/variable-manager";
 import useChapter from "core/hooks/use-chapter";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
@@ -16,28 +18,30 @@ export const Page: PageType = () => {
   }, []);
 
   return (
-    <>
-      <Chapter filename={chapter.filename}>
-        <Section>
-          <p>
-            Wow I forgot this is addicting, it's been nearly 2 hours. This game
-            isn't even fun, it just drives me to keep playing, it's kind of
-            scary? Is this good design? Or something far more dangerous?
-          </p>
-
-          <FadeIn>
+    <Chapter filename={chapter.filename}>
+      <Section>
+        <Container>
+          <Row>
             <p>
-              Okay game over. What's{" "}
-              <Nav
-                text="next"
-                next="menu"
-                tag={`moveFrom${chapter.filename}toMenu`}
-              />
-              {"?"}
+              Wow I forgot this is addicting, it's been nearly 2 hours. This
+              game isn't even fun, it just drives me to keep playing, it's kind
+              of scary? Is this good design? Or something far more dangerous?
             </p>
-          </FadeIn>
-        </Section>
-      </Chapter>
-    </>
+
+            <FadeIn>
+              <p>
+                Okay game over. What's{" "}
+                <Nav
+                  text="next"
+                  next="menu"
+                  tag={`moveFrom${chapter.filename}toMenu`}
+                />
+                {"?"}
+              </p>
+            </FadeIn>
+          </Row>
+        </Container>
+      </Section>
+    </Chapter>
   );
 };

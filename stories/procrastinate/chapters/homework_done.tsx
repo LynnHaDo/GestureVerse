@@ -6,6 +6,7 @@ import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
 import End from "core/components/end";
+import { Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -14,30 +15,30 @@ export const Page: PageType = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(updateVariable('counterStarted', false));
+    dispatch(updateVariable("counterStarted", false));
   });
 
   return (
     <Chapter filename={chapter.filename}>
       <Section>
-        <p>
-        Thank god...
-        </p>
-        <p>
-        Now I can finally relax....
-        </p>
+        <Container>
+          <Row>
+            <p>Thank god...</p>
+            <p>Now I can finally relax....</p>
 
-        <End
-          storyName="procrastinate"
-          sources={[
-            "j-mo (2024). Procrastinate. [online] itch.io. Available at: https://j-mo.itch.io/procrastinate [Accessed 6 Aug. 2024].",
-          ]}
-          additionalButtonStyle={{
-            backgroundColor: `${colors.orange}`,
-            color: `${colors.white}`,
-            border: `1px solid ${colors.dark}`
-          }}
-        />
+            <End
+              storyName="procrastinate"
+              sources={[
+                "j-mo (2024). Procrastinate. [online] itch.io. Available at: https://j-mo.itch.io/procrastinate [Accessed 6 Aug. 2024].",
+              ]}
+              additionalButtonStyle={{
+                backgroundColor: `${colors.orange}`,
+                color: `${colors.white}`,
+                marginLeft: '15px'
+              }}
+            />
+          </Row>
+        </Container>
       </Section>
     </Chapter>
   );

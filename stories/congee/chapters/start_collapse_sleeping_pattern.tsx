@@ -18,7 +18,7 @@ export const Page: PageType = () => {
 
   if (useVariable(tag)) {
     navBlock = (
-      <p>
+      <p style={{marginTop: '15px'}}>
         Maybe you should{" "}
         <Nav text="tell someone" next="tell" tag="tellSomeone" />
         {"."}
@@ -31,7 +31,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 But it isn't your fault. You felt really bad and you still feel
                 awful. You’re pretty sure you’ve come down with a...
@@ -52,7 +52,7 @@ export const Page: PageType = () => {
               {navBlock}
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

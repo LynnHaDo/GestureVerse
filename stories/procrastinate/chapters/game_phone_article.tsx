@@ -6,6 +6,8 @@ import { incrementScore } from "core/features/score";
 import { updateVariable } from "core/features/variable-manager";
 import useChapter from "core/hooks/use-chapter";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
@@ -15,9 +17,11 @@ export const Page: PageType = () => {
   }, []);
 
   return (
-    <>
+
       <Chapter filename={chapter.filename}>
         <Section>
+        <Container>
+          <Row>
           <p>
             I don't know why I always get recommended articles about Tesla. I
             don't like them that much and I'll never be able to afford one. Yet
@@ -39,8 +43,9 @@ export const Page: PageType = () => {
               {"."}
             </p>
           </FadeIn>
-        </Section>
+          </Row>
+        </Container>
+      </Section>
       </Chapter>
-    </>
   );
 };

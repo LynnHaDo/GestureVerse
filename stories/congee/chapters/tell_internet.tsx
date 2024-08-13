@@ -13,7 +13,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You open up your browser, ready to type in your symptoms. You
                 hesitate. You do have some self-preservation, after all.
@@ -34,7 +34,7 @@ export const Page: PageType = () => {
               </p>
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

@@ -1,18 +1,17 @@
-import { Image } from "react-bootstrap";
-
 export const backgroundFillStyle: React.CSSProperties = {
-  width: "100%",
-  height: "100%",
-  position: "fixed",
-  zIndex: -1,
-};
-
+    width: "100%",
+    height: "100%",
+    position: "fixed",
+    zIndex: -1,
+  };
+  
 export interface backgroundFillProps {
-  /** Source of image set as background (if any) */
-  imageSrc?: string;
   /** Color of background (if fill) */
   color?: string;
+  children: React.ReactNode;
 }
+
+import styles from './BackgroundFill.module.scss'
 
 /**
  * Background image/solid color that fills the entire page
@@ -20,12 +19,10 @@ export interface backgroundFillProps {
  * @param color (optional) source of
  * @returns
  */
-const BackgroundFill = ({ imageSrc, color }: backgroundFillProps) => {  
+const BackgroundFill = ({ color = null, children}: backgroundFillProps) => {  
   return (
-    <div style={{...backgroundFillStyle, backgroundColor: color}}>
-      {imageSrc &&
-      <Image src={imageSrc} style={{objectFit: 'cover'}}/>
-      }
+    <div style={{backgroundColor: color}} className={styles.container}>
+      {children}
     </div>
   );
 };

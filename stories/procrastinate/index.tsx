@@ -6,36 +6,17 @@ import styles from "public/stories/procrastinate/styles/Index.module.scss";
 import colors from "public/themeColors.module.scss";
 
 import Head from "next/head";
-import Grid, { GridProps } from "core/components/ui/layouts/grid";
+import { GridProps } from "core/components/ui/layouts/grid";
 import { ResetButton } from "core/components/ui";
 
 import { setupIonicReact } from "@ionic/react";
 import MusicPlayer from "core/components/musicPlayer";
-
-const headerEl = React.createElement(
-  "header",
-  { className: styles.header },
-  <nav>
-    <h1>procrastinate</h1>
-    <div className={styles.controls}>
-      <button
-        className={styles.backButton}
-        onClick={() => window.location.replace(window.location.origin)}
-      >
-        home
-      </button>
-      <ResetButton
-        message="Do you want to reset the story?"
-        style={{ textDecoration: "none", fontSize: "0.8rem" }}
-      />
-    </div>
-  </nav>
-);
+import { Header } from "core/components";
 
 const Index: ReactFCC = ({ children }: GridProps) => {
   React.useEffect(() => {
     setupIonicReact();
-  })
+  });
   return (
     <>
       <Head>
@@ -59,9 +40,17 @@ const Index: ReactFCC = ({ children }: GridProps) => {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-
-      <Grid styles={styles} header={headerEl}>{children}</Grid>
-      <MusicPlayer source="https://open.spotify.com/embed/playlist/7hpupoXdDEnbuApMlfL1hr?utm_source=generator" color={`${colors.retroGreen}`}/>
+      <Header
+        className={styles.header}
+        controlsClassName={styles.controls}
+        backButtonClassName={styles.backButton}
+        position="right"
+      />
+      <main className={styles.main}>{children}</main>
+      <MusicPlayer
+        source="https://open.spotify.com/embed/playlist/7hpupoXdDEnbuApMlfL1hr?utm_source=generator"
+        color={`${colors.retroGreen}`}
+      />
     </>
   );
 };

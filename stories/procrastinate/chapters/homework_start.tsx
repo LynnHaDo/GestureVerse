@@ -4,10 +4,10 @@ import { makeChoice } from "core/features/choice";
 
 import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
-import { useState } from "react";
 import { updateVariable } from "core/features/variable-manager";
 
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
+import { Container, Row } from "react-bootstrap";
 
 import { TextReplacements } from "core/components/constants/options";
 
@@ -20,7 +20,6 @@ export const Page: PageType = () => {
   /** Number of minutes left */
   let counterMins: number = useVariable("counterMins");
 
-  
   const textsZero = TextReplacements[chapter.filename];
   const textsOne = TextReplacements[`${chapter.filename}_one`];
   const textsTwo = TextReplacements[`${chapter.filename}_two`];
@@ -44,103 +43,117 @@ export const Page: PageType = () => {
   }
 
   return (
-    <>
-      <Chapter filename={chapter.filename}>
-        <Section>
-          <p>{counterMins} minutes left...</p>
-          {textsZero && (
-            <div className={styles.panicWrapper}>
-              {Object.entries(textsZero).map(([initial, later], i) => {
-                return (
-                  <span key={i}>
-                    <C
-                      options={[[`${initial} `]]}
-                      last={`${later} `}
-                      tag={`item${i}IsClickedInTextsZero`}
-                      next={Next.None}
-                      className={styles.choiceContent}
-                    />
-                  </span>
-                );
-              })}
-            </div>
-          )}
+    <Chapter filename={chapter.filename}>
+      <Section>
+        <Container>
+          <Row>
+            <p>{counterMins} minutes left...</p>
+            {textsZero && (
+              <div className={styles.panicWrapper}>
+                {Object.entries(textsZero).map(([initial, later], i) => {
+                  return (
+                    <span key={i}>
+                      <C
+                        options={[[`${initial} `]]}
+                        last={`${later} `}
+                        tag={`item${i}IsClickedInTextsZero`}
+                        next={Next.None}
+                        className={styles.choiceContent}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+            )}
 
-          <p>
-            <Nav
-              text="It's all about tradeoffs. I relaxed earlier but I relaxed too much so now I will suffer for it."
-              next={Next.Section}
-              tag="goToPanicSectionTwo"
-            />
-          </p>
-        </Section>
+            <p>
+              <Nav
+                text="It's all about tradeoffs. I relaxed earlier but I relaxed too much so now I will suffer for it."
+                next={Next.Section}
+                tag="goToPanicSectionTwo"
+              />
+            </p>
+          </Row>
+        </Container>
+      </Section>
 
-        <Section>
-          {textsOne && (
-            <div className={styles.panicWrapper}>
-              {Object.entries(textsOne).map(([initial, later], i) => {
-                return (
-                  <span key={i}>
-                    <C
-                      options={[[`${initial} `]]}
-                      last={`${later} `}
-                      tag={`item${i}IsClickedInTextsOne`}
-                      next={Next.None}
-                      className={styles.choiceContent}
-                    />
-                  </span>
-                );
-              })}
-            </div>
-          )}
+      <Section>
+        <Container>
+          <Row>
+            {textsOne && (
+              <div className={styles.panicWrapper}>
+                {Object.entries(textsOne).map(([initial, later], i) => {
+                  return (
+                    <span key={i}>
+                      <C
+                        options={[[`${initial} `]]}
+                        last={`${later} `}
+                        tag={`item${i}IsClickedInTextsOne`}
+                        next={Next.None}
+                        className={styles.choiceContent}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+            )}
 
-          <p>
-            <Nav
-              text="Oh well, guess I won't get to relax more tonight."
-              next={Next.Section}
-              tag="goToPanicSectionThree"
-            />
-          </p>
-        </Section>
+            <p>
+              <Nav
+                text="Oh well, guess I won't get to relax more tonight."
+                next={Next.Section}
+                tag="goToPanicSectionThree"
+              />
+            </p>
+          </Row>
+        </Container>
+      </Section>
 
-        <Section>
-          {textsTwo && (
-            <div className={styles.panicWrapper}>
-              {Object.entries(textsTwo).map(([initial, later], i) => {
-                return (
-                  <span key={i}>
-                    <C
-                      options={[[`${initial} `]]}
-                      last={`${later} `}
-                      tag={`item${i}IsClickedInTextsTwo`}
-                      next={Next.None}
-                      className={styles.choiceContent}
-                    />
-                  </span>
-                );
-              })}
-            </div>
-          )}
+      <Section>
+        <Container>
+          <Row>
+            {textsTwo && (
+              <div className={styles.panicWrapper}>
+                {Object.entries(textsTwo).map(([initial, later], i) => {
+                  return (
+                    <span key={i}>
+                      <C
+                        options={[[`${initial} `]]}
+                        last={`${later} `}
+                        tag={`item${i}IsClickedInTextsTwo`}
+                        next={Next.None}
+                        className={styles.choiceContent}
+                      />
+                    </span>
+                  );
+                })}
+              </div>
+            )}
 
-          <p>
-            <Nav
-              text="Just a bit more..."
-              next={Next.Section}
-              tag="goToPanicSectionFour"
-            />
-          </p>
-        </Section>
+            <p>
+              <Nav
+                text="Just a bit more..."
+                next={Next.Section}
+                tag="goToPanicSectionFour"
+              />
+            </p>
+          </Row>
+        </Container>
+      </Section>
 
-        <Section>
-          <p>
-            <Nav
-              text="DONE 🎉 🎉 🎉"
-              next="homework_done"
-              tag="goToHomeworkDone"
-            />
-          </p>
-        </Section>
-      </Chapter>
-    </>
+      <Section>
+        <Container>
+          <Row>
+            <p>
+              <Nav
+                text="DONE 🎉 🎉 🎉"
+                next="homework_done"
+                tag="goToHomeworkDone"
+              />
+            </p>
+          </Row>
+        </Container>
+      </Section>
+    </Chapter>
   );
 };

@@ -20,8 +20,8 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col></Col>
-            <Col xs={6}>
+            <Col lg={4}></Col>
+            <Col lg={4} style={{position: 'relative'}}>
               <div className={styles.chatWrapper}>
                 <div>
                   <p className={styles.chatBubble}>
@@ -67,7 +67,7 @@ export const Page: PageType = () => {
               </FadeIn>
             </Col>
 
-            <Col></Col>
+            <Col lg={4}></Col>
           </Row>
         </Container>
       </Section>

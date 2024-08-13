@@ -4,22 +4,21 @@ import { PageType } from "core/types";
 import { Container, Row } from "react-bootstrap";
 
 import colors from "public/themeColors.module.scss";
-import { positionUpperMiddle } from "core/components/constants/positions";
 import End from "core/components/end";
 
 export const Page: PageType = () => {
   return (
     <Chapter filename="congee">
       <Section>
-
-        <Artwork
+        <Container>
+            <Row>
+            <Artwork
           link="https://i.imgur.com/rsZ7ilx.png"
           name="Allison and you eating congee, Digital image"
           source="https://i.imgur.com/rsZ7ilx"
           
           position={{
-            position: 'static',
-            padding: 0
+            
           }}
         />
         
@@ -34,6 +33,9 @@ export const Page: PageType = () => {
             color: `${colors.dark}`,
           }}
         />
+            </Row>
+        </Container>
+        
       </Section>
     </Chapter>
   );

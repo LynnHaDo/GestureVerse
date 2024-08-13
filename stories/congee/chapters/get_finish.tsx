@@ -4,8 +4,6 @@ import { Next, PageType } from "core/types";
 import useChapter from "core/hooks/use-chapter";
 
 import { Container, Row, Col } from "react-bootstrap";
-
-import styles from "public/stories/congee/styles/Index.module.scss";
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
 
@@ -17,7 +15,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You pull the blanket over your head. You really wanted some
                 congee. It would’ve brought you a lot of comfort.
@@ -37,7 +35,7 @@ export const Page: PageType = () => {
                 {"."}
               </p>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>
@@ -45,8 +43,8 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col></Col>
-            <Col>
+            <Col lg={6}></Col>
+            <Col lg={6}>
               <p>You moved from Hong Kong to the US a year ago.</p>
               <p>
                 Coming off the plane was weird. The air smelled different. The
@@ -72,7 +70,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6} style={{position: 'relative'}}>
               <p>
                 Allison, who went to the same school as you, came to the States the
                 month after and you’ve kept in touch. She reminds you of how
@@ -94,7 +92,7 @@ export const Page: PageType = () => {
                 />
               </FadeIn>
             </Col>
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

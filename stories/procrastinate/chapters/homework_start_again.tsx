@@ -1,4 +1,4 @@
-import { Chapter } from "core/components";
+import { Chapter, Section } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
 
 import colors from "public/themeColors.module.scss";
@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
 import { choiceBlock } from "core/features/choice";
 import { BulletedList } from "core/components/widgets";
+import { Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -16,26 +17,32 @@ export const Page: PageType = () => {
   const tag = "procrastinate__homework_fail";
 
   useEffect(() => {
-    dispatch(updateVariable('counterStarted', false));
-  })
+    dispatch(updateVariable("counterStarted", false));
+  });
 
   return (
     <Chapter filename={chapter.filename}>
-      <p>Wait the deadline has passed already??</p>
-      <p>
-        I don't think I can finish in time. Should I just give up or use the
-        grace period?
-      </p>
-      {choiceBlock(
-        tag,
-        "gesture",
-        1,
-        `${colors.orange}`,
-        `${colors.white}`,
-        BulletedList,
-        null,
-        true
-      )}
+      <Section>
+        <Container>
+          <Row>
+            <p>Wait the deadline has passed already??</p>
+            <p>
+              I don't think I can finish in time. Should I just give up or use
+              the grace period?
+            </p>
+            {choiceBlock(
+              tag,
+              "gesture",
+              1,
+              `${colors.orange}`,
+              `${colors.white}`,
+              BulletedList,
+              null,
+              true
+            )}
+          </Row>
+        </Container>
+      </Section>
     </Chapter>
   );
 };

@@ -4,16 +4,17 @@ import FadeIn from "core/components/ui/fadein";
 
 import { animated } from "@react-spring/web";
 
-import colors from "public/themeColors.module.scss";
+import { Container, Row } from "react-bootstrap";
+
 import { useVariable } from "core/hooks/use-variable";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
 
 const roundTime = (date: Date) => {
-    date.setMinutes(Math.round(date.getMinutes() / 5) * 5);
-    date.setSeconds(Math.round(date.getSeconds() / 1000) * 1000);
-    return date;
-  }
+  date.setMinutes(Math.round(date.getMinutes() / 5) * 5);
+  date.setSeconds(Math.round(date.getSeconds() / 1000) * 1000);
+  return date;
+};
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
@@ -59,42 +60,49 @@ export const Page: PageType = () => {
   });
 
   return (
-    <>
-      <Chapter filename="homework">
-        <Section>
-          <p>{displayText}</p>
+    <Chapter filename="homework">
+      <Section>
+        <Container>
+          <Row>
+            <p>{displayText}</p>
 
-          <ul>
-            
-            <li>
-              Art homework due date:{" "}
-              {`${Intl.DateTimeFormat("en-US", dateOptions).format(
-                roundTime(new Date(new Date().getTime() + 1000 * 60 * 60 * 2))
-              )}`}
-            </li>
-            <li>
-              Math homework due date:{" "}
-              {`${Intl.DateTimeFormat("en-US", dateOptions).format(
-                roundTime(new Date(new Date().getTime() + 1000 * 60 * 60))
-              )}`}
-            </li>
-            <li>
-              Sociology homework due date:{" "}
-              {`${Intl.DateTimeFormat("en-US", dateOptions).format(deadline)}`}{" "}
-              (!!!)
-            </li>
-          </ul>
+            <ul>
+              <li>
+                Art homework due date:{" "}
+                {`${Intl.DateTimeFormat("en-US", dateOptions).format(
+                  roundTime(new Date(new Date().getTime() + 1000 * 60 * 60 * 2))
+                )}`}
+              </li>
+              <li>
+                Math homework due date:{" "}
+                {`${Intl.DateTimeFormat("en-US", dateOptions).format(
+                  roundTime(new Date(new Date().getTime() + 1000 * 60 * 60))
+                )}`}
+              </li>
+              <li>
+                Sociology homework due date:{" "}
+                {`${Intl.DateTimeFormat("en-US", dateOptions).format(
+                  deadline
+                )}`}{" "}
+                (!!!)
+              </li>
+            </ul>
 
-          <FadeIn wrapper={animated("div")} delayTime={500}>
-            <p>OH NO THE SOCIOLOGY HOMEWORK IS LITERALLY DUE IN {counterMins} MINUTES.</p>
-          </FadeIn>
+            <FadeIn wrapper={animated("div")} delayTime={500}>
+              <p>
+                OH NO THE SOCIOLOGY HOMEWORK IS LITERALLY DUE IN {counterMins}{" "}
+                MINUTES.
+              </p>
+            </FadeIn>
 
-          <p>
-            I should{" "}
-            <Nav text="start" next="homework_start" tag="startHomework" /> ASAP.
-          </p>
-        </Section>
-      </Chapter>
-    </>
+            <p>
+              I should{" "}
+              <Nav text="start" next="homework_start" tag="startHomework" />{" "}
+              ASAP.
+            </p>
+          </Row>
+        </Container>
+      </Section>
+    </Chapter>
   );
 };

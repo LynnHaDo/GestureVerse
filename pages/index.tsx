@@ -111,7 +111,7 @@ function Index({ paths }: StoryProps): JSX.Element {
       </Head>
       <Loader />
       <div className="gradient">
-        <canvas ref={gradient} style={backgroundFillStyle} />
+        <canvas ref={gradient} style={{...backgroundFillStyle, zIndex: -1}} />
       </div>
       <header className={styles.header}>
         <nav>

@@ -5,6 +5,7 @@ import { ReactFCC } from "core/types";
 import styles from "public/stories/a-beach-walk/styles/Index.module.scss";
 import Head from "next/head";
 import MusicPlayer from "core/components/musicPlayer";
+import { Header } from "core/components";
 
 const Index: ReactFCC = ({ children }) => {
   return (
@@ -30,13 +31,8 @@ const Index: ReactFCC = ({ children }) => {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-      <main className={styles.main}>
-        <button className={styles.backButton}
-                onClick={() => window.location.replace(window.location.origin)}>
-            Back to home
-        </button>
-        {children}
-      </main>
+      <Header className={styles.header} controlsClassName={styles.controls} backButtonClassName={styles.backButton}/>
+      <main className={styles.main}>{children}</main>
       <MusicPlayer source="https://open.spotify.com/embed/playlist/6uu5gqmyjVYtytd9EFEKrM?utm_source=generator" />
     </>
   );

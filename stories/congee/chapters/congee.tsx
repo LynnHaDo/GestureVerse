@@ -9,15 +9,18 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <Artwork
                 link="https://i.imgur.com/djFIUi4.gif"
                 name="A bowl of congee, GIF image"
                 source="https://i.imgur.com/djFIUi4"
                 width="350px"
+                position={{
+                    margin: '10px auto'
+                }}
               />
             </Col>
-            <Col>
+            <Col lg={6}>
               <p>
                 You know congee. It’s delicious mushy rice in a soup form, the
                 equivalent of chicken soup. The best part of feeling ill as a

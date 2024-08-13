@@ -10,6 +10,8 @@ import colors from "public/themeColors.module.scss";
 import { useScore } from "core/hooks/use-score";
 import { useVariable } from "core/hooks/use-variable";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const tag = "procrastinate__menu";
   let [tv, game, eat, nap, clean] = useVariable(null, [
@@ -42,8 +44,7 @@ export const Page: PageType = () => {
         "Hmmmm it's starting to get late... Time to do something fun!";
       break;
     case 5:
-      displayText =
-        "Am I hungry? All I know is I'm not hungry for homework.";
+      displayText = "Am I hungry? All I know is I'm not hungry for homework.";
       break;
     case 6:
       displayText = "Sooooooo booooored.";
@@ -82,22 +83,24 @@ export const Page: PageType = () => {
   }
 
   return (
-    <>
-      <Chapter filename="menu">
-        <Section>
-          <p>{displayText}</p>
-          {choiceBlock(
-            tag,
-            "gesture",
-            1,
-            `${colors.orange}`,
-            `${colors.lightYellow}`,
-            BulletedList,
-            null,
-            true
-          )}
-        </Section>
-      </Chapter>
-    </>
+    <Chapter filename="menu">
+      <Section>
+        <Container>
+          <Row>
+            <p>{displayText}</p>
+            {choiceBlock(
+              tag,
+              "gesture",
+              1,
+              `${colors.orange}`,
+              `${colors.lightYellow}`,
+              BulletedList,
+              null,
+              true
+            )}
+          </Row>
+        </Container>
+      </Section>
+    </Chapter>
   );
 };

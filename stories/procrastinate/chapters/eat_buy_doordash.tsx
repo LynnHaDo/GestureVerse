@@ -8,6 +8,8 @@ import { incrementScore } from "core/features/score";
 import { updateVariable } from "core/features/variable-manager";
 import { makeChoice } from "core/features/choice";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   const chapter = useChapter();
@@ -30,26 +32,28 @@ export const Page: PageType = () => {
   const updateDoordash = (option: Option): void => {
     dispatch(updateVariable("doordash", true));
     dispatch(makeChoice(tag, option, next, next));
-  }
+  };
 
   return (
-    <>
-      <Chapter filename={chapter.filename}>
-        <Section>
-          <p>{displayText}</p>
-          <p>
-            Hmm... Are there any interesting{" "}
-            <Nav
-              text={text}
-              next={next}
-              tag={`moveFrom${chapter.filename}toMenu`}
-              handler={updateDoordash}
-            />{" "}
-            left to do
-            {"?"}
-          </p>
-        </Section>
-      </Chapter>
-    </>
+    <Chapter filename={chapter.filename}>
+      <Section>
+        <Container>
+          <Row>
+            <p>{displayText}</p>
+            <p>
+              Hmm... Are there any interesting{" "}
+              <Nav
+                text={text}
+                next={next}
+                tag={`moveFrom${chapter.filename}toMenu`}
+                handler={updateDoordash}
+              />{" "}
+              left to do
+              {"?"}
+            </p>
+          </Row>
+        </Container>
+      </Section>
+    </Chapter>
   );
 };

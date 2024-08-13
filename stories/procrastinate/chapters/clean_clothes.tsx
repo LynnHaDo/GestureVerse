@@ -3,11 +3,15 @@ import FadeIn from "core/components/ui/fadein";
 import { PageType } from "core/types";
 import useChapter from "core/hooks/use-chapter";
 
+import { Container, Row } from "react-bootstrap";
+
 export const Page: PageType = () => {
   const chapter = useChapter();
   return (
     <Chapter filename={chapter.filename}>
       <Section>
+      <Container>
+      <Row>
         <p>
           There's a Ratatouille movie shirt and the same pair of pants I've been
           wearing every day just laying on the ground. I love my Ratatouille
@@ -24,6 +28,8 @@ export const Page: PageType = () => {
             {"?"}
             </p>
           </FadeIn>
+          </Row>
+        </Container>
       </Section>
     </Chapter>
   );

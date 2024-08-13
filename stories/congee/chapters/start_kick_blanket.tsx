@@ -13,7 +13,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col>
+            <Col lg={6}>
               <p>
                 You shove the blanket off your body and a chill rushes through
                 you. Is the window open? You’re pretty sure you closed it before
@@ -27,7 +27,7 @@ export const Page: PageType = () => {
               </p>
             </Col>
 
-            <Col></Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

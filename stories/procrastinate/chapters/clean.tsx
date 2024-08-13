@@ -4,7 +4,8 @@ import { choiceBlock } from "core/features/choice";
 import { useVariable } from "core/hooks/use-variable";
 import { PageType } from "core/types";
 import colors from "public/themeColors.module.scss";
-import { useEffect } from "react";
+
+import { Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
   const tag = "procrastinate__clean";
@@ -24,43 +25,35 @@ export const Page: PageType = () => {
       displayText = "Seems like there is only one thing left...";
       break;
     case 3:
-      displayText = "";
+      displayText = "Wow my concentration span is getting shorter...";
       break;
-    case 0:
+    default:
       displayText =
         "I never do this, but with desperate times come desperate measures. My room is only slightly messy, but now, when I happen to have homework that needs to get done, I have decided this is the perfect time to clean.";
-  }
-
-  let clean = useVariable("clean");
-
-  if (clean) {
-    return (
-      <Chapter filename="clean">
-        <Section>
-          <Nav text="Now my room is clean!" next="menu" tag="endClean" />
-        </Section>
-      </Chapter>
-    );
   }
 
   return (
     <Chapter filename="clean">
       <Section>
-        <p>{displayText}</p>
-        {choiceBlock(
-          tag,
-          "gesture",
-          1,
-          `${colors.darkYellow}`,
-          `${colors.dark}`,
-          BulletedList,
-          <Nav
-            text="Start cleaning..."
-            tag="moveFromCleantoCleanStart"
-            next="clean_start"
-          />,
-          false
-        )}
+        <Container>
+          <Row>
+            <p>{displayText}</p>
+            {choiceBlock(
+              tag,
+              "gesture",
+              1,
+              `${colors.darkYellow}`,
+              `${colors.dark}`,
+              BulletedList,
+              <Nav
+                text="Start cleaning..."
+                tag="moveFromCleantoCleanStart"
+                next="clean_start"
+              />,
+              false
+            )}
+          </Row>
+        </Container>
       </Section>
     </Chapter>
   );
