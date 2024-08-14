@@ -94,6 +94,8 @@ Through this project, I also want to introduce additional advanced features comp
     - [x] Score keeping feature
     - [x] Update/access the variables any time during the story
 
+- [x] Audio/music playlist for stories (play, pause, next, previous control)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
