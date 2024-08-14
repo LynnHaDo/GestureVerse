@@ -45,7 +45,15 @@ const Index: ReactFCC = ({ children }) => {
         position="right"
       />
       <main className={styles.main}>{children}</main>
-      
+      <MusicPlayer
+        dir="/audio/congee"
+        iconColor={colors.lightYellow}
+        playlistBackgroundColor={colors.white}
+        iconStyling={{
+          backgroundColor: 'transparent',
+          border: `1.5px solid ${colors.lightYellow}`,
+        }}
+      />
     </>
   );
 };

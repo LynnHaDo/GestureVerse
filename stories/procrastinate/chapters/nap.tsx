@@ -1,10 +1,10 @@
 import { Section, Chapter, Nav } from "core/components";
 import { PageType } from "core/types";
 import { animated } from "@react-spring/web";
+import { Image } from 'react-bootstrap';
 
 import FadeIn from "core/components/ui/fadein";
 import useChapter from "core/hooks/use-chapter";
-import { useVariable } from "core/hooks/use-variable";
 
 import { Container, Row } from "react-bootstrap";
 
@@ -20,20 +20,11 @@ export const Page: PageType = () => {
                 {/* Giphy */}
           <div
             style={{
-              width: "400px",
-              height: 0,
-              paddingBottom: "20px",
-              position: "relative",
+              width: "70%",
+              paddingBottom: "20px"
             }}
           >
-            <iframe
-              src="https://giphy.com/embed/mD5OczI0Xyz5P0hy4Y"
-              width="100%"
-              height="100%"
-              style={{ position: "absolute" }}
-              className="giphy-embed"
-              allowFullScreen
-            ></iframe>
+            <Image src='/stories/procrastinate/images/nap.gif' fluid/>
           </div>
           <p>
             <a href="https://giphy.com/gifs/nehumanesociety-sleep-nap-time-mD5OczI0Xyz5P0hy4Y">

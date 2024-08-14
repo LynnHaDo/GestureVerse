@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "title": "2:13AM",
+        "path": "2_13AM.mp3",
+        "artist": "Slom"
+    },
+    {
+        "id": 1,
+        "title": "LETTER SENT TO YOU",
+        "path": "letter_sent_to_you.mp3",
+        "artist": "Slom"
+    },
+    {
+        "id": 2,
+        "title": "Love (feat. Fisher) Instrumental",
+        "path": "love.mp3",
+        "artist": "Cosmic Boy"
+    },
+    {
+        "id": 3,
+        "title": "Star (Instrumental)",
+        "path": "star.mp3",
+        "artist": "Colde"
+    }
+]

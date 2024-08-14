@@ -11,31 +11,26 @@ export const Page: PageType = () => {
     <Chapter filename="congee">
       <Section>
         <Container>
-            <Row>
+          <Row>
             <Artwork
-          link="https://i.imgur.com/rsZ7ilx.png"
-          name="Allison and you eating congee, Digital image"
-          source="https://i.imgur.com/rsZ7ilx"
-          
-          position={{
-            
-          }}
-        />
-        
-        <br></br>
-        <End
-          storyName="congee"
-          sources={[
-            "Becci (2020). Congee. [online] itch.io. Available at: https://becciness.itch.io/congee [Accessed 12 Aug. 2024].",
-          ]}
-          additionalButtonStyle={{
-            backgroundColor: `${colors.lightYellow}`,
-            color: `${colors.dark}`,
-          }}
-        />
-            </Row>
+              link="https://i.imgur.com/rsZ7ilx.png"
+              name="Allison and 'you' eating congee, Digital image"
+              source="https://i.imgur.com/rsZ7ilx"
+            />
+
+            <br></br>
+            <End
+              storyName="congee"
+              sources={[
+                "Becci (2020). Congee. [online] itch.io. Available at: https://becciness.itch.io/congee [Accessed 12 Aug. 2024].",
+              ]}
+              additionalButtonStyle={{
+                backgroundColor: `${colors.lightYellow}`,
+                color: `${colors.dark}`,
+              }}
+            />
+          </Row>
         </Container>
-        
       </Section>
     </Chapter>
   );

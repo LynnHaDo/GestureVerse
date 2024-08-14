@@ -47,7 +47,15 @@ const Index: ReactFCC = ({ children }: GridProps) => {
         position="right"
       />
       <main className={styles.main}>{children}</main>
-      
+      <MusicPlayer
+        dir="/audio/procrastinate"
+        iconColor={colors.dark}
+        playlistBackgroundColor={colors.white}
+        iconStyling={{
+          backgroundColor: `${colors.lightOrange}`,
+          border: `1.5px solid ${colors.dark}`,
+        }}
+      />
     </>
   );
 };
