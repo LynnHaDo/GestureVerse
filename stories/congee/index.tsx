@@ -45,10 +45,7 @@ const Index: ReactFCC = ({ children }) => {
         position="right"
       />
       <main className={styles.main}>{children}</main>
-      <MusicPlayer
-        source="https://open.spotify.com/embed/playlist/63dbhcfrs5DyCRxmoZc0VS?utm_source=generator"
-        color={`${colors.lightYellow}`}
-      />
+      
     </>
   );
 };

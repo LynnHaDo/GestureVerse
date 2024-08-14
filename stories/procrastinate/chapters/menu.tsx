@@ -50,7 +50,7 @@ export const Page: PageType = () => {
       displayText = "Sooooooo booooored.";
       break;
     case 7:
-      displayText = "Maybe I should try and start my homework soon.";
+      displayText = "Maybe I should try and start my homework soon, right?";
       break;
     default:
       displayText = "Wow I really need to start, it's pretty late.";

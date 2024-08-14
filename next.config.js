@@ -5,5 +5,9 @@ module.exports = withMDX({
     trailingSlash: true,
     assetPrefix: isProd ? '../' : undefined,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    optimizeFonts: false
+    optimizeFonts: false,
+    webpack: (config) => {
+        config.resolve.fallback ={ fs: false, path: false };
+        return config;
+    }
 })

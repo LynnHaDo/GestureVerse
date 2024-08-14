@@ -47,10 +47,7 @@ const Index: ReactFCC = ({ children }: GridProps) => {
         position="right"
       />
       <main className={styles.main}>{children}</main>
-      <MusicPlayer
-        source="https://open.spotify.com/embed/playlist/7hpupoXdDEnbuApMlfL1hr?utm_source=generator"
-        color={`${colors.retroGreen}`}
-      />
+      
     </>
   );
 };

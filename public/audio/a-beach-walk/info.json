@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "title": "overkill (2019)",
+        "path": "overkill.mp3",
+        "artist": "slom"
+    },
+    {
+        "id": 1,
+        "title": "re·nu",
+        "path": "renu.mp3",
+        "artist": "Fisherman"
+    },
+    {
+        "id": 2,
+        "title": "Infrared Camera (Inst.)",
+        "path": "infrared_camera.mp3",
+        "artist": "Wonstein"
+    }
+]

@@ -14,6 +14,7 @@ import { Loader } from "core/components/loader";
 interface StoryProps {
   paths: string[];
 }
+
 export const getStaticProps: GetStaticProps = async () => {
   const storyDirs = path.join(process.cwd(), "public/stories");
   const paths = fs
