@@ -9,7 +9,7 @@ import { BulletedList } from "core/components/widgets";
 import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
-  const tag = "congee_get_options";
+  const tag = "congee__get_options";
   const chapter = useChapter();
 
   return (

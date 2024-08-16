@@ -8,7 +8,7 @@ import colors from "public/themeColors.module.scss";
 import { BulletedList } from "core/components/widgets";
 
 export const Page: PageType = () => {
-  const tag = "congee_start";
+  const tag = "congee__start";
 
   return (
     <Chapter filename="start">

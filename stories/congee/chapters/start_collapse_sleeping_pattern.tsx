@@ -12,7 +12,7 @@ import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
-  const tag = "congee_disease";
+  const tag = "congee__disease";
 
   let navBlock: JSX.Element = null;
 

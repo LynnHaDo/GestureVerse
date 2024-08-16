@@ -44,17 +44,16 @@ export interface OptionProps {
  * List of tags and the corresponding options
  */
 export const Options: OptionProps = {
-
     /** A BEACH WALK */
-    "leftOrRight": {
+    "a-beach-walk__leftOrRight": {
         "left": optionItem('Thumb_Up', null, 'turn left'), // thumbs up
         "right": optionItem('Thumb_Down', null, 'turn right'), // thumbs down
     },
-    "left": {
+    "a-beach-walk__left": {
         "lighthouse": optionItem('Pointing_Up', null, 'visit the lighthouse'), // point up
         "stairs": optionItem('Closed_Fist', null, 'go down the stairs') // closed fist
     },
-    "right": {
+    "a-beach-walk__right": {
         "fence": optionItem('Open_Palm', null, 'look through the broken fence'), // open palm
         "further": optionItem("Victory", null, 'go further') // victory (v sign)
     },
@@ -117,36 +116,36 @@ export const Options: OptionProps = {
     },
 
     /** CONGEE */
-    "congee_start": {
+    "congee__start": {
         "start_kick_blanket": optionItem('Open_Palm', null, 'Kick your blanket off'),
         "start_curl": optionItem('Victory', null, 'Curl up into a ball')
     },
-    "congee_tell": {
+    "congee__tell": {
         "tell_internet": optionItem(null, 'Left', 'Look up your symptoms on the internet'),
         "tell_allison": optionItem(null, 'Right', 'Text Allison, your best friend')
     },
-    "congee_tell_allison": {
+    "congee__tell_allison": {
         "tell_allison_response_death": optionItem('Pointing_Up', null, "I'm not being melodramatic but I think death is near dfdsfdf"),
         "tell_allison_response_netflix": optionItem('ILoveYou', null, 'I need a very distracting Netflix recommendation'),
         'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel')
     },
-    "congee_get_options": {
+    "congee__get_options": {
         "get_takeaway": optionItem('Thumb_Up', null, 'Check your local Chinese takeaway'),
         "get_doordash": optionItem('Thumb_Down', null, 'Check Doordash')
     },
-    "congee_sub_options_takeaway": {
+    "congee__sub_options_takeaway": {
         "get_doordash": optionItem(null, 'Left', 'Check Doordash'),
         "get_finish": optionItem(null, 'Right', "No more searching today...")
     },
-    "congee_sub_options_doordash": {
+    "congee__sub_options_doordash": {
         "get_takeaway": optionItem(null, 'Left', 'Check the Chinese Palace place out'),
         "get_finish": optionItem(null, 'Right', "Too tired... no more searching today...")
     },
-    "congee_open_door": {
+    "congee__open_door": {
         "open_door_ignore": optionItem('Open_Palm', null, 'Just ignore it'),
         "open_door_open": optionItem('Closed_Fist', null, 'Open the door')
     },
-    "congee_end": {
+    "congee__end": {
         "end_congee_club": optionItem('Pointing_Up', null, "Congee Club?"),
         "end_asian_celebration": optionItem('Victory', null, "Asian celebration?"),
         "end_no_more_western_food": optionItem('ILoveYou', null, "No more Western food day?")
@@ -155,7 +154,7 @@ export const Options: OptionProps = {
 
 export const Variables: OptionProps = {    
     /** CONGEE */
-    "congee_disease": {
+    "congee__disease": {
         'fever': optionItem('Thumb_Up', null, 'fever'),
         "food_poisoning": optionItem('Thumb_Down', null, 'food poisoning thing'),
         "lurgy": optionItem('Victory', null, 'general sense of lurgy'),

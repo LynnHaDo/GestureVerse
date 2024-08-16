@@ -15,7 +15,7 @@ import colors from "public/themeColors.module.scss";
 import styles from "public/stories/a-beach-walk/styles/Index.module.scss";
 
 export const Page: PageType = () => {
-  const tag = "right";
+  const tag = "a-beach-walk__right";
   return (
     <BackgroundFill color={colors.darkYellow}>
       <Chapter filename="right">

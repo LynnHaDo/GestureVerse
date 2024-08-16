@@ -1,7 +1,6 @@
 import { Section, Chapter, Nav } from "core/components";
 import { BulletedList } from "core/components/widgets";
 import { choiceBlock } from "core/features/choice";
-import { useVariable } from "core/hooks/use-variable";
 import { PageType } from "core/types";
 import colors from "public/themeColors.module.scss";
 

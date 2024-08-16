@@ -139,7 +139,10 @@ const Camera = ({
       triggerBtn.current.addEventListener("click", togglePrediction);
     }
 
-    return () => stopPrediction()
+    return () => {
+        stopPrediction();
+        gestureRecognizer.current = null;
+    }
   }, []);
 
   /**

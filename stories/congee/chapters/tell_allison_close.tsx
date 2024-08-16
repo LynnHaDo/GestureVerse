@@ -14,7 +14,7 @@ import { Variables } from "core/components/constants/options";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
-  const tag = "congee_disease";
+  const tag = "congee__disease";
   const disease = useVariable(tag);
   let response: string;
 

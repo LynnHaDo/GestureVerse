@@ -22,7 +22,7 @@ export const Page: PageType = () => {
     for (var action of actions) {
       dispatch(updateVariable(action, false));
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

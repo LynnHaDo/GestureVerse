@@ -10,7 +10,7 @@ import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
 
 export const Page: PageType = () => {
-  const tag = "congee_tell";
+  const tag = "congee__tell";
 
   return (
     <Chapter filename="tell">

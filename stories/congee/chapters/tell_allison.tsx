@@ -13,7 +13,7 @@ import colors from "public/themeColors.module.scss";
 import styles from "public/stories/congee/styles/Index.module.scss"
 
 export const Page: PageType = () => {
-  const tag = "congee_tell_allison";
+  const tag = "congee__tell_allison";
   const chapter = useChapter();
 
   return (

@@ -8,9 +8,21 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "public/stories/congee/styles/Index.module.scss";
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
+import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
+
+  let displayText = 'Yep, everywhere 😔';
+
+  const [takeaway, doordash] = useVariable(null, ['congee__takeaway', 'congee__doordash']);
+
+  if (takeaway && !doordash) {
+    displayText = "i only checked the one near here. too lazy to look up on doordash 😔"
+  }
+  else if (!takeaway && doordash) {
+    displayText = "Yep. actually there is one restaurant near here, but i'm too lazy to pick it up 😔"
+  }
 
   return (
     <Chapter filename={chapter.filename} showOnlyCurrentSection>
@@ -33,7 +45,7 @@ export const Page: PageType = () => {
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 1000}>
-                  <p className={styles.chatBubble}>Yep, everywhere 😔</p>
+                  <p className={styles.chatBubble}>{displayText}</p>
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 1200}>

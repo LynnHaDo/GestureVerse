@@ -45,6 +45,7 @@ export interface ChapterType {
  */
 const Chapter: ReactFCC<ChapterType> = ({ children, filename, showOnlyCurrentSection = false }) => {
     const [thisFilename] = React.useState({ filename })
+    const chapterRef = React.useRef(null);
 
     const item = useChapterSetup(filename, React.Children.count(children))
 
@@ -53,7 +54,7 @@ const Chapter: ReactFCC<ChapterType> = ({ children, filename, showOnlyCurrentSec
             <TransitionGroup component={null}>
                 {renderChapterContent(children, item, showOnlyCurrentSection, {
                     component: CSSTransition,
-                    props: SectionTransition
+                    props: {...SectionTransition, nodeRef: chapterRef}
                 })}
             </TransitionGroup>
         </ChapterContext.Provider>

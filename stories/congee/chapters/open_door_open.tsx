@@ -13,7 +13,7 @@ import { BulletedList } from "core/components/widgets";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
-  const tag = "congee_end";
+  const tag = "congee__end";
 
   return (
     <Chapter filename={chapter.filename} showOnlyCurrentSection>

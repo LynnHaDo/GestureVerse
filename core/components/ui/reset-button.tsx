@@ -4,6 +4,7 @@ import { NextRouter, useRouter } from 'next/router'
 
 import { Config } from 'core/types'
 import { StoryContext } from 'core/containers/store-container'
+import { Options, Variables } from 'core/components/constants/options';
 
 import CustomModal from 'core/components/modal';
 
@@ -17,16 +18,37 @@ export const resetStory = (
     // Drop any chapter-level path info
     const url = '/' + router.basePath + config.identifier
 
+    // Related options of the story
+    const tagChecker = (s: string): boolean => {
+        return s.split('__')[0] === config.identifier || s.startsWith(config.identifier, 0);
+    } 
+
+    const options = Object.keys(Options).filter(o => tagChecker(o));
+    const variables = Object.keys(Variables).filter(v => tagChecker(v));
+
+    let keys: string[] = [...options, ...variables, `persist:${config.identifier}`]
+
     if (userInitiated) {
         persistor.flush().then(() => {
             persistor.pause()
-            localStorage.clear()
+            // Clear the state of the story
+            for (var k of keys) {
+                if (localStorage.getItem(k)) {
+                    localStorage.removeItem(k);
+                }
+            }
+            
             window.location.replace(url)
         })
     } else {
         persistor.flush().then(() => {
             persistor.pause()
-            localStorage.clear()
+            // Clear the state of the story
+            for (var k of keys) {
+                if (localStorage.getItem(k)) {
+                    localStorage.removeItem(k);
+                }
+            }
             window.location.reload()
         })
     }
@@ -42,6 +64,7 @@ const ResetButton = ({ children = 'Reset', message, className, style }: ResetTyp
     const router = useRouter();
 
     let [showConfirmModal, setConfirmModal] = React.useState(false);
+
     return (
         <>
             <button onClick={() => setConfirmModal(true)} className={className} style={style}>

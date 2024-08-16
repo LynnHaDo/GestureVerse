@@ -16,7 +16,7 @@ import styles from "public/stories/a-beach-walk/styles/Index.module.scss";
 import { InlineListEN } from "core/components/widgets/inline-list";
 
 export const Page: PageType = () => {
-  let tag = "left";
+  let tag = "a-beach-walk__left";
 
   return (
     <BackgroundFill color={colors.blue}>

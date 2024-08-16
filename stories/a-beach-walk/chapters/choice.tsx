@@ -16,7 +16,7 @@ import { InlineListEN } from "core/components/widgets/inline-list";
 import { Col, Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
-  const tag = "leftOrRight";
+  const tag = "a-beach-walk__leftOrRight";
 
   return (
     <BackgroundFill color={colors.orange}>

@@ -2,15 +2,12 @@ import { Section, Chapter, Nav, R } from "core/components";
 import { Next, PageType } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
-import { useVariable } from "core/hooks/use-variable";
 
 import { Container, Row, Col } from "react-bootstrap";
 
 import styles from "public/stories/congee/styles/Index.module.scss";
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
-
-import { Variables } from "core/components/constants/options";
 
 export const Page: PageType = () => {
   const chapter = useChapter();

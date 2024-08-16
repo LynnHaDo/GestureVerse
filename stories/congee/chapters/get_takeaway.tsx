@@ -3,7 +3,7 @@ import { choiceBlock } from "core/features/choice";
 import { PageType, useAppDispatch } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { updateVariable } from "core/features/variable-manager";
 
 import { Container, Row, Col } from "react-bootstrap";
@@ -16,10 +16,10 @@ import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
-  const tag = "congee_sub_options_takeaway";
+  const tag = "congee__sub_options_takeaway";
 
   const dispatch = useAppDispatch();
-  const doordash = useVariable("congee_doordash");
+  const doordash = useVariable("congee__doordash");
 
   let displayText1: string =
     "You load up their website. It’s pretty clunky, and the menu is a .jpg on their website.";
@@ -29,9 +29,11 @@ export const Page: PageType = () => {
   if (doordash) {
     displayText1 = "Hmm... Let's see";
     displayText2 = "You scroll through the whole list..."
-  } else {
-    dispatch(updateVariable("congee_takeaway", true));
   }
+
+  useEffect(() => {
+    dispatch(updateVariable("congee__takeaway", true));
+  }, [])
 
   return (
     <Chapter filename={chapter.filename}>
