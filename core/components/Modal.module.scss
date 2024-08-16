@@ -2,6 +2,10 @@
 @use '../../public/styles/fonts';
 
 .modal {
-    font-family: fonts.$body;
+    font-family: fonts.$secondary;
     color: colors.$very-dark;
+
+    .modalDialog {
+        margin: 0;
+    }
 }

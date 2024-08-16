@@ -125,3 +125,43 @@ $text-color: colors.$very-light;
     }
   }
 }
+
+.customModal {
+    background-color: colors.$pink;
+    color: colors.$dark;
+    border-radius: 0.2rem;
+    border: 1.5px solid colors.$dark;
+
+    .customModalHeader  {
+        border-bottom: 1.5px solid colors.$dark;
+    }
+
+    .customModalFooter {
+        border-top: 1.5px solid colors.$dark;
+        justify-content: flex-end;
+
+        button {
+            border-radius: 0.2rem;
+            border: 1.5px solid colors.$dark;
+            opacity: 0.8;
+            transition: 0.3s ease-in-out;
+
+            &:nth-child(1) {
+                background-color: colors.$lightYellow;
+                color: colors.$dark;
+               
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            &:nth-child(2) {
+                background-color: colors.$darkBlue;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

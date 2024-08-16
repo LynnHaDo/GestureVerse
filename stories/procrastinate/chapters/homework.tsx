@@ -55,7 +55,6 @@ export const Page: PageType = () => {
   );
 
   useEffect(() => {
-    dispatch(updateVariable("counterStarted", true));
     dispatch(updateVariable("counterMins", counterMins));
   });
 

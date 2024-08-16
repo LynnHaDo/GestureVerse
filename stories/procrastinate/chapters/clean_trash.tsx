@@ -1,12 +1,21 @@
 import { Section, Chapter, Nav } from "core/components";
 import FadeIn from "core/components/ui/fadein";
-import { PageType } from "core/types";
+import { PageType, useAppDispatch } from "core/types";
 import useChapter from "core/hooks/use-chapter";
+import { useEffect } from "react";
 
 import { Container, Row } from "react-bootstrap";
+import { updateVariable } from "core/features/variable-manager";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
+  const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    dispatch(updateVariable('trash', true));
+  })
+
   return (
     <Chapter filename={chapter.filename}>
       <Section>

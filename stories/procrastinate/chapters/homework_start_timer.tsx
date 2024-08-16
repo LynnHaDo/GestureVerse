@@ -10,11 +10,7 @@ import styles from "public/stories/procrastinate/styles/Index.module.scss";
 import "@ionic/react/css/core.css";
 
 import { IonInput } from "@ionic/react";
-import { useContext } from "react";
 
-import { StoryContext } from "core/containers/store-container";
-import { useRouter } from "next/router";
-import { resetStory } from "core/components/ui/reset-button";
 import { Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
@@ -22,9 +18,6 @@ export const Page: PageType = () => {
   const chapter = useChapter();
   /** App dispatch */
   const dispatch = useAppDispatch();
-
-  const { persistor, config } = useContext(StoryContext);
-  const router = useRouter();
 
   const handleCounterInput = (val: string | number) => {
     if (typeof val == "string" && val.match("[0-9]+")) {
@@ -34,7 +27,6 @@ export const Page: PageType = () => {
         return;
       }
 
-      resetStory(true, config, persistor, router); // clear previous clicking history
       dispatch(updateVariable("counterMins", valNum));
       dispatch(
         makeChoice("timeSet", "start_again", "homework_start", "homework_start")

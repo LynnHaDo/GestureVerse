@@ -1,12 +1,22 @@
 import { Section, Chapter, Nav } from "core/components";
 import FadeIn from "core/components/ui/fadein";
-import { PageType } from "core/types";
+import { PageType, useAppDispatch } from "core/types";
 import useChapter from "core/hooks/use-chapter";
 
+import { updateVariable } from "core/features/variable-manager";
+
 import { Container, Row } from "react-bootstrap";
+import { useEffect } from "react";
 
 export const Page: PageType = () => {
   const chapter = useChapter();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(updateVariable('desk', true));
+  })
+  
   return (
     <Chapter filename="clean_desk">
       <Section>

@@ -4,6 +4,8 @@ import { PageType } from "core/types";
 import { Container, Row } from "react-bootstrap";
 
 import colors from "public/themeColors.module.scss";
+import styles from "public/stories/congee/styles/Index.module.scss";
+
 import End from "core/components/end";
 
 export const Page: PageType = () => {
@@ -28,6 +30,10 @@ export const Page: PageType = () => {
                 backgroundColor: `${colors.lightYellow}`,
                 color: `${colors.dark}`,
               }}
+              modalVariant={styles.customModal}
+              modalHeaderClass={styles.customModalHeader}
+              modalBodyClass={styles.customModalBody}
+              modalFooterClass={styles.customModalFooter}
             />
           </Row>
         </Container>

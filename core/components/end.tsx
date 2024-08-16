@@ -19,6 +19,11 @@ export interface EndProps {
   sources?: string[];
   /** Styling applied to the reset button */
   additionalButtonStyle?: React.CSSProperties;
+  /** Styling for modal */
+  modalVariant?: string;
+  modalHeaderClass?: string;
+  modalBodyClass?: string;
+  modalFooterClass?: string;
 }
 
 const End = ({
@@ -26,6 +31,10 @@ const End = ({
   reference = true,
   sources = [],
   additionalButtonStyle,
+  modalVariant,
+  modalHeaderClass,
+  modalBodyClass,
+  modalFooterClass
 }: EndProps): JSX.Element => {
   return (
     <>
@@ -36,6 +45,10 @@ const End = ({
           children="start"
           message="Do you want to restart the story?"
           style={{ ...resetButtonStyle, ...additionalButtonStyle }}
+          modalVariant={modalVariant}
+          headerClass={modalHeaderClass}
+          bodyClass={modalBodyClass}
+          footerClass={modalFooterClass}
         />
       </p>
 

@@ -37,7 +37,6 @@ export const resetStory = (
                     localStorage.removeItem(k);
                 }
             }
-            
             window.location.replace(url)
         })
     } else {
@@ -58,8 +57,12 @@ type ResetType = {
     children?: React.ReactNode
     className?: string
     style?: React.CSSProperties
+    modalVariant?: string
+    headerClass?: string 
+    bodyClass?: string
+    footerClass?: string
 }
-const ResetButton = ({ children = 'Reset', message, className, style }: ResetType): JSX.Element => {
+const ResetButton = ({ children = 'Reset', message, className, style, modalVariant, headerClass, bodyClass, footerClass }: ResetType): JSX.Element => {
     const { persistor, config } = React.useContext(StoryContext)
     const router = useRouter();
 
@@ -78,6 +81,10 @@ const ResetButton = ({ children = 'Reset', message, className, style }: ResetTyp
                 customBtnHandler={() => resetStory(true, config, persistor, router)}
                 show={showConfirmModal}
                 onHide={() => setConfirmModal(false)}
+                variant={modalVariant}
+                headerClass={headerClass}
+                bodyClass={bodyClass}
+                footerClass={footerClass}
             />
         </>
     )

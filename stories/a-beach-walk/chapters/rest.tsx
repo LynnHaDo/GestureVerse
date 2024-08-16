@@ -44,6 +44,10 @@ export const Page: PageType = () => {
                         width: '80px',
                         height: '35px'
                     }}
+                    modalVariant={styles.customModal}
+                    modalHeaderClass={styles.customModalHeader}
+                    modalBodyClass={styles.customModalBody}
+                    modalFooterClass={styles.customModalFooter}
                   />
                 </TextBlock>
               </Col>

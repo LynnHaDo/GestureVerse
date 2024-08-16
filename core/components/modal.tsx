@@ -1,4 +1,5 @@
 import Modal from "react-bootstrap/Modal";
+import ModalDialog from "react-bootstrap/ModalDialog";
 import Button from "react-bootstrap/Button";
 
 import styles from "./Modal.module.scss";
@@ -9,6 +10,16 @@ import styles from "./Modal.module.scss";
 interface ModalProps {
   /** Title/header of the modal */
   title: string | "";
+  /** Variant of the modal */
+  variant?: string | "";
+
+  /** Header classname */
+  headerClass?: string | "";
+  /** Body classname */
+  bodyClass?: string | "";
+  /** Footer classname */
+  footerClass?: string | "";
+
   /** Body of the modal */
   body: string;
   /** Footer button text */
@@ -21,18 +32,25 @@ interface ModalProps {
   customBtnHandler?: Function;
 }
 
-const CustomModalHeader = ({ title }) => {
+const CustomModalHeader = ({ title, className }) => {
   return title == "" ? null : (
-    <Modal.Header closeButton>
+    <Modal.Header className={className} closeButton>
       <Modal.Title>{title}</Modal.Title>
     </Modal.Header>
   );
 };
 
-const CustomModalFooter = ({ btnContent, onHide, btnActionHandler = ()=>{return;} }) => {
+const CustomModalFooter = ({
+  btnContent,
+  onHide,
+  btnActionHandler = () => {
+    return;
+  },
+  className,
+}) => {
   return (
-    <Modal.Footer>
-        <Button variant="secondary" onClick={() => onHide()}>
+    <Modal.Footer className={className}>
+      <Button variant="secondary" onClick={() => onHide()}>
         Close
       </Button>
       {btnContent !== "" && (
@@ -47,21 +65,36 @@ const CustomModalFooter = ({ btnContent, onHide, btnActionHandler = ()=>{return;
 /**
  * Custom static modal for displaying messages
  */
-const CustomModal = ({ title, body, btnText, show, onHide, customBtnHandler }: ModalProps) => {
+const CustomModal = ({
+  title,
+  variant,
+  headerClass,
+  bodyClass,
+  footerClass,
+  body,
+  btnText,
+  show,
+  onHide,
+  customBtnHandler,
+}: ModalProps) => {
   return (
     <>
       <Modal
+        contentClassName={variant}
         className={styles.modal}
         onHide={() => onHide()}
         show={show}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <CustomModalHeader title={title} />
-        <Modal.Body>{body}</Modal.Body>
-        <CustomModalFooter btnContent={btnText}
-                           onHide={onHide} 
-                           btnActionHandler={()=> customBtnHandler()}/>
+        <CustomModalHeader title={title} className={headerClass} />
+        <Modal.Body className={bodyClass}>{body}</Modal.Body>
+        <CustomModalFooter
+          btnContent={btnText}
+          onHide={onHide}
+          btnActionHandler={() => customBtnHandler()}
+          className={footerClass}
+        />
       </Modal>
     </>
   );

@@ -15,6 +15,11 @@ export interface HeaderProps {
   backgroundColor?: string;
   /** Position of the controls: left, right, center */
   position?: "left" | "right" | "center";
+  /** Variant of the modal */
+  modalVariant?: string;
+  modalHeaderClass?: string,
+  modalBodyClass?: string, 
+  modalFooterClass?: string
 }
 
 const Header = ({
@@ -23,6 +28,10 @@ const Header = ({
   backButtonClassName = null,
   backgroundColor = 'transparent',
   position = 'center',
+  modalVariant = null,
+  modalHeaderClass = null,
+  modalBodyClass = null, 
+  modalFooterClass = null
 }: HeaderProps): JSX.Element => {
   let headerContent: React.ReactElement;
 
@@ -45,6 +54,10 @@ const Header = ({
                 <ResetButton
                   message="Do you want to reset the story?"
                   className={backButtonClassName}
+                  modalVariant={modalVariant}
+                  headerClass={modalHeaderClass}
+                  bodyClass={modalBodyClass}
+                  footerClass={modalFooterClass}
                 >reset</ResetButton>
               </div>
             </nav>
@@ -69,6 +82,10 @@ const Header = ({
                 <ResetButton
                   message="Do you want to reset the story?"
                   className={backButtonClassName}
+                  modalVariant={modalVariant}
+                  headerClass={modalHeaderClass}
+                  bodyClass={modalBodyClass}
+                  footerClass={modalFooterClass}
                 >reset</ResetButton>
               </div>
             </nav>

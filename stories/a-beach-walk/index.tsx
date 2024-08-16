@@ -36,6 +36,10 @@ const Index: ReactFCC = ({ children }) => {
         className={styles.header}
         controlsClassName={styles.controls}
         backButtonClassName={styles.backButton}
+        modalVariant={styles.customModal}
+        modalHeaderClass={styles.customModalHeader}
+        modalBodyClass={styles.customModalBody}
+        modalFooterClass={styles.customModalFooter}
       />
       <main className={styles.main}>{children}</main>
       <MusicPlayer

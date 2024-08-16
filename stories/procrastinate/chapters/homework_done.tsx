@@ -2,6 +2,8 @@ import { Section, Chapter } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
 
 import colors from "public/themeColors.module.scss";
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
+
 import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
@@ -36,6 +38,10 @@ export const Page: PageType = () => {
                 color: `${colors.white}`,
                 marginLeft: '15px'
               }}
+              modalVariant={styles.customModal}
+                    modalHeaderClass={styles.customModalHeader}
+                    modalBodyClass={styles.customModalBody}
+                    modalFooterClass={styles.customModalFooter}
             />
           </Row>
         </Container>

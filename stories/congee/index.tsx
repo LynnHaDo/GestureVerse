@@ -43,6 +43,10 @@ const Index: ReactFCC = ({ children }) => {
         backButtonClassName={styles.backButton}
         backgroundColor='rgb(0, 0, 0)'
         position="right"
+        modalVariant={styles.customModal}
+        modalHeaderClass={styles.customModalHeader}
+        modalBodyClass={styles.customModalBody}
+        modalFooterClass={styles.customModalFooter}
       />
       <main className={styles.main}>{children}</main>
       <MusicPlayer

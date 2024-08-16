@@ -1,10 +1,8 @@
 import { Chapter, Section } from "core/components";
-import { PageType, useAppDispatch } from "core/types";
+import { PageType } from "core/types";
 
 import colors from "public/themeColors.module.scss";
 import useChapter from "core/hooks/use-chapter";
-import { useEffect } from "react";
-import { updateVariable } from "core/features/variable-manager";
 import { choiceBlock } from "core/features/choice";
 import { BulletedList } from "core/components/widgets";
 import { Container, Row } from "react-bootstrap";
@@ -12,13 +10,8 @@ import { Container, Row } from "react-bootstrap";
 export const Page: PageType = () => {
   /** Current chapter */
   const chapter = useChapter();
-  /** App dispatch */
-  const dispatch = useAppDispatch();
-  const tag = "procrastinate__homework_fail";
 
-  useEffect(() => {
-    dispatch(updateVariable("counterStarted", false));
-  });
+  const tag = "procrastinate__homework_fail";
 
   return (
     <Chapter filename={chapter.filename}>

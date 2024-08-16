@@ -45,6 +45,10 @@ const Index: ReactFCC = ({ children }: GridProps) => {
         controlsClassName={styles.controls}
         backButtonClassName={styles.backButton}
         position="right"
+        modalVariant={styles.customModal}
+        modalHeaderClass={styles.customModalHeader}
+        modalBodyClass={styles.customModalBody}
+        modalFooterClass={styles.customModalFooter}
       />
       <main className={styles.main}>{children}</main>
       <MusicPlayer
@@ -52,7 +56,7 @@ const Index: ReactFCC = ({ children }: GridProps) => {
         iconColor={colors.dark}
         playlistBackgroundColor={colors.white}
         iconStyling={{
-          backgroundColor: `${colors.lightOrange}`,
+          backgroundColor: `${colors.darkYellow}`,
           border: `1.5px solid ${colors.dark}`,
         }}
       />
