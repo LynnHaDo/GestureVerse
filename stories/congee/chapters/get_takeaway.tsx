@@ -77,7 +77,7 @@ export const Page: PageType = () => {
                   link="https://i.imgur.com/you2Ff2.png"
                   source="https://imgur.com/you2Ff2"
                   name="Chinese local restaurant menu, Digital image"
-                  width="350px"
+                  width="80%"
                   position={{
                     margin: '20px auto',
                     padding: 0

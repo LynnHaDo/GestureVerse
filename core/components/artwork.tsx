@@ -21,11 +21,11 @@ export interface ArtworkProps {
 
 const Artwork = ({ link, name, source, width = 'auto', height = 'auto', position }: ArtworkProps) => {
  /**
- * Get a random integer < 80 and >= 0
- * @returns a random integer < 80 and >= 0
+ * Get a random integer < randomInt and >= 0
+ * @returns a random integer < randomInt and >= 0
  */
-  const getRandomPosition = () => {
-    return Math.floor(Math.random() * 50); // leave a bit padding on the sides
+  const getRandomPosition = (randomInt: number) => {
+    return Math.floor(Math.random() * randomInt); // leave a bit padding on the sides
   }
 
   return (
@@ -39,7 +39,7 @@ const Artwork = ({ link, name, source, width = 'auto', height = 'auto', position
             style={{objectFit: 'cover', height: '100%'}}
           />
         </div>
-        <div className={styles.cardInfo} style = {{top: `${getRandomPosition()}%`, left: `${getRandomPosition()}%`}}>
+        <div className={styles.cardInfo} style = {{top: `${getRandomPosition(50)}%`, left: `${getRandomPosition(30)}%`}}>
           <span className={styles.infoText}>{name}</span>
           <div className={styles.icon}>
             <IonIcon icon={addOutline}></IonIcon>

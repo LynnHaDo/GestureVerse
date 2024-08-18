@@ -47,7 +47,7 @@ export const Page: PageType = () => {
                   link="https://i.imgur.com/y3a2Eck.gif"
                   source="https://i.imgur.com/y3a2Eck"
                   name="Allison, GIF image"
-                  width="350px"
+                  width="80%"
                   position={{
                     margin: '0 auto'
                   }}

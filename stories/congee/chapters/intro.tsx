@@ -32,7 +32,7 @@ export const Page: PageType = () => {
                 link="https://i.imgur.com/8xsVCZi.gif"
                 name="A bowl of congee, GIF image"
                 source="https://imgur.com/8xsVCZi"
-                width="350px"
+                width="80%"
                 position={{
                     margin: '10px auto'
                 }}

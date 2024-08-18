@@ -2,6 +2,7 @@ import { Section, Chapter, Nav, C } from "core/components";
 import { Next, PageType, useAppDispatch } from "core/types";
 import { makeChoice } from "core/features/choice";
 
+import { useEffect } from "react";
 import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
 import { updateVariable } from "core/features/variable-manager";
@@ -24,23 +25,25 @@ export const Page: PageType = () => {
   const textsOne = TextReplacements[`${chapter.filename}_one`];
   const textsTwo = TextReplacements[`${chapter.filename}_two`];
 
-  if (counterMins > 0) {
-    setTimeout(() => {
-      counterMins--;
-      dispatch(updateVariable("counterMins", counterMins));
-    }, 1000);
-  }
-
-  if (counterMins <= 0) {
-    dispatch(
-      makeChoice(
-        "timeOut",
-        "fail",
-        "homework_start_again",
-        "homework_start_again"
-      )
-    );
-  }
+  useEffect(() => {
+    if (counterMins > 0) {
+        setTimeout(() => {
+          counterMins--;
+          dispatch(updateVariable("counterMins", counterMins));
+        }, 1000);
+      }
+    
+      if (counterMins <= 0) {
+        dispatch(
+          makeChoice(
+            "timeOut",
+            "fail",
+            "homework_start_again",
+            "homework_start_again"
+          )
+        );
+      }
+  }, [counterMins])
 
   return (
     <Chapter filename={chapter.filename}>

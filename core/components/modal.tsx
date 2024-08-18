@@ -12,6 +12,8 @@ interface ModalProps {
   title: string | "";
   /** Variant of the modal */
   variant?: string | "";
+  /** Size of the modal */
+  size?: "sm" | "lg" | "xl";
 
   /** Header classname */
   headerClass?: string | "";
@@ -23,7 +25,7 @@ interface ModalProps {
   /** Body of the modal */
   body: string;
   /** Footer button text */
-  btnText: string | "";
+  btnText?: string;
   /** Whether or not to show the modal */
   show: boolean;
   /** Event handler for closing the modal */
@@ -53,7 +55,7 @@ const CustomModalFooter = ({
       <Button variant="secondary" onClick={() => onHide()}>
         Close
       </Button>
-      {btnContent !== "" && (
+      {btnContent && (
         <Button variant="primary" onClick={() => btnActionHandler()}>
           {btnContent}
         </Button>
@@ -68,6 +70,7 @@ const CustomModalFooter = ({
 const CustomModal = ({
   title,
   variant,
+  size,
   headerClass,
   bodyClass,
   footerClass,
@@ -80,6 +83,7 @@ const CustomModal = ({
   return (
     <>
       <Modal
+        size={size}
         contentClassName={variant}
         className={styles.modal}
         onHide={() => onHide()}

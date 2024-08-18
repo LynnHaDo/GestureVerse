@@ -24,6 +24,12 @@
   }
 
   .videoWrapper {
+    --margin: 2rem;
+
+    @media screen and (max-width: 400px) {
+        --margin: 1rem;
+    }
+
     opacity: 0;
     visibility: hidden;
     transition: opacity 500ms ease-in-out;
@@ -31,8 +37,8 @@
     padding: 0.5rem;
     background-color: rgba(0, 0, 0);
     position: fixed;
-    right: 2rem;
-    top: 2rem;
+    right: var(--margin);
+    top: var(--margin);
     z-index: 1;
 
     .iconWrapper {
