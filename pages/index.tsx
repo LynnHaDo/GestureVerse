@@ -85,9 +85,7 @@ const Index = ({ paths }: StoryProps): JSX.Element => {
   const formRef = useRef<HTMLFormElement>(null);
   const emailSubmitBtn = useRef<HTMLButtonElement>(null);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-
+  const sendEmail = () => {
     emailSubmitBtn.current.value = "Sending...";
 
     const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID;
