@@ -110,8 +110,14 @@ $npages: 4;
     }
 
     .labels {
+      --top: 0;
+
+      @media screen and (max-width: 400px) {
+        --top: -2em;
+      }
+
       position: absolute;
-      top: 0;
+      top: var(--top);
       left: 0;
       height: 100vh;
       display: flex;
