@@ -83,10 +83,10 @@ const Index = ({ paths }: StoryProps): JSX.Element => {
   const gradient = useRef<HTMLCanvasElement>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const emailSubmitBtn = useRef<HTMLButtonElement>(null);
+  const emailSubmitBtn = useRef<HTMLInputElement>(null);
 
   const sendEmail = () => {
-    emailSubmitBtn.current.value = "Sending...";
+    emailSubmitBtn.current.innerText = "Sending...";
 
     const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
@@ -97,11 +97,13 @@ const Index = ({ paths }: StoryProps): JSX.Element => {
         publicKey: publicKey,
       })
       .then(
-        () => {
+        (res) => {
           emailSubmitBtn.current.innerText = "Send Email";
+          console.log(res)
         },
         (err) => {
           emailSubmitBtn.current.innerText = "Send Email";
+          console.log(err);
         }
       );
   };
@@ -146,7 +148,7 @@ const Index = ({ paths }: StoryProps): JSX.Element => {
         <div className={styles.header}>
           <h1>gestureverse</h1>
         </div>
-        <form className={styles.wrapper} ref={formRef}>
+        <form className={styles.wrapper} ref={formRef} onSubmit={sendEmail}>
           <input type="radio" id="home" name="slider" defaultChecked={true} />
           <input type="radio" id="about" name="slider" />
           <input type="radio" id="reference" name="slider" />
@@ -387,15 +389,16 @@ const Index = ({ paths }: StoryProps): JSX.Element => {
                     
                   </Row>
                   <Row className={styles.field}>
-                  <button
+                  <input
                     type="submit"
                     id="button"
                     ref={emailSubmitBtn}
-                    onSubmit={sendEmail}
+                    
                     className={styles.submitBtn}
-                  >
-                    <h3>Send email</h3>
-                  </button>
+                    value={'Send email'}
+                  />
+                    
+                  
                   </Row>
 
                   <div className={styles.footer}>
