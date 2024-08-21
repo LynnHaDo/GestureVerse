@@ -12,6 +12,8 @@ export { default as Response } from './response'
 export { default as C } from './choice'
 export { default as Choice } from './choice'
 
+export { default as NavBlock } from './navBlock';
+
 export { default as BackgroundFill } from './backgroundFill'
 export { default as Artwork } from './artwork'
 export { default as ChoiceBlock } from './choiceBlock'

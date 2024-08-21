@@ -39,9 +39,6 @@ export const Page: PageType = () => {
                   {choiceBlock(
                     tag,
                     "gesture",
-                    1,
-                    "transparent",
-                    `${colors.white}`,
                     InlineListEN,
                     null,
                     false

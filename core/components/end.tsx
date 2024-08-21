@@ -1,4 +1,11 @@
-import ResetButton from "./ui/reset-button";
+import { useDispatch } from "react-redux";
+import ResetButton, { resetStory } from "./ui/reset-button";
+import { useContext, useEffect, useState } from "react";
+import { HandGesture } from "./camera";
+import { GestureRecognizerContext } from "./chapter";
+import NavBlock from "./navBlock";
+import { StoryContext } from "core/containers/store-container";
+import { useRouter } from "next/router";
 
 const highlighter: React.CSSProperties = {
   fontWeight: 600,
@@ -7,7 +14,7 @@ const highlighter: React.CSSProperties = {
 const resetButtonStyle: React.CSSProperties = {
   textTransform: "uppercase",
   width: "auto",
-  border: "none"
+  border: "none",
 };
 
 export interface EndProps {
@@ -34,23 +41,37 @@ const End = ({
   modalVariant,
   modalHeaderClass,
   modalBodyClass,
-  modalFooterClass
+  modalFooterClass,
 }: EndProps): JSX.Element => {
+  /** Decision-making-related states/handlers */
+  const dispatch = useDispatch<any>();
+
+  const { persistor, config } = useContext(StoryContext);
+  const router = useRouter();
+
+  const [restart, setRestart] = useState(false);
+
+  useEffect(() => {
+    if (restart) {
+        resetStory(true, config, persistor, router);
+    }
+  }, [restart])
+
   return (
     <>
-      <p>
-        Thank you for playing <span style={highlighter}>{storyName}</span>{". "}
-        To play again press{" "}
-        <ResetButton
-          children="start"
-          message="Do you want to restart the story?"
-          style={{ ...resetButtonStyle, ...additionalButtonStyle }}
-          modalVariant={modalVariant}
-          headerClass={modalHeaderClass}
-          bodyClass={modalBodyClass}
-          footerClass={modalFooterClass}
-        />
-      </p>
+      <div>
+        <p>
+          Thank you for playing <span style={highlighter}>{storyName}</span>
+          {". "}
+        </p>
+        {
+          <NavBlock
+            text="Go back to the start."
+            next="intro"
+            handler={() => setRestart(true)}
+          />
+        }
+      </div>
 
       {reference && (
         <>

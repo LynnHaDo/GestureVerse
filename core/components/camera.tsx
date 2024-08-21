@@ -3,7 +3,7 @@ import CustomModal from "./modal";
 
 /** Styling */
 import styles from "./Camera.module.scss";
-import colors from 'public/themeColors.module.scss';
+import colors from "public/themeColors.module.scss";
 
 const videoContainer: React.CSSProperties = {
   position: "relative",
@@ -40,21 +40,16 @@ export interface HandGesture {
  * Camera widget properties
  */
 interface CameraProps {
+  /** The gesture recognizer engine to use */
+  gestureRecognizer: GestureRecognizer;
   /** Video/canvas width */
   canvasWidth: number;
   /** Video/canvas height */
   canvasHeight: number;
-  /** Number of hands to detect at max */
-  numHands: number;
-  /** Background color for styling trigger button */
-  btnBackgroundColor: string;
-  /** Text color for styling trigger button and output text */
-  textColor: string;
   /** Result object (if any) */
-  resultSetter: Dispatch<HandGesture>;
+  resultSetter?: Dispatch<HandGesture>;
   /** List of available gesture options to predict for */
-  availableOptions: string[];
-  
+  availableOptions?: string[];
 }
 
 /**
@@ -62,16 +57,12 @@ interface CameraProps {
  * @returns camera wrapper
  */
 const Camera = ({
+  gestureRecognizer,
   canvasWidth,
   canvasHeight,
-  numHands = 1,
-  btnBackgroundColor,
-  textColor,
   resultSetter,
   availableOptions,
 }: CameraProps): JSX.Element => {
-  let gestureRecognizer = useRef<GestureRecognizer>(null);
-
   /** Flags */
   let [webcamRunning, webcamSetter] = useState(false);
   let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
@@ -92,36 +83,8 @@ const Camera = ({
 
   const { hand_connectors, joint } = styles;
 
-  /** Trigger button */
-  let [btnContent, btnContentSetter] = useState(ENABLE_TEXT);
-  const triggerBtn = useRef<HTMLButtonElement>(null);
-
   /** Warnings */
-  let [showModalNotLoaded, setModalNotLoaded] = useState(false);
   let [showModalWebcamDenied, setModalWebcamDenied] = useState(false);
-
-  /**
-   * Prepare hand gesture detection model for prediction
-   * @param numHands maximum number of hands to detect
-   */
-  const createGestureRecognizer = async () => {
-    const vision = await FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.12/wasm"
-    );
-
-    gestureRecognizer.current = await GestureRecognizer.createFromOptions(
-      vision,
-      {
-        baseOptions: {
-          modelAssetPath:
-            "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task",
-          delegate: "CPU",
-        },
-        runningMode: "VIDEO",
-        numHands: numHands,
-      }
-    );
-  };
 
   /**
    * Check if web camera access is allowed
@@ -132,18 +95,18 @@ const Camera = ({
   };
 
   useEffect(() => {
-    // If user allows access
-    if (isUserCameraAllowed()) {
-      // Set up gesture recognizer model
-      createGestureRecognizer();
-      triggerBtn.current.addEventListener("click", togglePrediction);
+    if (!resultSetter && !availableOptions) {
+      webcamSetter(false);
+      pauseIcon.current.style.display = "block";
+      playIcon.current.style.display = "none";
+      return;
     }
 
-    return () => {
-        stopPrediction();
-        gestureRecognizer.current = null;
+    // If user allows access
+    if (isUserCameraAllowed()) {
+      togglePrediction();
     }
-  }, []);
+  }, [gestureRecognizer]);
 
   /**
    * Stop model and disable prediction
@@ -155,15 +118,13 @@ const Camera = ({
         .clearRect(0, 0, canvasWidth, canvasHeight);
       pauseIcon.current.style.display = "block";
       video.current.pause();
-      video.current.src = "";
-      video.current.srcObject = null;
+
       outputCategory.current.innerHTML = "";
       outputScore.current.innerHTML = "";
       outputHandedness.current.innerHTML = "";
 
-      videoContainerRef.current.style.opacity = "0";
-      videoContainerRef.current.style.visibility = 'hidden';
       textWrapperRef.current.style.opacity = "0";
+      textWrapperRef.current.style.visibility = 'hidden';
     }
 
     if (localStream.current) {
@@ -177,29 +138,15 @@ const Camera = ({
    * Toggle prediction state
    */
   const togglePrediction = () => {
-    if (!gestureRecognizer) {
-      setModalNotLoaded(true);
-      return;
-    }
-
-    if (webcamRunning) {
-      webcamSetter(false);
-      pauseIcon.current.style.display = "block";
-      playIcon.current.style.display = "none";
-      btnContentSetter(ENABLE_TEXT);
-    } else {
-      webcamSetter(true);
-      playIcon.current.style.display = "block";
-      pauseIcon.current.style.display = "none";
-      videoContainerRef.current.style.opacity = "1";
-      videoContainerRef.current.style.visibility = 'visible';
-      // Start video prediction
-      startVideo();
-    }
+    webcamSetter(true);
+    playIcon.current.style.display = "block";
+    pauseIcon.current.style.display = "none";
+    // Start video prediction
+    startVideo();
   };
 
   /**
-   * Start media prediction via webcam. 
+   * Start media prediction via webcam.
    * Display error message if webcam is not enabled
    */
   const startVideo = () => {
@@ -210,7 +157,6 @@ const Camera = ({
         playIcon.current.style.display = "none";
         video.current.srcObject = stream;
         localStream.current = stream;
-        btnContentSetter(DISABLE_TEXT);
       })
       .catch(() => {
         setModalWebcamDenied(true);
@@ -223,6 +169,7 @@ const Camera = ({
    */
   const setText = (results: any) => {
     textWrapperRef.current.style.opacity = "1";
+    textWrapperRef.current.style.visibility = "visible";
 
     outputCategory.current.innerHTML = `Type: ${results.gestures[0][0].categoryName.replace(
       "_",
@@ -245,15 +192,14 @@ const Camera = ({
 
     const canvasCtx = canvasEl.getContext("2d");
 
-    if (!videoEl.videoHeight || !videoEl.videoWidth) {
-      btnContentSetter(ENABLE_TEXT);
+    if (!videoEl.videoHeight || !videoEl.videoWidth || !gestureRecognizer) {
       stopPrediction();
       return;
     }
 
     // As the video progresses, update results
     if (videoEl.currentTime !== lastVideoTime) {
-      results = gestureRecognizer.current.recognizeForVideo(videoEl, nowInMs);
+      results = gestureRecognizer.recognizeForVideo(videoEl, nowInMs);
       lastVideoTimeSetter(videoEl.currentTime);
     }
 
@@ -294,8 +240,10 @@ const Camera = ({
       results.gestures.length > 0 &&
       results.gestures[0][0].score > MIN_CONFIDENCE_SCORE
     ) {
-      if ((availableOptions.includes(results.gestures[0][0].categoryName)) ||
-      (availableOptions.includes(results.handedness[0][0].displayName))) {
+      if (
+        availableOptions.includes(results.gestures[0][0].categoryName) ||
+        availableOptions.includes(results.handedness[0][0].displayName)
+      ) {
         const resultObj = {
           category: results.gestures[0][0].categoryName,
           score: results.gestures[0][0].score * 100,
@@ -303,22 +251,22 @@ const Camera = ({
         };
         setText(results);
         if (canvas.current != null) {
-            canvas.current.getContext("2d").clearRect(0, 0, canvasWidth, canvasHeight)
+          canvas.current
+            .getContext("2d")
+            .clearRect(0, 0, canvasWidth, canvasHeight);
         }
         resultSetter(resultObj);
         return;
       }
 
       setText(results);
-    } 
-    else {
+    } else {
       textWrapperRef.current.style.opacity = "0";
+      textWrapperRef.current.style.visibility = "hidden";
     }
 
     requestAnimationFrame(() => {
-      if (webcamRunning) {
-        predict();
-      }
+       if (webcamRunning) predict();
     });
   };
 
@@ -329,17 +277,6 @@ const Camera = ({
           styles.videoSection + ` ${gestureRecognizer ? "" : styles.invisible}`
         }
       >
-        <button
-          ref={triggerBtn}
-          style={{
-            backgroundColor: btnBackgroundColor,
-            color: textColor,
-            border: `1px solid ${textColor}`,
-          }}
-        >
-          <span>{btnContent.toUpperCase()}</span>
-        </button>
-
         <div
           className={styles.videoWrapper}
           style={{
@@ -426,33 +363,25 @@ const Camera = ({
               ref={outputCategory}
               className={styles.output}
               style={{
-                color: `${colors.dark}`
+                color: `${colors.dark}`,
               }}
             ></span>
             <span
               ref={outputScore}
               className={styles.output}
               style={{
-                color: `${colors.dark}`
+                color: `${colors.dark}`,
               }}
             ></span>
             <span
               ref={outputHandedness}
               className={styles.output}
               style={{
-                color: `${colors.dark}`
+                color: `${colors.dark}`,
               }}
             ></span>
           </div>
         </div>
-
-        <CustomModal
-          title="Warning"
-          body="Wait for the detection model to load."
-          btnText=""
-          show={showModalNotLoaded}
-          onHide={() => setModalNotLoaded(false)}
-        />
 
         <CustomModal
           title="Camera access disabled"

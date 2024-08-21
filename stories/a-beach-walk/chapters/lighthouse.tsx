@@ -1,10 +1,10 @@
 import {
   Section,
   Chapter,
-  Nav,
   TextBlock,
   BackgroundFill,
   Artwork,
+  NavBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -35,13 +35,13 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p>
+                  <div>
                     The lighthouse is old and the lantern is taller than you
                     are. You watch the light glint off the glass for a while
-                    before making your way
-                    {"  "}
-                    <Nav text="back" next="left" tag="back" />.
-                  </p>
+                    before making your way {' '}
+                  
+                  {<NavBlock text="back." next="left" tag="back" />}
+                  </div>
                 </TextBlock>
               </Col>
               <Col lg={4}></Col>

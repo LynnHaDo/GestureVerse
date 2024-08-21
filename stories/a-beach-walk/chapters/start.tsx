@@ -5,6 +5,7 @@ import {
   TextBlock,
   BackgroundFill,
   Artwork,
+  NavBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -27,7 +28,7 @@ export const Page: PageType = () => {
                   source="https://interstellar-bird.itch.io/beach-walk"
                   name="Road with yellow flowers on 2 sides, Digital art, 600x400 pixel"
                   position={{
-                    margin: '0 auto',
+                    margin: "0 auto",
                     backgroundColor: `${colors.white}`,
                   }}
                 />
@@ -35,10 +36,10 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p>
-                    It is a lovely day to go for a{"  "}
-                    <Nav text="walk" next="choice" tag="walk" />.
-                  </p>
+                  <div>
+                    It is a lovely day to go for a{" "}
+                    {<NavBlock text="walk." next="choice" tag="walk" />}
+                  </div>
                 </TextBlock>
               </Col>
               <Col lg={4}></Col>

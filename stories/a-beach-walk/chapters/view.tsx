@@ -1,10 +1,10 @@
 import {
   Section,
   Chapter,
-  Nav,
   TextBlock,
   BackgroundFill,
   Artwork,
+  NavBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -34,10 +34,10 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p>
-                    After a long walk, it’s nice to just sit and{"  "}
-                    <Nav text="rest" next="rest" tag="rest" />.
-                  </p>
+                  <div>
+                    After a long walk, it’s nice to just sit and{' '}
+                    <NavBlock text="rest." next="rest" tag="rest" />
+                  </div>
                 </TextBlock>
               </Col>
               <Col lg={4}></Col>

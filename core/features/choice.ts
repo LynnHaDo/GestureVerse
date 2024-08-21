@@ -28,10 +28,12 @@ import {
   Options,
   Variables,
 } from "core/components/constants/options";
-import { ChoiceBlock, Nav } from "core/components";
+import { ChoiceBlock, Nav, NavBlock } from "core/components";
 import { InlineListEN } from "core/components/widgets/inline-list";
 import { isEqual } from "lodash";
 import { useVariable } from "core/hooks/use-variable";
+import { GestureRecognizerContext } from "core/components/chapter";
+import { useContext } from "react";
 
 export type Option = string;
 export type OptionGroup = Array<Option>;
@@ -152,9 +154,6 @@ export default undoable(choicesSlice.reducer, {
 export const choiceBlock = (
   tag: string,
   predictionType: "gesture" | "handedness" = "gesture",
-  maxNumHands: number = 1,
-  btnBackgroundColor: string = "rgb(0,0,0)",
-  btnTextColor: string = "rgb(250,250,250",
   widget: (props: any) => JSX.Element = InlineListEN,
   last: JSX.Element = null,
   keepSelectedChoice: boolean = true,
@@ -216,7 +215,7 @@ export const choiceBlock = (
     }
 
     if (remainingOptions.length == 1) {
-      return React.createElement(Nav, {
+      return React.createElement(NavBlock, {
         text: options[remainingOptionKeys[0]].description,
         tag: `OneOptionLeftFor${tag}`,
         next: remainingOptionKeys[0],
@@ -227,9 +226,6 @@ export const choiceBlock = (
       tag: tag,
       predictionType: predictionType,
       options: Object.fromEntries(remainingOptions),
-      maxNumHands: maxNumHands,
-      btnBackgroundColor: btnBackgroundColor,
-      btnTextColor: btnTextColor,
       widget: widget,
       purpose: purpose,
       className: className,
@@ -239,9 +235,6 @@ export const choiceBlock = (
   return React.createElement(ChoiceBlock, {
     tag: tag,
     predictionType: predictionType,
-    maxNumHands: maxNumHands,
-    btnBackgroundColor: btnBackgroundColor,
-    btnTextColor: btnTextColor,
     widget: widget,
     purpose: purpose,
     className: className,

@@ -5,6 +5,7 @@ import {
   TextBlock,
   BackgroundFill,
   Artwork,
+  NavBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -34,10 +35,10 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p>
+                  <div>
                     Walk through the {"  "}
-                    <Nav text="trees" next="trees" tag="trees" />.
-                  </p>
+                    <NavBlock text="trees." next="trees" tag="trees" />
+                  </div>
                 </TextBlock>
               </Col>
               <Col lg={4}></Col>

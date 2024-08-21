@@ -1,10 +1,10 @@
 import {
   Section,
   Chapter,
-  Nav,
   TextBlock,
   BackgroundFill,
   Artwork,
+  NavBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -34,18 +34,17 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p style={{ color: colors.dark }}>
+                  <div style={{ color: colors.dark }}>
                     You duck through the fence and sit on the shrubbery. You
                     watch the waves for a while and enjoy the sweet-smelling
                     flowers before climbing back up to the{"  "}
-                    <Nav
-                      text="path"
+                    <NavBlock
+                      text="path."
                       next="right"
                       tag="path"
                       textColor={colors.dark}
                     />
-                    .
-                  </p>
+                  </div>
                 </TextBlock>
               </Col>
 

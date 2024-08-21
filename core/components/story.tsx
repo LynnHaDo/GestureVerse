@@ -26,6 +26,7 @@ const chapterComponents = (toc: Toc, story: string): Array<ChapterComponent> => 
                 )
             )
         }
+
         return {
             item,
             component
@@ -40,7 +41,6 @@ interface StoryProps {
 const Story = ({ story }: StoryProps): JSX.Element => {
     const toc = useSelector((state: RootState) => state.navigation.present.toc)
     const [components, setComponents] = React.useState<ChapterComponent[]>(null)
-    const loaderRef = React.useRef<HTMLSpanElement>(null);
 
     React.useEffect(() => {
         setComponents(chapterComponents(toc, story));

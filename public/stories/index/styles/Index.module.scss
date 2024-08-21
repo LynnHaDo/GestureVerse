@@ -271,34 +271,28 @@ $npages: 4;
             }
           }
 
-          ul {
+          .menuList {
             list-style-type: none;
             padding: 0;
             margin: 0 auto;
 
             li {
-              display: flex;
               padding: 0.9rem 1rem;
               border-top: 1px solid $text-color;
               height: 65px;
               margin: 0;
-
-              a {
-                color: $text-color;
-                font-size: 1.5rem;
-                text-decoration: none;
-                display: block;
-                width: 100%;
-                text-align: left;
-              }
+              color: $text-color;
+              font-size: 1.5rem;
+              text-decoration: none;
+              display: block;
+              width: 100%;
+              text-align: left;
 
               &:hover {
                 background-color: colors.$very-light;
                 transition: 0.3s ease-in;
 
-                a {
-                  font-family: $secondary;
-                }
+                font-family: $secondary;
               }
             }
           }

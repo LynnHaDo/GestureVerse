@@ -1,7 +1,7 @@
 import {
   Section,
   Chapter,
-  Nav,
+  NavBlock,
   TextBlock,
   Artwork,
   BackgroundFill,
@@ -12,6 +12,9 @@ import styles from "public/stories/a-beach-walk/styles/Index.module.scss";
 import colors from "public/themeColors.module.scss";
 
 import { Col, Container, Row } from "react-bootstrap";
+
+import { useContext } from "react";
+import { GestureRecognizerContext } from "core/components/chapter";
 
 export const Page: PageType = () => {
   return (
@@ -38,10 +41,11 @@ export const Page: PageType = () => {
                   textWrapperWidth={300}
                 >
                   <h2>a beach walk</h2>
-                  <p>
-                    Embark on a peaceful exploration along the coast. {"  "}
-                    <Nav text="Let's start" next="start" tag="intro" />.
-                  </p>
+
+                  <div>
+                    Embark on a peaceful exploration along the coast. {' '}
+                    {<NavBlock text="Let's start." next="start" tag="intro" />}
+                  </div>
                 </TextBlock>
               </Col>
               <Col lg={4}></Col>

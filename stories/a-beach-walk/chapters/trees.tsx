@@ -1,10 +1,10 @@
 import {
   Section,
   Chapter,
-  Nav,
   TextBlock,
   BackgroundFill,
   Artwork,
+  NavBlock,
 } from "core/components";
 import { PageType } from "core/types";
 
@@ -34,15 +34,14 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p>
+                  <div>
                     Going through the tree bushes, you see the{"  "}
-                    <Nav
-                      text="coastline"
+                    <NavBlock
+                      text="coastline."
                       next="shells"
                       tag="coastline"
                     />
-                    .
-                  </p>
+                  </div>
                 </TextBlock>
               </Col>
               <Col lg={4}></Col>

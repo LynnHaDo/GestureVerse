@@ -44,6 +44,12 @@ export interface OptionProps {
  * List of tags and the corresponding options
  */
 export const Options: OptionProps = {
+    /** MENU */
+    "menu": {
+        'a-beach-walk': optionItem('Thumb_Up', null, 'a beach walk'),
+        'congee': optionItem('Thumb_Down', null, 'congee'),
+        'procrastinate': optionItem('ILoveYou', null, 'procrastinate')
+    },
     /** A BEACH WALK */
     "a-beach-walk__leftOrRight": {
         "left": optionItem('Thumb_Up', null, 'turn left'), // thumbs up

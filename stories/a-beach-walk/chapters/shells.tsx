@@ -1,7 +1,7 @@
 import {
   Section,
   Chapter,
-  Nav,
+  NavBlock,
   TextBlock,
   BackgroundFill,
   Artwork,
@@ -33,10 +33,10 @@ export const Page: PageType = () => {
                   className={styles.textBlock}
                   textWrapperClassName={styles.textWrapper}
                 >
-                  <p>
+                  <div>
                     Walk past the{"  "}
-                    <Nav text="shells" next="cave" tag="shells" />.
-                  </p>
+                    <NavBlock text="shells." next="cave" tag="shells" />
+                  </div>
                 </TextBlock>
               </Col>
 

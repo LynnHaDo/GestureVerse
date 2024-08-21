@@ -97,6 +97,7 @@ const MutableChoice = ({
     type,
     handler
 }: ChoiceProps): JSX.Element => {
+    console.log(tag, options, optionList, widget)
     const dispatch = useAppDispatch()
     const { filename } = React.useContext(ChapterContext)
 

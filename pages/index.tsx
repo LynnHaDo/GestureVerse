@@ -20,24 +20,24 @@ interface StoryProps {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const storyDirs = path.join(process.cwd(), "public/stories");
-  const paths = fs
-    .readdirSync(storyDirs, { withFileTypes: true })
-    .filter(
-      (dir) =>
-        dir.isDirectory() &&
-        (dir.name.includes("procrastinate") ||
-          dir.name.includes("a-beach-walk") ||
-          dir.name.includes("congee"))
-    )
-    .map((dir) => dir.name)
-    .flat();
-  return {
-    props: {
-      paths,
-    },
+    const storyDirs = path.join(process.cwd(), "public/stories");
+    const paths = fs
+      .readdirSync(storyDirs, { withFileTypes: true })
+      .filter(
+        (dir) =>
+          dir.isDirectory() &&
+          (dir.name.includes("procrastinate") ||
+            dir.name.includes("a-beach-walk") ||
+            dir.name.includes("congee"))
+      )
+      .map((dir) => dir.name)
+      .flat();
+    return {
+      props: {
+        paths,
+      },
+    };
   };
-};
 
 export const config: NeatConfig = {
   colors: [
@@ -160,7 +160,7 @@ const Index = ({ paths }: StoryProps): JSX.Element => {
                 <Container>
                   <h2 className={styles.heading}>Choose your own adventure</h2>
 
-                  <ul>
+                  <ul className={styles.menuList}>
                     {paths.map((s) => (
                       <li key={s}>
                         <a href={`${s}`}>{s.replaceAll("-", " ")}</a>
