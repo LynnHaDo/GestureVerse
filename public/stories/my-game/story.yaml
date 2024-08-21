@@ -1,7 +1,0 @@
-title: my-game
-language: en
-chapters:
-  - filename: "chapter1"
-    title: "Chapter title"
-players:
-  - start: "chapter1"
