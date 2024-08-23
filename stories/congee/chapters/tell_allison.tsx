@@ -33,14 +33,14 @@ export const Page: PageType = () => {
               {choiceBlock(
                 tag,
                 "gesture",
-                1,
-                `${colors.lightYellow}`,
-                `${colors.dark}`,
                 BulletedList,
                 null,
                 true,
                 'navigation',
-                `${styles.chatBubble}`
+                `${styles.chatBubble}`,
+                '',
+                null,
+                `${styles.instruction}`
               )}
             </Col>
 

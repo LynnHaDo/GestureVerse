@@ -11,6 +11,8 @@ $text-color: colors.$very-light;
   font-family: $body;
   min-height: calc(100vh - 10em);
   padding-bottom: 2rem;
+  z-index: -1;
+  position: relative;
 
   h1,
   h2,
@@ -26,7 +28,7 @@ $text-color: colors.$very-light;
   }
 
   p {
-    line-height: 1.5rem;
+    line-height: 1.2rem;
   }
 
   .text-black a {
@@ -35,6 +37,41 @@ $text-color: colors.$very-light;
 
   .text_center {
     text-align: center;
+  }
+
+  .instruction {
+    position: relative;
+    font-size: 0.9rem;
+    color: colors.$dark;
+    z-index: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        border: 1.5px solid colors.$dark;
+        background-color: colors.$pink;
+        border-radius: 0.2rem;
+        display: block;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: -2;
+      top: 0.3rem;
+      left: 0.3rem;
+      border: 1.5px solid colors.$dark;
+      background-color: colors.$dark;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.2rem;
+    }
   }
 
   button {
@@ -127,41 +164,41 @@ $text-color: colors.$very-light;
 }
 
 .customModal {
-    background-color: colors.$pink;
-    color: colors.$dark;
-    border-radius: 0.2rem;
-    border: 1.5px solid colors.$dark;
+  background-color: colors.$pink;
+  color: colors.$dark;
+  border-radius: 0.2rem;
+  border: 1.5px solid colors.$dark;
 
-    .customModalHeader  {
-        border-bottom: 1.5px solid colors.$dark;
-    }
+  .customModalHeader {
+    border-bottom: 1.5px solid colors.$dark;
+  }
 
-    .customModalFooter {
-        border-top: 1.5px solid colors.$dark;
-        justify-content: flex-end;
+  .customModalFooter {
+    border-top: 1.5px solid colors.$dark;
+    justify-content: flex-end;
 
-        button {
-            border-radius: 0.2rem;
-            border: 1.5px solid colors.$dark;
-            opacity: 0.8;
-            transition: 0.3s ease-in-out;
+    button {
+      border-radius: 0.2rem;
+      border: 1.5px solid colors.$dark;
+      opacity: 0.8;
+      transition: 0.3s ease-in-out;
 
-            &:nth-child(1) {
-                background-color: colors.$lightYellow;
-                color: colors.$dark;
-               
-                &:hover {
-                    opacity: 1;
-                }
-            }
+      &:nth-child(1) {
+        background-color: colors.$lightYellow;
+        color: colors.$dark;
 
-            &:nth-child(2) {
-                background-color: colors.$darkBlue;
-
-                &:hover {
-                    opacity: 1;
-                }
-            }
+        &:hover {
+          opacity: 1;
         }
+      }
+
+      &:nth-child(2) {
+        background-color: colors.$darkBlue;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
+  }
 }

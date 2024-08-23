@@ -12,6 +12,8 @@ import { useVariable } from "core/hooks/use-variable";
 
 import { Container, Row } from "react-bootstrap";
 
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
+
 export const Page: PageType = () => {
   const tag = "procrastinate__menu";
   let [tv, game, eat, nap, clean] = useVariable(null, [
@@ -56,7 +58,7 @@ export const Page: PageType = () => {
       displayText = "Wow I really need to start, it's pretty late.";
   }
 
-  if (tv && game && eat) {
+  if ((tv && game && eat) || score > 7) {
     Options[tag]["homework"].disabled = false;
   }
 
@@ -91,12 +93,14 @@ export const Page: PageType = () => {
             {choiceBlock(
               tag,
               "gesture",
-              1,
-              `${colors.orange}`,
-              `${colors.lightYellow}`,
               BulletedList,
               null,
-              true
+              true,
+              "navigation",
+              "",
+              "",
+              null,
+              `${styles.instruction}`
             )}
           </Row>
         </Container>

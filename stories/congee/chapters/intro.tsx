@@ -1,9 +1,10 @@
-import { Section, Chapter, Nav, Artwork } from "core/components";
+import { Section, Chapter, NavBlock, Artwork } from "core/components";
 import { animated } from "@react-spring/web";
 import { PageType } from "core/types";
 import FadeIn from "core/components/ui/fadein";
 
 import { Container, Row, Col } from "react-bootstrap";
+import styles from 'public/stories/congee/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   return (
@@ -23,8 +24,9 @@ export const Page: PageType = () => {
               </p>
 
               <FadeIn wrapper={animated("p")} delayTime={300}>
-                <Nav text="start" next="start" tag="startCongee" />
+                start
               </FadeIn>
+              <NavBlock instructionClassName={styles.instruction}  text="" next="start" tag="startCongee" />
             </Col>
 
             <Col lg={4}>
@@ -34,7 +36,7 @@ export const Page: PageType = () => {
                 source="https://imgur.com/8xsVCZi"
                 width="80%"
                 position={{
-                    margin: '10px auto'
+                  margin: "10px auto",
                 }}
               />
             </Col>

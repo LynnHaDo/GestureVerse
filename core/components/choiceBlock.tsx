@@ -6,18 +6,22 @@ import { Gestures, Handedness } from "./constants/gesture";
 /** Hooks */
 import { useState, useEffect, useRef, useContext } from "react";
 import { useDispatch } from "react-redux";
-import { optionItemProps, Options, Variables } from "./constants/options";
+import {
+  optionItemProps,
+  Options,
+  Variables,
+} from "./constants/options";
 
 /** Utils */
 import { makeChoice } from "core/features/choice";
+import { GestureRecognizerContext } from "./chapter";
 
 /** Styling */
 import styles from "./ChoiceBlock.module.scss";
 import { InlineListEN } from "./widgets/inline-list";
 import { updateVariable } from "core/features/variable-manager";
-import { GestureRecognizer } from "@mediapipe/tasks-vision";
 import CustomModal from "./modal";
-import { GestureRecognizerContext } from "./chapter";
+import React from "react";
 
 export interface ChoiceBlockProps {
   /** Tag of the choice (used for the Choice component) */
@@ -29,6 +33,10 @@ export interface ChoiceBlockProps {
   /** Whether the choice block has the purpose of navigating to a different chapter or setting a variable */
   purpose?: "navigation" | "variableSetter";
   className?: string;
+  /** Whether to display the options after resolved */
+  persist?: boolean;
+  /** Classname of instruction */
+  instructionClassName?: string;
 }
 
 /**
@@ -45,6 +53,8 @@ const ChoiceBlock = ({
   widget = InlineListEN,
   purpose = "navigation",
   className = "",
+  persist = false,
+  instructionClassName = ""
 }: ChoiceBlockProps): JSX.Element => {
   if (purpose == "variableSetter") {
     options = Variables[tag];
@@ -126,10 +136,11 @@ const ChoiceBlock = ({
             optionList={optionValues}
             type="string"
             className={`choiceContent ${className}`}
+            persist={persist}
           />
         }
 
-        <div className={styles.instruction}>
+        <div className={`${styles.instruction} ${instructionClassName}`}>
           {optionKeys.map((key: string) => {
             return (
               <p

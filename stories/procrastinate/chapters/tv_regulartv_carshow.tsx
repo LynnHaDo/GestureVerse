@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
 
 import { useEffect } from "react";
@@ -8,6 +8,7 @@ import { updateVariable } from "core/features/variable-manager";
 import useChapter from "core/hooks/use-chapter";
 
 import { Container, Row } from "react-bootstrap";
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
@@ -31,15 +32,14 @@ export const Page: PageType = () => {
               triple carb set up. Nice.
             </p>
 
-            <p>
+            <div className={styles.p}>
               What should I do{" "}
-              <Nav
-                text="next"
+              <NavBlock instructionClassName={styles.instruction} 
+                text="next?"
                 next="menu"
                 tag={`moveFrom${chapter.filename}ToMenu`}
               />
-              {"?"}
-            </p>
+            </div>
           </Row>
         </Container>
       </Section>

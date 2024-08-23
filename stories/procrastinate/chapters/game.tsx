@@ -1,10 +1,11 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { choiceBlock } from "core/features/choice";
-import colors from "public/themeColors.module.scss";
+
 import { PageType } from "core/types";
 import { BulletedList } from "core/components/widgets";
 
 import { Container, Row } from "react-bootstrap";
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const tag = "procrastinate__games";
@@ -17,15 +18,14 @@ export const Page: PageType = () => {
             {choiceBlock(
               tag,
               "handedness",
-              1,
-              `${colors.vanilla}`,
-              `${colors.dark}`,
               BulletedList,
-              <Nav
-                text="Oh no is it already time to do homework??"
-                next="menu"
-                tag="endGame"
-              />
+              null,
+              true,
+              "navigation",
+              "",
+              "",
+              null,
+              `${styles.instruction}`
             )}
           </Row>
         </Container>

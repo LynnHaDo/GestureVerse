@@ -1,7 +1,8 @@
-import { Section, Chapter, Nav, Artwork } from "core/components";
+import { Section, Chapter, NavBlock, Artwork } from "core/components";
 import { PageType } from "core/types";
 
 import { Container, Row, Col } from "react-bootstrap";
+import styles from 'public/stories/congee/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   return (
@@ -26,9 +27,9 @@ export const Page: PageType = () => {
                 equivalent of chicken soup. The best part of feeling ill as a
                 kid was getting a hot bowl of congee to slurp on. It made you
                 feel warm inside out – like glowing embers gently simmering in
-                your stomach. If only it was easier to {" "}
-                <Nav text="get" next="get" tag="getCongee" />{"."}
+                your stomach. If only it was easier to get.
               </p>
+              <NavBlock instructionClassName={styles.instruction}  text="" next="get" tag="getCongee" />
             </Col>
           </Row>
         </Container>

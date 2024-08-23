@@ -1,8 +1,10 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
 import { useEffect } from "react";
 import { incrementScore } from "core/features/score";
 import { animated } from "@react-spring/web";
+
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 import FadeIn from "core/components/ui/fadein";
 import { updateVariable } from "core/features/variable-manager";
@@ -32,12 +34,13 @@ export const Page: PageType = () => {
               </p>
 
               <FadeIn wrapper={animated("p")} delayTime={600}>
-                <Nav
-                  text="Let's get out of bed..."
+              Let's get out of bed...
+              </FadeIn>
+              <NavBlock instructionClassName={styles.instruction} 
+                  text=""
                   next="menu"
                   tag={`moveFrom${chapter.filename}toMenu`}
                 />
-              </FadeIn>
             </Row>
           </Container>
         </Section>

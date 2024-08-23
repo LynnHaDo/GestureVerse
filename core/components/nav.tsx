@@ -34,24 +34,6 @@ export interface NavProps {
   handler?: Function;
 }
 
-export interface NavBlockProps {
-  gestureRecognizer: GestureRecognizer;
-  /** The displayed text for the link */
-  text: string;
-  /** The chapter name or section */
-  next: string;
-  /** Whether to continue to display the hyperlink or not */
-  persist?: boolean;
-  /** Tag to be supplied if the text string is non-unique */
-  tag?: Tag;
-  /** Class name to based to the widget */
-  className?: string;
-  /** Color of the hyperlinks */
-  textColor?: string;
-  /** Handler for clicking event */
-  handler?: Function;
-}
-
 const Nav = ({
   text = "More...",
   next = Next.Section,

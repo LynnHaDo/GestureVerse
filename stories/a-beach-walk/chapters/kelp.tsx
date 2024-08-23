@@ -1,7 +1,6 @@
 import {
   Section,
   Chapter,
-  Nav,
   TextBlock,
   BackgroundFill,
   Artwork,
@@ -42,6 +41,7 @@ export const Page: PageType = () => {
                       next="cave"
                       tag="cave"
                       textColor={colors.dark}
+                      instructionClassName={styles.instruction}
                     />
                   </div>
                 </TextBlock>

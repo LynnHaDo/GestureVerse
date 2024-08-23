@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { PageType } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
@@ -7,6 +7,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
+import styles from 'public/stories/congee/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const chapter = useChapter();
@@ -49,16 +50,12 @@ export const Page: PageType = () => {
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 2900}>
-                  <p>
+                <p>
                     And you have a fleeting thought that—just for a beautiful
-                    moment—
-                    <Nav
-                      text="you’ve found a small part of home in this kitchen."
-                      next="end"
-                      tag="endCongee"
-                    />
+                    moment—you’ve found a small part of home in this kitchen.
                   </p>
                 </FadeIn>
+                <NavBlock instructionClassName={styles.instruction}  text="" next="end" tag="endCongee" />
               </div>
             </Col>
             <Col lg={4}></Col>

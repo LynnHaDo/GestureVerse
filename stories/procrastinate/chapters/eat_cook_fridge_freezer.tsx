@@ -1,5 +1,5 @@
 /** Static components */
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 
 /** Hooks */
@@ -12,6 +12,7 @@ import { useVariable } from "core/hooks/use-variable";
 import useChapter from "core/hooks/use-chapter";
 
 import { Container, Row } from "react-bootstrap";
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,6 @@ export const Page: PageType = () => {
 
   const tag = `moveFrom${chapter.filename}toMenu`;
   let next = "menu";
-  let text = "things";
 
   let displayText: string = freezer
     ? "It is completeley barren."
@@ -43,18 +43,14 @@ export const Page: PageType = () => {
           <Row>
             <p>{displayText}</p>
             <FadeIn>
-              <p>
-                Hmm... Are there any interesting{" "}
-                <Nav
-                  text={text}
-                  next="menu"
-                  tag={`moveFrom${chapter.filename}toMenu`}
-                  handler={updateFreezer}
-                />{" "}
-                left to do
-                {"?"}
-              </p>
+              <p>Hmm... Are there any interesting things left to do?</p>
             </FadeIn>
+            <NavBlock instructionClassName={styles.instruction} 
+              text=""
+              next="menu"
+              tag={`moveFrom${chapter.filename}toMenu`}
+              handler={updateFreezer}
+            />
           </Row>
         </Container>
       </Section>

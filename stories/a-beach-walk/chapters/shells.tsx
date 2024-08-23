@@ -35,7 +35,7 @@ export const Page: PageType = () => {
                 >
                   <div>
                     Walk past the{"  "}
-                    <NavBlock text="shells." next="cave" tag="shells" />
+                    <NavBlock text="shells." next="cave" tag="shells" instructionClassName={styles.instruction}/>
                   </div>
                 </TextBlock>
               </Col>

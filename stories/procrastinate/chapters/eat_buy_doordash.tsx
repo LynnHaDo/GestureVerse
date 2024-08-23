@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { PageType, useAppDispatch, Option } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
@@ -9,6 +9,8 @@ import { updateVariable } from "core/features/variable-manager";
 import { makeChoice } from "core/features/choice";
 
 import { Container, Row } from "react-bootstrap";
+import FadeIn from "core/components/ui/fadein";
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
@@ -40,17 +42,15 @@ export const Page: PageType = () => {
         <Container>
           <Row>
             <p>{displayText}</p>
-            <p>
-              Hmm... Are there any interesting{" "}
-              <Nav
-                text={text}
-                next={next}
-                tag={`moveFrom${chapter.filename}toMenu`}
-                handler={updateDoordash}
-              />{" "}
-              left to do
-              {"?"}
-            </p>
+            <FadeIn>
+              <p>Hmm... Are there any interesting things left to do?</p>
+            </FadeIn>
+            <NavBlock instructionClassName={styles.instruction} 
+              text=""
+              next="menu"
+              tag={`moveFrom${chapter.filename}toMenu`}
+              handler={updateDoordash}
+            />
           </Row>
         </Container>
       </Section>

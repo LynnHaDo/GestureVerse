@@ -1,17 +1,24 @@
-import { Section, Chapter, Nav, C } from "core/components";
+import { Section, Chapter, Nav } from "core/components";
 import FadeIn from "core/components/ui/fadein";
-import { incrementScore } from "core/features/score";
-import { updateVariable } from "core/features/variable-manager";
-import { Next, PageType, useAppDispatch } from "core/types";
+import { PageType, useAppDispatch } from "core/types";
 
-import { useEffect } from "react";
 import useChapter from "core/hooks/use-chapter";
+import { updateVariable } from "core/features/variable-manager";
+import { useEffect } from "react";
+import { incrementScore } from "core/features/score";
 
 import { Container, Row } from "react-bootstrap";
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
+import { choiceBlock } from "core/features/choice";
+import { BulletedList } from "core/components/widgets";
+import { InlineListEN } from "core/components/widgets/inline-list";
 
 export const Page: PageType = () => {
-  const dispatch = useAppDispatch();
+  const tag = "procrastinate__tv_netflix";
   const chapter = useChapter();
+
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(incrementScore());
     dispatch(updateVariable("tv", true));
@@ -22,41 +29,24 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row style={{ position: "relative" }}>
-            <FadeIn>
+            <FadeIn delayTime={300}>
               <p>...</p>
             </FadeIn>
 
-            <FadeIn>
-              <p>
-                <C
-                  options={[["Continue watching 'The Office'"]]}
-                  tag="stayAtTheOffice"
-                  last="Still watching"
-                  next={Next.None}
-                />{" "}
-                or{" "}
-                <Nav text="no" next={Next.Section} tag="notStayAtTheOffice" />
-                {"?"}
-              </p>
-            </FadeIn>
-          </Row>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <Row style={{ position: "relative" }}>
-            <p>Binging a series is way more fun than doing homework.</p>
-
-            <p>
-              What should I do{" "}
-              <Nav
-                text="next"
-                next="menu"
-                tag={`moveFrom${chapter.filename}TheOffice`}
-              />
-              {"?"}
-            </p>
+            <div className={styles.p}>
+              {choiceBlock(
+                tag,
+                "handedness",
+                InlineListEN,
+                null,
+                true,
+                "navigation",
+                "",
+                "",
+                null,
+                `${styles.instruction}`
+              )}
+            </div>
           </Row>
         </Container>
       </Section>

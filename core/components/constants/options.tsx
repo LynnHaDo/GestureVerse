@@ -45,7 +45,7 @@ export interface OptionProps {
  */
 export const Options: OptionProps = {
     /** MENU */
-    "menu": {
+    "index__menu": {
         'a-beach-walk': optionItem('Thumb_Up', null, 'a beach walk'),
         'congee': optionItem('Thumb_Down', null, 'congee'),
         'procrastinate': optionItem('ILoveYou', null, 'procrastinate')
@@ -80,6 +80,10 @@ export const Options: OptionProps = {
     "procrastinate__tv_regulartv": {
         "tv_regulartv_pawnstars": optionItem(null, 'Left', 'Pawn Stars'),
         "tv_regulartv_carshow": optionItem(null, 'Right', 'car restoration show'),
+    },
+    "procrastinate__tv_netflix": {
+        "tv_netflix_theoffice_continue": optionItem(null, 'Left', 'Continue watching'),
+        "menu": optionItem(null, 'Right', 'no'),
     },
     "procrastinate__games": {
         "game_relaxing": optionItem(null, 'Left', 'Relaxing'),
@@ -158,7 +162,13 @@ export const Options: OptionProps = {
     }
 }
 
-export const Variables: OptionProps = {    
+export const Variables: OptionProps = {   
+    /** Procrastinate */
+    "procrastinate__grace_period": {
+        '10': optionItem('Victory', null, '10 minutes'),
+        '20': optionItem('Pointing_Up', null, '20 minutes'),
+        '30': optionItem('Closed_Fist', null, '30 minutes')
+    },
     /** CONGEE */
     "congee__disease": {
         'fever': optionItem('Thumb_Up', null, 'fever'),
@@ -176,7 +186,7 @@ export interface TextReplacementProps {
 
 export const TextReplacements: TextReplacementProps = {
     "homework_start": {
-        "Oh god I gotta grab my school stuff I think I can still finish in time": "No, I need to focus.",
+        "Oh god I gotta grab my school stuff I think I can still finish in time.": "No, I need to focus.",
         "Let's see, I have a chapter to read and a response to write on it, which I really don't want to do but it needs to get done.": "I can't keep doing this to myself.",
         "I have art I need to make but that's due tommorow evening I think I can get that done tonight too so I can relax tommorow.": "Why can't I just make myself do work.",
         "I gotta figure out what to do first.": "..."
@@ -184,7 +194,7 @@ export const TextReplacements: TextReplacementProps = {
     "homework_start_one": {
         "Ok good, one thing out of the way.": "Argh... I dont want to do this anymore.",
         "So now I should probably start my art homework.": "I'm tired from doing nothing.",
-        "I've been holding off on that one because I just haven't been inspired": "Ughhhhhhhhhhhhhh.",
+        "I've been holding off on that one because I just haven't been inspired.": "Ughhhhhhhhhhhhhh.",
         "OH NO I HAD MATH TOO!!! I THOUGHT I WAS ALMOST DONE. NOW I'M GOING TO STAY UP SUPER LATE TO FINISH THAT.": "I DONT WANT TO PRACTICE INTEGRATION TECHNIQUES.",
         "Ugh ok I'll do that now it's more important and probably takes longer.": "What a long day (sigh)..."
     },

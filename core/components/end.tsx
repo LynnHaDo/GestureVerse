@@ -24,24 +24,15 @@ export interface EndProps {
   reference?: boolean;
   /** List of sources to display */
   sources?: string[];
-  /** Styling applied to the reset button */
-  additionalButtonStyle?: React.CSSProperties;
-  /** Styling for modal */
-  modalVariant?: string;
-  modalHeaderClass?: string;
-  modalBodyClass?: string;
-  modalFooterClass?: string;
+  /** Classname of the instruction block */
+  instructionClassName?: string;
 }
 
 const End = ({
   storyName,
   reference = true,
   sources = [],
-  additionalButtonStyle,
-  modalVariant,
-  modalHeaderClass,
-  modalBodyClass,
-  modalFooterClass,
+  instructionClassName = ''
 }: EndProps): JSX.Element => {
   /** Decision-making-related states/handlers */
   const dispatch = useDispatch<any>();
@@ -60,15 +51,16 @@ const End = ({
   return (
     <>
       <div>
-        <p>
-          Thank you for playing <span style={highlighter}>{storyName}</span>
-          {". "}
+        <p  style={{ lineHeight: 'inherit' }}>
+          Thank you for playing <span style={highlighter}>{storyName}</span>. Now go back to the start.
         </p>
         {
           <NavBlock
-            text="Go back to the start."
+            text=""
             next="intro"
             handler={() => setRestart(true)}
+            tag={`goBackFrom${storyName}toTheStart`}
+            instructionClassName={instructionClassName}
           />
         }
       </div>
@@ -77,7 +69,7 @@ const End = ({
         <>
           <h5>Reference</h5>
           {...sources.map((source) => {
-            return <p style={{ fontStyle: "italic" }}>{source}</p>;
+            return <p style={{ fontStyle: "italic", lineHeight: 'inherit' }}>{source}</p>;
           })}
         </>
       )}

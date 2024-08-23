@@ -40,6 +40,8 @@ const createGestureRecognizer = async (
     },
     runningMode: "VIDEO",
     numHands: 1,
+    minHandDetectionConfidence: 0.6,
+    minHandPresenceConfidence: 0.6
   });
 
   modelSetter(MODEL);
@@ -94,6 +96,14 @@ const Chapter: ReactFCC<ChapterType> = ({
   const [modelLoaded, setModelLoaded] = React.useState(false);
 
   React.useEffect(() => {
+    let numScreenLoads = sessionStorage.getItem('screenReload');
+    if (numScreenLoads && parseInt(numScreenLoads) < 2) {
+        sessionStorage.setItem('screenReload', String(numScreenLoads + 1))
+        window.location.reload();
+    }
+    else {
+        sessionStorage.removeItem('screenReload');
+    }
     createGestureRecognizer(gestureRecognizerSetter);
     setModelLoaded(true);
   }, [modelLoaded]);
@@ -153,6 +163,7 @@ export const renderChapterContent = (
       }
     }
   });
+
   return kids;
 };
 

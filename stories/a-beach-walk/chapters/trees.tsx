@@ -40,6 +40,7 @@ export const Page: PageType = () => {
                       text="coastline."
                       next="shells"
                       tag="coastline"
+                      instructionClassName={styles.instruction}
                     />
                   </div>
                 </TextBlock>

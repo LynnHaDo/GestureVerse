@@ -4,8 +4,9 @@ import { PageType } from "core/types";
 import { Container, Row, Col } from "react-bootstrap";
 import { choiceBlock } from "core/features/choice";
 
-import colors from "public/themeColors.module.scss";
 import { BulletedList } from "core/components/widgets";
+import styles from 'public/stories/congee/styles/Index.module.scss';
+
 import useChapter from "core/hooks/use-chapter";
 
 export const Page: PageType = () => {
@@ -25,10 +26,14 @@ export const Page: PageType = () => {
               {choiceBlock(
                 tag,
                 "gesture",
-                1,
-                `${colors.lightYellow}`,
-                `${colors.dark}`,
-                BulletedList
+                BulletedList,
+                null,
+                true,
+                'navigation',
+                '',
+                '',
+                null,
+                `${styles.instruction}`
               )}
             </Col>
 

@@ -37,7 +37,7 @@ export const Page: PageType = () => {
                 >
                   <div>
                     What a beautiful {' '}
-                    <NavBlock text="view." next="view" tag="view" />
+                    <NavBlock text="view." next="view" tag="view" instructionClassName={styles.instruction}/>
                   </div>
                 </TextBlock>
               </Col>

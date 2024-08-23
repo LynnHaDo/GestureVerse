@@ -1,8 +1,10 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { updateVariable } from "core/features/variable-manager";
 import { PageType, useAppDispatch } from "core/types";
 import { useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
+
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
@@ -30,13 +32,13 @@ export const Page: PageType = () => {
         <Section>
           <Container>
             <Row>
-              <p>
+              <div className={styles.p}>
                 I've had a very long day at school. None of my classes were
                 interesting and I just wasted 7 hours of my day sitting and
                 staring at a wall. I have some homework but I don't remember
                 when it's due. Oh well. Now's the time to{"  "}
-                <Nav text="relax" next="menu" tag="startProcrastinate" />.
-              </p>
+                <NavBlock text="relax." next="menu" tag="startProcrastinate" instructionClassName={styles.instruction}/>
+              </div>
             </Row>
           </Container>
         </Section>

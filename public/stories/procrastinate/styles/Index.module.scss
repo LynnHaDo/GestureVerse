@@ -40,7 +40,8 @@ $slate-color: rgb(16, 24, 50);
   }
 
   p,
-  a {
+  a, 
+  .p {
     font-size: 1.2rem;
   }
 
@@ -56,12 +57,9 @@ $slate-color: rgb(16, 24, 50);
     margin-bottom: 2rem;
   }
 
-  button {
-    width: 150px;
-    height: 35px;
+  .instruction {
     border: 1px solid $text-color !important;
     font-size: 0.8rem;
-    letter-spacing: 2px;
     border-radius: 3px;
     text-decoration: none;
     background: none;
@@ -69,7 +67,6 @@ $slate-color: rgb(16, 24, 50);
     padding: auto;
     position: relative;
     align-self: center;
-    text-transform: uppercase;
     z-index: 1;
     box-shadow: -0.5em 0.5em transparentize($slate-color, 1);
     transform-origin: left bottom;
@@ -103,41 +100,6 @@ $slate-color: rgb(16, 24, 50);
       width: calc(100% + 0.2em);
       height: 0.31em;
       transform: skewX(-45deg);
-    }
-
-    // Shadow
-    &:hover {
-      font-family: fonts.$secondary;
-      border-image: none;
-      background-size: 90%;
-      transform: translate(0.5em, -0.5em);
-      box-shadow: -1em 1em 0.15em transparentize($slate-color, 0.9);
-      // box-shadow: -1em 1em 1em transparentize($blue-color,.9), -1em 1.9em 1.9em transparentize($slate-color,.9), 0em .38em .38em transparentize($slate-color,.9), 0em .76em .76em transparentize($slate-color,.9), 0em 1.52em 1.52em transparentize($slate-color,.9);
-
-      &:before {
-        background-size: 100%;
-        background: $slate-color;
-        height: calc(100% + 0.1em);
-        border-image-slice: 1;
-      }
-
-      &:after {
-        background: $slate-color;
-        width: calc(100% + 0.1em);
-        border-image-slice: 1;
-      }
-    }
-
-    &.backButton {
-      background-color: transparent;
-
-      border: 1px solid $text-color;
-      color: $text-color;
-    }
-
-    &.webcamOpenner {
-      width: 100px;
-      height: 35px;
     }
   }
 

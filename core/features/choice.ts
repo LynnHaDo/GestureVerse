@@ -158,13 +158,16 @@ export const choiceBlock = (
   last: JSX.Element = null,
   keepSelectedChoice: boolean = true,
   purpose: "navigation" | "variableSetter" = "navigation",
-  className?: string
+  className?: string,
+  lastClassName?: string,
+  optionsList: {[key: string]: optionItemProps} = null,
+  instructionClassName?: string,
 ): JSX.Element => {
   let [inventory, oneLastOption] = useInventory([
     tag,
     `OneOptionLeftFor${tag}`,
   ]);
-  let options = Options[tag];
+  let options = optionsList? optionsList : Options[tag];
 
   if (purpose == "variableSetter") {
     options = Variables[tag];
@@ -204,6 +207,7 @@ export const choiceBlock = (
       : Object.entries(options).filter(
           ([key, value], i) => !chosenItems.includes(key)
         );
+        
     let remainingOptionKeys: string[] = remainingOptions.map(
       ([key, value]) => key
     );
@@ -215,11 +219,12 @@ export const choiceBlock = (
     }
 
     if (remainingOptions.length == 1) {
-      return React.createElement(NavBlock, {
+      return React.createElement('div', {className: lastClassName}, React.createElement(NavBlock, {
         text: options[remainingOptionKeys[0]].description,
         tag: `OneOptionLeftFor${tag}`,
         next: remainingOptionKeys[0],
-      });
+        instructionClassName: instructionClassName
+      }));
     }
 
     return React.createElement(ChoiceBlock, {
@@ -229,6 +234,8 @@ export const choiceBlock = (
       widget: widget,
       purpose: purpose,
       className: className,
+      persist: keepSelectedChoice,
+      instructionClassName: instructionClassName
     });
   }
 
@@ -238,5 +245,7 @@ export const choiceBlock = (
     widget: widget,
     purpose: purpose,
     className: className,
+    persist: keepSelectedChoice,
+    instructionClassName: instructionClassName
   });
 };

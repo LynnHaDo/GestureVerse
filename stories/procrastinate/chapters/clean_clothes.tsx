@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 import { PageType, useAppDispatch } from "core/types";
 import { Container, Row } from "react-bootstrap";
@@ -6,6 +6,8 @@ import { Container, Row } from "react-bootstrap";
 import useChapter from "core/hooks/use-chapter";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
+
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const chapter = useChapter();
@@ -27,15 +29,14 @@ export const Page: PageType = () => {
           Ratatouille stuff. It always gets tons of looks.
         </p>
         <FadeIn>
-            <p>Hmm... What {" "}
-            <Nav
-              text="else"
+            <div className={styles.p}>Hmm... What else left to clean?
+            </div>
+          </FadeIn>
+          <NavBlock instructionClassName={styles.instruction} 
+              text=""
               next="clean"
               tag={`moveFrom${chapter.filename}toClean`}
             />
-            {"?"}
-            </p>
-          </FadeIn>
           </Row>
         </Container>
       </Section>

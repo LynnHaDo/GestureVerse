@@ -1,16 +1,19 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { ReactFCC } from 'core/types'
-import Grid from 'core/components/ui/layouts/grid'
+import { ReactFCC } from "core/types";
 
-import styles from 'public/stories/index/styles/Index.module.scss'
+import styles from "public/stories/index/styles/Index.module.scss";
+import dynamic, { DynamicOptions } from "next/dynamic";
 
 const Index: ReactFCC = ({ children }) => {
-    return (
-        <Grid styles={styles}>
-            {children}
-        </Grid>
-    )
-}
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1>gestureverse</h1>
+      </div>
+      <main>{children}</main>
+    </div>
+  );
+};
 
-export default Index
+export default Index;

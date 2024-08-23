@@ -65,8 +65,10 @@ const Camera = ({
 }: CameraProps): JSX.Element => {
   /** Flags */
   let [webcamRunning, webcamSetter] = useState(false);
+  let [showModalWebcamAccess, setModalWebcamAccess] = useState(false);
   let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
   let results: any = undefined;
+  let numGesturesCount = 0;
 
   /** HTML Elements */
   const video = useRef<HTMLVideoElement>(null);
@@ -82,9 +84,6 @@ const Camera = ({
   const playIcon = useRef<SVGSVGElement>(null);
 
   const { hand_connectors, joint } = styles;
-
-  /** Warnings */
-  let [showModalWebcamDenied, setModalWebcamDenied] = useState(false);
 
   /**
    * Check if web camera access is allowed
@@ -124,7 +123,7 @@ const Camera = ({
       outputHandedness.current.innerHTML = "";
 
       textWrapperRef.current.style.opacity = "0";
-      textWrapperRef.current.style.visibility = 'hidden';
+      textWrapperRef.current.style.visibility = "hidden";
     }
 
     if (localStream.current) {
@@ -159,7 +158,7 @@ const Camera = ({
         localStream.current = stream;
       })
       .catch(() => {
-        setModalWebcamDenied(true);
+        setModalWebcamAccess(true);
       });
   };
 
@@ -249,24 +248,27 @@ const Camera = ({
           score: results.gestures[0][0].score * 100,
           handedness: results.handedness[0][0].displayName,
         };
-        setText(results);
+
         if (canvas.current != null) {
           canvas.current
             .getContext("2d")
             .clearRect(0, 0, canvasWidth, canvasHeight);
         }
+
+        setText(results);
         resultSetter(resultObj);
         return;
       }
 
       setText(results);
+
     } else {
       textWrapperRef.current.style.opacity = "0";
       textWrapperRef.current.style.visibility = "hidden";
     }
 
     requestAnimationFrame(() => {
-       if (webcamRunning) predict();
+      if (webcamRunning) predict();
     });
   };
 
@@ -382,13 +384,12 @@ const Camera = ({
             ></span>
           </div>
         </div>
-
         <CustomModal
-          title="Camera access disabled"
-          body="Please allow webcam access to continue."
+          title="Warning"
+          body="Camera access denied. Make sure to enable to continue."
           btnText=""
-          show={showModalWebcamDenied}
-          onHide={() => setModalWebcamDenied(false)}
+          show={showModalWebcamAccess}
+          onHide={() => setModalWebcamAccess(false)}
         />
       </section>
     </>

@@ -1,4 +1,4 @@
-import { Section, Chapter, Artwork, C, Nav } from "core/components";
+import { Section, Chapter, Artwork, C, NavBlock } from "core/components";
 import { choiceBlock } from "core/features/choice";
 import { Next, PageType, useAppDispatch } from "core/types";
 
@@ -8,7 +8,6 @@ import { useEffect, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import styles from "public/stories/congee/styles/Index.module.scss";
-import colors from "public/themeColors.module.scss";
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
 
@@ -43,45 +42,26 @@ export const Page: PageType = () => {
                 {texts && (
                   <div>
                     {Object.entries(texts).map(([initial, later], i) => {
-                      return (
-                        <p key={i}>
-                          <C
-                            options={[[`${initial} `]]}
-                            last={`${later} `}
-                            tag={`item${i}IsClickedInTexts`}
-                            next={Next.None}
-                            className={styles.choiceContent}
-                          />
-                        </p>
-                      );
+                      return <p key={i}>{`${initial} (${later})`}</p>;
                     })}
                   </div>
                 )}
               </FadeIn>
 
-              <FadeIn wrapper={animated("div")} delayTime={2000}>
-                {takeaway ? (
-                  <>
+              {takeaway ? (
+                <>
+                  <FadeIn wrapper={animated("div")} delayTime={2000}>
                     <p>{displayText}</p>
-                    <Nav
-                      tag={tag}
-                      text="No more searching today..."
-                      next="get_finish"
-                    />
-                  </>
-                ) : (
-                  choiceBlock(
-                    tag,
-                    "handedness",
-                    1,
-                    `${colors.lightYellow}`,
-                    `${colors.dark}`,
-                    BulletedList,
-                    null,
-                    false
-                  )
-                )}
-              </FadeIn>
+                  </FadeIn>
+                  <NavBlock instructionClassName={styles.instruction} 
+                    tag={tag}
+                    text="No more searching today..."
+                    next="get_finish"
+                  />
+                </>
+              ) : (
+                choiceBlock(tag, "handedness", BulletedList, null, false)
+              )}
             </Col>
             <Col lg={6}></Col>
           </Row>

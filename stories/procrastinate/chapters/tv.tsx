@@ -3,7 +3,8 @@ import { BulletedList } from "core/components/widgets";
 import { choiceBlock } from "core/features/choice";
 import { PageType } from "core/types";
 
-import colors from "public/themeColors.module.scss";
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
+
 import { Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
@@ -17,10 +18,14 @@ export const Page: PageType = () => {
             {choiceBlock(
               tag,
               "handedness",
-              1,
-              `${colors.retroGreen}`,
-              `${colors.white}`,
-              BulletedList
+              BulletedList,
+              null,
+              true,
+              "navigation",
+              "",
+              "",
+              null,
+              `${styles.instruction}`
             )}
           </Row>
         </Container>

@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav, Artwork } from "core/components";
+import { Section, Chapter, NavBlock, Artwork } from "core/components";
 import { Next, PageType } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
@@ -6,25 +6,14 @@ import useChapter from "core/hooks/use-chapter";
 import { Container, Row, Col } from "react-bootstrap";
 import { choiceBlock } from "core/features/choice";
 
-import colors from "public/themeColors.module.scss";
 import { BulletedList } from "core/components/widgets";
 import { useVariable } from "core/hooks/use-variable";
+
+import styles from 'public/stories/congee/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const chapter = useChapter();
   const tag = "congee__disease";
-
-  let navBlock: JSX.Element = null;
-
-  if (useVariable(tag)) {
-    navBlock = (
-      <p style={{marginTop: '15px'}}>
-        Maybe you should{" "}
-        <Nav text="tell someone" next="tell" tag="tellSomeone" />
-        {"."}
-      </p>
-    );
-  }
 
   return (
     <Chapter filename={chapter.filename}>
@@ -40,16 +29,24 @@ export const Page: PageType = () => {
               {choiceBlock(
                 tag,
                 "gesture",
-                1,
-                `${colors.lightYellow}`,
-                `${colors.dark}`,
                 BulletedList,
                 null,
                 true,
-                "variableSetter"
+                "variableSetter",
+                '',
+                '',
+                null,
+                `${styles.instruction}`
               )}
 
-              {navBlock}
+              {useVariable(tag) && (
+                <>
+                  <p style={{ marginTop: "15px" }}>
+                    Maybe you should tell someone.
+                  </p>
+                  <NavBlock instructionClassName={styles.instruction}  text="" next="tell" tag="tellSomeone" />
+                </>
+              )}
             </Col>
 
             <Col lg={6}></Col>

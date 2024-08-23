@@ -1,7 +1,8 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { PageType } from "core/types";
 
 import { Container, Row } from "react-bootstrap";
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 import useChapter from "core/hooks/use-chapter";
 
@@ -19,15 +20,14 @@ export const Page: PageType = () => {
                 KNOW WHAT IS GONNA COME THROUGH THAT DOOR.
               </p>
 
-              <p>
-                I can't handle this. I'm gonna watch the{" "}
-                <Nav
-                  text="car show"
+              <div className={styles.p}>
+                I can't handle this. I'm going to watch the{" "}
+                <NavBlock instructionClassName={styles.instruction} 
+                  text="car show."
                   next="tv_regulartv_carshow"
                   tag={`moveFrom${chapter.filename}ToCarShow`}
                 />
-                {"."}
-              </p>
+              </div>
             </Row>
           </Container>
         </Section>

@@ -1,4 +1,8 @@
-import { Section, Chapter, Nav, C } from "core/components";
+import {
+  Section,
+  Chapter,
+  NavBlock,
+} from "core/components";
 import { Next, PageType, useAppDispatch } from "core/types";
 import { makeChoice } from "core/features/choice";
 
@@ -10,7 +14,9 @@ import { updateVariable } from "core/features/variable-manager";
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
 import { Container, Row } from "react-bootstrap";
 
-import { TextReplacements } from "core/components/constants/options";
+import {
+  TextReplacements,
+} from "core/components/constants/options";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -27,55 +33,49 @@ export const Page: PageType = () => {
 
   useEffect(() => {
     if (counterMins > 0) {
-        setTimeout(() => {
-          counterMins--;
-          dispatch(updateVariable("counterMins", counterMins));
-        }, 1000);
-      }
-    
-      if (counterMins <= 0) {
-        dispatch(
-          makeChoice(
-            "timeOut",
-            "fail",
-            "homework_start_again",
-            "homework_start_again"
-          )
-        );
-      }
-  }, [counterMins])
+      setTimeout(() => {
+        counterMins--;
+        dispatch(updateVariable("counterMins", counterMins));
+      }, 1000);
+    }
+
+    if (counterMins <= 0) {
+      dispatch(
+        makeChoice(
+          "timeOut",
+          "fail",
+          "homework_start_again",
+          "homework_start_again"
+        )
+      );
+    }
+  }, [counterMins]);
 
   return (
-    <Chapter filename={chapter.filename}>
+    <Chapter filename={chapter.filename} showOnlyCurrentSection>
       <Section>
         <Container>
           <Row>
             <p>{counterMins} minutes left...</p>
+
             {textsZero && (
               <div className={styles.panicWrapper}>
                 {Object.entries(textsZero).map(([initial, later], i) => {
                   return (
-                    <span key={i}>
-                      <C
-                        options={[[`${initial} `]]}
-                        last={`${later} `}
-                        tag={`item${i}IsClickedInTextsZero`}
-                        next={Next.None}
-                        className={styles.choiceContent}
-                      />
-                    </span>
+                    <div key={i} className={styles.choiceContent}>
+                      <span>{`${initial} `}</span>
+                      <span>{`${later} `}</span>
+                    </div>
                   );
                 })}
               </div>
             )}
-
             <p>
-              <Nav
-                text="It's all about tradeoffs. I relaxed earlier but I relaxed too much so now I will suffer for it."
-                next={Next.Section}
-                tag="goToPanicSectionTwo"
-              />
+              It's all about tradeoffs. I relaxed earlier but I relaxed too much
+              so now I will suffer for it.
             </p>
+
+            <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="goToPanicSectionTwo" />
           </Row>
         </Container>
       </Section>
@@ -83,31 +83,24 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
+            <p>{counterMins} minutes left...</p>
+
             {textsOne && (
               <div className={styles.panicWrapper}>
                 {Object.entries(textsOne).map(([initial, later], i) => {
                   return (
-                    <span key={i}>
-                      <C
-                        options={[[`${initial} `]]}
-                        last={`${later} `}
-                        tag={`item${i}IsClickedInTextsOne`}
-                        next={Next.None}
-                        className={styles.choiceContent}
-                      />
-                    </span>
+                    <div key={i} className={styles.choiceContent}>
+                      <span>{`${initial} `}</span>
+                      <span>{`${later} `}</span>
+                    </div>
                   );
                 })}
               </div>
             )}
 
-            <p>
-              <Nav
-                text="Oh well, guess I won't get to relax more tonight."
-                next={Next.Section}
-                tag="goToPanicSectionThree"
-              />
-            </p>
+            <p>Oh well, guess I won't get to relax more tonight.</p>
+
+            <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="goToPanicSectionThree" />
           </Row>
         </Container>
       </Section>
@@ -115,31 +108,24 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
+            <p>{counterMins} minutes left...</p>
+
             {textsTwo && (
               <div className={styles.panicWrapper}>
                 {Object.entries(textsTwo).map(([initial, later], i) => {
                   return (
-                    <span key={i}>
-                      <C
-                        options={[[`${initial} `]]}
-                        last={`${later} `}
-                        tag={`item${i}IsClickedInTextsTwo`}
-                        next={Next.None}
-                        className={styles.choiceContent}
-                      />
-                    </span>
+                    <div key={i} className={styles.choiceContent}>
+                      <span>{`${initial} `}</span>
+                      <span>{`${later} `}</span>
+                    </div>
                   );
                 })}
               </div>
             )}
 
-            <p>
-              <Nav
-                text="Just a bit more..."
-                next={Next.Section}
-                tag="goToPanicSectionFour"
-              />
-            </p>
+            <p>Just a bit more...</p>
+
+            <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="goToPanicSectionFour" />
           </Row>
         </Container>
       </Section>
@@ -147,13 +133,8 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <p>
-              <Nav
-                text="DONE 🎉 🎉 🎉"
-                next="homework_done"
-                tag="goToHomeworkDone"
-              />
-            </p>
+            <p>DONE 🎉 🎉 🎉</p>
+            <NavBlock instructionClassName={styles.instruction}  text="" next="homework_done" tag="goToHomeworkDone" />
           </Row>
         </Container>
       </Section>

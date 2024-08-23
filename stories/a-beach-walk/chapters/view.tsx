@@ -36,7 +36,7 @@ export const Page: PageType = () => {
                 >
                   <div>
                     After a long walk, it’s nice to just sit and{' '}
-                    <NavBlock text="rest." next="rest" tag="rest" />
+                    <NavBlock text="rest." next="rest" tag="rest" instructionClassName={styles.instruction}/>
                   </div>
                 </TextBlock>
               </Col>

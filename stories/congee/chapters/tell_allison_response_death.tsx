@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { PageType } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
@@ -18,7 +18,7 @@ export const Page: PageType = () => {
         <Container>
           <Row>
             <Col lg={4}></Col>
-            <Col lg={4} style={{position: 'relative'}}>
+            <Col lg={4} style={{ position: "relative" }}>
               <div className={styles.chatWrapper}>
                 <div>
                   <p className={styles.chatBubble}>
@@ -49,7 +49,7 @@ export const Page: PageType = () => {
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 2500}>
                   <p className={`${styles.chatBubble} ${styles.other}`}>
-                    hopefully you aren't actually dying or this will age badly
+                    hopefully you aren't actually dying or these will age badly
                   </p>
                 </FadeIn>
 
@@ -61,14 +61,12 @@ export const Page: PageType = () => {
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 3000}>
-                  <p>
-                    <Nav
-                      text="Continue"
-                      next="tell_allison_close"
-                      tag="continueDeath"
-                      className={styles.navEnd}
-                    />
-                  </p>
+                  <p>Continue...</p>
+                  <NavBlock instructionClassName={styles.instruction} 
+                    text=""
+                    next="tell_allison_close"
+                    tag="continueDeath"
+                  />
                 </FadeIn>
               </div>
             </Col>

@@ -40,7 +40,7 @@ export const Page: PageType = () => {
                     are. You watch the light glint off the glass for a while
                     before making your way {' '}
                   
-                  {<NavBlock text="back." next="left" tag="back" />}
+                  {<NavBlock text="back." next="left" tag="back" instructionClassName={styles.instruction}/>}
                   </div>
                 </TextBlock>
               </Col>

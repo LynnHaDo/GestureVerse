@@ -40,14 +40,7 @@ export const Page: PageType = () => {
                     sources={[
                       "interstellar-bird (n.d.). Beach Walk by interstellar-bird. [online] itch.io. Available at: https://interstellar-bird.itch.io/beach-walk [Accessed 16 Jul. 2024].",
                     ]}
-                    additionalButtonStyle={{
-                        width: '80px',
-                        height: '35px'
-                    }}
-                    modalVariant={styles.customModal}
-                    modalHeaderClass={styles.customModalHeader}
-                    modalBodyClass={styles.customModalBody}
-                    modalFooterClass={styles.customModalFooter}
+                    instructionClassName={styles.instruction}
                   />
                 </TextBlock>
               </Col>

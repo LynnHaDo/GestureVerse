@@ -44,7 +44,12 @@ export const Page: PageType = () => {
                     "gesture",
                     InlineListEN,
                     null,
-                    false
+                    false,
+                    'navigation',
+                    '',
+                    '',
+                    null,
+                    `${styles.instruction}`
                   )}
                 </TextBlock>
               </Col>

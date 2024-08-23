@@ -42,6 +42,7 @@ export const Page: PageType = () => {
                       next="kelp"
                       tag="kelp"
                       textColor={colors.dark}
+                      instructionClassName={styles.instruction}
                     />
                   </div>
                 </TextBlock>

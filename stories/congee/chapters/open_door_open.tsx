@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav, Artwork } from "core/components";
+import { Section, Chapter, NavBlock, Artwork } from "core/components";
 import { Next, PageType } from "core/types";
 import { choiceBlock } from "core/features/choice";
 
@@ -8,8 +8,9 @@ import useChapter from "core/hooks/use-chapter";
 
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
-import colors from "public/themeColors.module.scss";
 import { BulletedList } from "core/components/widgets";
+
+import styles from 'public/stories/congee/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const chapter = useChapter();
@@ -20,7 +21,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col lg={6} style={{position: 'relative'}}>
+            <Col lg={6} style={{ position: "relative" }}>
               <p>“Uh… hi.” You stare.</p>
               <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
                 It's Allison.
@@ -31,14 +32,11 @@ export const Page: PageType = () => {
                 interest in your continued existence.", she said.
               </FadeIn>
               <FadeIn wrapper={animated("p")} delayTime={5 * 1200}>
-                "Um ... yep, still alive. Is everything okay? Come in... <span>Wait...{" "}
-                  <Nav
-                    text="Is that congee?"
-                    next={Next.Section}
-                    tag="allisonBringCongee"
-                  />
-                  {'"'}</span>
+                "Um ... yep, still alive. Is everything okay? Come in...{" "}
+                <span>Wait... Is that congee?</span>
               </FadeIn>
+
+              <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="allisonBringCongee" />
             </Col>
 
             <Col lg={6}>
@@ -49,7 +47,7 @@ export const Page: PageType = () => {
                   name="Allison, GIF image"
                   width="80%"
                   position={{
-                    margin: '0 auto'
+                    margin: "0 auto",
                   }}
                 />
               </FadeIn>
@@ -61,7 +59,7 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col lg={6} style={{position: 'relative'}}>
+            <Col lg={6} style={{ position: "relative" }}>
               <p>“Yep”, she replied.</p>
               <FadeIn wrapper={animated("p")} delayTime={5 * 600}>
                 “I think ... you might be the best person alive.”
@@ -86,13 +84,11 @@ export const Page: PageType = () => {
                 were ill too, well, I figured two birds one stone...”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 1600}>
-                <Nav
-                  text="'Let's get some bowls...'"
-                  next={Next.Section}
-                  tag="startEatingCongee"
-                />
+              <FadeIn wrapper={animated("p")} delayTime={5 * 1800}>
+                'Let's get some bowls...'
               </FadeIn>
+
+              <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="startEatingCongee" />
             </Col>
             <Col lg={6}></Col>
           </Row>
@@ -131,16 +127,13 @@ export const Page: PageType = () => {
                 “Ha! How about ...
               </FadeIn>
 
-              <FadeIn wrapper={animated("div")} delayTime={5 * 1800}>
-                {choiceBlock(
-                  tag,
-                  "gesture",
-                  1,
-                  `${colors.lightYellow}`,
-                  `${colors.dark}`,
-                  BulletedList
-                )}
-              </FadeIn>
+              {choiceBlock(tag, "gesture", BulletedList, null,
+                true,
+                'navigation',
+                '',
+                '',
+                null,
+                `${styles.instruction}`)}
             </Col>
             <Col lg={6}></Col>
           </Row>

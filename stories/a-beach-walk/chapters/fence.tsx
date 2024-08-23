@@ -43,6 +43,7 @@ export const Page: PageType = () => {
                       next="right"
                       tag="path"
                       textColor={colors.dark}
+                      instructionClassName={styles.instruction}
                     />
                   </div>
                 </TextBlock>

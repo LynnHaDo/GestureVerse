@@ -6,8 +6,9 @@
         content: '';
         background-color: inherit;
         position: fixed;
-        z-index: -2;
+        z-index: -99;
         top: calc(-50vh + 50%);
+        bottom: calc(-50vh + 50%);
         width: 100%;
         min-height: 100vh;
     }

@@ -13,6 +13,8 @@ chapters:
     title: "Netflix"
   - filename: "tv_netflix_theoffice"
     title: "Netflix: The Office"
+  - filename: "tv_netflix_theoffice_continue"
+    title: "Netflix: The Office (Continue)"
   - filename: "tv_regulartv"
     title: "TV shows"
   - filename: "tv_regulartv_carshow"

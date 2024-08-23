@@ -1,4 +1,4 @@
-import { Section, Chapter, Artwork, Nav } from "core/components";
+import { Section, Chapter, Artwork, NavBlock } from "core/components";
 import { choiceBlock } from "core/features/choice";
 import { PageType, useAppDispatch } from "core/types";
 
@@ -8,10 +8,11 @@ import { updateVariable } from "core/features/variable-manager";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-import colors from "public/themeColors.module.scss";
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
 import { BulletedList } from "core/components/widgets";
+import styles from "public/stories/congee/styles/Index.module.scss";
+
 import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
@@ -28,19 +29,19 @@ export const Page: PageType = () => {
 
   if (doordash) {
     displayText1 = "Hmm... Let's see";
-    displayText2 = "You scroll through the whole list..."
+    displayText2 = "You scroll through the whole list...";
   }
 
   useEffect(() => {
     dispatch(updateVariable("congee__takeaway", true));
-  }, [])
+  }, []);
 
   return (
     <Chapter filename={chapter.filename}>
       <Section>
         <Container>
           <Row>
-            <Col lg={6} style={{position: 'relative'}}>
+            <Col lg={6} style={{ position: "relative" }}>
               <p>{displayText1}</p>
               <FadeIn wrapper={animated("div")} delayTime={1000}>
                 <p>{displayText2}</p>
@@ -50,26 +51,32 @@ export const Page: PageType = () => {
                 <p>{displayText3}</p>
               </FadeIn>
 
-              <FadeIn wrapper={animated("div")} delayTime={3000}>
-                {doordash ? (
-                  <Nav
+              {doordash ? (
+                <>
+                  <FadeIn wrapper={animated("div")}>
+                    <p>No more searching today...</p>
+                  </FadeIn>
+                  <NavBlock
+                    instructionClassName={styles.instruction}
                     tag={tag}
-                    text="No more searching today..."
+                    text=""
                     next="get_finish"
                   />
-                ) : (
-                  choiceBlock(
-                    tag,
-                    "handedness",
-                    1,
-                    `${colors.lightYellow}`,
-                    `${colors.dark}`,
-                    BulletedList,
-                    null,
-                    false
-                  )
-                )}
-              </FadeIn>
+                </>
+              ) : (
+                choiceBlock(
+                  tag,
+                  "handedness",
+                  BulletedList,
+                  null,
+                  false,
+                  "navigation",
+                  "",
+                  "",
+                  null,
+                  `${styles.instruction}`
+                )
+              )}
             </Col>
             <Col lg={6}>
               <FadeIn wrapper={animated("div")} delayTime={1600}>
@@ -79,8 +86,8 @@ export const Page: PageType = () => {
                   name="Chinese local restaurant menu, Digital image"
                   width="80%"
                   position={{
-                    margin: '20px auto',
-                    padding: 0
+                    margin: "20px auto",
+                    padding: 0,
                   }}
                 />
               </FadeIn>

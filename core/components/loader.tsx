@@ -6,16 +6,17 @@ export interface LoaderProps {
 }
 
 export const Loader = ({
-  backgroundColor = "rgba(255, 255, 255, 0.53)",
+  backgroundColor = "rgba(255, 255, 255, 0.53)"
 }: LoaderProps): JSX.Element => {
   let loaderRef = React.useRef<HTMLSpanElement>(null);
 
-  React.useEffect(() => {
-    let timeoutID = setTimeout(() => {
-      loaderRef.current.style.opacity = "0";
-      loaderRef.current.style.visibility = "hidden";
-    }, 500);
+  const hideLoader = () => {
+    loaderRef.current.style.opacity = "0";
+    loaderRef.current.style.visibility = "hidden";
+  }
 
+  React.useEffect(() => {
+    let timeoutID = setTimeout(hideLoader, 500);
     return () => clearTimeout(timeoutID);
   }, []);
 

@@ -1,17 +1,15 @@
-import { Section, Chapter } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
-import { makeChoice } from "core/features/choice";
+import { choiceBlock, makeChoice } from "core/features/choice";
 
 import useChapter from "core/hooks/use-chapter";
 import { updateVariable } from "core/features/variable-manager";
 
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
 
-import "@ionic/react/css/core.css";
-
-import { IonInput } from "@ionic/react";
-
 import { Container, Row } from "react-bootstrap";
+import { BulletedList } from "core/components/widgets";
+import { useVariable } from "core/hooks/use-variable";
 
 export const Page: PageType = () => {
   /** Current chapter */
@@ -19,19 +17,16 @@ export const Page: PageType = () => {
   /** App dispatch */
   const dispatch = useAppDispatch();
 
-  const handleCounterInput = (val: string | number) => {
-    if (typeof val == "string" && val.match("[0-9]+")) {
-      let valNum = parseInt(val);
+  const tag = "procrastinate__grace_period";
+  const mins = useVariable(tag);
 
-      if (valNum < 0) {
-        return;
-      }
+  const handleCounterInput = () => {
+    let valNum = parseInt(mins);
 
-      dispatch(updateVariable("counterMins", valNum));
-      dispatch(
-        makeChoice("timeSet", "start_again", "homework_start", "homework_start")
-      );
-    }
+    dispatch(updateVariable("counterMins", valNum));
+    dispatch(
+      makeChoice("timeSet", "start_again", "homework_start", "homework_start")
+    );
   };
 
   return (
@@ -42,16 +37,29 @@ export const Page: PageType = () => {
             <div className={styles.timeDialog}>
               <p>Remind me how long the grace period is...</p>
 
-              <IonInput
-                label="Duration (minutes)"
-                type="number"
-                placeholder="10"
-                labelPlacement="stacked"
-                fill="outline"
-                onIonChange={(e) => handleCounterInput(e.target.value)}
-                className={styles.gracePeriodInput}
-                required
-              ></IonInput>
+              {choiceBlock(
+                tag,
+                "gesture",
+                BulletedList,
+                null,
+                true,
+                "variableSetter",
+                "",
+                "",
+                null,
+                `${styles.instruction}`
+              )}
+
+              {mins != null && mins != undefined && (
+                <>
+                  <p>Maybe college is still lenient with me...</p>
+                  <NavBlock instructionClassName={styles.instruction} 
+                    text=""
+                    next="homework_start"
+                    handler={handleCounterInput}
+                  />
+                </>
+              )}
             </div>
           </Row>
         </Container>

@@ -1,8 +1,8 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { BulletedList } from "core/components/widgets";
 import { choiceBlock } from "core/features/choice";
 import { PageType } from "core/types";
-import colors from "public/themeColors.module.scss";
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
 
 import { useVariable } from "core/hooks/use-variable";
 
@@ -10,11 +10,16 @@ import { Container, Row } from "react-bootstrap";
 
 export const Page: PageType = () => {
   const tag = "procrastinate__clean";
-  let displayText: string = "I never do this, but with desperate times come desperate measures. My room is only slightly messy, but now, when I happen to have homework that needs to get done, I have decided this is the perfect time to clean.";
+  let displayText: string =
+    "I never do this, but with desperate times come desperate measures. My room is only slightly messy, but now, when I happen to have homework that needs to get done, I have decided this is the perfect time to clean.";
 
-  let itemsDone: Array<boolean> = useVariable(null, ['clothes', 'desk', 'trash']);
+  let itemsDone: Array<boolean> = useVariable(null, [
+    "clothes",
+    "desk",
+    "trash",
+  ]);
 
-  let numItemsDone = itemsDone.filter(i => i).length;
+  let numItemsDone = itemsDone.filter((i) => i).length;
 
   switch (numItemsDone) {
     case 1:
@@ -36,16 +41,20 @@ export const Page: PageType = () => {
             {choiceBlock(
               tag,
               "gesture",
-              1,
-              `${colors.darkYellow}`,
-              `${colors.dark}`,
               BulletedList,
-              <Nav
-                text="Start cleaning..."
-                tag="moveFromCleantoCleanStart"
-                next="clean_start"
-              />,
-              false
+              <div className={styles.p}>
+                <NavBlock instructionClassName={styles.instruction} 
+                  text="Start cleaning..."
+                  tag="moveFromCleantoCleanStart"
+                  next="clean_start"
+                />
+              </div>,
+              false,
+              "navigation",
+              null,
+              `${styles.p}`,
+              null,
+              `${styles.instruction}`
             )}
           </Row>
         </Container>

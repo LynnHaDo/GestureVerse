@@ -22,6 +22,8 @@ $text-color: colors.$lightYellow;
   min-height: calc(100vh - 10em);
   padding-bottom: 2rem;
 
+  --border-radius: 0.3rem;
+
   h1,
   h2,
   h3,
@@ -68,24 +70,12 @@ $text-color: colors.$lightYellow;
     }
   }
 
-  button {
-    font-family: inherit;
-    font-size: 1rem;
-    cursor: pointer;
-
-    &:hover {
-      font-family: fonts.$secondary;
-    }
-
-    &.backButton {
-      background-color: transparent;
-      color: $text-color;
-    }
-
-    &.webcamOpenner {
-      width: 100px;
-      height: 35px;
-    }
+  .instruction {
+    background-color: colors.$orange;
+    color: colors.$lightYellow;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    -moz-border-radius: var(--border-radius);
   }
 
   section {
@@ -98,7 +88,6 @@ $text-color: colors.$lightYellow;
 
     li {
       padding: 0.5rem 1rem;
-      --border-radius: 0.3rem;
       border-radius: var(--border-radius);
       -webkit-border-radius: var(--border-radius);
       -moz-border-radius: var(--border-radius);
@@ -197,41 +186,41 @@ $text-color: colors.$lightYellow;
 }
 
 .customModal {
-    background-color: colors.$lightYellow;
-    color: colors.$dark;
-    border-radius: 0.2rem;
-    border: 1.5px solid colors.$dark;
+  background-color: colors.$lightYellow;
+  color: colors.$dark;
+  border-radius: 0.2rem;
+  border: 1.5px solid colors.$dark;
 
-    .customModalHeader  {
-        border-bottom: 1.5px solid colors.$dark;
-    }
+  .customModalHeader {
+    border-bottom: 1.5px solid colors.$dark;
+  }
 
-    .customModalFooter {
-        border-top: 1.5px solid colors.$dark;
-        justify-content: flex-end;
+  .customModalFooter {
+    border-top: 1.5px solid colors.$dark;
+    justify-content: flex-end;
 
-        button {
-            border-radius: 0.2rem;
-            border: 1.5px solid colors.$dark;
-            transition: 0.3s ease-in-out;
+    button {
+      border-radius: 0.2rem;
+      border: 1.5px solid colors.$dark;
+      transition: 0.3s ease-in-out;
 
-            &:nth-child(1) {
-                background-color: colors.$lightYellow;
-                color: colors.$dark;
-               
-                &:hover {
-                    background-color: colors.$beige;
-                }
-            }
+      &:nth-child(1) {
+        background-color: colors.$lightYellow;
+        color: colors.$dark;
 
-            &:nth-child(2) {
-                background-color: colors.$retroGreen;
-                opacity: 0.8;
-
-                &:hover {
-                    opacity: 1;
-                }
-            }
+        &:hover {
+          background-color: colors.$beige;
         }
+      }
+
+      &:nth-child(2) {
+        background-color: colors.$retroGreen;
+        opacity: 0.8;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
+  }
 }

@@ -40,6 +40,7 @@ const Link = ({
         dangerouslySetInnerHTML={{ __html: text }}
         style={{ color: color }}
         className={className}
+        key={index}
       />
     );
   }

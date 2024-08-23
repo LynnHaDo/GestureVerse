@@ -6,8 +6,8 @@
  */
 import React, { useContext, useEffect, useState } from "react";
 
-import { Camera, Choice } from "core/components";
-import { Tag, Next, NextType, useAppDispatch } from "core/types";
+import { Camera } from "core/components";
+import { Tag, Next, NextType } from "core/types";
 import {
   ChapterContext,
   GestureRecognizerContext,
@@ -15,13 +15,10 @@ import {
 
 import { useDispatch } from "react-redux";
 
-import { GestureRecognizer } from "@mediapipe/tasks-vision";
 import { HandGesture } from "./camera";
 import { makeChoice } from "core/features/choice";
 
 import styles from "./ChoiceBlock.module.scss";
-
-import { Option } from "core/types";
 
 import CustomModal from "./modal";
 
@@ -35,7 +32,7 @@ export interface NavBlockProps {
   /** Tag to be supplied if the text string is non-unique */
   tag?: Tag;
   /** Class name to based to the widget */
-  className?: string;
+  instructionClassName?: string;
   /** Color of the hyperlinks */
   textColor?: string;
   /** Handler for clicking event */
@@ -46,13 +43,15 @@ export const NavBlock = ({
   text = "More...",
   next = Next.Section,
   tag = undefined,
-  className = undefined,
+  instructionClassName = "",
   textColor = "",
   handler = undefined,
 }: NavBlockProps): JSX.Element => {
   /** Decision-making-related states/handlers */
   const dispatch = useDispatch<any>();
   const [result, resultSetter] = useState<HandGesture>(null); // save the state of the tag
+
+  const { filename } = React.useContext(ChapterContext);
 
   /** Warnings */
   let [showModalNotLoaded, setModalNotLoaded] = useState(false);
@@ -63,7 +62,7 @@ export const NavBlock = ({
 
   // Generic handler that a widget-specific handler will call once the player has made their choice
   let genericHandler = (): void => {
-    dispatch(makeChoice(tag, text, next, next));
+    dispatch(makeChoice(tag, text, next, filename));
   };
 
   let handlerFunct: Function =
@@ -71,13 +70,13 @@ export const NavBlock = ({
 
   useEffect(() => {
     if (result) {
-      setTimeout(() => handlerFunct(), 4000);
+      setTimeout(handlerFunct, 4000);
     }
   }, [result, gestureRecognizer]);
 
   return (
     <>
-      <span>{text}</span>
+      {text && text != "" && <span>{text}</span>}
       <Camera
         gestureRecognizer={gestureRecognizer}
         canvasWidth={230}
@@ -85,7 +84,7 @@ export const NavBlock = ({
         resultSetter={resultSetter}
         availableOptions={["Thumb_Up"]}
       />
-      <div className={styles.instruction}>
+      <div className={`${styles.instruction} ${instructionClassName}`}>
         <p>Put your thumb up 👍 to continue</p>
         <p>Note: Keep the gesture for at least 5 seconds.</p>
       </div>

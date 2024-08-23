@@ -7,7 +7,7 @@ $text-color: colors.$very-dark;
 $main: fonts.$body;
 $secondary: fonts.$secondary;
 
-$npages: 4;
+$npages: 3;
 
 .container {
   background-color: rgba(237, 233, 180, 0.5);
@@ -269,6 +269,10 @@ $npages: 4;
               height: 45px;
               margin: 0;
             }
+          }
+
+          .instruction {
+            
           }
 
           .menuList {

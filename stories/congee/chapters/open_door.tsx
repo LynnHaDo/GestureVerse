@@ -4,7 +4,7 @@ import { PageType } from "core/types";
 import { Container, Row, Col } from "react-bootstrap";
 import { choiceBlock } from "core/features/choice";
 
-import colors from "public/themeColors.module.scss";
+import styles from 'public/stories/congee/styles/Index.module.scss';
 import { BulletedList } from "core/components/widgets";
 import useChapter from "core/hooks/use-chapter";
 import FadeIn from "core/components/ui/fadein";
@@ -23,16 +23,18 @@ export const Page: PageType = () => {
                 <FadeIn wrapper={animated("p")} delayTime={5 * 200}>
                 *RIIIING.*
               </FadeIn>
-              <FadeIn wrapper={animated("div")} delayTime={5*800}>
               {choiceBlock(
                 tag,
                 "gesture",
-                1,
-                `${colors.lightYellow}`,
-                `${colors.dark}`,
-                BulletedList
+                BulletedList,
+                null,
+                true,
+                'navigation',
+                '',
+                '',
+                null,
+                `${styles.instruction}`
               )}
-              </FadeIn>
             </Col>
 
             <Col lg={6}></Col>

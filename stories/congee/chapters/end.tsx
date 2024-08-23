@@ -26,14 +26,7 @@ export const Page: PageType = () => {
               sources={[
                 "Becci (2020). Congee. [online] itch.io. Available at: https://becciness.itch.io/congee [Accessed 12 Aug. 2024].",
               ]}
-              additionalButtonStyle={{
-                backgroundColor: `${colors.lightYellow}`,
-                color: `${colors.dark}`,
-              }}
-              modalVariant={styles.customModal}
-              modalHeaderClass={styles.customModalHeader}
-              modalBodyClass={styles.customModalBody}
-              modalFooterClass={styles.customModalFooter}
+              instructionClassName={styles.instruction}
             />
           </Row>
         </Container>

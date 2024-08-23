@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { PageType } from "core/types";
 
 import { Container, Row, Col } from "react-bootstrap";
@@ -6,6 +6,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import useChapter from "core/hooks/use-chapter";
 import FadeIn from "core/components/ui/fadein";
 import { animated } from "@react-spring/web";
+
+import styles from 'public/stories/congee/styles/Index.module.scss';
 
 export const Page: PageType = () => {
   const chapter = useChapter();
@@ -34,15 +36,15 @@ export const Page: PageType = () => {
               </FadeIn>
               <FadeIn wrapper={animated("div")} delayTime={5 * 800}>
                 <p>
-                  Arghh... They really want you to{" "}
-                  <Nav
-                    text="open it"
+                  Arghh... They really want you to open it.
+                </p>
+              </FadeIn>
+
+              <NavBlock instructionClassName={styles.instruction} 
+                    text=""
                     next="open_door_open"
                     tag="openTheDoorAnyway"
                   />
-                  {"."}
-                </p>
-              </FadeIn>
             </Col>
 
             <Col lg={6}></Col>

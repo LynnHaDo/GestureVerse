@@ -9,7 +9,6 @@ import { increment } from 'core/features/score'
 import Score from 'core/components/score'
 import VariableManager from 'core/components/variableManager'
 import { update as updateVariable } from 'core/features/variable-manager'
-import { Loader } from 'core/components/loader'
 
 interface StoryProps extends PropsFromRedux {
     config: Config

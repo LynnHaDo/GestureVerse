@@ -1,7 +1,5 @@
 /** Static components */
-import { animated } from "@react-spring/web";
-import { Section, Chapter, Nav } from "core/components";
-import FadeIn from "core/components/ui/fadein";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { BulletedList } from "core/components/widgets";
 import { choiceBlock } from "core/features/choice";
 
@@ -9,7 +7,7 @@ import { choiceBlock } from "core/features/choice";
 import { Next, PageType } from "core/types";
 
 /** Styling */
-import colors from "public/themeColors.module.scss";
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
 import useChapter from "core/hooks/use-chapter";
 
 import { Container, Row } from "react-bootstrap";
@@ -18,7 +16,7 @@ export const Page: PageType = () => {
   const chapter = useChapter();
   const tag = "procrastinate__eat_cook_fridge";
   return (
-    <Chapter filename={chapter.filename}>
+    <Chapter filename={chapter.filename} showOnlyCurrentSection>
       <Section>
         <Container>
           <Row>
@@ -30,13 +28,12 @@ export const Page: PageType = () => {
             </p>
             <p>Mmmmmmm... This is so good.</p>
 
-            <p>
-              <Nav
-                text="I'm still hungry though..."
-                next={Next.Section}
-                tag={`lookForSomethingToEatIn${chapter.filename}`}
-              />
-            </p>
+            <p>I'm still hungry though...</p>
+            <NavBlock instructionClassName={styles.instruction} 
+              text=""
+              next={Next.Section}
+              tag={`lookForSomethingToEatIn${chapter.filename}`}
+            />
           </Row>
         </Container>
       </Section>
@@ -48,9 +45,6 @@ export const Page: PageType = () => {
             {choiceBlock(
               tag,
               "handedness",
-              1,
-              `${colors.blue}`,
-              `${colors.white}`,
               BulletedList
             )}
           </Row>

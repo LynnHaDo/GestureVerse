@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import { PageType, useAppDispatch } from "core/types";
 import FadeIn from "core/components/ui/fadein";
 
@@ -10,6 +10,8 @@ import { useVariable } from "core/hooks/use-variable";
 import { useEffect } from "react";
 import { updateVariable } from "core/features/variable-manager";
 
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
+
 const roundTime = (date: Date) => {
   date.setMinutes(Math.round(date.getMinutes() / 5) * 5);
   date.setSeconds(Math.round(date.getSeconds() / 1000) * 1000);
@@ -19,7 +21,7 @@ const roundTime = (date: Date) => {
 export const Page: PageType = () => {
   const dispatch = useAppDispatch();
   /** Number of minutes left */
-  let timePadding: number = 6;
+  let timePadding: number = 30;
 
   const [nap, clean] = useVariable(null, ["nap", "clean"]);
 
@@ -37,13 +39,13 @@ export const Page: PageType = () => {
   };
 
   if (nap && clean) {
-    timePadding = 3;
+    timePadding = timePadding / 2;
   } else if (nap) {
-    timePadding = 4;
+    timePadding = timePadding * 0.75;
     displayText =
       "I have taken a nap a feel so refreshed. Maybe I should start looking into the homework...";
   } else if (clean) {
-    timePadding = 4;
+    timePadding = timePadding * 0.75;
     displayText =
       "Now that the place is clean, I should check for any deadlines...";
   }
@@ -95,10 +97,10 @@ export const Page: PageType = () => {
             </FadeIn>
 
             <p>
-              I should{" "}
-              <Nav text="start" next="homework_start" tag="startHomework" />{" "}
-              ASAP.
+              I should start ASAP.
             </p>
+
+            <NavBlock instructionClassName={styles.instruction}  text="" next="homework_start" tag="startHomework" />{" "}
           </Row>
         </Container>
       </Section>

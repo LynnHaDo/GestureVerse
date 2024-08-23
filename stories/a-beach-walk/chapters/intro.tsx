@@ -13,9 +13,6 @@ import colors from "public/themeColors.module.scss";
 
 import { Col, Container, Row } from "react-bootstrap";
 
-import { useContext } from "react";
-import { GestureRecognizerContext } from "core/components/chapter";
-
 export const Page: PageType = () => {
   return (
     <BackgroundFill color={colors.darkBlue}>
@@ -43,8 +40,15 @@ export const Page: PageType = () => {
                   <h2>a beach walk</h2>
 
                   <div>
-                    Embark on a peaceful exploration along the coast. {' '}
-                    {<NavBlock text="Let's start." next="start" tag="intro" />}
+                    Embark on a peaceful exploration along the coast.{" "}
+                    {
+                      <NavBlock
+                        text="Let's start."
+                        next="start"
+                        tag="intro"
+                        instructionClassName={styles.instruction}
+                      />
+                    }
                   </div>
                 </TextBlock>
               </Col>

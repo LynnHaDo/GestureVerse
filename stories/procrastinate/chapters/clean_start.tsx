@@ -1,5 +1,5 @@
 /** Static components */
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 
 /** Hooks */
@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import { incrementScore } from "core/features/score";
 import useChapter from "core/hooks/use-chapter";
 import { updateVariable } from "core/features/variable-manager";
+
+import styles from 'public/stories/procrastinate/styles/Index.module.scss';
 
 import { Container, Row } from "react-bootstrap";
 
@@ -31,17 +33,15 @@ export const Page: PageType = () => {
           do.
         </p>
         <FadeIn>
-          <p>
-            Hmm... Are there any{" "}
-            <Nav
-              text="todo items"
+          <div className={styles.p}>
+            Hmm... Are there any todo items left?
+          </div>
+        </FadeIn>
+        <NavBlock instructionClassName={styles.instruction} 
+              text=""
               next="menu"
               tag={`moveFrom${chapter.filename}toMenu`}
-            />{" "}
-            left
-            {"?"}
-          </p>
-        </FadeIn>
+            />
         </Row>
         </Container>
       </Section>

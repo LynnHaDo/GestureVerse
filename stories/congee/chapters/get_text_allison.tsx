@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, NavBlock } from "core/components";
 import { Next, PageType } from "core/types";
 
 import useChapter from "core/hooks/use-chapter";
@@ -13,15 +13,19 @@ import { useVariable } from "core/hooks/use-variable";
 export const Page: PageType = () => {
   const chapter = useChapter();
 
-  let displayText = 'Yep, everywhere 😔';
+  let displayText = "Yep, everywhere 😔";
 
-  const [takeaway, doordash] = useVariable(null, ['congee__takeaway', 'congee__doordash']);
+  const [takeaway, doordash] = useVariable(null, [
+    "congee__takeaway",
+    "congee__doordash",
+  ]);
 
   if (takeaway && !doordash) {
-    displayText = "i only checked the one near here. too lazy to look up on doordash 😔"
-  }
-  else if (!takeaway && doordash) {
-    displayText = "Yep. actually there is one restaurant near here, but i'm too lazy to pick it up 😔"
+    displayText =
+      "i only checked the one near here. too lazy to look up on doordash 😔";
+  } else if (!takeaway && doordash) {
+    displayText =
+      "Yep. actually there is one restaurant near here, but i'm too lazy to pick it up 😔";
   }
 
   return (
@@ -69,17 +73,14 @@ export const Page: PageType = () => {
                 </FadeIn>
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 2800}>
-                  <p className={`${styles.chatBubble}`}>
-                    What{" "}
-                    <Nav
-                      text="thing"
-                      next={Next.Section}
-                      tag="continueThing"
-                      className={styles.darkText}
-                    />
-                    {"?"}
-                  </p>
+                  <p className={`${styles.chatBubble}`}>What thing?</p>
                 </FadeIn>
+
+                <NavBlock instructionClassName={styles.instruction} 
+                    text=""
+                    next={Next.Section}
+                    tag="continueThing"
+                  />
               </div>
             </Col>
             <Col lg={4}></Col>
@@ -123,15 +124,15 @@ export const Page: PageType = () => {
                   <p>
                     The phone is vibrating - someone's calling. Should you
                     answer it? Probably not, as it’ll just keep you up. Or are
-                    you{" "}
-                    <Nav
-                      text="forgetting something"
-                      next={Next.Section}
-                      tag="continuePhoneVibrating"
-                    />
-                    {"?"}
+                    you forgetting something?
                   </p>
                 </FadeIn>
+
+                <NavBlock instructionClassName={styles.instruction} 
+                  text=""
+                  next={Next.Section}
+                  tag="continuePhoneVibrating"
+                />
               </div>
             </Col>
             <Col lg={4}></Col>
@@ -149,12 +150,9 @@ export const Page: PageType = () => {
               </FadeIn>
 
               <FadeIn wrapper={animated("div")} delayTime={5 * 800}>
-                <p>
-                  She picks up on the third{" "}
-                  <Nav text="ring" next={Next.Section} tag="callMom" />
-                  {"."}
-                </p>
+                <p>She picks up on the third ring.</p>
               </FadeIn>
+              <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="callMom" />
             </Col>
             <Col lg={6}></Col>
           </Row>
@@ -209,12 +207,9 @@ export const Page: PageType = () => {
               </FadeIn>
 
               <FadeIn wrapper={animated("div")} delayTime={5 * 3600}>
-                <p>
-                  “I know...
-                  <Nav text="Bye mom" next={Next.Section} tag="endMomCalling" />
-                  {'"'}
-                </p>
+                <p>"I know... Bye mom."</p>
               </FadeIn>
+              <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="endMomCalling" />
             </Col>
             <Col lg={6}></Col>
           </Row>
@@ -240,9 +235,10 @@ export const Page: PageType = () => {
               </FadeIn>
 
               <FadeIn wrapper={animated("p")} delayTime={5 * 2000}>
-                That’s the doorbell. You glance at your clock: 21:45.{" "}
-                <Nav text="What is it?" next="open_door" tag="doorbellRing" />
+                That’s the doorbell. You glance at your clock: 21:45.
               </FadeIn>
+
+              <NavBlock instructionClassName={styles.instruction}  text="" next="open_door" tag="doorbellRing" />
             </Col>
             <Col lg={6}></Col>
           </Row>

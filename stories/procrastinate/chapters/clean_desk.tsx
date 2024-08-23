@@ -1,4 +1,4 @@
-import { Section, Chapter, Nav } from "core/components";
+import { Section, Chapter, Nav, NavBlock } from "core/components";
 import FadeIn from "core/components/ui/fadein";
 import { PageType, useAppDispatch } from "core/types";
 import useChapter from "core/hooks/use-chapter";
@@ -8,15 +8,17 @@ import { updateVariable } from "core/features/variable-manager";
 import { Container, Row } from "react-bootstrap";
 import { useEffect } from "react";
 
+import styles from "public/stories/procrastinate/styles/Index.module.scss";
+
 export const Page: PageType = () => {
   const chapter = useChapter();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(updateVariable('desk', true));
-  })
-  
+    dispatch(updateVariable("desk", true));
+  });
+
   return (
     <Chapter filename="clean_desk">
       <Section>
@@ -29,16 +31,13 @@ export const Page: PageType = () => {
               like my W-2 from last year and a Pacman amiibo.
             </p>
             <FadeIn>
-              <p>
-                Hmm... What{" "}
-                <Nav
-                  text="else"
-                  next="clean"
-                  tag={`moveFrom${chapter.filename}toClean`}
-                />
-                {"?"}
-              </p>
+              <div className={styles.p}>Hmm... What else?</div>
             </FadeIn>
+            <NavBlock instructionClassName={styles.instruction} 
+              text=""
+              next="clean"
+              tag={`moveFrom${chapter.filename}toClean`}
+            />
           </Row>
         </Container>
       </Section>
