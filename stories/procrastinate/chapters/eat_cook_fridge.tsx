@@ -45,7 +45,14 @@ export const Page: PageType = () => {
             {choiceBlock(
               tag,
               "handedness",
-              BulletedList
+              BulletedList,
+              null,
+              true,
+              "navigation",
+              null,
+              `${styles.p}`,
+              null,
+              `${styles.instruction}`
             )}
           </Row>
         </Container>

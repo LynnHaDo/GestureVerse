@@ -24,7 +24,11 @@ export const Page: PageType = () => {
             <End
               storyName="congee"
               sources={[
-                "Becci (2020). Congee. [online] itch.io. Available at: https://becciness.itch.io/congee [Accessed 12 Aug. 2024].",
+                "Becci (n.d.). Congee. [online] itch.io. Available at: https://becciness.itch.io/congee [Accessed 12 Aug. 2024].",
+                "Slom (2019). 2:13AM. [Streamed] YouTube: Slom. Available at: https://www.youtube.com/watch?v=922lzAd_XpM [Accessed 15 Aug. 2024].",
+                "Slom (2022). LETTER SENT TO YOU. [Streamed] YouTube: STANDARD FRIENDS, under license to Dreamus. Available at: https://www.youtube.com/watch?v=Z9s2KGV_bKI [Accessed 15 Aug. 2024].",
+                "Cosmic Boy and Fisherman (2019). Love. [Streamed] YouTube: STONESHIP. Available at: https://www.youtube.com/watch?v=Q_DOtvl5LNo [Accessed 15 Aug. 2024].",
+                "Colde (2023). Star (Instrumental). [Streamed] YouTube: Stone Music Entertainment. Available at: https://www.youtube.com/watch?v=PQ8fm3aO-B8 [Accessed 15 Aug. 2024]."
               ]}
               instructionClassName={styles.instruction}
             />

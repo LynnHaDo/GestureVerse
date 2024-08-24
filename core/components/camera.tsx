@@ -20,6 +20,7 @@ import {
   FilesetResolver,
   DrawingUtils,
 } from "@mediapipe/tasks-vision";
+import { createGestureRecognizer, reloadScreen } from "./chapter";
 
 /** Constants */
 const ENABLE_TEXT = "Open webcam";
@@ -191,7 +192,7 @@ const Camera = ({
     const canvasCtx = canvasEl.getContext("2d");
 
     if (!videoEl.videoHeight || !videoEl.videoWidth || !gestureRecognizer) {
-      stopPrediction();
+      //stopPrediction();
       return;
     }
 

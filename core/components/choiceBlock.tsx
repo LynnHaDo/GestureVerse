@@ -14,7 +14,7 @@ import {
 
 /** Utils */
 import { makeChoice } from "core/features/choice";
-import { GestureRecognizerContext } from "./chapter";
+import { createGestureRecognizer, GestureRecognizerContext, reloadScreen } from "./chapter";
 
 /** Styling */
 import styles from "./ChoiceBlock.module.scss";

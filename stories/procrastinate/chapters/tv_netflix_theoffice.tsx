@@ -11,7 +11,6 @@ import { Container, Row } from "react-bootstrap";
 import styles from "public/stories/procrastinate/styles/Index.module.scss";
 import { choiceBlock } from "core/features/choice";
 import { BulletedList } from "core/components/widgets";
-import { InlineListEN } from "core/components/widgets/inline-list";
 
 export const Page: PageType = () => {
   const tag = "procrastinate__tv_netflix";
@@ -37,7 +36,7 @@ export const Page: PageType = () => {
               {choiceBlock(
                 tag,
                 "handedness",
-                InlineListEN,
+                BulletedList,
                 null,
                 true,
                 "navigation",

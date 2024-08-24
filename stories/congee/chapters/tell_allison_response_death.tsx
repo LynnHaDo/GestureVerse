@@ -62,12 +62,12 @@ export const Page: PageType = () => {
 
                 <FadeIn wrapper={animated("div")} delayTime={5 * 3000}>
                   <p>Continue...</p>
-                  <NavBlock instructionClassName={styles.instruction} 
+                </FadeIn>
+                <NavBlock instructionClassName={styles.instruction} 
                     text=""
                     next="tell_allison_close"
                     tag="continueDeath"
                   />
-                </FadeIn>
               </div>
             </Col>
 

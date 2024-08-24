@@ -11,12 +11,6 @@ const highlighter: React.CSSProperties = {
   fontWeight: 600,
 };
 
-const resetButtonStyle: React.CSSProperties = {
-  textTransform: "uppercase",
-  width: "auto",
-  border: "none",
-};
-
 export interface EndProps {
   /** Name of the story */
   storyName: string;

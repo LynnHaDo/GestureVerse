@@ -12,7 +12,6 @@ import { optionItemProps, Options } from "core/components/constants/options";
 import { useRouter } from "next/router";
 import { Accordion, Col, Container, Row } from "react-bootstrap";
 import { Gestures } from "core/components/constants/gesture";
-import { useRef } from "react";
 
 const Index: ReactFCC = ({ children }) => {
   const tag = "index__menu";
@@ -21,8 +20,6 @@ const Index: ReactFCC = ({ children }) => {
   const [modelLoaded, setModelLoaded] = React.useState(false);
 
   const [result, resultSetter] = React.useState<HandGesture>(null); // save the state of the tag
-
-  const [cameraOn, setCameraOn] = React.useState(true);
 
   const options = Options[tag];
 
@@ -40,11 +37,11 @@ const Index: ReactFCC = ({ children }) => {
   }, [modelLoaded]);
 
   React.useEffect(() => {
-    if (result && result.category != 'Pointing_Up') {
+    if (result && result.category != "Pointing_Up") {
       let answer = optionKeys.find((k) => options[k].action == result.category);
-      
+
       let selectedIndex = optionKeys.indexOf(answer);
-      let lis = document.getElementsByTagName('li');
+      let lis = document.getElementsByTagName("li");
 
       lis.item(selectedIndex).classList.add(`${styles.selected}`);
 
@@ -56,26 +53,23 @@ const Index: ReactFCC = ({ children }) => {
         lis.item(selectedIndex).classList.remove(`${styles.selected}`);
         setModelLoaded(false);
       }, 4000);
+    } else if (result && result.category == "Pointing_Up") {
+      const form = document.forms["menuList"];
+      const radios: RadioNodeList = form.elements["slider"];
+      const checkedItem = Array.from(radios).find((radio) => radio["checked"]);
+
+      const index = Array.from(radios).indexOf(checkedItem);
+      let nextIndex = index + 1;
+
+      if (nextIndex === 3) {
+        nextIndex = 0;
+      }
+
+      setTimeout(() => {
+        Array.from(radios).at(nextIndex)["checked"] = true;
+        setModelLoaded(false);
+      }, 4000);
     }
-
-    else if (result && result.category == 'Pointing_Up') {
-        const form = document.forms['menuList'];
-        const radios: RadioNodeList = form.elements['slider'];
-        const checkedItem = Array.from(radios).find((radio) => radio['checked']);
-
-        const index = Array.from(radios).indexOf(checkedItem);
-        let nextIndex = index + 1;
-
-        if (nextIndex === 3) {
-            nextIndex = 0;
-        }
-
-        setTimeout(() => {
-            Array.from(radios).at(nextIndex)['checked'] = true;
-            setModelLoaded(false);
-        }, 4000);
-    }
-
   }, [result]);
 
   return (
@@ -84,18 +78,20 @@ const Index: ReactFCC = ({ children }) => {
         <h1>gestureverse</h1>
       </div>
       <main>
-      <Camera
-            gestureRecognizer={gestureRecognizer}
-            canvasWidth={230}
-            canvasHeight={130}
-            resultSetter={resultSetter}
-            availableOptions={[...availableOptions, 'Pointing_Up']}
-          />
+        <Camera
+          gestureRecognizer={gestureRecognizer}
+          canvasWidth={230}
+          canvasHeight={130}
+          resultSetter={resultSetter}
+          availableOptions={[...availableOptions, "Pointing_Up"]}
+        />
 
-        <form className={styles.wrapper} name='menuList'>
+        <form className={styles.wrapper} name="menuList">
           <input type="radio" id="home" name="slider" defaultChecked={true} />
           <input type="radio" id="about" name="slider" />
           <input type="radio" id="reference" name="slider" />
+
+          <span className={styles.formInstruction}>{Gestures['Pointing_Up']} to move to the next section</span>
 
           <div className={styles.labels}>
             <label htmlFor="home" className={styles.main}>
