@@ -4,9 +4,6 @@ import { useEffect, useState, useRef } from "react";
 
 import styles from "./MusicPlayer.module.scss";
 
-import { IonIcon } from "@ionic/react";
-import { playSkipBack, play, playSkipForward, pause } from "ionicons/icons";
-
 export const MusicPlaylist = (
   dir: string,
   backgroundColor: string = "rgb(34, 33, 31)"
@@ -99,21 +96,21 @@ export const MusicPlaylist = (
       </div>
       <div className={styles.buttons}>
         <button onClick={playPrev}>
-          <IonIcon icon={playSkipBack} />
+          
         </button>
 
         {isSongPlaying ? (
           <button onClick={pauseSong}>
-            <IonIcon icon={pause} />
+            
           </button>
         ) : (
           <button onClick={playSong}>
-            <IonIcon icon={play} />
+            
           </button>
         )}
 
         <button onClick={playNext}>
-          <IonIcon icon={playSkipForward} />
+          
         </button>
       </div>
     </div>

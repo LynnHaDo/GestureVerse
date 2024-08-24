@@ -25,7 +25,7 @@ export const GestureRecognizerContext = React.createContext<
   gestureRecognizerSetter: (model) => {},
 });
 
-const createGestureRecognizer = async (
+export const createGestureRecognizer = async (
   modelSetter: React.Dispatch<GestureRecognizer>
 ) => {
   const vision = await FilesetResolver.forVisionTasks(
@@ -46,6 +46,17 @@ const createGestureRecognizer = async (
 
   modelSetter(MODEL);
 };
+
+export const reloadScreen = () => {
+    let numScreenLoads = sessionStorage.getItem('screenReload');
+    if (numScreenLoads && parseInt(numScreenLoads) < 2) {
+        sessionStorage.setItem('screenReload', String(numScreenLoads + 1))
+        window.location.reload();
+    }
+    else {
+        sessionStorage.removeItem('screenReload');
+    }
+}
 
 export interface ChapterSetup {
   item: TocItem;
@@ -96,14 +107,7 @@ const Chapter: ReactFCC<ChapterType> = ({
   const [modelLoaded, setModelLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    let numScreenLoads = sessionStorage.getItem('screenReload');
-    if (numScreenLoads && parseInt(numScreenLoads) < 2) {
-        sessionStorage.setItem('screenReload', String(numScreenLoads + 1))
-        window.location.reload();
-    }
-    else {
-        sessionStorage.removeItem('screenReload');
-    }
+    reloadScreen();
     createGestureRecognizer(gestureRecognizerSetter);
     setModelLoaded(true);
   }, [modelLoaded]);

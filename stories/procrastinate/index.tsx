@@ -7,16 +7,11 @@ import colors from "public/themeColors.module.scss";
 
 import Head from "next/head";
 import { GridProps } from "core/components/ui/layouts/grid";
-import { ResetButton } from "core/components/ui";
 
-import { setupIonicReact } from "@ionic/react";
 import MusicPlayer from "core/components/musicPlayer";
 import { Header } from "core/components";
 
 const Index: ReactFCC = ({ children }: GridProps) => {
-  React.useEffect(() => {
-    setupIonicReact();
-  });
   return (
     <>
       <Head>

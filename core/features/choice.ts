@@ -32,8 +32,6 @@ import { ChoiceBlock, Nav, NavBlock } from "core/components";
 import { InlineListEN } from "core/components/widgets/inline-list";
 import { isEqual } from "lodash";
 import { useVariable } from "core/hooks/use-variable";
-import { GestureRecognizerContext } from "core/components/chapter";
-import { useContext } from "react";
 
 export type Option = string;
 export type OptionGroup = Array<Option>;

@@ -2,8 +2,6 @@ import { Image } from "react-bootstrap";
 import styles from "./MusicPlayer.module.scss";
 import { MusicPlaylist } from "./musicPlaylist";
 
-import { IonIcon } from "@ionic/react";
-import { musicalNotesOutline } from "ionicons/icons";
 
 export interface MusicPlayerProps {
   /** Path to the playlist */
@@ -24,7 +22,7 @@ const MusicPlayer = ({ dir, iconColor, iconStyling, playlistBackgroundColor, pos
     <div className={styles.container} style={{ ...position }}>
       <div className={styles.flexWrapper}>
         <div className={styles.icon} style={iconStyling}>
-          <IonIcon icon={musicalNotesOutline} style={{color: iconColor}}/>
+
         </div>
         <div className={styles.player}>
             {MusicPlaylist(dir, playlistBackgroundColor)}

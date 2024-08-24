@@ -5,15 +5,11 @@ import { ReactFCC } from "core/types";
 import styles from "public/stories/congee/styles/Index.module.scss";
 import colors from "public/themeColors.module.scss";
 
-import { setupIonicReact } from "@ionic/react";
 import Head from "next/head";
 import MusicPlayer from "core/components/musicPlayer";
 import { Header } from "core/components";
 
 const Index: ReactFCC = ({ children }) => {
-  React.useEffect(() => {
-    setupIonicReact();
-  });
   return (
     <>
       <Head>

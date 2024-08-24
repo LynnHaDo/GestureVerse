@@ -68,7 +68,6 @@ const Camera = ({
   let [showModalWebcamAccess, setModalWebcamAccess] = useState(false);
   let [lastVideoTime, lastVideoTimeSetter] = useState(-1);
   let results: any = undefined;
-  let numGesturesCount = 0;
 
   /** HTML Elements */
   const video = useRef<HTMLVideoElement>(null);
