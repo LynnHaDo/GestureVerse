@@ -1,25 +1,32 @@
 @use "/public/styles/colors";
 @use "/public/styles/fonts";
 
-@use "/public/styles/header" with (
-  $min-height: 1em,
-  $max-height: 1vh,
-  $background-color: rgb(0, 0, 0),
-  $reset-background: rgb(0, 0, 0),
-  $reset-color: colors.$lightYellow,
-  $foreground-color: colors.$lightYellow
-);
-
 @use "/public/styles/transitions";
 
 $font-family: fonts.$congee-typeface;
 $text-color: colors.$lightYellow;
 
+.instruction {
+  background-color: colors.$orange;
+  color: colors.$lightYellow;
+  border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
+  -moz-border-radius: var(--border-radius);
+}
+
+.musicContainer {
+  background-color: colors.$retroGreen;
+  color: colors.$lightYellow;
+  border-radius: 0.2rem;
+  border: 1.5px solid colors.$dark;
+}
+
 .main {
   font-family: $font-family;
   background-color: rgb(0, 0, 0);
   color: $text-color;
-  min-height: calc(100vh - 10em);
+  min-height: 100vh;
+  padding-top: 10em;
   padding-bottom: 2rem;
 
   --border-radius: 0.3rem;
@@ -68,14 +75,6 @@ $text-color: colors.$lightYellow;
     a {
       color: colors.$very-dark !important;
     }
-  }
-
-  .instruction {
-    background-color: colors.$orange;
-    color: colors.$lightYellow;
-    border-radius: var(--border-radius);
-    -webkit-border-radius: var(--border-radius);
-    -moz-border-radius: var(--border-radius);
   }
 
   section {

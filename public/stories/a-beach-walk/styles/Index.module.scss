@@ -5,12 +5,48 @@ $text-color: colors.$very-light;
 
 @import "/public/styles/fonts";
 
+.instruction {
+  position: relative;
+  font-size: 0.9rem;
+  color: colors.$dark;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border: 1.5px solid colors.$dark;
+    background-color: colors.$pink;
+    border-radius: 0.2rem;
+    display: block;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -2;
+    top: 0.3rem;
+    left: 0.3rem;
+    border: 1.5px solid colors.$dark;
+    background-color: colors.$dark;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.2rem;
+  }
+}
+
 .main {
   background-color: transparent;
   color: $text-color;
   font-family: $body;
-  min-height: calc(100vh - 10em);
+  min-height: 100vh;
   padding-bottom: 2rem;
+  padding-top: 5em;
   z-index: -1;
   position: relative;
 
@@ -37,41 +73,6 @@ $text-color: colors.$very-light;
 
   .text_center {
     text-align: center;
-  }
-
-  .instruction {
-    position: relative;
-    font-size: 0.9rem;
-    color: colors.$dark;
-    z-index: 0;
-
-    &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        border: 1.5px solid colors.$dark;
-        background-color: colors.$pink;
-        border-radius: 0.2rem;
-        display: block;
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      z-index: -2;
-      top: 0.3rem;
-      left: 0.3rem;
-      border: 1.5px solid colors.$dark;
-      background-color: colors.$dark;
-      width: 100%;
-      height: 100%;
-      border-radius: 0.2rem;
-    }
   }
 
   button {
@@ -108,97 +109,10 @@ $text-color: colors.$very-light;
   }
 }
 
-.header {
-  nav {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 10em;
-
-    .controls {
-      display: flex;
-
-      button {
-        font-family: $body;
-        font-size: 0.9rem;
-        color: colors.$dark;
-        letter-spacing: 0.1rem;
-        border: 1.5px solid colors.$dark;
-        background-color: colors.$white;
-        position: relative;
-        width: 80px;
-        height: 32px;
-        border-radius: 0.2rem;
-
-        &::after {
-          content: "";
-          position: absolute;
-          z-index: -1;
-          top: 0.3rem;
-          left: 0.3rem;
-          border: 1.5px solid colors.$dark;
-          background-color: colors.$dark;
-          width: 100%;
-          height: 100%;
-          display: inline-block;
-          border-radius: 0.2rem;
-        }
-
-        &.backButton {
-          margin-left: 1rem;
-        }
-
-        &:hover {
-          font-family: fonts.$secondary;
-          transform: translate(0.3rem, 0.3rem);
-
-          &::after {
-            transform: translate(-0.3rem, -0.3rem);
-            background-color: transparent;
-            border: none;
-          }
-        }
-      }
-    }
-  }
-}
-
-.customModal {
+.musicContainer {
   background-color: colors.$pink;
   color: colors.$dark;
   border-radius: 0.2rem;
-  border: 1.5px solid colors.$dark;
-
-  .customModalHeader {
-    border-bottom: 1.5px solid colors.$dark;
-  }
-
-  .customModalFooter {
-    border-top: 1.5px solid colors.$dark;
-    justify-content: flex-end;
-
-    button {
-      border-radius: 0.2rem;
-      border: 1.5px solid colors.$dark;
-      opacity: 0.8;
-      transition: 0.3s ease-in-out;
-
-      &:nth-child(1) {
-        background-color: colors.$lightYellow;
-        color: colors.$dark;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      &:nth-child(2) {
-        background-color: colors.$darkBlue;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-  }
+  border: 1.5px solid colors.$dark;  
 }
+

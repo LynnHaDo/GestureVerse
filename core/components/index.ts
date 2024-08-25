@@ -19,7 +19,8 @@ export { default as Artwork } from './artwork'
 export { default as ChoiceBlock } from './choiceBlock'
 export { default as Modal } from './modal';
 export { default as TextBlock } from './textBlock';
-export { default as Header } from './header'
+
+export { default as MusicPlayer} from './musicPlayer';
 
 export { default as Nav } from 'core/components/nav'
 export { default as When } from './when'

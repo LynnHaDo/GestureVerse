@@ -69,8 +69,10 @@ export const NavBlock = ({
     handler == null || handler == undefined ? genericHandler : handler;
 
   useEffect(() => {
-    if (result) {
+    if (result && result.category === "Thumb_Up") {
       setTimeout(handlerFunct, 4000);
+    } else if (result && result.category === "Pointing_Up") {
+      setTimeout(() => window.location.replace(window.location.origin), 4000);
     }
   }, [result, gestureRecognizer]);
 
@@ -82,7 +84,7 @@ export const NavBlock = ({
         canvasWidth={230}
         canvasHeight={130}
         resultSetter={resultSetter}
-        availableOptions={["Thumb_Up"]}
+        availableOptions={["Thumb_Up", "Pointing_Up"]}
       />
       <div className={`${styles.instruction} ${instructionClassName}`}>
         <p>Put your thumb up 👍 to continue</p>

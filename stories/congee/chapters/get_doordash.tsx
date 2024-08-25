@@ -60,7 +60,7 @@ export const Page: PageType = () => {
                   />
                 </>
               ) : (
-                choiceBlock(tag, "handedness", BulletedList, null, false)
+                choiceBlock(tag, "handedness", BulletedList, null, false, 'navigation', null, null, null, `${styles.instruction}`)
               )}
             </Col>
             <Col lg={6}></Col>

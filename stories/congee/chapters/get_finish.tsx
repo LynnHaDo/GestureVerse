@@ -44,7 +44,6 @@ export const Page: PageType = () => {
       <Section>
         <Container>
           <Row>
-            <Col lg={6}></Col>
             <Col lg={6}>
               <p>You moved from Hong Kong to the US a year ago.</p>
               <p>
@@ -64,6 +63,7 @@ export const Page: PageType = () => {
                   tag="openSomethingAboutYou"
                 />
             </Col>
+            <Col lg={6}></Col>
           </Row>
         </Container>
       </Section>

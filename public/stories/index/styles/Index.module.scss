@@ -9,6 +9,33 @@ $secondary: fonts.$secondary;
 
 $npages: 3;
 
+.formInstruction {
+    --marginInstruction: 2rem;
+    padding: 0.1rem 0.3rem;
+    margin: 0 var(--marginInstruction);
+    z-index: 1;
+    font-size: 11px;
+    text-transform: uppercase;
+
+    position: fixed;
+    bottom: 2rem;
+    text-align: center;
+    left: 48%;
+    transform: translateX(-50%);
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+
+    @media screen and (max-width: 500px) {
+      width: 90%;
+      left: 0;
+      transform: translateX(0);
+      --marginInstruction: 1rem;
+    }
+  }
+
 .container {
   background-color: rgba(237, 233, 180, 0.5);
   width: 100%;
@@ -47,33 +74,6 @@ $npages: 3;
 
     display: inline-flex;
     flex-direction: column;
-
-    .formInstruction {
-        --marginInstruction: 2rem;
-      padding: 0.1rem 0.3rem;
-      margin: 0 var(--marginInstruction);
-      z-index: 1;
-      font-size: 11px;
-      text-transform: uppercase;
-
-      position: fixed;
-      bottom: 2rem;
-      text-align: center;
-      left: 48%;
-      transform: translateX(-50%);
-
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
-
-      @media screen and (max-width: 500px) {
-        width: 90%;
-        left: 0;
-        transform: translateX(0);
-        --marginInstruction: 1rem;
-      }
-    }
 
     input[type="radio"] {
       height: 0;

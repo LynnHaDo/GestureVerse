@@ -3,12 +3,14 @@ import * as React from "react";
 import { ReactFCC } from "core/types";
 
 import styles from "public/stories/a-beach-walk/styles/Index.module.scss";
+import stylesIndex from "public/stories/index/styles/Index.module.scss";
+import { Gestures } from "core/components/constants/gesture";
 import colors from "public/themeColors.module.scss";
 import Head from "next/head";
-import MusicPlayer from "core/components/musicPlayer";
-import { Header } from "core/components";
+import { MusicPlayer } from "core/components";
 
 const Index: ReactFCC = ({ children }) => {
+  let [hideMenu, hideMenuSetter] = React.useState(false);
   return (
     <>
       <Head>
@@ -32,25 +34,18 @@ const Index: ReactFCC = ({ children }) => {
           href="/images/Storytelling_Logo_transparent.png"
         />
       </Head>
-      <Header
-        className={styles.header}
-        controlsClassName={styles.controls}
-        backButtonClassName={styles.backButton}
-        modalVariant={styles.customModal}
-        modalHeaderClass={styles.customModalHeader}
-        modalBodyClass={styles.customModalBody}
-        modalFooterClass={styles.customModalFooter}
-      />
+
       <main className={styles.main}>{children}</main>
       <MusicPlayer
         dir="/audio/a-beach-walk"
-        iconColor={colors.dark}
-        playlistBackgroundColor={colors.white}
-        iconStyling={{
-          backgroundColor: `${colors.pink}`,
-          border: `1.5px solid ${colors.dark}`,
-        }}
+        hideMenu={hideMenu}
+        hideSetter={hideMenuSetter}
+        className={styles.musicContainer}
+        instructionClassName={styles.instruction}
       />
+      <span className={stylesIndex.formInstruction}>
+        {Gestures["Pointing_Up"]} to go back to home
+      </span>
     </>
   );
 };

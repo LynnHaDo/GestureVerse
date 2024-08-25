@@ -41,22 +41,21 @@ export const createGestureRecognizer = async (
     runningMode: "VIDEO",
     numHands: 1,
     minHandDetectionConfidence: 0.6,
-    minHandPresenceConfidence: 0.6
+    minHandPresenceConfidence: 0.6,
   });
 
   modelSetter(MODEL);
 };
 
 export const reloadScreen = () => {
-    let numScreenLoads = sessionStorage.getItem('screenReload');
-    if (numScreenLoads && parseInt(numScreenLoads) < 2) {
-        sessionStorage.setItem('screenReload', String(numScreenLoads + 1))
-        window.location.reload();
-    }
-    else {
-        sessionStorage.removeItem('screenReload');
-    }
-}
+  let numScreenLoads = sessionStorage.getItem("screenReload");
+  if (numScreenLoads && parseInt(numScreenLoads) < 2) {
+    sessionStorage.setItem("screenReload", String(numScreenLoads + 1));
+    window.location.reload();
+  } else {
+    sessionStorage.removeItem("screenReload");
+  }
+};
 
 export interface ChapterSetup {
   item: TocItem;
@@ -103,7 +102,6 @@ const Chapter: ReactFCC<ChapterType> = ({
 
   const [gestureRecognizer, gestureRecognizerSetter] =
     React.useState<GestureRecognizer>(null);
-
   const [modelLoaded, setModelLoaded] = React.useState(false);
 
   React.useEffect(() => {

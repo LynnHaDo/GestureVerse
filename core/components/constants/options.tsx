@@ -1,16 +1,3 @@
-/**
- * const Gestures = {
-    0: "None", 
-    1: "Closed_Fist", 
-    2: "Open_Palm", 
-    3: "Pointing_Up", 
-    4: "Thumb_Down", 
-    5: "Thumb_Up", 
-    6: "Victory", 
-    7: "ILoveYou"
-    }
- */
-
 export interface optionItemProps {
     /** Gesture corresponding to the item */
     action: 'Closed_Fist' | 'Open_Palm' | 'Pointing_Up' | "Thumb_Down" | "Thumb_Up" | "Victory" | "ILoveYou" | null
@@ -52,16 +39,16 @@ export const Options: OptionProps = {
     },
     /** A BEACH WALK */
     "a-beach-walk__leftOrRight": {
-        "left": optionItem('Thumb_Up', null, 'turn left'), // thumbs up
-        "right": optionItem('Thumb_Down', null, 'turn right'), // thumbs down
+        "left": optionItem('Thumb_Up', null, 'turn left'), 
+        "right": optionItem('Thumb_Down', null, 'turn right'), 
     },
     "a-beach-walk__left": {
-        "lighthouse": optionItem('Pointing_Up', null, 'visit the lighthouse'), // point up
-        "stairs": optionItem('Closed_Fist', null, 'go down the stairs') // closed fist
+        "lighthouse": optionItem('Open_Palm', null, 'visit the lighthouse'), 
+        "stairs": optionItem("Victory", null, 'go down the stairs') 
     },
     "a-beach-walk__right": {
-        "fence": optionItem('Open_Palm', null, 'look through the broken fence'), // open palm
-        "further": optionItem("Victory", null, 'go further') // victory (v sign)
+        "fence": optionItem('Open_Palm', null, 'look through the broken fence'), 
+        "further": optionItem("Victory", null, 'go further') 
     },
 
     /** PROCRASTINATE */
@@ -70,7 +57,7 @@ export const Options: OptionProps = {
         "tv": optionItem("Thumb_Up", null, 'Watch TV'),
         "nap": optionItem("Victory", null, 'Take a nap'),
         "game": optionItem("Open_Palm", null, 'Play video games'),
-        "eat": optionItem("Pointing_Up", null, 'Eat something'),
+        "eat": optionItem("ILoveYou", null, 'Eat something'),
         "clean": optionItem("Closed_Fist", null, 'Clean my room')
     },
     "procrastinate__tv": {
@@ -91,12 +78,12 @@ export const Options: OptionProps = {
     },
     "procrastinate__games_relaxing": {
         "game_relaxing_breathofthewild": optionItem('Open_Palm', null, 'Breath of the Wild'),
-        "game_relaxing_supermarioodyssey": optionItem('Pointing_Up', null, 'Super Mario Odyssey'),
+        "game_relaxing_supermarioodyssey": optionItem('Victory', null, 'Super Mario Odyssey'),
         "game_relaxing_goosegame": optionItem('Closed_Fist', null, 'Untitled goose game')
     },
     "procrastinate__games_phone": {
         "game_phone_phonegame": optionItem('Open_Palm', null, 'Play a boring (?) phone game'),
-        "game_phone_instagram": optionItem('Pointing_Up', null, 'Instagram time'),
+        "game_phone_instagram": optionItem('Victory', null, 'Instagram time'),
         "game_phone_article": optionItem('Closed_Fist', null, "Educate myself on why Tesla's stock is dropping"),
     },
     "procrastinate__clean": {
@@ -135,7 +122,7 @@ export const Options: OptionProps = {
         "tell_allison": optionItem(null, 'Right', 'Text Allison, your best friend')
     },
     "congee__tell_allison": {
-        "tell_allison_response_death": optionItem('Pointing_Up', null, "I'm not being melodramatic but I think death is near dfdsfdf"),
+        "tell_allison_response_death": optionItem('Victory', null, "I'm not being melodramatic but I think death is near dfdsfdf"),
         "tell_allison_response_netflix": optionItem('ILoveYou', null, 'I need a very distracting Netflix recommendation'),
         'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel')
     },
@@ -156,7 +143,7 @@ export const Options: OptionProps = {
         "open_door_open": optionItem('Closed_Fist', null, 'Open the door')
     },
     "congee__end": {
-        "end_congee_club": optionItem('Pointing_Up', null, "Congee Club?"),
+        "end_congee_club": optionItem('Thumb_Up', null, "Congee Club?"),
         "end_asian_celebration": optionItem('Victory', null, "Asian celebration?"),
         "end_no_more_western_food": optionItem('ILoveYou', null, "No more Western food day?")
     }
@@ -166,7 +153,7 @@ export const Variables: OptionProps = {
     /** Procrastinate */
     "procrastinate__grace_period": {
         '10': optionItem('Victory', null, '10 minutes'),
-        '20': optionItem('Pointing_Up', null, '20 minutes'),
+        '20': optionItem('Open_Palm', null, '20 minutes'),
         '30': optionItem('Closed_Fist', null, '30 minutes')
     },
     /** CONGEE */

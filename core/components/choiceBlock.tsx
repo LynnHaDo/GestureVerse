@@ -6,15 +6,15 @@ import { Gestures, Handedness } from "./constants/gesture";
 /** Hooks */
 import { useState, useEffect, useRef, useContext } from "react";
 import { useDispatch } from "react-redux";
-import {
-  optionItemProps,
-  Options,
-  Variables,
-} from "./constants/options";
+import { optionItemProps, Options, Variables } from "./constants/options";
 
 /** Utils */
 import { makeChoice } from "core/features/choice";
-import { createGestureRecognizer, GestureRecognizerContext, reloadScreen } from "./chapter";
+import {
+  createGestureRecognizer,
+  GestureRecognizerContext,
+  reloadScreen,
+} from "./chapter";
 
 /** Styling */
 import styles from "./ChoiceBlock.module.scss";
@@ -54,7 +54,7 @@ const ChoiceBlock = ({
   purpose = "navigation",
   className = "",
   persist = false,
-  instructionClassName = ""
+  instructionClassName = "",
 }: ChoiceBlockProps): JSX.Element => {
   if (purpose == "variableSetter") {
     options = Variables[tag];
@@ -88,7 +88,7 @@ const ChoiceBlock = ({
       : optionValues.filter((val) => !val.disabled).map((i) => i.handedness);
 
   useEffect(() => {
-    if (result) {
+    if (result && result.category != "Pointing_Up") {
       // Get the answer
       let answer =
         predictionType == "gesture"
@@ -115,6 +115,8 @@ const ChoiceBlock = ({
         dispatch(updateVariable(tag, answer));
         return null;
       }, 4000);
+    } else if (result && result.category === "Pointing_Up") {
+      setTimeout(() => window.location.replace(window.location.origin), 4000);
     }
   }, [result]);
 
@@ -126,7 +128,7 @@ const ChoiceBlock = ({
           canvasWidth={230}
           canvasHeight={130}
           resultSetter={resultSetter}
-          availableOptions={availableOptions}
+          availableOptions={[...availableOptions, "Pointing_Up"]}
         />
         {
           <C

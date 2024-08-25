@@ -149,7 +149,7 @@ export const Page: PageType = () => {
                 phone and you’ve missed a call from her. You should dial back.
               </FadeIn>
 
-              <FadeIn wrapper={animated("div")} delayTime={5 * 800}>
+              <FadeIn wrapper={animated("div")} delayTime={5 * 400}>
                 <p>She picks up on the third ring.</p>
               </FadeIn>
               <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="callMom" />
@@ -167,46 +167,46 @@ export const Page: PageType = () => {
                 "Hi, honey. I just saw your call, are you OK?"
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 800}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 500}>
                 "Oh hi mum. No worries. Just wanted to check how you’re doing
                 but I realised it was far too early for you. I can hang up."
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 1000}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 800}>
                 "No no, I'm glad you called. Have you eaten yet?"
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 1700}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 1000}>
                 “Not yet but that's because I'm pretty tired. But don’t worry
                 about me, I think it was just overdue sleep and I’m coming down
                 with something. You know. Work.”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 1900}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 1500}>
                 “Hmm, OK honey. You need to take care of yourself.”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 2100}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 1800}>
                 “I will”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 2500}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 2000}>
                 “Make sure you eat right and sleep well. No screens before bed.”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 2900}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 2500}>
                 “Yeah, I know.”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 3000}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 2900}>
                 “OK. I’m going to let you get on with your day.”
               </FadeIn>
 
-              <FadeIn wrapper={animated("p")} delayTime={5 * 3300}>
+              <FadeIn wrapper={animated("p")} delayTime={5 * 3100}>
                 “You can call me anytime, you know.”
               </FadeIn>
 
-              <FadeIn wrapper={animated("div")} delayTime={5 * 3600}>
+              <FadeIn wrapper={animated("div")} delayTime={5 * 3400}>
                 <p>"I know... Bye mom."</p>
               </FadeIn>
               <NavBlock instructionClassName={styles.instruction}  text="" next={Next.Section} tag="endMomCalling" />
