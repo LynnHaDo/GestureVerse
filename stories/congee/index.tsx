@@ -36,7 +36,7 @@ const Index: ReactFCC = ({ children }) => {
         />
       </Head>
       
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>{hideMenu && <>{children}</>}</main>
       <MusicPlayer
         dir="/audio/congee"
         hideMenu={hideMenu}
@@ -44,7 +44,7 @@ const Index: ReactFCC = ({ children }) => {
         className={styles.musicContainer}
         instructionClassName={styles.instruction}
       />
-      <span className={stylesIndex.formInstruction}>
+      <span className={stylesIndex.formInstruction} style={{color: `${colors.lightYellow}`}}>
         {Gestures["Pointing_Up"]} to go back to home
       </span>
     </>

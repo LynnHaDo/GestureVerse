@@ -48,7 +48,7 @@ const MusicPlayer = ({
     "Open_Palm",
     "Thumb_Down",
     "Victory",
-    "Pointing_Up",
+    "ILoveYou",
   ];
   const [gestureRecognizer, gestureRecognizerSetter] = useState(null);
   const [modelLoaded, setModelLoaded] = useState(false);
@@ -160,14 +160,6 @@ const MusicPlayer = ({
     if (result) {
       switch (result.category) {
         case acceptedOptions[0]:
-          playSong();
-          setModelLoaded(false);
-          break;
-        case acceptedOptions[1]:
-          pauseSong();
-          setModelLoaded(false);
-          break;
-        case acceptedOptions[2]:
           dispatch(
             updateVariable("procrastinate__MUSIC_CONFIG", {
               on: play,
@@ -176,12 +168,20 @@ const MusicPlayer = ({
           );
           hideSetter(true);
           break;
+        case acceptedOptions[1]:
+          playPrev();
+          setModelLoaded(false);
+          break;
+        case acceptedOptions[2]:
+          pauseSong();
+          setModelLoaded(false);
+          break;
         case acceptedOptions[3]:
           playNext();
           setModelLoaded(false);
           break;
         case acceptedOptions[4]:
-          playPrev();
+          playSong();
           setModelLoaded(false);
       }
     }
@@ -250,20 +250,20 @@ const MusicPlayer = ({
                   <div className={`${styles.modal} ${instructionClassName}`}>
                     <ul>
                       <li>
-                        {Gestures["Thumb_Down"]} to <span>exit menu</span>
+                        {Gestures["Closed_Fist"]} to <span>exit menu</span>
                       </li>
                       <li>
-                        {Gestures["Closed_Fist"]} to <span>play music</span>
+                        {Gestures["ILoveYou"]} to <span>play music</span>
                       </li>
                       <li>
                         {Gestures["Victory"]} to <span>play next song</span>
                       </li>
                       <li>
-                        {Gestures["Pointing_Up"]} to{" "}
+                        {Gestures["Open_Palm"]} to{" "}
                         <span>play previous song</span>
                       </li>
                       <li>
-                        {Gestures["Open_Palm"]} to <span>turn off music</span>
+                        {Gestures["Thumb_Down"]} to <span>turn off music</span>
                       </li>
                     </ul>
                   </div>

@@ -1,7 +1,7 @@
 import { Image } from "react-bootstrap";
 import styles from "./Artwork.module.scss";
 
-import { addOutline } from "ionicons/icons";
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 export interface ArtworkProps {
   /** Path to the image/artwork */
@@ -54,7 +54,7 @@ const Artwork = ({
         >
           <span className={styles.infoText}>{name}</span>
           <div className={styles.icon}>
-            
+            <AddRoundedIcon fontSize="small"/>
           </div>
           <div className={styles.background}>
             <div className={styles.backdrop}></div>

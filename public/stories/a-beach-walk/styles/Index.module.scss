@@ -41,13 +41,13 @@ $text-color: colors.$very-light;
 }
 
 .main {
-  background-color: transparent;
+  background-color: colors.$darkBlue;
   color: $text-color;
   font-family: $body;
   min-height: 100vh;
   padding-bottom: 2rem;
   padding-top: 5em;
-  z-index: -1;
+  z-index: 0;
   position: relative;
 
   h1,
