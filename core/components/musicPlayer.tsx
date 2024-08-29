@@ -12,6 +12,7 @@ import MusicOffRoundedIcon from "@mui/icons-material/MusicOffRounded";
 import { useVariable } from "core/hooks/use-variable";
 import { useAppDispatch } from "core/types";
 import { updateVariable } from "core/features/variable-manager";
+import { optionItem } from "./constants/options";
 
 export interface MusicPlayerProps {
   /** Path to the playlist */
@@ -44,11 +45,11 @@ const MusicPlayer = ({
 
   /** Model states */
   const acceptedOptions = [
-    "Closed_Fist",
-    "Open_Palm",
-    "Thumb_Down",
-    "Victory",
-    "ILoveYou",
+    optionItem("Closed_Fist"),
+    optionItem("Open_Palm"),
+    optionItem("Thumb_Down"),
+    optionItem("Victory"),
+    optionItem("ILoveYou"),
   ];
   const [gestureRecognizer, gestureRecognizerSetter] = useState(null);
   const [modelLoaded, setModelLoaded] = useState(false);
@@ -159,7 +160,7 @@ const MusicPlayer = ({
   useEffect(() => {
     if (result) {
       switch (result.category) {
-        case acceptedOptions[0]:
+        case acceptedOptions[0].action:
           dispatch(
             updateVariable("procrastinate__MUSIC_CONFIG", {
               on: play,
@@ -168,24 +169,41 @@ const MusicPlayer = ({
           );
           hideSetter(true);
           break;
-        case acceptedOptions[1]:
+        case acceptedOptions[1].action:
           playPrev();
-          setModelLoaded(false);
+          setTimeout(() => setModelLoaded(false), 2000)
           break;
-        case acceptedOptions[2]:
+        case acceptedOptions[2].action:
           pauseSong();
-          setModelLoaded(false);
+          setTimeout(() => setModelLoaded(false), 2000)
           break;
-        case acceptedOptions[3]:
+        case acceptedOptions[3].action:
           playNext();
-          setModelLoaded(false);
+          setTimeout(() => setModelLoaded(false), 2000)
           break;
-        case acceptedOptions[4]:
+        case acceptedOptions[4].action:
           playSong();
-          setModelLoaded(false);
+          setTimeout(() => setModelLoaded(false), 2000)
       }
     }
   }, [result]);
+
+  const [width, setWidth] = useState(window.innerWidth);
+  const [canvasWidth, setCanvasWidth] = useState(230);
+  const [canvasHeight, setCanvasHeight] = useState(130);
+  
+  useEffect(() => {
+    /** Code referenced from https://www.dhiwise.com/post/react-get-screen-width-everything-you-need-to-know */
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+
+    if (width < 500) {
+        setCanvasWidth(canvasWidth * 0.5);
+        setCanvasHeight(canvasHeight * 0.5);
+    }
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [width])
 
   return (
     <>
@@ -194,8 +212,8 @@ const MusicPlayer = ({
         <div className={styles.container}>
           <Camera
             gestureRecognizer={gestureRecognizer}
-            canvasWidth={230}
-            canvasHeight={130}
+            canvasWidth={canvasWidth}
+            canvasHeight={canvasHeight}
             resultSetter={resultSetter}
             availableOptions={acceptedOptions}
           />

@@ -6,7 +6,12 @@ import { Gestures, Handedness } from "./constants/gesture";
 /** Hooks */
 import { useState, useEffect, useRef, useContext } from "react";
 import { useDispatch } from "react-redux";
-import { optionItemProps, Options, Variables } from "./constants/options";
+import {
+  optionItem,
+  optionItemProps,
+  Options,
+  Variables,
+} from "./constants/options";
 
 /** Utils */
 import { makeChoice } from "core/features/choice";
@@ -26,7 +31,7 @@ import React from "react";
 export interface ChoiceBlockProps {
   /** Tag of the choice (used for the Choice component) */
   tag?: string;
-  predictionType?: "gesture" | "handedness";
+  predictionType?: "gesture" | "handedness" | "both";
   /** List of available options */
   options?: { [key: string]: optionItemProps };
   widget?: (props: any) => JSX.Element;
@@ -38,6 +43,23 @@ export interface ChoiceBlockProps {
   /** Classname of instruction */
   instructionClassName?: string;
 }
+
+export const getInstructionDescription = (
+  gesture: string,
+  handedness: string
+) => {
+  let answer: string = "";
+
+  if (gesture == null && handedness != null) {
+    answer = Handedness[handedness];
+  } else if (gesture != null && handedness == null) {
+    answer = `${Gestures[gesture]} (any)`;
+  } else if (gesture != null && handedness != null) {
+    answer = `${Gestures[gesture]} (${handedness})`;
+  }
+
+  return answer;
+};
 
 /**
  * Represents a gesture-based choice component
@@ -81,19 +103,62 @@ const ChoiceBlock = ({
 
   /** Warnings */
   let [showModalNotLoaded, setModalNotLoaded] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
 
-  let availableOptions =
-    predictionType == "gesture"
-      ? optionValues.filter((val) => !val.disabled).map((i) => i.action)
-      : optionValues.filter((val) => !val.disabled).map((i) => i.handedness);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [canvasWidth, setCanvasWidth] = useState(230);
+  const [canvasHeight, setCanvasHeight] = useState(130);
 
   useEffect(() => {
-    if (result && result.category != "Pointing_Up") {
+    /** Code referenced from https://www.dhiwise.com/post/react-get-screen-width-everything-you-need-to-know */
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    if (width < 500) {
+      setCanvasWidth(canvasWidth * 0.5);
+      setCanvasHeight(canvasHeight * 0.5);
+    }
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+
+  useEffect(() => {
+    reloadScreen();
+    createGestureRecognizer(gestureRecognizerSetter);
+    setModelLoaded(true);
+  }, [modelLoaded]);
+
+  useEffect(() => {
+    if (!result) {
+      return;
+    }
+
+    if (result.category === "Pointing_Up" && result.handedness === "Left") {
+      setTimeout(() => window.location.replace(window.location.origin), 4000);
+    } else if (
+      result.category === "Pointing_Up" &&
+      result.handedness === "Right"
+    ) {
+      window.scrollBy(0, -300);
+      setTimeout(() => setModelLoaded(false), 2000);
+    } else if (
+      result.category === "Closed_Fist" &&
+      result.handedness === "Left"
+    ) {
+      window.scrollBy(0, 300);
+      setTimeout(() => setModelLoaded(false), 2000);
+    } else {
       // Get the answer
-      let answer =
-        predictionType == "gesture"
-          ? optionKeys.find((k) => options[k].action == result.category)
-          : optionKeys.find((k) => options[k].handedness == result.handedness);
+      let answer: string = optionKeys.find(
+        (k) =>
+          (options[k].action == null || options[k].action == result.category) &&
+          (options[k].handedness == null ||
+            options[k].handedness == result.handedness)
+      );
+
+      if (!answer) {
+        return;
+      }
 
       let answerText = options[answer].description;
       decision.current.textContent = `You chose ${answerText}.`;
@@ -115,8 +180,6 @@ const ChoiceBlock = ({
         dispatch(updateVariable(tag, answer));
         return null;
       }, 4000);
-    } else if (result && result.category === "Pointing_Up") {
-      setTimeout(() => window.location.replace(window.location.origin), 4000);
     }
   }, [result]);
 
@@ -125,10 +188,15 @@ const ChoiceBlock = ({
       <>
         <Camera
           gestureRecognizer={gestureRecognizer}
-          canvasWidth={230}
-          canvasHeight={130}
+          canvasWidth={canvasWidth}
+          canvasHeight={canvasHeight}
           resultSetter={resultSetter}
-          availableOptions={[...availableOptions, "Pointing_Up"]}
+          availableOptions={[
+            ...optionValues,
+            optionItem("Pointing_Up", "Left"),
+            optionItem("Pointing_Up", "Right"),
+            optionItem("Closed_Fist", "Left"),
+          ]}
         />
         {
           <C
@@ -149,23 +217,18 @@ const ChoiceBlock = ({
                 key={key}
                 className={options[key].disabled ? `${styles.crossOut}` : ""}
               >
-                {predictionType == "gesture" ? (
+                {
                   <>
-                    {Gestures[options[key].action]} for{" "}
-                    <span className={styles.underline}>
-                      {options[key].description}
-                    </span>
-                    .
+                    {getInstructionDescription(
+                      options[key].action,
+                      options[key].handedness
+                    )}{" "}
+                    for{" "}
                   </>
-                ) : (
-                  <>
-                    {Handedness[options[key].handedness]} for{" "}
-                    <span className={styles.underline}>
-                      {options[key].description}
-                    </span>
-                    .
-                  </>
-                )}
+                }
+                <span className={styles.underline}>
+                  {options[key].description}
+                </span>
               </p>
             );
           })}

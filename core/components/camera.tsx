@@ -20,7 +20,7 @@ import {
   FilesetResolver,
   DrawingUtils,
 } from "@mediapipe/tasks-vision";
-import { createGestureRecognizer, reloadScreen } from "./chapter";
+import { optionItemProps } from "./constants/options";
 
 /** Constants */
 const ENABLE_TEXT = "Open webcam";
@@ -50,7 +50,7 @@ interface CameraProps {
   /** Result object (if any) */
   resultSetter?: Dispatch<HandGesture>;
   /** List of available gesture options to predict for */
-  availableOptions?: string[];
+  availableOptions?: optionItemProps[];
 }
 
 /**
@@ -105,6 +105,8 @@ const Camera = ({
     if (isUserCameraAllowed()) {
       togglePrediction();
     }
+
+    return () => stopPrediction();
   }, [gestureRecognizer]);
 
   /**
@@ -239,10 +241,13 @@ const Camera = ({
       results.gestures.length > 0 &&
       results.gestures[0][0].score > MIN_CONFIDENCE_SCORE
     ) {
-      if (
-        availableOptions.includes(results.gestures[0][0].categoryName) ||
-        availableOptions.includes(results.handedness[0][0].displayName)
-      ) {
+      let itemList: optionItemProps[] = availableOptions.filter(
+        (o) =>
+          (o.action == null || o.action === results.gestures[0][0].categoryName) &&
+          (o.handedness == null || o.handedness === results.handedness[0][0].displayName) 
+      );
+
+      if (itemList.length > 0) {
         const resultObj = {
           category: results.gestures[0][0].categoryName,
           score: results.gestures[0][0].score * 100,
@@ -261,7 +266,6 @@ const Camera = ({
       }
 
       setText(results);
-
     } else {
       textWrapperRef.current.style.opacity = "0";
       textWrapperRef.current.style.visibility = "hidden";

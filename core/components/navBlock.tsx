@@ -10,7 +10,9 @@ import { Camera } from "core/components";
 import { Tag, Next, NextType } from "core/types";
 import {
   ChapterContext,
+  createGestureRecognizer,
   GestureRecognizerContext,
+  reloadScreen,
 } from "core/components/chapter";
 
 import { useDispatch } from "react-redux";
@@ -21,6 +23,7 @@ import { makeChoice } from "core/features/choice";
 import styles from "./ChoiceBlock.module.scss";
 
 import CustomModal from "./modal";
+import { optionItem } from "./constants/options";
 
 export interface NavBlockProps {
   /** The displayed text for the link */
@@ -55,6 +58,7 @@ export const NavBlock = ({
 
   /** Warnings */
   let [showModalNotLoaded, setModalNotLoaded] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
 
   const { gestureRecognizer, gestureRecognizerSetter } = useContext(
     GestureRecognizerContext
@@ -68,26 +72,70 @@ export const NavBlock = ({
   let handlerFunct: Function =
     handler == null || handler == undefined ? genericHandler : handler;
 
+  const [width, setWidth] = useState(window.innerWidth);
+  const [canvasWidth, setCanvasWidth] = useState(230);
+  const [canvasHeight, setCanvasHeight] = useState(130);
+
   useEffect(() => {
-    if (result && result.category === "Thumb_Up") {
-      setTimeout(handlerFunct, 4000);
-    } else if (result && result.category === "Pointing_Up") {
-      setTimeout(() => window.location.replace(window.location.origin), 4000);
+    /** Code referenced from https://www.dhiwise.com/post/react-get-screen-width-everything-you-need-to-know */
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    if (width < 500) {
+      setCanvasWidth(canvasWidth * 0.5);
+      setCanvasHeight(canvasHeight * 0.5);
     }
-  }, [result, gestureRecognizer]);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+
+  useEffect(() => {
+    reloadScreen();
+    createGestureRecognizer(gestureRecognizerSetter);
+    setModelLoaded(true);
+  }, [modelLoaded]);
+
+  useEffect(() => {
+    if (!result) {
+      return;
+    }
+
+    if (result.category === "Pointing_Up" && result.handedness === "Left") {
+      setTimeout(() => window.location.replace(window.location.origin), 4000);
+    } else if (
+      result.category === "Pointing_Up" &&
+      result.handedness === "Right"
+    ) {
+      window.scrollBy(0, -300);
+      setTimeout(() => setModelLoaded(false), 2000);
+    } else if (
+      result.category === "Closed_Fist" &&
+      result.handedness == "Left"
+    ) {
+      window.scrollBy(0, 300);
+      setTimeout(() => setModelLoaded(false), 2000);
+    } else {
+      setTimeout(handlerFunct, 4000);
+    }
+  }, [result]);
 
   return (
     <>
       {text && text != "" && <span>{text}</span>}
       <Camera
         gestureRecognizer={gestureRecognizer}
-        canvasWidth={230}
-        canvasHeight={130}
+        canvasWidth={canvasWidth}
+        canvasHeight={canvasHeight}
         resultSetter={resultSetter}
-        availableOptions={["Thumb_Up", "Pointing_Up"]}
+        availableOptions={[
+          optionItem("Thumb_Up"),
+          optionItem("Pointing_Up", "Left"),
+          optionItem("Pointing_Up", "Right"),
+          optionItem("Closed_Fist", "Left"),
+        ]}
       />
       <div className={`${styles.instruction} ${instructionClassName}`}>
-        <p>Put your thumb up 👍 to continue</p>
+        <p>Put your thumb up 👍 (any) to continue</p>
         <p>Note: Keep the gesture for at least 5 seconds.</p>
       </div>
       <CustomModal

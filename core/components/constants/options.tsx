@@ -58,7 +58,7 @@ export const Options: OptionProps = {
         "nap": optionItem("Victory", null, 'Take a nap'),
         "game": optionItem("Open_Palm", null, 'Play video games'),
         "eat": optionItem("ILoveYou", null, 'Eat something'),
-        "clean": optionItem("Closed_Fist", null, 'Clean my room')
+        "clean": optionItem("Closed_Fist", 'Right', 'Clean my room')
     },
     "procrastinate__tv": {
         "tv_regulartv": optionItem(null, 'Left', 'Regular tv'),
@@ -79,12 +79,12 @@ export const Options: OptionProps = {
     "procrastinate__games_relaxing": {
         "game_relaxing_breathofthewild": optionItem('Open_Palm', null, 'Breath of the Wild'),
         "game_relaxing_supermarioodyssey": optionItem('Victory', null, 'Super Mario Odyssey'),
-        "game_relaxing_goosegame": optionItem('Closed_Fist', null, 'Untitled goose game')
+        "game_relaxing_goosegame": optionItem('Closed_Fist', 'Right', 'Untitled goose game')
     },
     "procrastinate__games_phone": {
         "game_phone_phonegame": optionItem('Open_Palm', null, 'Play a boring (?) phone game'),
         "game_phone_instagram": optionItem('Victory', null, 'Instagram time'),
-        "game_phone_article": optionItem('Closed_Fist', null, "Educate myself on why Tesla's stock is dropping"),
+        "game_phone_article": optionItem('Closed_Fist', 'Right', "Educate myself on why Tesla's stock is dropping"),
     },
     "procrastinate__clean": {
         "clean_clothes": optionItem('Thumb_Up', null, 'Collect the clothes on the floor'),
@@ -124,7 +124,7 @@ export const Options: OptionProps = {
     "congee__tell_allison": {
         "tell_allison_response_death": optionItem('Victory', null, "I'm not being melodramatic but I think death is near dfdsfdf"),
         "tell_allison_response_netflix": optionItem('ILoveYou', null, 'I need a very distracting Netflix recommendation'),
-        'tell_allison_response_vessel': optionItem('Closed_Fist', null, 'The body is but a weak vessel')
+        'tell_allison_response_vessel': optionItem('Closed_Fist', 'Right', 'The body is but a weak vessel')
     },
     "congee__get_options": {
         "get_takeaway": optionItem('Thumb_Up', null, 'Check your local Chinese takeaway'),
@@ -140,7 +140,7 @@ export const Options: OptionProps = {
     },
     "congee__open_door": {
         "open_door_ignore": optionItem('Open_Palm', null, 'Just ignore it'),
-        "open_door_open": optionItem('Closed_Fist', null, 'Open the door')
+        "open_door_open": optionItem('Closed_Fist', 'Right', 'Open the door')
     },
     "congee__end": {
         "end_congee_club": optionItem('Thumb_Up', null, "Congee Club?"),
@@ -154,7 +154,7 @@ export const Variables: OptionProps = {
     "procrastinate__grace_period": {
         '10': optionItem('Victory', null, '10 minutes'),
         '20': optionItem('Open_Palm', null, '20 minutes'),
-        '30': optionItem('Closed_Fist', null, '30 minutes')
+        '30': optionItem('Closed_Fist', 'Right', '30 minutes')
     },
     /** CONGEE */
     "congee__disease": {

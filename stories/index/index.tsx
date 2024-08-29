@@ -7,7 +7,11 @@ import styles from "public/stories/index/styles/Index.module.scss";
 import { Camera } from "core/components";
 import { createGestureRecognizer, reloadScreen } from "core/components/chapter";
 import { HandGesture } from "core/components/camera";
-import { optionItemProps, Options } from "core/components/constants/options";
+import {
+  optionItem,
+  optionItemProps,
+  Options,
+} from "core/components/constants/options";
 
 import { useRouter } from "next/router";
 import { Accordion, Col, Container, Row } from "react-bootstrap";
@@ -26,8 +30,6 @@ const Index: ReactFCC = ({ children }) => {
   const optionKeys: string[] = Object.keys(options);
   const optionValues: Array<optionItemProps> = Object.values(options);
 
-  let availableOptions = optionValues.map((i) => i.action);
-
   const router = useRouter();
 
   React.useEffect(() => {
@@ -37,23 +39,7 @@ const Index: ReactFCC = ({ children }) => {
   }, [modelLoaded]);
 
   React.useEffect(() => {
-    if (result && result.category != "Pointing_Up") {
-      let answer = optionKeys.find((k) => options[k].action == result.category);
-
-      let selectedIndex = optionKeys.indexOf(answer);
-      let lis = document.getElementsByTagName("li");
-
-      lis.item(selectedIndex).classList.add(`${styles.selected}`);
-
-      // Get the answer
-      let url = "/" + router.basePath + answer;
-
-      setTimeout(() => {
-        window.location.replace(url);
-        lis.item(selectedIndex).classList.remove(`${styles.selected}`);
-        setModelLoaded(false);
-      }, 4000);
-    } else if (result && result.category == "Pointing_Up") {
+    if (result && result.category == "Pointing_Up") {
       const form = document.forms["menuList"];
       const radios: RadioNodeList = form.elements["slider"];
       const checkedItem = Array.from(radios).find((radio) => radio["checked"]);
@@ -69,8 +55,41 @@ const Index: ReactFCC = ({ children }) => {
         Array.from(radios).at(nextIndex)["checked"] = true;
         setModelLoaded(false);
       }, 4000);
+    } else if (result && result.category != 'Pointing_Up') {
+      let answer = optionKeys.find((k) => options[k].action == result.category);
+
+      let selectedIndex = optionKeys.indexOf(answer);
+      let lis = document.getElementsByTagName("li");
+
+      lis.item(selectedIndex).classList.add(`${styles.selected}`);
+
+      // Get the answer
+      let url = "/" + router.basePath + answer;
+
+      setTimeout(() => {
+        window.location.replace(url);
+        lis.item(selectedIndex).classList.remove(`${styles.selected}`);
+        setModelLoaded(false);
+      }, 4000);
     }
   }, [result]);
+
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const [canvasWidth, setCanvasWidth] = React.useState(230);
+  const [canvasHeight, setCanvasHeight] = React.useState(130);
+
+  React.useEffect(() => {
+    /** Code referenced from https://www.dhiwise.com/post/react-get-screen-width-everything-you-need-to-know */
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    if (width < 500) {
+      setCanvasWidth(canvasWidth * 0.5);
+      setCanvasHeight(canvasHeight * 0.5);
+    }
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
 
   return (
     <div className={styles.container}>
@@ -80,10 +99,10 @@ const Index: ReactFCC = ({ children }) => {
       <main>
         <Camera
           gestureRecognizer={gestureRecognizer}
-          canvasWidth={230}
-          canvasHeight={130}
+          canvasWidth={canvasWidth}
+          canvasHeight={canvasHeight}
           resultSetter={resultSetter}
-          availableOptions={[...availableOptions, "Pointing_Up"]}
+          availableOptions={[...optionValues, optionItem("Pointing_Up")]}
         />
 
         <form className={styles.wrapper} name="menuList">
@@ -91,7 +110,9 @@ const Index: ReactFCC = ({ children }) => {
           <input type="radio" id="about" name="slider" />
           <input type="radio" id="reference" name="slider" />
 
-          <span className={styles.formInstruction}>{Gestures['Pointing_Up']} to move to the next section</span>
+          <span className={styles.formInstruction}>
+            {Gestures["Pointing_Up"]} (any) to move to the next section
+          </span>
 
           <div className={styles.labels}>
             <label htmlFor="home" className={styles.main}>

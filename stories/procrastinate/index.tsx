@@ -45,7 +45,9 @@ const Index: ReactFCC = ({ children }: GridProps) => {
         instructionClassName={styles.instruction}
       />
       <span className={stylesIndex.formInstruction}>
-        {Gestures["Pointing_Up"]} to go back to home
+      {Gestures["Pointing_Up"]} (left) to go back to home |{" "}
+        {Gestures["Pointing_Up"]} (right) to scroll up |{" "}
+        {Gestures["Closed_Fist"]} (left) to scroll down
       </span>
     </>
   );

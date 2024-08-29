@@ -28,9 +28,6 @@ const End = ({
   sources = [],
   instructionClassName = ''
 }: EndProps): JSX.Element => {
-  /** Decision-making-related states/handlers */
-  const dispatch = useDispatch<any>();
-
   const { persistor, config } = useContext(StoryContext);
   const router = useRouter();
 
