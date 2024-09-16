@@ -22,7 +22,7 @@
 
   <p align="center">
     <br />
-    <a href="https://drive.google.com/file/d/1F3Nh6uCjEazwcf4wDj3azgG2ffsYEzAq/view?usp=sharing">View Demo</a>
+    <a href="https://drive.google.com/file/d/1anyKNugkaFAkMBB6sJfFe3t-_Vd09Mup/view">Keynote and Demo</a>
     ·
     <a href="https://github.com/LynnHaDo/Storytelling/issues">Report Bug</a>
     ·
